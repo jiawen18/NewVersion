@@ -72,13 +72,15 @@
 												<i class="fa fa-star"></i>
 												<i class="fa fa-star"></i>
 											</div>
-											<div class="product-btns">
-												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-												<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-											</div>
+
 										</div>
+										<!-- Add-to-cart section -->
 										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+											<!-- Hidden field to store product ID or other data -->
+											<asp:HiddenField ID="HiddenField1" runat="server" Value="1" />
+
+											<!-- Button to trigger an action (e.g., add to cart) -->
+											<asp:Button ID="btnBuyNow" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
 										</div>
 									</div>
 									<!-- /product -->
@@ -102,14 +104,14 @@
 												<i class="fa fa-star"></i>
 												<i class="fa fa-star"></i>
 											</div>
-											<div class="product-btns">
-												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-												<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-											</div>
+
 										</div>
 										<div class="add-to-cart">
-											<asp:HiddenField ID="hfProductId" runat="server" Value="1" />
-											<asp:Button class="add-to-cart-btn" ID="btnAddToCart" runat="server" Text="add to cart"/>
+											<!-- Hidden field to store product ID or other data -->
+											<asp:HiddenField ID="HiddenField5" runat="server" Value="1" />
+
+											<!-- Button to trigger an action (e.g., add to cart) -->
+											<asp:Button ID="Button1" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
 										</div>
 									</div>
 									<!-- /product -->
@@ -133,13 +135,14 @@
 													<i class="fa fa-star"></i>
 													<i class="fa fa-star"></i>
 											</div>
-											<div class="product-btns">
-												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-												<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-											</div>
+
 										</div>
 										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+											<!-- Hidden field to store product ID or other data -->
+											<asp:HiddenField ID="HiddenField2" runat="server" Value="1" />
+
+											<!-- Button to trigger an action (e.g., add to cart) -->
+											<asp:Button ID="Button2" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
 										</div>
 									</div>
 									<!-- /product -->
@@ -160,13 +163,14 @@
 												<i class="fa fa-star"></i>
 												<i class="fa fa-star"></i>
 											</div>
-											<div class="product-btns">
-												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-												<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-											</div>
+
 										</div>
 										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+											<!-- Hidden field to store product ID or other data -->
+											<asp:HiddenField ID="HiddenField3" runat="server" Value="1" />
+
+											<!-- Button to trigger an action (e.g., add to cart) -->
+											<asp:Button ID="Button3" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
 										</div>
 									</div>
 									<!-- /product -->
@@ -187,13 +191,14 @@
 												<i class="fa fa-star"></i>
 												<i class="fa fa-star-o"></i>
 											</div>
-											<div class="product-btns">
-												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-												<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-											</div>
+
 										</div>
 										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+											<!-- Hidden field to store product ID or other data -->
+											<asp:HiddenField ID="HiddenField4" runat="server" Value="1" />
+
+											<!-- Button to trigger an action (e.g., add to cart) -->
+											<asp:Button ID="Button4" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
 										</div>
 									</div>
 									<!-- /product -->
@@ -224,13 +229,14 @@
 												<i class="fa fa-star"></i>
 												<i class="fa fa-star"></i>
 											</div>
-											<div class="product-btns">
-												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-												<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-											</div>
+
 										</div>
 										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+											<!-- Hidden field to store product ID or other data -->
+											<asp:HiddenField ID="HiddenField8" runat="server" Value="1" />
+
+											<!-- Button to trigger an action (e.g., add to cart) -->
+											<asp:Button ID="Button5" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
 										</div>
 									</div>
 									<!-- /product -->
@@ -249,13 +255,14 @@
 													<h4 class="product-price"><del class="product-old-price">RM 812.89</del></h4>
 													<div class="product-rating">
 										</div>
-										<div class="product-btns">
-												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-												<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-										</div>
+
 										</div>
 										<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+											<!-- Hidden field to store product ID or other data -->
+											<asp:HiddenField ID="HiddenField6" runat="server" Value="1" />
+
+											<!-- Button to trigger an action (e.g., add to cart) -->
+											<asp:Button ID="Button6" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
 										</div>
 									</div>
 									<!-- /product -->
@@ -279,13 +286,14 @@
 												<i class="fa fa-star"></i>
 												<i class="fa fa-star"></i>
 											</div>
-											<div class="product-btns">
-												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-												<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-											</div>
+
 										</div>
 										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+											<!-- Hidden field to store product ID or other data -->
+											<asp:HiddenField ID="HiddenField7" runat="server" Value="1" />
+
+											<!-- Button to trigger an action (e.g., add to cart) -->
+											<asp:Button ID="Button7" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
 										</div>
 									</div>
 									<!-- /product -->
@@ -318,14 +326,15 @@
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
 									</div>
-									<div class="product-btns">
-										<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-										<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-									</div>
+
 								</div>
-								<div class="add-to-cart">
-									<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-								</div>
+										<div class="add-to-cart">
+											<!-- Hidden field to store product ID or other data -->
+											<asp:HiddenField ID="HiddenField9" runat="server" Value="1" />
+
+											<!-- Button to trigger an action (e.g., add to cart) -->
+											<asp:Button ID="Button8" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
+										</div>
 							</div>
 							<!-- /product -->
 
@@ -348,14 +357,15 @@
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
 									</div>
-									<div class="product-btns">
-										<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-										<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-									</div>
+
 								</div>
-								<div class="add-to-cart">
-									<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-								</div>
+										<div class="add-to-cart">
+											<!-- Hidden field to store product ID or other data -->
+											<asp:HiddenField ID="HiddenField10" runat="server" Value="1" />
+
+											<!-- Button to trigger an action (e.g., add to cart) -->
+											<asp:Button ID="Button9" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
+										</div>
 							</div>
 							<!-- /product -->
 
@@ -378,14 +388,15 @@
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
 									</div>
-									<div class="product-btns">
-										<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-										<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-									</div>
+
 								</div>
-								<div class="add-to-cart">
-									<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-								</div>
+										<div class="add-to-cart">
+											<!-- Hidden field to store product ID or other data -->
+											<asp:HiddenField ID="HiddenField11" runat="server" Value="1" />
+
+											<!-- Button to trigger an action (e.g., add to cart) -->
+											<asp:Button ID="Button10" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
+										</div>
 							</div>
 							<!-- /product -->
 
@@ -405,14 +416,15 @@
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
 									</div>
-									<div class="product-btns">
-										<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-										<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-									</div>
+
 								</div>
-								<div class="add-to-cart">
-									<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-								</div>
+										<div class="add-to-cart">
+											<!-- Hidden field to store product ID or other data -->
+											<asp:HiddenField ID="HiddenField12" runat="server" Value="1" />
+
+											<!-- Button to trigger an action (e.g., add to cart) -->
+											<asp:Button ID="Button11" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
+										</div>
 							</div>
 							<!-- /product -->
 
@@ -471,7 +483,7 @@
 								</ul>
 								<h2 class="text-uppercase">hot deal this week</h2>
 								<p>New Collection Up to 50% OFF</p>
-								<a class="primary-btn cta-btn" href="Shop.aspx">Shop now</a>
+								<a class="primary-btn cta-btn" href="Smartphones.aspx">Shop now</a>
 							</div>
 						</div>
 		</div>
@@ -491,7 +503,7 @@
 			    <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
 				    <h2 class="mb-4 section-title">New Arrival</h2>
 				    <p class="mb-4">Discover the latest arrivals from Hansumg, including the sleek Hansumg Z Flip, advanced Hansumg Ear Buds, and versatile Tabs. Elevate your tech experience with our cutting-edge products, designed to fit your lifestyle and enhance everyday moments. </p>
-				    <p><a href="Shop.aspx" class="btn">Explore</a></p>
+				    <p><a href="Smartphones.aspx" class="btn">Explore</a></p>
 			    </div> 
 			    <!-- End Column 1 -->
 
@@ -674,35 +686,35 @@
 
 
 <script>
-// Set the date and time we're counting down to
+    // Set the date and time we're counting down to
     var countDownDate = new Date("Sept 15, 2024 23:59:59").getTime();
 
     // Update the countdown every 1 second
-    var countdownFunction = setInterval(function() {
+    var countdownFunction = setInterval(function () {
 
-    // Get today's date and time
-    var now = new Date().getTime();
+        // Get today's date and time
+        var now = new Date().getTime();
 
-    // Find the distance between now and the countdown date
-    var distance = countDownDate - now;
+        // Find the distance between now and the countdown date
+        var distance = countDownDate - now;
 
-    // Time calculations for days, hours, minutes, and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        // Time calculations for days, hours, minutes, and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    // Display the result in the respective HTML elements
-    document.querySelector(".hot-deal-countdown li:nth-child(1) h3").innerHTML = days;
-    document.querySelector(".hot-deal-countdown li:nth-child(2) h3").innerHTML = hours;
-    document.querySelector(".hot-deal-countdown li:nth-child(3) h3").innerHTML = minutes;
-    document.querySelector(".hot-deal-countdown li:nth-child(4) h3").innerHTML = seconds;
+        // Display the result in the respective HTML elements
+        document.querySelector(".hot-deal-countdown li:nth-child(1) h3").innerHTML = days;
+        document.querySelector(".hot-deal-countdown li:nth-child(2) h3").innerHTML = hours;
+        document.querySelector(".hot-deal-countdown li:nth-child(3) h3").innerHTML = minutes;
+        document.querySelector(".hot-deal-countdown li:nth-child(4) h3").innerHTML = seconds;
 
-    // If the countdown is finished, display a message
-    if (distance < 0) {
-        clearInterval(countdownFunction);
-    document.querySelector(".hot-deal-countdown").innerHTML = "EXPIRED";
-    }
-}, 1000);
+        // If the countdown is finished, display a message
+        if (distance < 0) {
+            clearInterval(countdownFunction);
+            document.querySelector(".hot-deal-countdown").innerHTML = "EXPIRED";
+        }
+    }, 1000);
 </script>
 </asp:Content>

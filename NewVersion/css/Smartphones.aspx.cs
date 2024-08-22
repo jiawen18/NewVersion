@@ -13,5 +13,10 @@ namespace NewVersion.css
         {
 
         }
+
+        protected void btnBuyNow_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

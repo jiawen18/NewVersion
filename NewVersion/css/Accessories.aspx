@@ -51,7 +51,9 @@
 
         <!-- Buy Now Button -->
         <div class="buyNow">
-            <button class="buyNow-btn"><i class="fa fa-shopping-cart"></i> Buy Now</button>
+            <asp:LinkButton ID="LinkButton1" runat="server" CssClass="buyNow-btn" OnClick="btnBuyNow_Click">
+                 <i class="fa fa-shopping-cart"></i> Buy Now
+            </asp:LinkButton>
         </div>
 
 </div>
@@ -80,7 +82,9 @@
 
         <!-- Buy Now Button -->
         <div class="buyNow">
-            <button class="buyNow-btn"><i class="fa fa-shopping-cart"></i> Buy Now</button>
+            <asp:LinkButton ID="LinkButton2" runat="server" CssClass="buyNow-btn" OnClick="btnBuyNow_Click">
+                 <i class="fa fa-shopping-cart"></i> Buy Now
+            </asp:LinkButton>
         </div>
 
 </div>
@@ -109,7 +113,9 @@
 
         <!-- Buy Now Button -->
         <div class="buyNow">
-            <button class="buyNow-btn"><i class="fa fa-shopping-cart"></i> Buy Now</button>
+            <asp:LinkButton ID="LinkButton3" runat="server" CssClass="buyNow-btn" OnClick="btnBuyNow_Click">
+                 <i class="fa fa-shopping-cart"></i> Buy Now
+            </asp:LinkButton>
         </div>
 
 </div>
@@ -149,7 +155,9 @@
 
         <!-- Buy Now Button -->
         <div class="buyNow">
-            <button class="buyNow-btn"><i class="fa fa-shopping-cart"></i> Buy Now</button>
+            <asp:LinkButton ID="LinkButton4" runat="server" CssClass="buyNow-btn" OnClick="btnBuyNow_Click">
+                 <i class="fa fa-shopping-cart"></i> Buy Now
+            </asp:LinkButton>
         </div>
 
 </div>
@@ -179,7 +187,9 @@
 
         <!-- Buy Now Button -->
         <div class="buyNow">
-            <button class="buyNow-btn"><i class="fa fa-shopping-cart"></i> Buy Now</button>
+            <asp:LinkButton ID="LinkButton5" runat="server" CssClass="buyNow-btn" OnClick="btnBuyNow_Click">
+                 <i class="fa fa-shopping-cart"></i> Buy Now
+            </asp:LinkButton>
         </div>
 
 </div>
@@ -208,7 +218,9 @@
 
         <!-- Buy Now Button -->
         <div class="buyNow">
-            <button class="buyNow-btn"><i class="fa fa-shopping-cart"></i> Buy Now</button>
+            <asp:LinkButton ID="LinkButton6" runat="server" CssClass="buyNow-btn" OnClick="btnBuyNow_Click">
+                 <i class="fa fa-shopping-cart"></i> Buy Now
+            </asp:LinkButton>
         </div>
 
 </div>
@@ -248,7 +260,9 @@
 
         <!-- Buy Now Button -->
         <div class="buyNow">
-            <button class="buyNow-btn"><i class="fa fa-shopping-cart"></i> Buy Now</button>
+            <asp:LinkButton ID="LinkButton7" runat="server" CssClass="buyNow-btn" OnClick="btnBuyNow_Click">
+                 <i class="fa fa-shopping-cart"></i> Buy Now
+            </asp:LinkButton>
         </div>
 
 </div>
@@ -278,7 +292,9 @@
 
         <!-- Buy Now Button -->
         <div class="buyNow">
-            <button class="buyNow-btn"><i class="fa fa-shopping-cart"></i> Buy Now</button>
+            <asp:LinkButton ID="LinkButton8" runat="server" CssClass="buyNow-btn" OnClick="btnBuyNow_Click">
+                 <i class="fa fa-shopping-cart"></i> Buy Now
+            </asp:LinkButton>
         </div>
 
 </div>
@@ -307,7 +323,9 @@
 
         <!-- Buy Now Button -->
         <div class="buyNow">
-            <button class="buyNow-btn"><i class="fa fa-shopping-cart"></i> Buy Now</button>
+            <asp:LinkButton ID="LinkButton9" runat="server" CssClass="buyNow-btn" OnClick="btnBuyNow_Click">
+                 <i class="fa fa-shopping-cart"></i> Buy Now
+            </asp:LinkButton>
         </div>
 
 </div>
@@ -340,7 +358,9 @@
 
         <!-- Buy Now Button -->
         <div class="buyNow">
-            <button class="buyNow-btn"><i class="fa fa-shopping-cart"></i> Buy Now</button>
+            <asp:LinkButton ID="LinkButton10" runat="server" CssClass="buyNow-btn" OnClick="btnBuyNow_Click">
+                 <i class="fa fa-shopping-cart"></i> Buy Now
+            </asp:LinkButton>
         </div>
 
 </div>
@@ -370,7 +390,9 @@
 
         <!-- Buy Now Button -->
         <div class="buyNow">
-            <button class="buyNow-btn"><i class="fa fa-shopping-cart"></i> Buy Now</button>
+            <asp:LinkButton ID="LinkButton11" runat="server" CssClass="buyNow-btn" OnClick="btnBuyNow_Click">
+                 <i class="fa fa-shopping-cart"></i> Buy Now
+            </asp:LinkButton>
         </div>
 
 </div>
@@ -399,7 +421,9 @@
 
         <!-- Buy Now Button -->
         <div class="buyNow">
-            <button class="buyNow-btn"><i class="fa fa-shopping-cart"></i> Buy Now</button>
+            <asp:LinkButton ID="LinkButton12" runat="server" CssClass="buyNow-btn" OnClick="btnBuyNow_Click">
+                 <i class="fa fa-shopping-cart"></i> Buy Now
+            </asp:LinkButton>
         </div>
 
 </div>
