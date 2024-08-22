@@ -206,8 +206,8 @@ a {
     background-color: #000; /* Black color */
     color: #fff; /* White text color */
     border: none;
-    padding: 15px 30px;
-    border-radius: 25px;
+    padding: 10px 20px;
+    border-radius: 40px;
     cursor: pointer;
     font-size: 1.2em;
     border-radius: 25px; /* Increase the radius for a more curved effect */
@@ -215,6 +215,7 @@ a {
     display: inline-flex; /* Align icon and text */
     align-items: center; /* Center align icon and text */
 }
+
 
     .buyNow-btn:hover {
         background-color: #333333; /* Darker color on hover */
@@ -378,9 +379,9 @@ a {
         box-shadow: none;
     }
 
-    .btn.btn-primary {
-        background: #3b5d50;
-        border-color: #3b5d50;
+    .btn.btn-primary:hover {
+        background: #314d43;
+        border-color: #314d43;
     }
 
         .btn.btn-primary:hover {
@@ -395,8 +396,8 @@ a {
     }
 
         .btn.btn-secondary:hover {
-            background: #333333;
-            border-color: #333333;
+            background: #f8b810;
+            border-color: #f8b810;
         }
 
     .btn.btn-white-outline {
