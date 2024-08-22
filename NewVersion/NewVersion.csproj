@@ -504,6 +504,7 @@
     <Content Include="css\images\cart.svg" />
     <Content Include="css\images\consumer_trophy.png" />
     <Content Include="css\images\couch.png" />
+    <Content Include="css\images\coupon-icon.png" />
     <Content Include="css\images\cross.svg" />
     <Content Include="css\images\dots-green.svg" />
     <Content Include="css\images\dots-light.svg" />
@@ -551,12 +552,15 @@
     <Content Include="css\images\Green Technology Award.png" />
     <Content Include="css\images\HanSumg Logo.png" />
     <Content Include="css\images\HanSumg.png" />
+    <Content Include="css\images\heart-icon.png" />
     <Content Include="css\images\hotdeal.png" />
     <Content Include="css\images\img-grid-1.jpg" />
     <Content Include="css\images\img-grid-2.jpg" />
     <Content Include="css\images\img-grid-3.jpg" />
+    <Content Include="css\images\location-icon.png" />
     <Content Include="css\images\login.jpg" />
     <Content Include="css\images\logo.png" />
+    <Content Include="css\images\order-icon.png" />
     <Content Include="css\images\paypal.png" />
     <Content Include="css\images\person-1.jpg" />
     <Content Include="css\images\person-1.png" />
@@ -600,6 +604,7 @@
     <Content Include="css\images\tab_S9plus.jpg" />
     <Content Include="css\images\truck.svg" />
     <Content Include="css\images\user-bckg.jpg" />
+    <Content Include="css\images\user-icon.png" />
     <Content Include="css\images\user.png" />
     <Content Include="css\images\user.svg" />
     <Content Include="css\images\watchStrap7.png" />

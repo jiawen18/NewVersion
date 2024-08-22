@@ -3,10 +3,9 @@
     <div class="user-container">
 
        
-   
-        <!-- Column -->
+        <!-- User Profile -->
         <div class="user_bckg"> 
-            <div class="wrapper-user">
+            <div class="wrapper-user">        
                 <div class="user_pic">
                 <div class="pro-img"><img src="https://i.imgur.com/8RKXAIV.jpg" alt="user"></div> 
 				</div>
@@ -16,62 +15,44 @@
                     <a href="UserProfile.aspx">Edit Information ></a>
                 </div>
                 <div class="wrapper-content">
-                    <a href="#">My Coupon</a>
-					<a href="#">My Wishlist</a>
-					<a href="#">My Order</a>
+                    <a href="Coupon.aspx"><img src="images/coupon-icon.png"/>My Coupon</a>
+                        
+					<a href="Wishlist.aspx"><img src="images/heart-icon.png"/>My Wishlist</a>
+                        
                 </div>
-            </div>
+			</div>
         </div>
 	</div>
    
 
-
 	
 	<!-- Menu -->
-        <div class="user-menu">
-  <div class="row justify-content-center">
-  <div class="menu-center">
-  <div class="col-6 col-sm-3">
-      img
-	 <p>My Order</p>
-	  <p>Track,Modify and cancel orders</p>
-  </div>
-</div>
+ <div class="user-menu">
+	 <a href="Order.aspx">
+    <div class="menu-col">
+        <img src="images/order-icon.png" />
+        <strong style="font-size:15px;padding:5px;">My Order</strong>
+        <p>Track, Modify or Cancel an order</p>
+    </div>
+	</a>
 
-    <div class="menu-center">
-  <div class="col-6 col-sm-3">
-      img
-	 <p>My Order</p>
-	  <p>Track,Modify and cancel orders</p>
-  </div>
-</div>
+     <a href="Address.aspx">
+    <div class="menu-col">
+        <img src="images/location-icon.png" />
+        <strong style="font-size:15px;padding:5px;">Address Book</strong>
+        <p>Manager our address for delivery</p>
+    </div>
+	</a>
 
-  <!-- Force next columns to break to new line -->
-  <div class="menu-center">
-  <div class="col-6 col-sm-3">
-      img
-	  
-      <p>My Order</p>
-	  <p>Track,Modify and cancel orders</p>
+	 <a href="Account.aspx">
+    <div class="menu-col">
+        <img src="images/user-icon.png" />
+        <strong style="font-size:15px;padding:5px;">My Account</strong>
+        <p>Signing in or reset password</p>
+    </div>
+	 </a>
   </div>
-</div>
-
-  <div class="menu-center">
-  <div class="col-6 col-sm-3">
-      img
-	  <p>My Order</p>
-	  <p>Track,Modify and cancel orders</p>
-  </div>
-</div>
-
-</div>
-	</div>
 	
-
-
-
-
-
 
 	<!-- Recommneded Products -->
 	<h1 style="text-align:center">Recommended For You</h1>
