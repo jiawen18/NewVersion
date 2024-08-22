@@ -620,6 +620,7 @@
     <Content Include="css\js\tiny-slider.js" />
     <Content Include="css\login.aspx" />
     <Content Include="css\Order.aspx" />
+    <Content Include="css\ProductDetails.aspx" />
     <Content Include="css\Services.aspx" />
     <Content Include="css\Shop.aspx" />
     <Content Include="css\Signup.aspx" />
@@ -735,6 +736,13 @@
     </Compile>
     <Compile Include="css\Order.aspx.designer.cs">
       <DependentUpon>Order.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="css\ProductDetails.aspx.cs">
+      <DependentUpon>ProductDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="css\ProductDetails.aspx.designer.cs">
+      <DependentUpon>ProductDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="css\Services.aspx.cs">
       <DependentUpon>Services.aspx</DependentUpon>
