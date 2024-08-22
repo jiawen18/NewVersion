@@ -15,13 +15,13 @@ namespace NewVersion.css
     {
 
         /// <summary>
-        /// HiddenField1 control.
+        /// hfProductId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
+        protected global::System.Web.UI.WebControls.HiddenField hfProductId;
 
         /// <summary>
         /// btnBuyNow control.

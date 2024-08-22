@@ -160,7 +160,7 @@ a {
 
 .product-thumbnail {
     width: 100%;
-    height: 200px; /* Fixed height for images */
+    height: 100px; /* Fixed height for images */
     object-fit: cover; /* Ensure image fits the container */
     border-radius: 8px; /* Rounded corners for images */
     margin-bottom: 15px; /* Space between image and content */

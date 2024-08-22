@@ -467,9 +467,9 @@
     <Content Include="admin\tables\WebForm1.aspx" />
     <Content Include="admin\widgets.aspx" />
     <Content Include="admin\test.aspx" />
-    <Content Include="App_Data\Product.mdf" />
-    <Content Include="App_Data\Product_log.ldf">
-      <DependentUpon>Product.mdf</DependentUpon>
+    <Content Include="App_Data\product.mdf" />
+    <Content Include="App_Data\product_log.ldf">
+      <DependentUpon>product.mdf</DependentUpon>
     </Content>
     <Content Include="css\AboutUs.aspx" />
     <Content Include="css\Accessories.aspx" />

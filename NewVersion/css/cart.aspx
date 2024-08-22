@@ -11,9 +11,7 @@
 			        <h1>Cart s</h1>
 		        </div>
 	        </div>
-            <div class="col-lg-7">
-				
-            </div>
+            
         </div>
     	</div>
     </div>
@@ -27,12 +25,14 @@
              <div class="site-blocks-table">
                <table class="table">
                  <thead>
-                   <tr>
-                     <th class="product-thumbnail">Image</th>
-                     <th class="product-name">Product</th>
+                   <tr style="border-bottom: 1px solid black;">
+
+                     <td class="product-thumbnail">Image</td>
+                     <td class="product-name">Product</td>
                      <th class="product-price">Price</th>
                      <th class="product-quantity">Quantity</th>
                      <th class="product-total">Total</th>
+
                    </tr>
                  </thead>
 
