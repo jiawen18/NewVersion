@@ -599,6 +599,7 @@
     <Content Include="css\images\tab_S9.jpg" />
     <Content Include="css\images\tab_S9plus.jpg" />
     <Content Include="css\images\truck.svg" />
+    <Content Include="css\images\user-bckg.jpg" />
     <Content Include="css\images\user.png" />
     <Content Include="css\images\user.svg" />
     <Content Include="css\images\watchStrap7.png" />
