@@ -262,6 +262,10 @@ ServiceFabricBackup/
 *.rptproj.bak
 
 # SQL Server files
+<<<<<<< HEAD
+=======
+*.mdf
+>>>>>>> parent of 8bd9dcc (yc)
 *.ldf
 *.ndf
 
