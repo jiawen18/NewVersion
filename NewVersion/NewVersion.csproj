@@ -503,16 +503,20 @@
     </Content>
     <Content Include="css\AboutUs.aspx" />
     <Content Include="css\Accessories.aspx" />
+    <Content Include="css\Account.aspx" />
+    <Content Include="css\Address.aspx" />
     <Content Include="css\Blog.aspx" />
     <Content Include="css\cart.aspx" />
     <Content Include="css\checkout.aspx" />
     <Content Include="css\Contact.aspx" />
+    <Content Include="css\Coupon.aspx" />
     <Content Include="css\css.1\bootstrap.min.1.css" />
     <Content Include="css\css.1\font-awesome.min.1.css" />
     <Content Include="css\css.1\nouislider.min.1.css" />
     <Content Include="css\css.1\slick-theme.1.css" />
     <Content Include="css\css.1\slick.css" />
     <Content Include="css\css.1\style1.css" />
+    <Content Include="css\css\Account.css" />
     <Content Include="css\css\bootstrap.min.css" />
     <Content Include="css\css\login.css" />
     <Content Include="css\css\slick.css" />
@@ -664,6 +668,7 @@
     <Content Include="css\Tablets.aspx" />
     <Content Include="css\ThankYou.aspx" />
     <Content Include="css\UserProfile.aspx" />
+    <Content Include="css\Wishlist.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Models\ModelTest.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -846,6 +851,20 @@
     <Compile Include="css\Accessories.aspx.designer.cs">
       <DependentUpon>Accessories.aspx</DependentUpon>
     </Compile>
+    <Compile Include="css\Account.aspx.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="css\Account.aspx.designer.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="css\Address.aspx.cs">
+      <DependentUpon>Address.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="css\Address.aspx.designer.cs">
+      <DependentUpon>Address.aspx</DependentUpon>
+    </Compile>
     <Compile Include="css\Blog.aspx.cs">
       <DependentUpon>Blog.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -873,6 +892,13 @@
     </Compile>
     <Compile Include="css\Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="css\Coupon.aspx.cs">
+      <DependentUpon>Coupon.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="css\Coupon.aspx.designer.cs">
+      <DependentUpon>Coupon.aspx</DependentUpon>
     </Compile>
     <Compile Include="css\Delivery.aspx.cs">
       <DependentUpon>Delivery.aspx</DependentUpon>
@@ -964,6 +990,13 @@
     </Compile>
     <Compile Include="css\UserProfile.aspx.designer.cs">
       <DependentUpon>UserProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="css\Wishlist.aspx.cs">
+      <DependentUpon>Wishlist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="css\Wishlist.aspx.designer.cs">
+      <DependentUpon>Wishlist.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
