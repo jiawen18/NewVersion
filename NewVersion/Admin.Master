@@ -51,10 +51,10 @@
 <body>
     <div class="wrapper">
         <!-- Sidebar -->
-        <div class="sidebar" data-color="white">
+        <div class="sidebar">
             <div class="sidebar-logo">
                 <!-- Logo Header -->
-                <div class="logo-header" data-color="white">
+                <div class="logo-header">
                     <a href="#" class="logo">
                         <img src="../CSS/images/HanSumg.png"
                             alt="navbar brand"
@@ -84,7 +84,7 @@
                                 class="collapsed"
                                 aria-expanded="false">
                                 <i class="fas fa-home"></i>
-                                <p>Home</p>
+                                <p>Dashboard</p>
                                 <%--<span class="caret"></span>--%>
                             </a>
                             <%--<div class="collapse" id="dashboard">
@@ -101,7 +101,7 @@
                             <span class="sidebar-mini-icon">
                                 <i class="fa fa-ellipsis-h"></i>
                             </span>
-                            <h4 class="text-section">Manage your stuff!!!</h4>
+                            <h4 class="text-section">Manageables</h4>
                         </li>
                         <li class="nav-item">
                             <a data-bs-toggle="collapse" href="#base">
@@ -334,7 +334,7 @@
             <div class="main-header">
                 <div class="main-header-logo">
                     <!-- Logo Header -->
-                    <div class="logo-header" data-color="white">
+                    <div class="logo-header">
                         <a href="#" class="logo">
                             <img
                                 src="../CSS/images/HanSumg.png"

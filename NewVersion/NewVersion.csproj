@@ -42,10 +42,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\lib\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -64,6 +72,25 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\adminCreate-Admin.aspx" />
+    <Content Include="admin\adminCreate-Customer.aspx" />
+    <Content Include="admin\adminCustomerList.aspx" />
+    <Content Include="admin\adminDashboard.aspx" />
+    <Content Include="admin\adminDelete.aspx" />
+    <Content Include="admin\adminFeedback.aspx" />
+    <Content Include="admin\adminInventoryList.aspx" />
+    <Content Include="admin\adminOrderList.aspx" />
+    <Content Include="admin\adminProductList.aspx" />
+    <Content Include="admin\adminProductPages.aspx" />
+    <Content Include="admin\adminRead.aspx" />
+    <Content Include="admin\adminReturnsRefunds.aspx" />
+    <Content Include="admin\adminSales.aspx" />
+    <Content Include="admin\adminShippingServices.aspx" />
+    <Content Include="admin\adminSuppliers.aspx" />
+    <Content Include="admin\adminSupport.aspx" />
+    <Content Include="admin\adminTransactions.aspx" />
+    <Content Include="admin\adminUpdate.aspx" />
+    <Content Include="admin\adminUserStatistics.aspx" />
     <Content Include="admin\assets\css\bootstrap.min.css" />
     <Content Include="admin\assets\css\demo.css" />
     <Content Include="admin\assets\css\fonts.css" />
@@ -464,12 +491,15 @@
     <Content Include="admin\starter-template.aspx" />
     <Content Include="admin\tables\datatables.aspx" />
     <Content Include="admin\tables\tables.aspx" />
-    <Content Include="admin\tables\WebForm1.aspx" />
     <Content Include="admin\widgets.aspx" />
     <Content Include="admin\test.aspx" />
     <Content Include="App_Data\product.mdf" />
     <Content Include="App_Data\product_log.ldf">
       <DependentUpon>product.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\test.mdf" />
+    <Content Include="App_Data\test_log.ldf">
+      <DependentUpon>test.mdf</DependentUpon>
     </Content>
     <Content Include="css\AboutUs.aspx" />
     <Content Include="css\Accessories.aspx" />
@@ -635,6 +665,16 @@
     <Content Include="css\ThankYou.aspx" />
     <Content Include="css\UserProfile.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Models\ModelTest.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelTest.Context.cs</LastGenOutput>
+      <DependentUpon>ModelTest.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\ModelTest.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelTest.edmx</DependentUpon>
+      <LastGenOutput>ModelTest.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -652,12 +692,138 @@
     <Compile Include="Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
     </Compile>
-    <Compile Include="admin\tables\WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
+    <Compile Include="admin\adminCreate-Admin.aspx.cs">
+      <DependentUpon>adminCreate-Admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\tables\WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
+    <Compile Include="admin\adminCreate-Admin.aspx.designer.cs">
+      <DependentUpon>adminCreate-Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\adminCreate-Customer.aspx.cs">
+      <DependentUpon>adminCreate-Customer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminCreate-Customer.aspx.designer.cs">
+      <DependentUpon>adminCreate-Customer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\adminCustomerList.aspx.cs">
+      <DependentUpon>adminCustomerList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminCustomerList.aspx.designer.cs">
+      <DependentUpon>adminCustomerList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\adminDashboard.aspx.cs">
+      <DependentUpon>adminDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminDashboard.aspx.designer.cs">
+      <DependentUpon>adminDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\adminDelete.aspx.cs">
+      <DependentUpon>adminDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminDelete.aspx.designer.cs">
+      <DependentUpon>adminDelete.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\adminFeedback.aspx.cs">
+      <DependentUpon>adminFeedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminFeedback.aspx.designer.cs">
+      <DependentUpon>adminFeedback.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\adminInventoryList.aspx.cs">
+      <DependentUpon>adminInventoryList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminInventoryList.aspx.designer.cs">
+      <DependentUpon>adminInventoryList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\adminOrderList.aspx.cs">
+      <DependentUpon>adminOrderList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminOrderList.aspx.designer.cs">
+      <DependentUpon>adminOrderList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\adminProductList.aspx.cs">
+      <DependentUpon>adminProductList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminProductList.aspx.designer.cs">
+      <DependentUpon>adminProductList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\adminProductPages.aspx.cs">
+      <DependentUpon>adminProductPages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminProductPages.aspx.designer.cs">
+      <DependentUpon>adminProductPages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\adminRead.aspx.cs">
+      <DependentUpon>adminRead.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminRead.aspx.designer.cs">
+      <DependentUpon>adminRead.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\adminReturnsRefunds.aspx.cs">
+      <DependentUpon>adminReturnsRefunds.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminReturnsRefunds.aspx.designer.cs">
+      <DependentUpon>adminReturnsRefunds.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\adminSales.aspx.cs">
+      <DependentUpon>adminSales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminSales.aspx.designer.cs">
+      <DependentUpon>adminSales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\adminShippingServices.aspx.cs">
+      <DependentUpon>adminShippingServices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminShippingServices.aspx.designer.cs">
+      <DependentUpon>adminShippingServices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\adminSuppliers.aspx.cs">
+      <DependentUpon>adminSuppliers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminSuppliers.aspx.designer.cs">
+      <DependentUpon>adminSuppliers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\adminSupport.aspx.cs">
+      <DependentUpon>adminSupport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminSupport.aspx.designer.cs">
+      <DependentUpon>adminSupport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\adminTransactions.aspx.cs">
+      <DependentUpon>adminTransactions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminTransactions.aspx.designer.cs">
+      <DependentUpon>adminTransactions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\adminUpdate.aspx.cs">
+      <DependentUpon>adminUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminUpdate.aspx.designer.cs">
+      <DependentUpon>adminUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\adminUserStatistics.aspx.cs">
+      <DependentUpon>adminUserStatistics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminUserStatistics.aspx.designer.cs">
+      <DependentUpon>adminUserStatistics.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\test.aspx.cs">
       <DependentUpon>test.aspx</DependentUpon>
@@ -809,6 +975,24 @@
     <Compile Include="Login.Master.designer.cs">
       <DependentUpon>Login.Master</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelTest.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelTest.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelTest.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelTest.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelTest.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelTest.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Table.cs">
+      <DependentUpon>ModelTest.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Home.Master.cs">
       <DependentUpon>Home.Master</DependentUpon>
@@ -864,6 +1048,13 @@
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="Admin.Master" />
+    <EntityDeploy Include="Models\ModelTest.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelTest.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ModelTest.edmx.diagram">
+      <DependentUpon>ModelTest.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -875,6 +1066,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="css\NewFolder1\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
