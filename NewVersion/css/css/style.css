@@ -905,11 +905,52 @@ textarea {
     background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
 }
 
-ul#dropdown-user {
+#dropdown-user {
     display: none;
+    position: absolute;
+    background-color: #6a6a6a;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 10px 0 10px 10px
 }
 
-#menu-user:hover #dropdown-user {
+#dropdown-user li a {
+        text-decoration: none;
+        color: white;
+}
+
+#dropdown-user li a:hover {
+    opacity: 0.8;
+}
+
+#dropdown-user li a {
+    text-decoration: none;
+    color: white;
+}
+
+#dropdown-user li {
+    text-align: center;
+}
+
+li#menu-user.nav-item {
+    display: block;
+    position: relative;
+}
+
+li#menu-user.nav-item:hover ul#dropdown-user {
     display: block;
 }
 
+.row#footer-form {
+    justify-content: space-evenly;
+}
+
+.image-footer {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.image-footer > a {
+        background-color: #6a6a6a;
+        padding: 15px;
+        border-radius: 5px;
+}

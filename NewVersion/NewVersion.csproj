@@ -71,7 +71,7 @@
     <Content Include="App_Data\Product_log.ldf">
       <DependentUpon>Product.mdf</DependentUpon>
     </Content>
-    <Content Include="css\About Us.aspx" />
+    <Content Include="css\AboutUs.aspx" />
     <Content Include="css\Accessories.aspx" />
     <Content Include="css\Blog.aspx" />
     <Content Include="css\cart.aspx" />
@@ -233,12 +233,12 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="css\About Us.aspx.cs">
-      <DependentUpon>About Us.aspx</DependentUpon>
+    <Compile Include="css\AboutUs.aspx.cs">
+      <DependentUpon>AboutUs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="css\About Us.aspx.designer.cs">
-      <DependentUpon>About Us.aspx</DependentUpon>
+    <Compile Include="css\AboutUs.aspx.designer.cs">
+      <DependentUpon>AboutUs.aspx</DependentUpon>
     </Compile>
     <Compile Include="css\Accessories.aspx.cs">
       <DependentUpon>Accessories.aspx</DependentUpon>
@@ -347,6 +347,7 @@
     </Compile>
     <Compile Include="Login.Master.cs">
       <DependentUpon>Login.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Login.Master.designer.cs">
       <DependentUpon>Login.Master</DependentUpon>
