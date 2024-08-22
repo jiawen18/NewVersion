@@ -49,6 +49,7 @@
     </style>
 </head>
 <body>
+    <form id="form1" runat="server">
     <div class="wrapper">
         <!-- Sidebar -->
         <div class="sidebar">
@@ -78,25 +79,29 @@
                 <div class="sidebar-content">
                     <ul class="nav nav-secondary">
                         <li class="nav-item active">
-                            <a
+                            <a href="dashboard.aspx">
+                                <i class="fas fa-home"></i>
+                                <span class="sub-item">Dashboard</span>
+                            </a>
+                        </li>
+                            <%--<a
                                 data-bs-toggle="collapse"
-                                href="#"
+                                href="dashboard.aspx"
                                 class="collapsed"
                                 aria-expanded="false">
                                 <i class="fas fa-home"></i>
-                                <p>Dashboard</p>
-                                <%--<span class="caret"></span>--%>
+                                <p>dashboard</p>
+                                <span class="caret"></span>
                             </a>
-                            <%--<div class="collapse" id="dashboard">
+                            <div class="collapse" id="dashboard">
                                 <ul class="nav nav-collapse">
                                     <li>
                                         <a href="#">
-                                            <span class="sub-item">Dashboard</span>
+                                            <span class="sub-item">dashboard</span>
                                         </a>
                                     </li>
                                 </ul>
                             </div>--%>
-                        </li>
                         <li class="nav-section">
                             <span class="sidebar-mini-icon">
                                 <i class="fa fa-ellipsis-h"></i>
@@ -104,20 +109,20 @@
                             <h4 class="text-section">Manageables</h4>
                         </li>
                         <li class="nav-item">
-                            <a data-bs-toggle="collapse" href="#base">
+                            <a data-bs-toggle="collapse" href="#products">
                                 <i class="fas fa-shopping-cart"></i>
                                 <p>Products</p>
                                 <span class="caret"></span>
                             </a>
-                            <div class="collapse" id="base">
+                            <div class="collapse" id="products">
                                 <ul class="nav nav-collapse">
                                     <li>
-                                        <a href="#">
+                                        <a href="productList.aspx">
                                             <span class="sub-item">Product List</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="productPages.aspx">
                                             <span class="sub-item">Product Pages</span>
                                         </a>
                                     </li>
@@ -125,30 +130,30 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a data-bs-toggle="collapse" href="#sidebarLayouts">
+                            <a data-bs-toggle="collapse" href="#orders">
                                 <i class="fas fa-truck"></i>
                                 <p>Orders</p>
                                 <span class="caret"></span>
                             </a>
-                            <div class="collapse" id="sidebarLayouts">
+                            <div class="collapse" id="orders">
                                 <ul class="nav nav-collapse">
                                     <li>
-                                        <a href="#">
+                                        <a href="orderList.aspx">
                                             <span class="sub-item">Order List</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="shippingServices.aspx">
                                             <span class="sub-item">Shipping Services</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="returnsAndRefunds.aspx">
                                             <span class="sub-item">Returns & Refunds</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="transactions.aspx">
                                             <span class="sub-item">Transactions</span>
                                         </a>
                                     </li>
@@ -156,20 +161,20 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a data-bs-toggle="collapse" href="#forms">
+                            <a data-bs-toggle="collapse" href="#inventory">
                                 <i class="fas fa-warehouse"></i>
                                 <p>Inventory</p>
                                 <span class="caret"></span>
                             </a>
-                            <div class="collapse" id="forms">
+                            <div class="collapse" id="inventory">
                                 <ul class="nav nav-collapse">
                                     <li>
-                                        <a href="#">
+                                        <a href="inventoryList.aspx">
                                             <span class="sub-item">Inventory List</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="suppliers.aspx">
                                             <span class="sub-item">Suppliers</span>
                                         </a>
                                     </li>
@@ -177,25 +182,25 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a data-bs-toggle="collapse" href="#tables">
+                            <a data-bs-toggle="collapse" href="#customers">
                                 <i class="fas fa-users"></i>
                                 <p>Customers</p>
                                 <span class="caret"></span>
                             </a>
-                            <div class="collapse" id="tables">
+                            <div class="collapse" id="customers">
                                 <ul class="nav nav-collapse">
                                     <li>
-                                        <a href="#">
+                                        <a href="customerList.aspx">
                                             <span class="sub-item">Customer List</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="support.aspx">
                                             <span class="sub-item">Support</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="feedback.aspx">
                                             <span class="sub-item">Feedback</span>
                                         </a>
                                     </li>
@@ -203,20 +208,20 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a data-bs-toggle="collapse" href="#maps">
+                            <a data-bs-toggle="collapse" href="#analytics">
                                 <i class="fas fa-chart-line"></i>
                                 <p>Analytics</p>
                                 <span class="caret"></span>
                             </a>
-                            <div class="collapse" id="maps">
+                            <div class="collapse" id="analytics">
                                 <ul class="nav nav-collapse">
                                     <li>
-                                        <a href="#">
+                                        <a href="sales.aspx">
                                             <span class="sub-item">Sales</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="userStatistics.aspx">
                                             <span class="sub-item">User Statistics</span>
                                         </a>
                                     </li>
@@ -240,12 +245,12 @@
                             <div class="collapse" id="create">
                                 <ul class="nav nav-collapse">
                                     <li>
-                                        <a href="#">
+                                        <a href="newAdmin.aspx">
                                             <span class="sub-item">New Admin</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="newCustomer.aspx">
                                             <span class="sub-item">New Customer</span>
                                         </a>
                                     </li>
@@ -253,21 +258,21 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a href="#">
+                            <a href="read.aspx">
                                 <i class="fas fa-user-check"></i>
                                 <p>Read</p>
                                 <%--<span class="badge badge-secondary">1</span>--%>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#">
+                            <a href="update.aspx">
                                 <i class="fas fa-user-cog"></i>
                                 <p>Update</p>
                                 <%--<span class="badge badge-secondary">1</span>--%>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#">
+                            <a href="delete.aspx">
                                 <i class="fas fa-user-minus"></i>
                                 <p>Delete</p>
                                 <%--<span class="badge badge-secondary">1</span>--%>
@@ -376,7 +381,7 @@
                         </nav>
 
                         <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
-                            <li
+                            <%--<li
                                 class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none">
                                 <a
                                     class="nav-link dropdown-toggle"
@@ -397,8 +402,8 @@
                                         </div>
                                     </form>
                                 </ul>
-                            </li>
-                            <li class="nav-item topbar-icon dropdown hidden-caret">
+                            </li>--%>
+                            <%--<li class="nav-item topbar-icon dropdown hidden-caret">
                                 <a
                                     class="nav-link dropdown-toggle"
                                     href="#"
@@ -480,8 +485,8 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
-                            <li class="nav-item topbar-icon dropdown hidden-caret">
+                            </li>--%>
+                            <%--<li class="nav-item topbar-icon dropdown hidden-caret">
                                 <a
                                     class="nav-link dropdown-toggle"
                                     href="#"
@@ -553,7 +558,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li>--%>
                             <li class="nav-item topbar-icon dropdown hidden-caret">
                                 <a
                                     class="nav-link"
@@ -687,6 +692,10 @@
                 <div class="page-inner">
                     <div class="page-header">
                         <div id="content">
+                            <asp:SiteMapDataSource ID="AdminBreadcrumbDataSource" runat="server" />
+                            <h2>
+                            <asp:SiteMapPath ID="AdminBreadcrumb" runat="server" PathSeparator=" . " SiteMapProvider="AdminSiteMapProvider" />
+                            </h2>
                             <asp:ContentPlaceHolder ID="main" runat="server">
                             </asp:ContentPlaceHolder>
                         </div>
@@ -751,5 +760,6 @@
 
     <!-- Kaiadmin JS -->
     <script src="assets/js/kaiadmin.min.js"></script>
+    </form>
 </body>
 </html>

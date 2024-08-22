@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+
+		<siteMapNode title="Home">
+
+			<!-- Dashboard Section -->
+			<siteMapNode url="admin/dashboard.aspx"				title="Dashboard" />
+
+			<!-- Products Section -->
+			<siteMapNode title="Products">
+				<siteMapNode url="admin/productList.aspx"		title="Product List" />
+				<siteMapNode url="admin/productPages.aspx"		title="Product Pages" />
+			</siteMapNode>
+
+			<!-- Orders Section -->
+			<siteMapNode title="Orders">
+				<siteMapNode url="admin/orderList.aspx"			title="Order List" />
+				<siteMapNode url="admin/shippingServices.aspx"	title="Shipping Services" />
+				<siteMapNode url="admin/returnsAndRefunds.aspx" title="Returns and Refunds" />
+				<siteMapNode url="admin/transactions.aspx"		title="Transactions" />
+			</siteMapNode>
+
+			<!-- Inventory Section -->
+			<siteMapNode title="Inventory">
+				<siteMapNode url="admin/inventoryList.aspx"		title="Inventory List" />
+				<siteMapNode url="admin/suppliers.aspx"			title="Suppliers" />
+			</siteMapNode>
+
+			<!-- Customers Section -->
+			<siteMapNode url="" title="Customers">
+				<siteMapNode url="admin/customerList.aspx"		title="Customer List" />
+				<siteMapNode url="admin/support.aspx"			title="Support" />
+				<siteMapNode url="admin/feedback.aspx"			title="Feedback" />
+			</siteMapNode>
+
+			<!-- Analytics Section -->
+			<siteMapNode title="Analytics">
+				<siteMapNode url="admin/sales.aspx"				title="Sales" />
+				<siteMapNode url="admin/userStatistics.aspx"	title="User Statistics" />
+			</siteMapNode>
+
+			<!-- Administrator Section -->
+			<siteMapNode title="Administrator">
+				<siteMapNode title="Create">
+					<siteMapNode url="admin/newAdmin.aspx"		title="Create New Admin" />
+					<siteMapNode url="admin/newCustomer.aspx"	title="Create New Customer" />
+				</siteMapNode>
+				<siteMapNode url="admin/read.aspx"				title="View Admins" />
+				<siteMapNode url="admin/update.aspx"			title="Update Admins" />
+				<siteMapNode url="admin/delete.aspx"			title="Delete Admins" />
+			</siteMapNode>
+
+		</siteMapNode>
+
+</siteMap>

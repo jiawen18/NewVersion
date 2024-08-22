@@ -72,25 +72,25 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="admin\adminCreate-Admin.aspx" />
-    <Content Include="admin\adminCreate-Customer.aspx" />
-    <Content Include="admin\adminCustomerList.aspx" />
-    <Content Include="admin\adminDashboard.aspx" />
-    <Content Include="admin\adminDelete.aspx" />
-    <Content Include="admin\adminFeedback.aspx" />
-    <Content Include="admin\adminInventoryList.aspx" />
-    <Content Include="admin\adminOrderList.aspx" />
-    <Content Include="admin\adminProductList.aspx" />
-    <Content Include="admin\adminProductPages.aspx" />
-    <Content Include="admin\adminRead.aspx" />
-    <Content Include="admin\adminReturnsRefunds.aspx" />
-    <Content Include="admin\adminSales.aspx" />
-    <Content Include="admin\adminShippingServices.aspx" />
-    <Content Include="admin\adminSuppliers.aspx" />
-    <Content Include="admin\adminSupport.aspx" />
-    <Content Include="admin\adminTransactions.aspx" />
-    <Content Include="admin\adminUpdate.aspx" />
-    <Content Include="admin\adminUserStatistics.aspx" />
+    <Content Include="admin\newAdmin.aspx" />
+    <Content Include="admin\newCustomer.aspx" />
+    <Content Include="admin\customerList.aspx" />
+    <Content Include="admin\dashboard.aspx" />
+    <Content Include="admin\delete.aspx" />
+    <Content Include="admin\feedback.aspx" />
+    <Content Include="admin\inventoryList.aspx" />
+    <Content Include="admin\orderList.aspx" />
+    <Content Include="admin\productList.aspx" />
+    <Content Include="admin\productPages.aspx" />
+    <Content Include="admin\read.aspx" />
+    <Content Include="admin\returnsAndRefunds.aspx" />
+    <Content Include="admin\sales.aspx" />
+    <Content Include="admin\shippingServices.aspx" />
+    <Content Include="admin\suppliers.aspx" />
+    <Content Include="admin\support.aspx" />
+    <Content Include="admin\transactions.aspx" />
+    <Content Include="admin\update.aspx" />
+    <Content Include="admin\userStatistics.aspx" />
     <Content Include="admin\assets\css\bootstrap.min.css" />
     <Content Include="admin\assets\css\demo.css" />
     <Content Include="admin\assets\css\fonts.css" />
@@ -471,27 +471,27 @@
     <Content Include="admin\assets\js\plugin\webfont\webfont.min.js" />
     <Content Include="admin\assets\js\setting-demo.js" />
     <Content Include="admin\assets\js\setting-demo2.js" />
-    <Content Include="admin\charts\charts.aspx" />
-    <Content Include="admin\charts\sparkline.aspx" />
-    <Content Include="admin\components\avatars.aspx" />
-    <Content Include="admin\components\buttons.aspx" />
-    <Content Include="admin\components\font-awesome-icons.aspx" />
-    <Content Include="admin\components\gridsystem.aspx" />
-    <Content Include="admin\components\notifications.aspx" />
-    <Content Include="admin\components\panels.aspx" />
-    <Content Include="admin\components\simple-line-icons.aspx" />
-    <Content Include="admin\components\sweetalert.aspx" />
-    <Content Include="admin\components\typography.aspx" />
-    <Content Include="admin\forms\forms.aspx" />
-    <Content Include="admin\icon-menu.aspx" />
-    <Content Include="admin\index.aspx" />
-    <Content Include="admin\maps\googlemaps.aspx" />
-    <Content Include="admin\maps\jsvectormap.aspx" />
-    <Content Include="admin\sidebar-style-2.aspx" />
-    <Content Include="admin\starter-template.aspx" />
-    <Content Include="admin\tables\datatables.aspx" />
-    <Content Include="admin\tables\tables.aspx" />
-    <Content Include="admin\widgets.aspx" />
+    <Content Include="admin\charts\charts.html" />
+    <Content Include="admin\charts\sparkline.html" />
+    <Content Include="admin\components\avatars.html" />
+    <Content Include="admin\components\buttons.html" />
+    <Content Include="admin\components\font-awesome-icons.html" />
+    <Content Include="admin\components\gridsystem.html" />
+    <Content Include="admin\components\notifications.html" />
+    <Content Include="admin\components\panels.html" />
+    <Content Include="admin\components\simple-line-icons.html" />
+    <Content Include="admin\components\sweetalert.html" />
+    <Content Include="admin\components\typography.html" />
+    <Content Include="admin\forms\forms.html" />
+    <Content Include="admin\icon-menu.html" />
+    <Content Include="admin\index.html" />
+    <Content Include="admin\maps\googlemaps.html" />
+    <Content Include="admin\maps\jsvectormap.html" />
+    <Content Include="admin\sidebar-style-2.html" />
+    <Content Include="admin\starter-template.html" />
+    <Content Include="admin\tables\datatables.html" />
+    <Content Include="admin\tables\tables.html" />
+    <Content Include="admin\widgets.html" />
     <Content Include="admin\test.aspx" />
     <Content Include="App_Data\product.mdf" />
     <Content Include="App_Data\product_log.ldf">
@@ -697,138 +697,138 @@
     <Compile Include="Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
     </Compile>
-    <Compile Include="admin\adminCreate-Admin.aspx.cs">
-      <DependentUpon>adminCreate-Admin.aspx</DependentUpon>
+    <Compile Include="admin\newAdmin.aspx.cs">
+      <DependentUpon>newAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\adminCreate-Admin.aspx.designer.cs">
-      <DependentUpon>adminCreate-Admin.aspx</DependentUpon>
+    <Compile Include="admin\newAdmin.aspx.designer.cs">
+      <DependentUpon>newAdmin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\adminCreate-Customer.aspx.cs">
-      <DependentUpon>adminCreate-Customer.aspx</DependentUpon>
+    <Compile Include="admin\newCustomer.aspx.cs">
+      <DependentUpon>newCustomer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\adminCreate-Customer.aspx.designer.cs">
-      <DependentUpon>adminCreate-Customer.aspx</DependentUpon>
+    <Compile Include="admin\newCustomer.aspx.designer.cs">
+      <DependentUpon>newCustomer.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\adminCustomerList.aspx.cs">
-      <DependentUpon>adminCustomerList.aspx</DependentUpon>
+    <Compile Include="admin\customerList.aspx.cs">
+      <DependentUpon>customerList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\adminCustomerList.aspx.designer.cs">
-      <DependentUpon>adminCustomerList.aspx</DependentUpon>
+    <Compile Include="admin\customerList.aspx.designer.cs">
+      <DependentUpon>customerList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\adminDashboard.aspx.cs">
-      <DependentUpon>adminDashboard.aspx</DependentUpon>
+    <Compile Include="admin\dashboard.aspx.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\adminDashboard.aspx.designer.cs">
-      <DependentUpon>adminDashboard.aspx</DependentUpon>
+    <Compile Include="admin\dashboard.aspx.designer.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\adminDelete.aspx.cs">
-      <DependentUpon>adminDelete.aspx</DependentUpon>
+    <Compile Include="admin\delete.aspx.cs">
+      <DependentUpon>delete.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\adminDelete.aspx.designer.cs">
-      <DependentUpon>adminDelete.aspx</DependentUpon>
+    <Compile Include="admin\delete.aspx.designer.cs">
+      <DependentUpon>delete.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\adminFeedback.aspx.cs">
-      <DependentUpon>adminFeedback.aspx</DependentUpon>
+    <Compile Include="admin\feedback.aspx.cs">
+      <DependentUpon>feedback.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\adminFeedback.aspx.designer.cs">
-      <DependentUpon>adminFeedback.aspx</DependentUpon>
+    <Compile Include="admin\feedback.aspx.designer.cs">
+      <DependentUpon>feedback.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\adminInventoryList.aspx.cs">
-      <DependentUpon>adminInventoryList.aspx</DependentUpon>
+    <Compile Include="admin\inventoryList.aspx.cs">
+      <DependentUpon>inventoryList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\adminInventoryList.aspx.designer.cs">
-      <DependentUpon>adminInventoryList.aspx</DependentUpon>
+    <Compile Include="admin\inventoryList.aspx.designer.cs">
+      <DependentUpon>inventoryList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\adminOrderList.aspx.cs">
-      <DependentUpon>adminOrderList.aspx</DependentUpon>
+    <Compile Include="admin\orderList.aspx.cs">
+      <DependentUpon>orderList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\adminOrderList.aspx.designer.cs">
-      <DependentUpon>adminOrderList.aspx</DependentUpon>
+    <Compile Include="admin\orderList.aspx.designer.cs">
+      <DependentUpon>orderList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\adminProductList.aspx.cs">
-      <DependentUpon>adminProductList.aspx</DependentUpon>
+    <Compile Include="admin\productList.aspx.cs">
+      <DependentUpon>productList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\adminProductList.aspx.designer.cs">
-      <DependentUpon>adminProductList.aspx</DependentUpon>
+    <Compile Include="admin\productList.aspx.designer.cs">
+      <DependentUpon>productList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\adminProductPages.aspx.cs">
-      <DependentUpon>adminProductPages.aspx</DependentUpon>
+    <Compile Include="admin\productPages.aspx.cs">
+      <DependentUpon>productPages.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\adminProductPages.aspx.designer.cs">
-      <DependentUpon>adminProductPages.aspx</DependentUpon>
+    <Compile Include="admin\productPages.aspx.designer.cs">
+      <DependentUpon>productPages.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\adminRead.aspx.cs">
-      <DependentUpon>adminRead.aspx</DependentUpon>
+    <Compile Include="admin\read.aspx.cs">
+      <DependentUpon>read.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\adminRead.aspx.designer.cs">
-      <DependentUpon>adminRead.aspx</DependentUpon>
+    <Compile Include="admin\read.aspx.designer.cs">
+      <DependentUpon>read.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\adminReturnsRefunds.aspx.cs">
-      <DependentUpon>adminReturnsRefunds.aspx</DependentUpon>
+    <Compile Include="admin\returnsAndRefunds.aspx.cs">
+      <DependentUpon>returnsAndRefunds.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\adminReturnsRefunds.aspx.designer.cs">
-      <DependentUpon>adminReturnsRefunds.aspx</DependentUpon>
+    <Compile Include="admin\returnsAndRefunds.aspx.designer.cs">
+      <DependentUpon>returnsAndRefunds.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\adminSales.aspx.cs">
-      <DependentUpon>adminSales.aspx</DependentUpon>
+    <Compile Include="admin\sales.aspx.cs">
+      <DependentUpon>sales.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\adminSales.aspx.designer.cs">
-      <DependentUpon>adminSales.aspx</DependentUpon>
+    <Compile Include="admin\sales.aspx.designer.cs">
+      <DependentUpon>sales.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\adminShippingServices.aspx.cs">
-      <DependentUpon>adminShippingServices.aspx</DependentUpon>
+    <Compile Include="admin\shippingServices.aspx.cs">
+      <DependentUpon>shippingServices.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\adminShippingServices.aspx.designer.cs">
-      <DependentUpon>adminShippingServices.aspx</DependentUpon>
+    <Compile Include="admin\shippingServices.aspx.designer.cs">
+      <DependentUpon>shippingServices.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\adminSuppliers.aspx.cs">
-      <DependentUpon>adminSuppliers.aspx</DependentUpon>
+    <Compile Include="admin\suppliers.aspx.cs">
+      <DependentUpon>suppliers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\adminSuppliers.aspx.designer.cs">
-      <DependentUpon>adminSuppliers.aspx</DependentUpon>
+    <Compile Include="admin\suppliers.aspx.designer.cs">
+      <DependentUpon>suppliers.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\adminSupport.aspx.cs">
-      <DependentUpon>adminSupport.aspx</DependentUpon>
+    <Compile Include="admin\support.aspx.cs">
+      <DependentUpon>support.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\adminSupport.aspx.designer.cs">
-      <DependentUpon>adminSupport.aspx</DependentUpon>
+    <Compile Include="admin\support.aspx.designer.cs">
+      <DependentUpon>support.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\adminTransactions.aspx.cs">
-      <DependentUpon>adminTransactions.aspx</DependentUpon>
+    <Compile Include="admin\transactions.aspx.cs">
+      <DependentUpon>transactions.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\adminTransactions.aspx.designer.cs">
-      <DependentUpon>adminTransactions.aspx</DependentUpon>
+    <Compile Include="admin\transactions.aspx.designer.cs">
+      <DependentUpon>transactions.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\adminUpdate.aspx.cs">
-      <DependentUpon>adminUpdate.aspx</DependentUpon>
+    <Compile Include="admin\update.aspx.cs">
+      <DependentUpon>update.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\adminUpdate.aspx.designer.cs">
-      <DependentUpon>adminUpdate.aspx</DependentUpon>
+    <Compile Include="admin\update.aspx.designer.cs">
+      <DependentUpon>update.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\adminUserStatistics.aspx.cs">
-      <DependentUpon>adminUserStatistics.aspx</DependentUpon>
+    <Compile Include="admin\userStatistics.aspx.cs">
+      <DependentUpon>userStatistics.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\adminUserStatistics.aspx.designer.cs">
-      <DependentUpon>adminUserStatistics.aspx</DependentUpon>
+    <Compile Include="admin\userStatistics.aspx.designer.cs">
+      <DependentUpon>userStatistics.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\test.aspx.cs">
       <DependentUpon>test.aspx</DependentUpon>
@@ -1071,8 +1071,8 @@
     <Content Include="admin\assets\fonts\summernote\summernote.ttf" />
     <Content Include="admin\assets\fonts\summernote\summernote.woff" />
     <Content Include="admin\assets\fonts\summernote\summernote.woff2" />
-    <Content Include="admin\LICENSE" />
-    <Content Include="admin\README.md" />
+    <Content Include="admin\mics\LICENSE" />
+    <Content Include="admin\mics\README.md" />
     <Content Include="Home.Master" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
@@ -1088,6 +1088,7 @@
     <Content Include="Models\ModelTest.edmx.diagram">
       <DependentUpon>ModelTest.edmx</DependentUpon>
     </Content>
+    <Content Include="Admin.sitemap" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
