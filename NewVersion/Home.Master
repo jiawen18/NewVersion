@@ -23,7 +23,7 @@
         <link href="css/css.1/slick-theme.1.css" rel="stylesheet" >
 		<link href="css/css.1/slick.css" rel="stylesheet">
         <link href="css/css.1/style1.css" rel="stylesheet">
-
+        <link href="css/css/UserProfile.css" rel="stylesheet" />
         
 		<title>HanSumg </title>
 	</head>
