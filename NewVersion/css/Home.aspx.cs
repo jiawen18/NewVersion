@@ -10,7 +10,6 @@ namespace NewVersion.css
 {
     public partial class Home : System.Web.UI.Page
     {
-        string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
 
