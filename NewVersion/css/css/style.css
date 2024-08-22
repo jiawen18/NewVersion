@@ -119,8 +119,6 @@ a {
             }
 
 
-
-
 /*Product css*/
 .section-title-container {
     text-align: center; /* Centers the text horizontally */
@@ -160,7 +158,7 @@ a {
 
 .product-thumbnail {
     width: 100%;
-    height: 200px; /* Fixed height for images */
+    height: 100px; /* Fixed height for images */
     object-fit: cover; /* Ensure image fits the container */
     border-radius: 8px; /* Rounded corners for images */
     margin-bottom: 15px; /* Space between image and content */
@@ -176,7 +174,7 @@ a {
 }
 
 .product-price {
-    font-size: 1.3em; /* Adjust font size as needed */
+    
     color: #333; /* Adjust color as needed */
     margin: 5px 0; /* Space around the price */
 }
@@ -622,9 +620,6 @@ a {
         right: -80px;
     }
 }
-
-
-
 
 .btn {
     font-weight: 600;

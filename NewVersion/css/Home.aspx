@@ -77,7 +77,7 @@
 										<!-- Add-to-cart section -->
 										<div class="add-to-cart">
 											<!-- Hidden field to store product ID or other data -->
-											<asp:HiddenField ID="HiddenField1" runat="server" Value="1" />
+											<asp:HiddenField ID="hfProductId" runat="server" Value="1" />
 
 											<!-- Button to trigger an action (e.g., add to cart) -->
 											<asp:Button ID="btnBuyNow" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />

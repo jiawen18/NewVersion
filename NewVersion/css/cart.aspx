@@ -11,9 +11,7 @@
 			        <h1>Cart s</h1>
 		        </div>
 	        </div>
-            <div class="col-lg-7">
-				
-            </div>
+            
         </div>
     	</div>
     </div>
@@ -26,18 +24,17 @@
            <div class="col-md-12" method="post">
              <div class="site-blocks-table">
                <table class="table">
-                 <thead>
-                   <tr>
-                     <th class="product-thumbnail">Image</th>
-                     <th class="product-name">Product</th>
-                     <th class="product-price">Price</th>
-                     <th class="product-quantity">Quantity</th>
-                     <th class="product-total">Total</th>
-                   </tr>
-                 </thead>
-
                  <tbody>
                          <asp:Repeater ID="rptProduct" runat="server">
+                             <HeaderTemplate>
+                                 <tr style="border-bottom: 1px solid black;">
+                                     <th class="product-thumbnail">Image</th>
+                                     <th class="product-name">Product</th>
+                                     <th class="product-price">Price</th>
+                                     <th class="product-quantity">Quantity</th>
+                                     <th class="product-total">Total</th>
+                                 </tr>
+                             </HeaderTemplate>
                              <ItemTemplate>
                                 <tr>
                                 <div class="product-item">
