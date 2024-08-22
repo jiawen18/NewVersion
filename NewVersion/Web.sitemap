@@ -8,9 +8,8 @@
 			<siteMapNode url="CSS/Tablets.aspx" title="Tablets" />
 			<siteMapNode url="CSS/Accessories.aspx" title="Accessories" />
 		</siteMapNode>
-		<siteMapNode url="CSS/About Us.aspx" title="About Us" />
+		<siteMapNode url="CSS/AboutUs.aspx" title="About Us" />
 		<siteMapNode url="CSS/Services.aspx" title="Services" />
-		<siteMapNode url="CSS/Blog.aspx" title="Blog" />
 		<siteMapNode url="CSS/Contact.aspx" title="Contact Us" />
 		<siteMapNode url="#" title="" />
 		<siteMapNode url="cart.aspx" title="" />
