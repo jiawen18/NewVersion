@@ -13,5 +13,10 @@ namespace NewVersion.css
         {
 
         }
+
+        protected void btn_sigup_Click1(object sender, EventArgs e)
+        {
+            Response.Redirect("login.aspx");
+        }
     }
 }

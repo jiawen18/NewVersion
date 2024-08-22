@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="forgotpw.aspx.cs" Inherits="NewVersion.css.forgotpw" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Login.Master" AutoEventWireup="true" CodeBehind="forgotpw.aspx.cs" Inherits="NewVersion.css.forgotpw" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
          <div class="vh-100">
   <div class="container py-5 h-100">
