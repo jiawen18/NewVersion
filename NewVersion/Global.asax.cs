@@ -10,7 +10,7 @@ namespace NewVersion
     public class Global : System.Web.HttpApplication
     {
         //connection string - to link DB and web app
-        public const string CS = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Product.mdf;Integrated Security=True";
+        public const string CS = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\product.mdf;Integrated Security=True";
         protected void Application_Start(object sender, EventArgs e)
         {
 
