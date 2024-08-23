@@ -46,7 +46,7 @@ a {
 
 /* Overall navbar styling */
 .custom-navbar {
-    background: #6a6a6a !important; /* Dark gray background */
+    background: #6a6a6a !important; 
     padding-top: 20px;
     padding-bottom: 20px;
 }
@@ -92,7 +92,7 @@ a {
                 bottom: 0;
                 left: 8px;
                 right: 8px;
-                background: #f9bf29; /* Yellow underline */
+                background: #f9bf29; 
                 height: 5px;
                 opacity: 1;
                 visibility: visible;
@@ -121,106 +121,106 @@ a {
 
 /*Product css*/
 .section-title-container {
-    text-align: center; /* Centers the text horizontally */
-    margin: 30px 0; /* Adds vertical spacing above and below the title */
-    padding: 20px; /* Adds padding inside the container */
-    background-color: #f8f9fa; /* Light background color */
-    border-radius: 10px; /* Rounded corners */
-    border: 1px solid #ddd; /* Light border color for subtle separation */
+    text-align: center; 
+    margin: 30px 0; 
+    padding: 20px; 
+    background-color: #f8f9fa;
+    border-radius: 10px; 
+    border: 1px solid #ddd; 
 }
 
     .section-title-container h2 {
-        font-size: 2.5em; /* Adjust font size as needed */
-        color: #333; /* Dark text color for good contrast */
-        margin: 0; /* Remove default margin */
-        font-weight: bold; /* Makes the text bold */
-        text-transform: uppercase; /* Transforms text to uppercase */
+        font-size: 2.5em; 
+        color: #333; 
+        margin: 0;
+        font-weight: bold; 
+        text-transform: uppercase; 
     }
 
 
 .products-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px; /* Space between items in the row */
+    gap: 5px; 
 }
 
 .grey-container {
-    background-color: #f0f0f0; /* Light grey background */
-    padding: 15px; /* Padding around the content */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    background-color: #f0f0f0; 
+    padding: 15px; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center-aligns content horizontally */
-    text-align: center; /* Center-aligns text inside the container */
+    align-items: center; 
+    text-align: center; 
     margin: 55px;
 }
 
 .product-thumbnail {
     width: 100%;
-    height: 100px; /* Fixed height for images */
-    object-fit: cover; /* Ensure image fits the container */
-    border-radius: 8px; /* Rounded corners for images */
-    margin-bottom: 15px; /* Space between image and content */
+    height: 100px; 
+    object-fit: cover; 
+    border-radius: 8px; 
+    margin-bottom: 15px; 
 }
 
 .product-title, .product-price, .product-old-price {
-    margin: 0; /* Remove default margin for better spacing */
+    margin: 0; 
 }
 
 .product-title {
-    margin: 10px 0; /* Space around the title */
-    font-size: 1.4em; /* Adjust font size as needed */
+    margin: 10px 0; 
+    font-size: 1.4em; 
 }
 
 .product-price {
     
-    color: #333; /* Adjust color as needed */
-    margin: 5px 0; /* Space around the price */
+    color: #333; 
+    margin: 5px 0; 
 }
 
 .product-ratings {
-    display: flex; /* Align items horizontally */
-    align-items: center; /* Vertically center items */
-    margin-bottom: 15px; /* Increase space between rating and button */
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 15px; 
 }
 
 .star-rating i {
-    font-size: 1.5em; /* Adjust size as needed */
-    color: #FFD700; /* Gold color for stars */
+    font-size: 1.5em; 
+    color: #FFD700;
 }
 
 .rating-text {
-    font-size: 1em; /* Font size for rating text */
-    color: #333; /* Text color */
-    margin-left: 10px; /* Space between stars and rating text */
+    font-size: 1em; 
+    color: #333; 
+    margin-left: 10px; 
 }
 
 .buyNow {
-    margin-top: auto; /* Space between elements */
+    margin-top: auto; 
 }
 
 .buyNow-btn {
     background-color: #000; /* Black color */
-    color: #fff; /* White text color */
+    color: #fff; 
     border: none;
     padding: 10px 20px;
     border-radius: 40px;
     cursor: pointer;
     font-size: 1.2em;
-    border-radius: 25px; /* Increase the radius for a more curved effect */
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
-    display: inline-flex; /* Align icon and text */
-    align-items: center; /* Center align icon and text */
+    border-radius: 25px;
+    transition: background-color 0.3s ease; 
+    display: inline-flex; 
+    align-items: center; 
 }
 
 
     .buyNow-btn:hover {
-        background-color: #333333; /* Darker color on hover */
+        background-color: #333333; 
     }
 
     .buyNow-btn i {
-        margin-right: 5px; /* Space between icon and text */
+        margin-right: 5px; 
     }
 
 /*!--End here--*/
@@ -238,14 +238,14 @@ a {
 /* Product Image Carousel */
 .product-image-carousel {
     flex: 1;
-    max-width: 500px; /* Set a max-width for the carousel */
+    max-width: 500px; 
 }
 
     .product-image-carousel img {
-        width: 100%; /* Make sure images fit within the container */
-        height: auto; /* Maintain aspect ratio */
-        max-height: 400px; /* Limit the height of the images */
-        object-fit: cover; /* Ensure images cover the area without distortion */
+        width: 100%; 
+        height: auto; 
+        max-height: 400px; 
+        object-fit: cover;
     }
 
 .product-image-carousel {
@@ -253,13 +253,13 @@ a {
 }
 
 .slick-prev, .slick-next {
-    width: 50px; /* Increased button size for better visibility */
+    width: 50px; 
     height: 50px;
-    background-color: #000; /* Black background for the buttons */
-    color: #fff; /* White text for visibility */
-    border: 2px solid #000; /* Black border */
+    background-color: #000; 
+    color: #fff; 
+    border: 2px solid #000; 
     border-radius: 50%;
-    font-size: 24px; /* Larger font size for better readability */
+    font-size: 24px; 
     line-height: 50px;
     text-align: center;
     cursor: pointer;
@@ -270,11 +270,11 @@ a {
 }
 
 .slick-prev {
-    left: 15px; /* Position from the left */
+    left: 15px; 
 }
 
 .slick-next {
-    right: 15px; /* Position from the right */
+    right: 15px; 
 }
 
     .slick-prev:before, .slick-next:before {
@@ -286,20 +286,20 @@ a {
     }
 
 .slick-prev:before {
-    border-width: 12px 16px 12px 0; /* Adjust arrow size */
-    border-color: transparent #fff transparent transparent; /* White arrow */
+    border-width: 12px 16px 12px 0; 
+    border-color: transparent #fff transparent transparent; 
     margin-left: 5px;
 }
 
 .slick-next:before {
-    border-width: 12px 0 12px 16px; /* Adjust arrow size */
-    border-color: transparent transparent transparent #fff; /* White arrow */
+    border-width: 12px 0 12px 16px; 
+    border-color: transparent transparent transparent #fff; 
     margin-right: 5px;
 }
 
 /* Product Information */
 .product-desc {
-    padding: 10px; /* Padding for the entire container */
+    padding: 10px;
 }
 
 .product-info {
@@ -317,15 +317,15 @@ a {
     }
 
 .heading-large {
-    font-weight: bold; /* Larger weight for the first heading */
+    font-weight: bold; 
 }
 
 .heading-small {
-    font-weight: lighter; /* Normal weight for the second heading */
+    font-weight: lighter; 
 }
 
 .storage-container {
-    padding: 10px; /* Padding for the entire container */
+    padding: 10px; 
 }
 
 .storage-selection {
@@ -334,31 +334,31 @@ a {
 }
 
 .storage-button {
-    background-color: whitesmoke; /* Button color */
+    background-color: whitesmoke; 
     border: 1px solid grey;
-    border-radius: 30px; /* Adjust the value for more or less curvature */
-    padding: 30px 10px; /* Top and bottom 30px, left and right 10px */
+    border-radius: 30px; 
+    padding: 30px 10px; 
     margin: 5px 0;
     text-align: center;
     cursor: pointer;
     color: black;
-    font-size: 1.5em; /* Increase font size */
-    font-weight: bold; /* Increase font weight */
-    line-height: 1.2; /* Adjust line-height to control height */
+    font-size: 1.5em; 
+    font-weight: bold; 
+    line-height: 1.2; 
 }
 
     .storage-button:hover {
-        background-color: #d3d3d3; /* Light grey for hover effect */
+        background-color: #d3d3d3; 
     }
 
     .storage-button.selected {
-        background-color: grey; /* Color for selected button */
-        color: white; /* Optional: Change text color when selected */
+        background-color: grey; 
+        color: white; 
     }
 
 /* Color Selection styles */
 .color-container {
-    padding: 10px; /* Padding for the entire container */
+    padding: 10px; 
 }
 
 .color-selection {
@@ -390,38 +390,38 @@ a {
 
 /* Add to cart styles */
 .AddToCart {
-    padding: 10px; /* Padding for the entire container */
+    padding: 10px; 
 }
 
 .add-to-cart-btn {
-    background-color: #808080; /* Grey color */
-    color: white; /* Text color */
-    border: none; /* Remove default border */
-    padding: 10px 20px; /* Adjust padding as needed */
-    font-size: 16px; /* Font size */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
+    background-color: #808080; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    border-radius: 5px; 
+    cursor: pointer; 
     transition: background-color 0.3s;
 }
 
     .add-to-cart-btn:hover {
-        background-color: #696969; /* Slightly darker grey on hover */
+        background-color: #696969; 
     }
 
 /* Customer Ratings Container */
 .customer-ratings {
-    max-width: 800px; /* Adjust the width as needed */
-    margin: 0 auto; /* Center horizontally */
+    max-width: 800px; 
+    margin: 0 auto; 
     padding: 50px;
     text-align: center;
 }
 
 /* Rating Box */
 .rating-box {
-    border: 1px solid #ccc; /* Grey border */
+    border: 1px solid #ccc; 
     padding: 50px;
     border-radius: 8px;
-    background-color: #f9f9f9; /* Light grey background */
+    background-color: #f9f9f9; 
     margin-bottom: 40px;
     box-sizing: border-box;
     max-width: 800px;
@@ -438,8 +438,8 @@ a {
     margin-bottom: 10px;
 }
 
-.rating-stars {
-    color: #f5c518; /* Gold color for stars */
+.rating-star-fixed {
+    color: #f5c518; 
     margin-bottom: 10px;
 }
 
@@ -457,13 +457,13 @@ a {
 }
 
     .rating-image img {
-        max-width: 100px; /* Limit the width of the image */
+        max-width: 100px; 
         height: auto;
         border-radius: 5px;
     }
 
 .rating-date {
-    color: #888; /* Light grey color for the date */
+    color: #888; 
     font-size: 0.9em;
 }
 
@@ -471,12 +471,12 @@ a {
 /* View more button */
 .view-more-container {
     text-align: center;
-    margin-top: 20px; /* Space above the button */
+    margin-top: 20px; 
 }
 
 .view-more-btn {
-    background-color: #333; /* Dark background for the button */
-    color: #fff; /* White text */
+    background-color: #333; 
+    color: #fff; 
     border: none;
     border-radius: 15px;
     padding: 10px 20px;
@@ -485,34 +485,264 @@ a {
 }
 
     .view-more-btn:hover {
-        background-color: #555; /* Lighter dark background on hover */
+        background-color: #555; 
     }
 
 .hidden {
-    display: none; /* Hide elements with the 'hidden' class */
+    display: none; 
 }
 /* End Product Details */
+
+
+/* Review Page */
+.review-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.prod-info {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+}
+
+.prod-name {
+    font-weight: 300; 
+    color: #333; 
+    font-size: 1.25rem; 
+    margin: 0 0 5px 0; 
+}
+
+.prod-details {
+    font-size: 1rem; 
+    color: #666; 
+    margin: 0; 
+    display: flex;
+}
+
+.prod-image img {
+    max-width: 110px; 
+    border-radius: 8px; 
+    height: auto; 
+}
+
+/* Container for rating section */
+.rating-header {
+    display: flex;
+    align-items: center;
+}
+
+.rating-section {
+    text-align: center;
+}
+
+/* Style for the heading */
+.rating-section h3 {
+    font-size: 1.25rem; 
+    margin-bottom: 10px; 
+    color: #333; 
+}
+
+/* Style for rating stars */
+.rating-stars {
+    display: flex; 
+    justify-content: center; 
+    gap: 8px; 
+    position: relative;
+}
+
+.rating-stars i {
+    margin-left: 5px;
+}
+
+/* Style for stars */
+.rating-stars .fa-star {
+    font-size: 2rem; 
+    color: #ddd; 
+    cursor: pointer; 
+    transition: color 0.3s; 
+}
+
+/* Hover effect for stars */
+.rating-stars .fa-star:hover,
+.rating-stars .fa-star:hover ~ .fa-star {
+    color: #ffd700; 
+}
+
+.rating-stars .fa-star.selected {
+    color: #ffd700; 
+}
+
+.rating-stars .fa-star.selected,
+.rating-stars .fa-star.selected ~ .fa-star {
+    color: #ffd700; 
+}
+
+/* Container for each upload input */
+.upload-container {
+    margin-bottom: 20px; 
+}
+
+.media-upload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.upload-item {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+/* Style for buttons */
+.upload-btn {
+    background-color: transparent;
+    color: black;
+    border: grey;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    width: 150px;
+}
+
+.upload-btn:hover {
+    background-color: lightgray;
+    color: black;
+}
+
+/* Style for icons */
+.upload-icon {
+    width: 30px;
+    height: auto;
+    display: block;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+/* Hide the file input */
+.file-upload-input {
+    display: none; 
+}
+
+/* Add More Media Button */
+.add-more-media-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 20px;
+    margin-top: 10px;
+    background-color: white;
+    border: 2px dotted black;
+    color: black;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.add-more-media-btn i {
+    margin-right: 5px; 
+}
+
+.previews {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+/* Style for each preview */
+.preview {
+    max-width: 300px;
+    max-height: 200px;
+    overflow: hidden;
+    flex: 1;
+}
+
+#imagePreview img {
+    width: 100%; 
+    height: auto; 
+}
+
+#videoPreview video {
+    width: 100%; 
+    height: auto; 
+}
+
+/* Style for status label */
+.UploadStatus {
+    margin-top: 20px; 
+    font-size: 1rem; 
+    color: #d9534f; 
+}
+
+
+.description-section {
+    margin-bottom: 20px;
+}
+
+.description-section textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.submit-section {
+    text-align: center;
+}
+
+.submit-btn {
+    background-color: darkgrey;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 1.0em;
+}
+
+.submit-btn:hover {
+    background-color: oldlace;
+    color: black;
+}
+
+/* End Review Page */
 
 
 
 
 /* User and Cart links styling */
 .custom-navbar .container .navbar-nav.ms-auto li a {
-    margin-left: 0; /* Remove default margins for custom links */
+    margin-left: 0; 
     margin-right: 0;
 }
 
 .custom-navbar .container .navbar-nav.ms-auto li:first-child a {
-    margin-right: 20px; /* Space between user and cart icons */
+    margin-right: 20px; 
 }
 
 .custom-navbar .container .navbar-nav.ms-auto .nav-link {
-    padding: 0; /* Remove padding for images */
+    padding: 0; 
 }
 
 .custom-navbar .container .navbar-nav.ms-auto li a img {
-    height: 24px; /* Adjust the height as needed */
-    width: auto; /* Maintain aspect ratio */
+    height: 24px;
+    width: auto; 
 }
 
 

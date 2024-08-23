@@ -51,7 +51,7 @@
 					<div class="row">
 						<div class="products-tabs">
 							<!-- tab -->
-							<div id="tab2" class="tab-pane fade in active">
+							<div id="tab2" class="tab-pane active">
 								<div class="products-slick" data-nav="#slick-nav-1">
 									<!-- product -->
 									<div class="product">
@@ -72,6 +72,7 @@
 												<i class="fa fa-star"></i>
 												<i class="fa fa-star"></i>
 											</div>
+
 
 										</div>
 										<!-- Add-to-cart section -->

@@ -5,13 +5,14 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace NewVersion.admin
+namespace NewVersion.css
 {
-    public partial class test : System.Web.UI.Page
+    public partial class Review : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
+
     }
 }

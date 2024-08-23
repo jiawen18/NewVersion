@@ -11,7 +11,7 @@ namespace NewVersion.admin
 {
 
 
-    public partial class test
+    public partial class orderList
     {
     }
 }

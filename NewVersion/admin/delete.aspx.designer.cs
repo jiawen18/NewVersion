@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AssignmentV1.admin.tables
+namespace NewVersion.admin
 {
 
 
-    public partial class WebForm1
+    public partial class delete
     {
     }
 }
