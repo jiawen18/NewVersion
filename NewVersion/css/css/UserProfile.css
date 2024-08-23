@@ -109,3 +109,17 @@
 .wrapper-content a:hover img {
     opacity: 0.8; 
 }
+
+/* Coupon Page */
+.coupon-content{
+    display:flex;
+    justify-content:space-around;
+}
+
+.coupon-desc {
+    text-align:center;
+}
+
+ul.coupon-desc li {
+    padding: 50px;
+}
