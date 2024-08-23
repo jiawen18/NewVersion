@@ -28,10 +28,9 @@
                     <a class="list-group-item list-group-item-action active" data-toggle="list"
                         href="#account-Account"><span style="padding-left:30px">Account</span></a>
                     <a class="list-group-item list-group-item-action" data-toggle="list"
-                        href="#account-change-password"> <span style="padding-left:43px">Change password</span></a>
+                        href="#account-change-password"> <span style="padding-left:30px">Change password</span></a>
                     <a class="list-group-item list-group-item-action" data-toggle="list"
-                        href="#account-info"><span style="padding-left:30px">Info</span></a>                                      
-                     <a class="list-group-item list-group-item-action" href="../css/Home.aspx"><span style="padding-left:30px">Log Out</span></a>
+                        href="#account-info"><span style="padding-left:30px">Info</span></a>                                                      
                 </div>
             </div>
           
