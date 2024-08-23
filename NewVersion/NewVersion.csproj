@@ -72,6 +72,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\AdminProfile.aspx" />
     <Content Include="admin\customerList.aspx" />
     <Content Include="admin\dashboard.aspx" />
     <Content Include="admin\delete.aspx" />
@@ -518,6 +519,7 @@
     <Content Include="css\css.1\slick.css" />
     <Content Include="css\css.1\style1.css" />
     <Content Include="css\css\Account.css" />
+    <Content Include="css\css\AdminAccount.css" />
     <Content Include="css\css\bootstrap.min.css" />
     <Content Include="css\css\login.css" />
     <Content Include="css\css\slick.css" />
@@ -701,6 +703,13 @@
     </Compile>
     <Compile Include="Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="admin\AdminProfile.aspx.cs">
+      <DependentUpon>AdminProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\AdminProfile.aspx.designer.cs">
+      <DependentUpon>AdminProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\customerList.aspx.cs">
       <DependentUpon>customerList.aspx</DependentUpon>
