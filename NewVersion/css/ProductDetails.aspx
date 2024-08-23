@@ -70,6 +70,7 @@
 <div class="customer-ratings">
     <h2>Customer Ratings</h2>
 
+    <asp:Panel ID="PanelFirstRating" runat="server">
     <div class="rating-box">
         <!-- Rating Entry -->
         <div class="rating-entry">
@@ -107,8 +108,48 @@
         </div>
         <!-- Repeat rating blocks as needed -->
     </div>
+    </asp:Panel>
 
-<asp:Panel ID="PanelMoreRatings" runat="server">
+<asp:Panel ID="PanelMoreRatings" runat="server" Visible ="false">
+        <div class="rating-box">
+        <!-- Rating Entry -->
+        <div class="rating-entry">
+            <!-- Username -->
+            <div class="rating-username">
+                <strong>John Doe</strong>
+            </div>
+
+            <!-- Star Rating -->
+            <div class="rating-star-fixed">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-alt"></i>
+            </div>
+
+            <!-- Product Model -->
+            <h4 class="rating-model">Z-Flip 2024, Blue</h4>
+
+            <!-- Comments -->
+            <div class="rating-comments">
+                The product is good. I really like the new features and the color.
+            </div>
+
+            <!-- Product Image Posted by User -->
+            <div class="rating-image">
+                <img src="images/z-flip_blue.jpg" alt="Customer Image">
+            </div>
+
+            <!-- Date of Rating -->
+            <div class="rating-date">
+                <small>Reviewed on: August 22, 2024</small>
+            </div>
+        </div>
+        <!-- Repeat rating blocks as needed -->
+    </div>
+
+
         <div class="rating-box">
         <!-- Rating Entry -->
         <div class="rating-entry">
@@ -154,13 +195,12 @@
 
 </div>
 
-    <!-- Scripts -->
-    <!-- Include Slick CSS and JS -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-
+    <!-- Scripts -->
     <script>
         $(document).ready(function () {
             $('.product-image-carousel').slick({

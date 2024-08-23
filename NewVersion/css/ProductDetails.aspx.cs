@@ -11,16 +11,20 @@ namespace NewVersion.css
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                PanelFirstRating.Visible = true;
+                PanelMoreRatings.Visible = false;
+                btnViewMore.Text = "View More Ratings";
+            }
 
         }
 
 
 protected void btnViewMore_Click(object sender, EventArgs e)
         {
-            // Toggle the visibility of the panel
             PanelMoreRatings.Visible = !PanelMoreRatings.Visible;
 
-            // Optionally change the button text based on the panel visibility
             if (PanelMoreRatings.Visible)
             {
                 btnViewMore.Text = "View Less Ratings";
