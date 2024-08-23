@@ -172,6 +172,14 @@ a {
     display: block; 
 }
 
+.image-fluid {
+    width: 70%;
+    height: 70%;
+    object-fit: cover;
+    display: block;
+}
+
+
 .product-title, .product-price, .product-old-price {
     margin: 0; 
 }

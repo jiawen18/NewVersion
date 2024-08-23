@@ -9,13 +9,13 @@
 		    <h1>Next-Gen Tech at Your Fingertips! </h1>
 		    <p class="mb-4">Discover the latest gadgets designed to elevate your digital experience. Shop now for cutting-edge devices that keep you ahead of the curve.</p>
 		    <p><a href="Smartphones.aspx" class="btn btn-secondary me-2">Shop Now</a>
-				<a href="About Us.aspx" class="btn btn-white-outline">Explore</a>
+				<a href="AboutUs.aspx" class="btn btn-white-outline">Explore</a>
 		    </p>
 	    </div>
     </div>
     <div class="col-lg-7">
 	    <div class="hero-img-wrap">
-		    <img src="images/slide_image1.png" class="img-fluid">
+		    <img src="images/slide_image1.png" class="images">
 	    </div>
     </div>
 </div>
@@ -510,8 +510,8 @@
 
 			    <!-- Start Column 2 -->
 			    <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-				    <a class="product-item" href="cart.html">
-					    <img src="images/z-flip_blue.jpg" class="img-fluid product-thumbnail">
+				    <a class="product-item" href="ProductDetails.aspx">
+					    <img src="images/z-flip_blue.jpg" class="image-fluid product-thumbnail">
 					    <h3 class="product-title"> Hamsung Galaxy Z Flip 6</h3>
 					    <strong class="product-price">RM 4499.00</strong>
 
@@ -524,8 +524,8 @@
 
 			    <!-- Start Column 3 -->
 			    <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-				    <a class="product-item" href="cart.html">
-					    <img src="images/samsung_tabS9_FE.jpg" class="img-fluid product-thumbnail">
+				    <a class="product-item" href="ProductDetails.aspx">
+					    <img src="images/samsung_tabS9_FE.jpg" class="image-fluid product-thumbnail">
 					    <h3 class="product-title"> Hansumg Tab S9 FE</h3>
 					    <strong class="product-price">RM 1799.00</strong>
 
@@ -538,8 +538,8 @@
 
 			    <!-- Start Column 4 -->
 			    <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-				    <a class="product-item" href="cart.html">
-					    <img src="images/Galaxy_Buds3.jpg" class="img-fluid product-thumbnail">
+				    <a class="product-item" href="ProductDetails.aspx">
+					    <img src="images/Galaxy_Buds3.jpg" class="image-fluid product-thumbnail">
 					    <h3 class="product-title">Galaxy Buds 3</h3>
 					    <strong class="product-price">RM 499.00</strong>
 
@@ -575,7 +575,7 @@
 			 <li><b>Personalized Recommendations</b></li>
              <li><b>Warranty and Repairs</b></li>
          </ul>
-         <p><a href="About Us.aspx" class="btn">Explore</a></p>
+         <p><a href="AboutUs.aspx" class="btn">Explore</a></p>
      </div>
  </div>
    	</div>
@@ -610,12 +610,12 @@
 
                             <div class="testimonial-block text-center">
                                 <blockquote class="mb-5">
-                                    <p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque.&rdquo;</p>
+                                    <p>&ldquo;I recently bought the latest smartphone from this store, and it’s exceeded all my expectations. The camera quality is incredible, and the battery life is fantastic. I couldn’t be happier with my purchase!&rdquo;</p>
                                 </blockquote>
 
                                 <div class="author-info">
                                     <div class="author-pic">
-                                        <img src="images/person-1.png" alt="Maria Jones" class="img-fluid">
+                                        <img src="images/person-1.png" alt="Maria Jones" class="image">
                                     </div>
                                     <h3 class="font-weight-bold">Maria Jones</h3>
                                     <span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
@@ -633,12 +633,12 @@
 
                             <div class="testimonial-block text-center">
                                 <blockquote class="mb-5">
-                                    <p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque.&rdquo;</p>
+                                    <p>&ldquo;This tablet has been a game-changer for me. Whether it’s for reading, watching videos, or browsing the web, it handles everything with ease. I’m very pleased with my purchase.&rdquo;</p>
                                 </blockquote>
 
                                 <div class="author-info">
                                     <div class="author-pic">
-                                        <img src="images/person-1.png" alt="Maria Jones" class="img-fluid">
+                                        <img src="images/person-1.png" alt="Maria Jones" class="image">
                                     </div>
                                     <h3 class="font-weight-bold">Maria Jones</h3>
                                     <span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
@@ -656,12 +656,12 @@
 
                             <div class="testimonial-block text-center">
                                 <blockquote class="mb-5">
-                                    <p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque.&rdquo;</p>
+                                    <p>&ldquo;I’m very happy with the accessories I purchased. The charging cables and protective cases are high-quality and work great. The customer service was excellent, and shipping was fast.&rdquo;</p>
                                 </blockquote>
 
                                 <div class="author-info">
                                     <div class="author-pic">
-                                        <img src="images/person-1.png" alt="Maria Jones" class="img-fluid">
+                                        <img src="images/person-1.png" alt="Maria Jones" class="image">
                                     </div>
                                     <h3 class="font-weight-bold">Maria Jones</h3>
                                     <span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
