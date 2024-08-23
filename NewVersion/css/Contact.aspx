@@ -8,12 +8,12 @@
 				<div class="intro-excerpt">
 					<h1>Contact</h1>
 					<p class="mb-4">Got questions or need assistance? We're here to help! Reach out to us anytime, and our dedicated support team will be happy to assist you. Whether it's product inquiries, order support, or anything else, don’t hesitate to get in touch.</p>
-				    <p><a href="" class="btn btn-secondary me-2">Shop Now</a><a href="#" class="btn btn-white-outline">Explore</a></p>
+				    <p><a href="Smartphones.aspx" class="btn btn-secondary me-2">Shop Now</a><a href="AboutUs.aspx" class="btn btn-white-outline">Explore</a></p>
 				</div>
 			</div>
 		<div class="col-lg-7">
 			<div class="hero-img-wrap">
-				<img src="images/couch.png" class="img-fluid">
+				<img src="images/contact.png" class="imge-fluid">
 			</div>
 		</div>
         </div>
@@ -49,7 +49,7 @@
                       </svg>
                     </div> <!-- /.icon -->
                     <div class="service-contents">
-                      <p>hansumg.support@gmail.com</p>
+                      <p>hansumg@gmail.com</p>
                     </div> <!-- /.service-contents-->
                   </div> <!-- /.service -->
                 </div>

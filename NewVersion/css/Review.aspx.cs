@@ -14,5 +14,9 @@ namespace NewVersion.css
 
         }
 
+        protected void btnReview_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Home.aspx");
+        }
     }
 }

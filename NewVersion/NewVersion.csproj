@@ -541,6 +541,7 @@
     <Content Include="css\images\camera.png" />
     <Content Include="css\images\cart.svg" />
     <Content Include="css\images\consumer_trophy.png" />
+    <Content Include="css\images\contact.png" />
     <Content Include="css\images\couch.png" />
     <Content Include="css\images\coupon-icon.png" />
     <Content Include="css\images\cross.svg" />
