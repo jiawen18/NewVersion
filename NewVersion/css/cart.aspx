@@ -44,13 +44,15 @@
                                     <td class="image1" id="image1"><img src='<%# Eval("ProductImageURL") %>' alt='<%# Eval("Name") %>' style="max-width: 200px; max-height:175px;"/></td>
                                     <td class="productName" id="productName"><%# Eval("Name") %></td>
                                     <td class="productPrice" id="productPrice"><%# Eval("Price", "{0:F2}") %></td>
-                                    <td class="quantity-container">
-                                        <asp:Button class="btn btn-outline-black decrease" ID="btnDecrease" runat="server" Text="-" />
-
-                                        <asp:TextBox class="form-control text-center quantity-amount" ID="txtQuantity" runat="server" value="1" style="max-width: 120px; max-height:30px;"></asp:TextBox>
-
-                                        <asp:Button class="btn btn-outline-black increase" ID="btnIncrease" runat="server" Text="+" />
-                                    </td>
+                                    <td class="quantity-container" rowspan="3">
+                                 <div class="quantity-controls">
+                                  <asp:Button class="btn btn-outline-black decrease" ID="btnDecrease" runat="server" Text="-" />
+        
+                                 <asp:TextBox class="form-control text-center quantity-amount" ID="txtQuantity" runat="server" value="1" style="max-width: 120px; max-height:30px;"></asp:TextBox>
+        
+                                 <asp:Button class="btn btn-outline-black increase" ID="btnIncrease" runat="server" Text="+" />
+                                 </div>
+                                  </td>
                                     <td>
                                     <asp:Label ID="lblTotalPrice" runat="server"><%# Eval("TotalPrice","{0:F2}") %></asp:Label>
                                     </td>

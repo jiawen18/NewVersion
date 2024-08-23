@@ -927,15 +927,39 @@ a {
 
 .continueShopping {
     position: relative;
-    left: 10px;
+    left: 200px;
+    /* 调整按钮的宽度和高度，使其变小 */
+    max-width: 400px;
 }
+
+
 
 .checkOut {
     position: relative;
-    right: -180px;
+    right: 210px; /* 调整右侧偏移量以适应页面布局 */
+    max-width: 400px;
 }
 
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* 左中右对齐 */
+    width: 100%; /* 确保宽度填满整个td */
+}
 
+.decrease {
+    margin-right: 1px; /* 减号按钮与TextBox的距离 */
+}
+
+.quantity-amount {
+    text-align: center;
+    flex-grow: 1; /* 确保TextBox居中 */
+    margin: 0 1px; /* 控制TextBox两侧的间距 */
+}
+
+.increase {
+    margin-left: 1px; /* 加号按钮与TextBox的距离 */
+}
 
 .border {
     cursor: pointer; /* 将光标更改为手型 */
