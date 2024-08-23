@@ -492,6 +492,7 @@
     <Content Include="admin\starter-template.html" />
     <Content Include="admin\tables\datatables.html" />
     <Content Include="admin\tables\tables.html" />
+    <Content Include="admin\WebForm2.aspx" />
     <Content Include="admin\widgets.html" />
     <Content Include="App_Data\product.mdf" />
     <Content Include="App_Data\product_log.ldf">
@@ -839,6 +840,13 @@
     </Compile>
     <Compile Include="admin\WebForm1.aspx.designer.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\WebForm2.aspx.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\WebForm2.aspx.designer.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
     </Compile>
     <Compile Include="css\AboutUs.aspx.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
