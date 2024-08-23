@@ -13,5 +13,10 @@ namespace NewVersion.admin
         {
 
         }
+
+        protected void btn_acc_cancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("dashboard.aspx");
+        }
     }
 }

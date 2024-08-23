@@ -33,6 +33,7 @@
         });
     </script>
 
+
     <!-- CSS Files -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/plugins.min.css" />
@@ -253,24 +254,24 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li class="nav-item">
+                            <%--<li class="nav-item">
                                 <a href="read.aspx">
                                     <i class="fas fa-user-check"></i>
                                     <p>Read</p>
                                 </a>
-                            </li>
+                            </li>--%>
                             <li class="nav-item">
                                 <a href="update.aspx">
                                     <i class="fas fa-user-cog"></i>
                                     <p>Update</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <%--<li class="nav-item">
                                 <a href="delete.aspx">
                                     <i class="fas fa-user-minus"></i>
                                     <p>Delete</p>
                                 </a>
-                            </li>
+                            </li>--%>
                         </ul>
                     </div>
                 </div>
@@ -434,14 +435,13 @@
                                                 </div>
                                             </li>
                                             <li>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">My Profile</a>
+                                                <div class="dropdown-divider"></div>                                         
                                                 <a class="dropdown-item" href="#">My Balance</a>
                                                 <a class="dropdown-item" href="#">Inbox</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">Account Setting</a>
+                                                <a class="dropdown-item" href="AdminProfile.aspx">Account Setting</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="css/Home.aspx">Logout</a>
+                                                <a class="dropdown-item" href="../css/Home.aspx">Logout</a>
                                             </li>
                                         </div>
                                     </ul>
