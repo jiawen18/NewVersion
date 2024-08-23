@@ -535,6 +535,7 @@
     <Content Include="css\images\bowl-2.png" />
     <Content Include="css\images\bowl-3.png" />
     <Content Include="css\images\building.jpg" />
+    <Content Include="css\images\camera.png" />
     <Content Include="css\images\cart.svg" />
     <Content Include="css\images\consumer_trophy.png" />
     <Content Include="css\images\couch.png" />
@@ -641,6 +642,7 @@
     <Content Include="css\images\user-icon.png" />
     <Content Include="css\images\user.png" />
     <Content Include="css\images\user.svg" />
+    <Content Include="css\images\video-camera-alt.png" />
     <Content Include="css\images\watchStrap7.png" />
     <Content Include="css\images\why-choose-us-img.jpg" />
     <Content Include="css\images\wirelessCharger.png" />
@@ -661,6 +663,7 @@
     <Content Include="css\login.aspx" />
     <Content Include="css\Order.aspx" />
     <Content Include="css\ProductDetails.aspx" />
+    <Content Include="css\Review.aspx" />
     <Content Include="css\Services.aspx" />
     <Content Include="css\Shop.aspx" />
     <Content Include="css\Signup.aspx" />
@@ -941,6 +944,13 @@
     </Compile>
     <Compile Include="css\ProductDetails.aspx.designer.cs">
       <DependentUpon>ProductDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="css\Review.aspx.cs">
+      <DependentUpon>Review.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="css\Review.aspx.designer.cs">
+      <DependentUpon>Review.aspx</DependentUpon>
     </Compile>
     <Compile Include="css\Services.aspx.cs">
       <DependentUpon>Services.aspx</DependentUpon>

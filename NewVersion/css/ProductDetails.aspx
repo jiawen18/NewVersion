@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="ProductDetails.aspx.cs" Inherits="NewVersion.css.ProductDetails" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<!-- Start Hero Section -->
+    <!-- Start Hero Section -->
 <div class="hero">
 	<div class="container">
 		<div class="row justify-content-between">
@@ -79,7 +79,7 @@
             </div>
 
             <!-- Star Rating -->
-            <div class="rating-stars">
+            <div class="rating-star-fixed">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
@@ -118,7 +118,7 @@
             </div>
 
             <!-- Star Rating -->
-            <div class="rating-stars">
+            <div class="rating-star-fixed">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>

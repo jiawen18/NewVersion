@@ -30,6 +30,7 @@ protected void btnViewMore_Click(object sender, EventArgs e)
                 btnViewMore.Text = "View More Ratings";
             }
 
+
         }
     }
     }
