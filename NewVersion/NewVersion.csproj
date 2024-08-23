@@ -622,6 +622,7 @@
     <Content Include="css\images\product08.png" />
     <Content Include="css\images\product09.png" />
     <Content Include="css\images\return.svg" />
+    <Content Include="css\images\sad.png" />
     <Content Include="css\images\Samsung_Galaxy_Buds_Live.jpg" />
     <Content Include="css\images\Samsung_Galaxy_Buds_Pro.jpg" />
     <Content Include="css\images\Samsung_Galaxy_Watch_5.jpg" />
@@ -672,7 +673,6 @@
     <Content Include="css\Tablets.aspx" />
     <Content Include="css\ThankYou.aspx" />
     <Content Include="css\UserProfile.aspx" />
-    <Content Include="css\Wishlist.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Models\ModelTest.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -1008,13 +1008,6 @@
     </Compile>
     <Compile Include="css\UserProfile.aspx.designer.cs">
       <DependentUpon>UserProfile.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="css\Wishlist.aspx.cs">
-      <DependentUpon>Wishlist.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="css\Wishlist.aspx.designer.cs">
-      <DependentUpon>Wishlist.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

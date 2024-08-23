@@ -16,9 +16,7 @@
                 </div>
                 <div class="wrapper-content">
                     <a href="Coupon.aspx"><img src="images/coupon-icon.png"/>My Coupon</a>
-                        
-					<a href="Wishlist.aspx"><img src="images/heart-icon.png"/>My Wishlist</a>
-                        
+                                                
                 </div>
 			</div>
         </div>
@@ -26,7 +24,7 @@
    
 
 	
-	<!-- Menu -->
+	<!-- User Menu -->
  <div class="user-menu">
 	 <a href="Order.aspx">
     <div class="menu-col">
