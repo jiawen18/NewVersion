@@ -926,8 +926,8 @@ a {
 
 
 .continueShopping {
-    position: absolute;
-    left: 200px;
+    position: relative;
+    left: 10px;
 }
 
 .checkOut {

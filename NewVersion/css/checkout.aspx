@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="checkout.aspx.cs" Inherits="NewVersion.css.checkout" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
-	<!-- Start Hero Section -->
+		<!-- Start Hero Section -->
 	<div class="hero">
 		<div class="container">
             <div class="row justify-content-between">
@@ -156,23 +156,20 @@
                   <tbody>
                     <tr>
                       <td>Galaxy A55 5G<strong class="mx-2">x</strong> 1</td>
-                      <td>$1999.90</td>
+                      <td>RM 1999.90</td>
                     </tr>
-                    <tr>
-                      <td>Ear Phone<strong class="mx-2">x</strong>1</td>
-                      <td>$599.00</td>
-                    </tr>
+                    
                     <tr>
                       <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
-                      <td class="text-black">$2598.90</td>
+                      <td class="text-black">RM 1999.90</td>
                     </tr>
                       <tr>
                         <td class="text-black font-weight-bold"><strong>Delivery Fee</strong></td>
-                        <td class="text-black">$5.90</td>
+                        <td class="text-black">RM 5.90</td>
                     </tr>
                     <tr>
                       <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
-                      <td class="text-black font-weight-bold"><strong>$2604.80</strong></td>
+                      <td class="text-black font-weight-bold"><strong>RM 2005.80</strong></td>
                     </tr>
                   </tbody>
                 </table>
@@ -180,27 +177,30 @@
                   <div class="group-paymentmethod">
                 <div class="transfer Bank" >
                   <h3 class="h6 mb-0">
-                      <img src="images/bank%20transfer.png" /> &nbsp&nbsp&nbsp Direct Bank Transfer
+                      <img src="images/bank%20transfer.png" /> &nbsp&nbsp&nbsp <asp:Label ID="lblTransfer" runat="server" Text="Direct Transfer"></asp:Label> 
                   </h3>
-                </div>
-
-                <div class="transfer Pp">
-                  <h3 class="h6 mb-0">
-                      <img src="images/paypal.png" /> &nbsp&nbsp&nbsp Paypal
-                  </h3>
-                   
-                </div>
-                  </div>
+                    <div class="text" id="textContainer">
+                <asp:Label ID="lblText" runat="server" Text="Please select a bank."></asp:Label>
+            </div>
+            <asp:DropDownList ID="ddlPaymentMethod" runat="server" AutoPostBack="True" CssClass="dropdown" OnSelectedIndexChanged="ddlBanks_SelectedIndexChanged">
+                
+                <asp:ListItem Value="1" Text="Public Bank"></asp:ListItem>
+                <asp:ListItem Value="2" Text="Touch n Go"></asp:ListItem>
+            </asp:DropDownList>
+        </div>
+               
 
                 <div class="form-group">
-                  <button class="btn btn-black btn-lg py-3 btn-block" onclick="window.location='thankyou.html'">Place Order</button>
-                </div>
+                    <asp:Button class="btn btn-black btn-lg py-3 btn-block" ID="btnOrder" runat="server" Text="Place Order" />
+                  </div>
 
               </div>
             </div>
+                </div>
+              </div>
           </div>
 
-        </div>
+        
       
       <!-- </form> -->
     
