@@ -57,6 +57,7 @@
 				<StaticMenuItemStyle CssClass="nav-item" />
 				<StaticSelectedStyle CssClass="nav-item active" />
 			</asp:Menu>
+
 		</div>
 	<!-- Custom User and Cart links with images -->
 

@@ -12,7 +12,7 @@
 		<siteMapNode url="CSS/Services.aspx" title="Services" />
 		<siteMapNode url="CSS/Contact.aspx" title="Contact Us" />
 		<siteMapNode url="CSS/UserProfile.aspx" title="User Profile" />
-		<siteMapNode url="cart.aspx" title="Cart" />
+		<siteMapNode url="CSS/cart.aspx" title="Cart" />
 	</siteMapNode>
 
 </siteMap>
