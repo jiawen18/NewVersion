@@ -63,5 +63,11 @@ namespace NewVersion.css
 
             Response.Redirect("checkout.aspx");
         }
+
+        protected void btnOrder_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Review.aspx");
+        }
+
     }
 }
