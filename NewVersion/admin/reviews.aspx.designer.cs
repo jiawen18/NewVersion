@@ -11,7 +11,7 @@ namespace NewVersion.admin
 {
 
 
-    public partial class feedback
+    public partial class reviews
     {
     }
 }

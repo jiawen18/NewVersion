@@ -29,8 +29,8 @@
 			<!-- Customers Section -->
 			<siteMapNode url="" title="Customers">
 				<siteMapNode url="admin/customerList.aspx"		title="Customer List" />
+				<siteMapNode url="admin/reviews.aspx"			title="Reviews" />
 				<siteMapNode url="admin/support.aspx"			title="Support" />
-				<siteMapNode url="admin/feedback.aspx"			title="Feedback" />
 			</siteMapNode>
 
 			<!-- Analytics Section -->

@@ -120,19 +120,27 @@
                             <td><%# Eval("Name") %></td>
                             <td><%# Eval("Price") %></td>
                             <td><%# Eval("Quantity") %></td>
-                            <td>
+                            <td style="display: flex;">
+                                <asp:LinkButton
+                                    ID="CopyItemButton"
+                                    runat="server"
+                                    CssClass="btn btn-link btn-primary"
+                                    data-bs-toggle="tooltip"
+                                    title="Copy"
+                                    data-original-title="Copy Item"
+                                    OnClick="CopyItemButton_Click">
+                                    <i class="fa fa-copy"></i>
+                                </asp:LinkButton>
                                 <asp:LinkButton
                                     ID="EditTaskButton"
                                     runat="server"
-                                    CssClass="btn btn-link btn-primary btn-lg"
+                                    CssClass="btn btn-link btn-warning"
                                     data-bs-toggle="tooltip"
-                                    title="Edit Task"
+                                    title="Edit"
                                     data-original-title="Edit Task"
                                     OnClick="EditTaskButton_Click">
                                     <i class="fa fa-edit"></i>
                                 </asp:LinkButton>
-                            </td>
-                            <td>
                                 <asp:LinkButton
                                     ID="RemoveItemButton"
                                     runat="server"

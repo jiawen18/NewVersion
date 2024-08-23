@@ -57,6 +57,11 @@ namespace NewVersion.admin
             string script = "alert('Add button clicked!');";
             ClientScript.RegisterStartupScript(this.GetType(), "AlertScript", script, true);
         }
+        protected void CopyItemButton_Click(object sender, EventArgs e)
+        {
+            string script = "alert('Button clicked!');";
+            ClientScript.RegisterStartupScript(this.GetType(), "AlertScript", script, true);
+        }
 
         protected void EditTaskButton_Click(object sender, EventArgs e)
         {

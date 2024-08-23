@@ -54,8 +54,8 @@
                         Orientation="Horizontal"
                         StaticSelectedStyle-CssClass="nav-item active"
                         StaticMenuItemStyle-CssClass="nav-item">
-                        <StaticMenuItemStyle CssClass="nav-item" />
                         <StaticSelectedStyle CssClass="nav-item active" />
+                        <StaticMenuItemStyle CssClass="nav-item" />
                     </asp:Menu>
 
                 </div>
@@ -63,13 +63,13 @@
                 <div class="navbar custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0" style="padding-left: inherit;">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item" id="menu-user">
-                            <a href="#" class="nav-link nav-item level1 static" style="margin-right: 0px;">
+                            <a href="#" class="nav-link" style="margin-right: 0px;">
                                 <img style="border: solid 1px;" src="images/user.png" alt="User" />
                             </a>
                             <ul class="level2 scrollbar-dynamic" style="box-shadow: none; padding: 0px;" id="dropdown-user">
-                                <li><a class="nav-link nav-item level2 static" style="text-align:left;" href="login.aspx">Login</a></li>
-                                <li><a class="nav-link nav-item level2 static" style="text-align:left;" href="signup.aspx">Signup</a></li>
-                                <li><a class="nav-link nav-item level2 static" style="text-align:left;" href="UserProfile.aspx">Profile</a></li>
+                                <li><a class="nav-link" style="text-align:left;" href="login.aspx">Login</a></li>
+                                <li><a class="nav-link" style="text-align:left;" href="signup.aspx">Signup</a></li>
+                                <li><a class="nav-link" style="text-align:left;" href="UserProfile.aspx">Profile</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -169,8 +169,7 @@
                     <div class="row pt-4">
                         <div class="col-lg-6">
                             <p class="mb-2 text-center text-lg-start">
-                                Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a href="https://untree.co">Untree.co</a> Distributed By <a hreff="https://themewagon.com">ThemeWagon</a>
-                                <!-- License information: https://untree.co/license/ -->
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> HanSumg. All Rights Reserved
                             </p>
                         </div>
 

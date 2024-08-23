@@ -192,13 +192,13 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="support.aspx">
-                                                <span class="sub-item">Support</span>
+                                            <a href="reviews.aspx">
+                                                <span class="sub-item">Reviews</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="feedback.aspx">
-                                                <span class="sub-item">Feedback</span>
+                                            <a href="support.aspx">
+                                                <span class="sub-item">Support</span>
                                             </a>
                                         </li>
                                     </ul>

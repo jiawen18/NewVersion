@@ -75,7 +75,6 @@
     <Content Include="admin\AdminProfile.aspx" />
     <Content Include="admin\customerList.aspx" />
     <Content Include="admin\dashboard.aspx" />
-    <Content Include="admin\feedback.aspx" />
     <Content Include="admin\inventoryList.aspx" />
     <Content Include="admin\newAdmin.aspx" />
     <Content Include="admin\newCustomer.aspx" />
@@ -83,6 +82,7 @@
     <Content Include="admin\productList.aspx" />
     <Content Include="admin\productPages.aspx" />
     <Content Include="admin\returnsAndRefunds.aspx" />
+    <Content Include="admin\reviews.aspx" />
     <Content Include="admin\sales.aspx" />
     <Content Include="admin\shippingServices.aspx" />
     <Content Include="admin\suppliers.aspx" />
@@ -729,13 +729,6 @@
     <Compile Include="admin\dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\feedback.aspx.cs">
-      <DependentUpon>feedback.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\feedback.aspx.designer.cs">
-      <DependentUpon>feedback.aspx</DependentUpon>
-    </Compile>
     <Compile Include="admin\inventoryList.aspx.cs">
       <DependentUpon>inventoryList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -784,6 +777,13 @@
     </Compile>
     <Compile Include="admin\returnsAndRefunds.aspx.designer.cs">
       <DependentUpon>returnsAndRefunds.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\reviews.aspx.cs">
+      <DependentUpon>reviews.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\reviews.aspx.designer.cs">
+      <DependentUpon>reviews.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\sales.aspx.cs">
       <DependentUpon>sales.aspx</DependentUpon>
