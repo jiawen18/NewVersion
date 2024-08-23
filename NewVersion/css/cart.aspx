@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="cart.aspx.cs" Inherits="NewVersion.css.cart" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <asp:SqlDataSource ID="dsProduct" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Product]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="dsProduct" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Product]"></asp:SqlDataSource>
 
 <!-- Start Hero Section -->
 <div class="hero">
@@ -8,10 +8,12 @@
         <div class="row justify-content-between">
 	        <div class="col-lg-5">
 		        <div class="intro-excerpt">
-			        <h1>Cart s</h1>
+			        <h1>Cart</h1>
 		        </div>
 	        </div>
-            
+            <div class="col-lg-7">
+				
+            </div>
         </div>
     	</div>
     </div>
@@ -24,17 +26,18 @@
            <div class="col-md-12" method="post">
              <div class="site-blocks-table">
                <table class="table">
+                 <thead>
+                   <tr>
+                     <th class="product-thumbnail">Image</th>
+                     <th class="product-name">Product</th>
+                     <th class="product-price">Price</th>
+                     <th class="product-quantity">Quantity</th>
+                     <th class="product-total">Total</th>
+                   </tr>
+                 </thead>
+
                  <tbody>
                          <asp:Repeater ID="rptProduct" runat="server">
-                             <HeaderTemplate>
-                                 <tr style="border-bottom: 1px solid black;">
-                                     <th class="product-thumbnail">Image</th>
-                                     <th class="product-name">Product</th>
-                                     <th class="product-price">Price</th>
-                                     <th class="product-quantity">Quantity</th>
-                                     <th class="product-total">Total</th>
-                                 </tr>
-                             </HeaderTemplate>
                              <ItemTemplate>
                                 <tr>
                                 <div class="product-item">
@@ -48,7 +51,9 @@
 
                                         <asp:Button class="btn btn-outline-black increase" ID="btnIncrease" runat="server" Text="+" />
                                     </td>
-                                    <td class="TotalPrice" id="TotalPrice"> <%# Eval("TotalPrice","{0:F2}") %></td>
+                                    <td>
+                                    <asp:Label ID="lblTotalPrice" runat="server"><%# Eval("TotalPrice","{0:F2}") %></asp:Label>
+                                    </td>
                                 </div>
                                 </tr>
                              </ItemTemplate>

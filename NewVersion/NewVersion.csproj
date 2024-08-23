@@ -664,6 +664,7 @@
     <Content Include="css\js\main.js" />
     <Content Include="css\js\Mediareview.js" />
     <Content Include="css\js\nouislider.min.js" />
+    <Content Include="css\js\order.js" />
     <Content Include="css\js\slick.min.js" />
     <Content Include="css\js\tiny-slider.js" />
     <Content Include="css\login.aspx" />

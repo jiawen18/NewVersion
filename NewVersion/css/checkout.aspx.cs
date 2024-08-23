@@ -14,6 +14,22 @@ namespace NewVersion.css
 
         }
 
+        protected void ddlBanks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 获取选择的值
+            string selectedBank = ddlPaymentMethod.SelectedItem.Text;
+
+            // 根据选择更新文本
+            if (ddlPaymentMethod.SelectedValue != "0") // 避免第一个选项“--Select a Bank--”
+            {
+                lblText.Text = "You selected: " + selectedBank;
+            }
+            else
+            {
+                lblText.Text = "Please select a bank.";
+            }
+        }
+
         protected void btnCloseDialog_Click(object sender, EventArgs e)
         {
             Response.Redirect("checkout.aspx");
