@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="Review.aspx.cs" Inherits="NewVersion.css.Review" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <!-- Start Hero Section -->
+<!-- Start Hero Section -->
 <div class="hero">
 	<div class="container">
 		<div class="row justify-content-between">
@@ -47,21 +47,27 @@
         <!-- Media Uploads -->
         <div class="media-upload">
 
-        <!-- Image upload -->
-            <input type="file" id="FileUploadImage" name="FileUploadImage" class="file-upload-input" />
-            <label for="FileUploadImage" class="upload-btn">
-                <img src="images/camera.png" alt="Camera Icon" class="upload-icon" />
-                Add Photo</label>
-    
-            <!-- Video upload -->
-            <input type="file" id="FileUploadVideo" name="FileUploadVideo" class="file-upload-input" />
-            <label for="FileUploadVideo" class="upload-btn">
-                <img src="images/video-camera-alt.png" alt="Video Camera Icon" class="upload-icon" />
-                Add Video</label>
-    
-            <asp:Button ID="Button3" runat="server" CssClass="upload-btn" Text="Submit" OnClick="Button1_Click" />
-            <asp:Label ID="Label1" runat="server" CssClass="UploadStatus" Text=""></asp:Label>
+            <!-- Image upload -->
+            <input type="file" id="FileUploadImage" name="FileUploadImage" class="file-upload-input" accept="image/*" onchange="previewImage(event)" />
+            <input type="file" id="FileUploadMedia" name="FileUploadMedia" class="file-upload-input" accept="image/*,video/*" onchange="previewMedia(event)" />
+            <label for="FileUploadMedia" class="upload-btn">
+                <img src="images/camera.png" alt="Upload Icon" class="upload-icon" />
+                Add Photo / Video
+            </label>
+            
+            
+            <asp:LinkButton ID="LinkButton1" runat="server" CssClass="add-more-media-btn" OnClientClick="handleAddMoreMedia(); return false;">
+                <i class="fa fa-plus"></i>
+            </asp:LinkButton>
+
         </div>
+
+             <div class="previews">
+                <div id="imagePreview" class="preview"></div>
+                <div id="videoPreview" class="preview"></div>
+            </div>
+
+
 
         <br />
         
@@ -78,6 +84,7 @@
         </div>
     </div>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const ratingStars = document.querySelectorAll('.rating-stars .fa-star');
@@ -121,5 +128,69 @@
             });
         });
     </script>
+
+    <script>
+        let uploadedImage = null;
+        let uploadedVideo = null;
+
+        function previewImage(event) {
+            const imagePreview = document.getElementById('imagePreview');
+            uploadedImage = event.target.files[0];
+
+            if (uploadedImage) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imagePreview.innerHTML = '<img src="' + e.target.result + '" alt="Image Preview" class="preview-img">';
+                };
+                reader.readAsDataURL(uploadedImage);
+            }
+        }
+
+        function previewVideo(event) {
+            const videoPreview = document.getElementById('videoPreview');
+            uploadedVideo = event.target.files[0];
+
+            if (uploadedVideo) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    videoPreview.innerHTML = '<video controls class="preview-video"><source src="' + e.target.result + '" type="' + uploadedVideo.type + '">Your browser does not support the video tag.</video>';
+                };
+                reader.readAsDataURL(uploadedVideo);
+            }
+        }
+
+        // The files stored in uploadedImage and uploadedVideo can be submitted later with the entire review form.
+</script>
+
+    <script>
+        // Function to preview the selected media (image or video)
+        function previewMedia(event) {
+            const imagePreview = document.getElementById('imagePreview');
+            const videoPreview = document.getElementById('videoPreview');
+            const file = event.target.files[0];
+
+            if (file) {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        imagePreview.innerHTML = `<img src="${e.target.result}" alt="Image Preview" />`;
+                    };
+                    reader.readAsDataURL(file);
+                } else if (file.type.startsWith('video/')) {
+                    const url = URL.createObjectURL(file);
+                    videoPreview.innerHTML = `<video controls><source src="${url}" type="${file.type}" /></video>`;
+                }
+            }
+        }
+
+        // Function to handle "Add More" button click
+        function handleAddMoreMedia() {
+            const fileInput = document.getElementById('FileUploadMedia');
+            fileInput.value = ''; // Clear the file input value
+            fileInput.click(); // Trigger the file input click
+        }
+
+    </script>
+
 
 </asp:Content>
