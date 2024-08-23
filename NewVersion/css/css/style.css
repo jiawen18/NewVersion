@@ -935,16 +935,33 @@ a {
     right: -180px;
 }
 
+
+
 .border {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1pt solid #ccc;
+    cursor: pointer; /* 将光标更改为手型 */
 }
 
     .border:hover {
-        background-color: #f0f0f0;
-        cursor: pointer;
+        background-color: #f0f0f0; /* 悬停时的背景色 */
     }
+
+.card-details {
+    display: none; /* 初始隐藏 */
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-top: 1px solid white;
+    border-radius: 0 0 10px 10px;
+}
+
+    .card-details.show {
+        display: block; /* 显示 */
+    }
+
+    .card-details.hide {
+        display: none; /* 隐藏 */
+    }
+
+
 
 .transfer {
     padding: 10px;
@@ -964,6 +981,11 @@ a {
         border-width: 1pt !important;
         background-color: #e6f7ff !important; /* 点击后的背景色（可选） */
     }
+
+.trackAndReview {
+    display: flex;
+    justify-content: flex-end; /* 将按钮推到容器的右边 */
+}
 
 
 
