@@ -11,7 +11,7 @@ namespace NewVersion.admin
 {
 
 
-    public partial class adminSales
+    public partial class sales
     {
     }
 }

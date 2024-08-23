@@ -11,7 +11,7 @@ namespace NewVersion.admin
 {
 
 
-    public partial class adminUserStatistics
+    public partial class userStatistics
     {
     }
 }

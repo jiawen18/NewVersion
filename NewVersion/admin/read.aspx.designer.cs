@@ -11,7 +11,7 @@ namespace NewVersion.admin
 {
 
 
-    public partial class adminRead
+    public partial class read
     {
     }
 }

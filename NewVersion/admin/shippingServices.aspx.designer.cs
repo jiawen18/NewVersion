@@ -11,7 +11,7 @@ namespace NewVersion.admin
 {
 
 
-    public partial class adminShippingServices
+    public partial class shippingServices
     {
     }
 }

@@ -11,7 +11,7 @@ namespace NewVersion.admin
 {
 
 
-    public partial class adminSupport
+    public partial class support
     {
     }
 }

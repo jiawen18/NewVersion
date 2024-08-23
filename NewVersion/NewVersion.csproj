@@ -72,13 +72,13 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="admin\newAdmin.aspx" />
-    <Content Include="admin\newCustomer.aspx" />
     <Content Include="admin\customerList.aspx" />
     <Content Include="admin\dashboard.aspx" />
     <Content Include="admin\delete.aspx" />
     <Content Include="admin\feedback.aspx" />
     <Content Include="admin\inventoryList.aspx" />
+    <Content Include="admin\newAdmin.aspx" />
+    <Content Include="admin\newCustomer.aspx" />
     <Content Include="admin\orderList.aspx" />
     <Content Include="admin\productList.aspx" />
     <Content Include="admin\productPages.aspx" />
@@ -91,6 +91,7 @@
     <Content Include="admin\transactions.aspx" />
     <Content Include="admin\update.aspx" />
     <Content Include="admin\userStatistics.aspx" />
+    <Content Include="admin\WebForm1.aspx" />
     <Content Include="admin\assets\css\bootstrap.min.css" />
     <Content Include="admin\assets\css\demo.css" />
     <Content Include="admin\assets\css\fonts.css" />
@@ -492,7 +493,6 @@
     <Content Include="admin\tables\datatables.html" />
     <Content Include="admin\tables\tables.html" />
     <Content Include="admin\widgets.html" />
-    <Content Include="admin\test.aspx" />
     <Content Include="App_Data\product.mdf" />
     <Content Include="App_Data\product_log.ldf">
       <DependentUpon>product.mdf</DependentUpon>
@@ -697,20 +697,6 @@
     <Compile Include="Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
     </Compile>
-    <Compile Include="admin\newAdmin.aspx.cs">
-      <DependentUpon>newAdmin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\newAdmin.aspx.designer.cs">
-      <DependentUpon>newAdmin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\newCustomer.aspx.cs">
-      <DependentUpon>newCustomer.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\newCustomer.aspx.designer.cs">
-      <DependentUpon>newCustomer.aspx</DependentUpon>
-    </Compile>
     <Compile Include="admin\customerList.aspx.cs">
       <DependentUpon>customerList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -745,6 +731,20 @@
     </Compile>
     <Compile Include="admin\inventoryList.aspx.designer.cs">
       <DependentUpon>inventoryList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\newAdmin.aspx.cs">
+      <DependentUpon>newAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\newAdmin.aspx.designer.cs">
+      <DependentUpon>newAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\newCustomer.aspx.cs">
+      <DependentUpon>newCustomer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\newCustomer.aspx.designer.cs">
+      <DependentUpon>newCustomer.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\orderList.aspx.cs">
       <DependentUpon>orderList.aspx</DependentUpon>
@@ -830,12 +830,12 @@
     <Compile Include="admin\userStatistics.aspx.designer.cs">
       <DependentUpon>userStatistics.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\test.aspx.cs">
-      <DependentUpon>test.aspx</DependentUpon>
+    <Compile Include="admin\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\test.aspx.designer.cs">
-      <DependentUpon>test.aspx</DependentUpon>
+    <Compile Include="admin\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="css\AboutUs.aspx.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>

@@ -11,7 +11,7 @@ namespace NewVersion.admin
 {
 
 
-    public partial class adminInventoryList
+    public partial class inventoryList
     {
     }
 }

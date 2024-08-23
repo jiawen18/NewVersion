@@ -11,7 +11,7 @@ namespace NewVersion.admin
 {
 
 
-    public partial class adminDelete
+    public partial class delete
     {
     }
 }

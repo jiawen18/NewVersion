@@ -11,7 +11,7 @@ namespace NewVersion.admin
 {
 
 
-    public partial class adminReturnsRefunds
+    public partial class returnsAndRefunds
     {
     }
 }

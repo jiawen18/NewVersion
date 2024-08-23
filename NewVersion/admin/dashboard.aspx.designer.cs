@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NewVersion.admin.admin_pages
+namespace NewVersion.admin
 {
 
 
-    public partial class adminDashboard
+    public partial class dashboard
     {
     }
 }

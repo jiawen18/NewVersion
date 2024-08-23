@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace NewVersion.admin
 {
-    public partial class adminSales : System.Web.UI.Page
+    public partial class sales : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
