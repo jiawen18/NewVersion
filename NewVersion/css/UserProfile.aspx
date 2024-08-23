@@ -16,7 +16,7 @@
                     <div class="user_details">
                         <h3>Shen</h3>
                         <p>Email: Kelvinchong0457@gmail.com</p>
-                        <a href="UserProfile.aspx">Edit Information ></a>
+                        <a href="#" data-toggle="modal" data-target="#editModal">Edit Information ></a>
                     </div>
                 </div>         
             </div>
@@ -307,5 +307,28 @@
     </div>
     <!-- /container -->
     <!-- /SECTION -->
-    </div>
+
+       <!-- Edit Information Modal -->
+   <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+       <div class="modal-dialog" role="document">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title" id="editModalLabel">Edit Information</h5>
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+               </div>
+               <div class="modal-body">
+                   <asp:Panel ID="pnlEditForm" runat="server">
+                       <asp:Label ID="lbl_edit_name" runat="server" Text="Name"></asp:Label>
+                       <asp:TextBox ID="txt_edit_name" runat="server" CssClass="form-control"></asp:TextBox><br />
+                       <asp:Label ID="lbl_edit_email" runat="server" Text="Email"></asp:Label>
+                       <asp:TextBox ID="txt_edit_email" runat="server" CssClass="form-control"></asp:TextBox><br />
+                       <asp:HiddenField ID="hfEditID" runat="server" />
+                       <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-primary"/>
+                   </asp:Panel>
+               </div>
+           </div>
+       </div>
+   </div>
 </asp:Content>
