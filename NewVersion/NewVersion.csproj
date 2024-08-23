@@ -658,6 +658,7 @@
     <Content Include="css\js\jquery.min.js" />
     <Content Include="css\js\jquery.zoom.min.js" />
     <Content Include="css\js\main.js" />
+    <Content Include="css\js\Mediareview.js" />
     <Content Include="css\js\nouislider.min.js" />
     <Content Include="css\js\slick.min.js" />
     <Content Include="css\js\tiny-slider.js" />
