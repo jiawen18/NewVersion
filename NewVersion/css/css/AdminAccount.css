@@ -16,9 +16,10 @@ label.btn {
 
 .btn-outline-primary {
     border-color: #26B4FF;
-    background: transparent;
-    color: #26B4FF;
+    background-color: #26B4FF;
+    color:white;
 }
+
 
 .btn {
     cursor: pointer;
