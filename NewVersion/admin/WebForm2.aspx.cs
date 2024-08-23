@@ -51,5 +51,23 @@ namespace NewVersion.admin
                 conn.Close();
             }
         }
+
+        protected void AddRowButton_Click(object sender, EventArgs e)
+        {
+            string script = "alert('Add button clicked!');";
+            ClientScript.RegisterStartupScript(this.GetType(), "AlertScript", script, true);
+        }
+
+        protected void EditTaskButton_Click(object sender, EventArgs e)
+        {
+            string script = "alert('Button clicked!');";
+            ClientScript.RegisterStartupScript(this.GetType(), "AlertScript", script, true);
+        }
+
+        protected void RemoveItemButton_Click(object sender, EventArgs e)
+        {
+            string script = "alert('Button clicked!');";
+            ClientScript.RegisterStartupScript(this.GetType(), "AlertScript", script, true);
+        }
     }
 }

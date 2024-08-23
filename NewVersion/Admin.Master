@@ -59,16 +59,31 @@
                                 class="navbar-brand" />
                         </a>
                         <div class="nav-toggle">
-                            <button class="btn btn-toggle toggle-sidebar">
+                            <asp:LinkButton
+                                ID="ToggleSidebarButton"
+                                runat="server"
+                                CssClass="btn btn-toggle toggle-sidebar"
+                                OnClientClick="return false;"> <!-- Prevent postback -->
                                 <i class="gg-menu-right"></i>
-                            </button>
-                            <button class="btn btn-toggle sidenav-toggler">
+                            </asp:LinkButton>
+
+                            <asp:LinkButton
+                                ID="SidenavTogglerButton"
+                                runat="server"
+                                CssClass="btn btn-toggle sidenav-toggler"
+                                OnClientClick="return false;"> <!-- Prevent postback -->
                                 <i class="gg-menu-left"></i>
-                            </button>
+                            </asp:LinkButton>
                         </div>
-                        <button class="topbar-toggler more">
+
+                        <asp:LinkButton
+                            ID="TopbarTogglerButton"
+                            runat="server"
+                            CssClass="topbar-toggler more"
+                            OnClientClick="return false;"> <!-- Prevent postback -->
                             <i class="gg-more-vertical-alt"></i>
-                        </button>
+                        </asp:LinkButton>
+
                     </div>
                     <!-- End Logo Header -->
                 </div>
