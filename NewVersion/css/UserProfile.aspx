@@ -18,12 +18,7 @@
                         <p>Email: Kelvinchong0457@gmail.com</p>
                         <a href="UserProfile.aspx">Edit Information ></a>
                     </div>
-                </div>
-                <div class="wrapper-content">
-                    <a href="Coupon.aspx">
-                        <img src="images/coupon-icon.png" />My Coupon</a>
-
-                </div>
+                </div>         
             </div>
         </div>
     </div>

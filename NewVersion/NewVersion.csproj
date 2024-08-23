@@ -501,6 +501,10 @@
     <Content Include="App_Data\test_log.ldf">
       <DependentUpon>test.mdf</DependentUpon>
     </Content>
+    <Content Include="App_Data\user.mdf" />
+    <Content Include="App_Data\user_log.ldf">
+      <DependentUpon>user.mdf</DependentUpon>
+    </Content>
     <Content Include="css\AboutUs.aspx" />
     <Content Include="css\Accessories.aspx" />
     <Content Include="css\Account.aspx" />

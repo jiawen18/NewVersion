@@ -20,6 +20,13 @@
          <asp:RegularExpressionValidator ID="revld_email" runat="server" ControlToValidate="txt_emailsignup" Display="Dynamic" ErrorMessage="*Invalid Email Addrerss" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
          </div>
 
+         <!-- Usernamme -->
+         <div class="form-outline mb-4">
+         <asp:Label ID="lbl_username" runat="server" Text="Username" class="form-label"></asp:Label>
+         <asp:TextBox ID="txt_username" runat="server" class="form-control form-control-lg"></asp:TextBox>
+         <asp:RequiredFieldValidator ID="revld_username" runat="server" ControlToValidate="txt_username" Display="Dynamic" ErrorMessage="*Please Enter Username" ForeColor="Red"></asp:RequiredFieldValidator>       
+         </div>
+
          <!-- Password input -->
          <div class="form-outline mb-4">
          <asp:Label ID="lbl_password" runat="server" Text="Password" class="form-label"></asp:Label>
