@@ -13,6 +13,8 @@ namespace NewVersion.css
         string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.MaintainScrollPositionOnPostBack = true;
+
             if (!IsPostBack)
             {
                 //Step 3: sql statement
