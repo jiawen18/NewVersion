@@ -83,7 +83,7 @@
 
         <!-- Submit Button -->
         <div class="submit-section"> 
-            <asp:Button ID="btnReview" runat="server" class="submit-btn" Text="Submit Review" />
+            <asp:Button ID="btnReview" runat="server" class="submit-btn" Text="Submit Review" OnClick="btnReview_Click" />
         </div>
     </div>
 

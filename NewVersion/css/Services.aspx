@@ -8,12 +8,12 @@
 					<div class="intro-excerpt">
 						<h1>Services</h1>
 						<p class="mb-4">At Hansumg, we are committed to providing the best services to our customers. From expert product advice and 24/7 customer support to fast shipping and easy returns, we're here to ensure your shopping experience is smooth, convenient, and enjoyable.</p>
-						<p><a href="" class="btn btn-secondary me-2">Shop Now</a><a href="#" class="btn btn-white-outline">Explore</a></p>
+						<p><a href="Smartphones.aspx" class="btn btn-secondary me-2">Shop Now</a><a href="AboutUs.aspx" class="btn btn-white-outline">Explore</a></p>
 					</div>
 				</div>
 				<div class="col-lg-7">
 					<div class="hero-img-wrap">
-						<img src="images/galaxy1.png" class="img-fluid">
+						<img src="images/galaxy1.png" class="imgw-fluid">
 					</div>
 				</div>
 		</div>
@@ -52,7 +52,7 @@
 
 								<div class="author-info">
 									<div class="author-pic">
-										<img src="images/award.png" alt="Maria Jones" class="img-fluid">
+										<img src="images/award.png" alt="Maria Jones" class="imgf-fluid">
 									</div>
 									<h3 class="font-weight-bold">Award</h3>
 									<span class="position d-block mb-3">Tech Innovation Awards 2024</span>
@@ -77,7 +77,7 @@
 
 								<div class="author-info">
 									<div class="author-pic">
-										<img src="images/consumer_trophy.png" alt="Maria Jones" class="img-fluid">
+										<img src="images/consumer_trophy.png" alt="Maria Jones" class="imgf-fluid">
 									</div>
 									<h3 class="font-weight-bold">Award</h3>
 									<span class="position d-block mb-3">Consumer Choice Award 2024</span>
@@ -102,7 +102,7 @@
 
 								<div class="author-info">
 									<div class="author-pic">
-										<img src="images/Green Technology Award.png" alt="Maria Jones" class="img-fluid">
+										<img src="images/Green Technology Award.png" alt="Maria Jones" class="imgf-fluid">
 									</div>
 									<h3 class="font-weight-bold">Award</h3>
 									<span class="position d-block mb-3">Green Technology Award 2024</span>
