@@ -111,15 +111,19 @@
 }
 
 /* Coupon Page */
-.coupon-content{
-    display:flex;
-    justify-content:space-around;
+.coupon-header{
+    margin:30px;
+}
+
+.coupon-content {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
 }
 
 .coupon-desc {
     text-align:center;
+    display:flex;
 }
 
-ul.coupon-desc li {
-    padding: 50px;
-}
