@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\dell\\documents\\github\\newversion\\newversion\\css\\aboutus.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\aboutus.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\dell\\documents\\github\\newversion\\newversion\\css\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\newversion\\css\\home.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\home.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\dell\\documents\\github\\newversion\\newversion\\css\\account.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\account.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\newversion\\css\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\newversion\\css\\smartphones.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
@@ -34,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -47,6 +51,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "style.css",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\css\\style.css",
+              "RelativeDocumentMoniker": "NewVersion\\css\\css\\style.css",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\css\\style.css",
+              "RelativeToolTip": "NewVersion\\css\\css\\style.css",
+              "ViewState": "AgIAAH4GAAAAAAAAAAAAAIUGAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-08-23T13:02:32.299Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AboutUs.aspx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\AboutUs.aspx",
+              "RelativeDocumentMoniker": "NewVersion\\css\\AboutUs.aspx",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\AboutUs.aspx",
+              "RelativeToolTip": "NewVersion\\css\\AboutUs.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-08-23T12:59:20.898Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Account.aspx",
               "DocumentMoniker": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Account.aspx",
               "RelativeDocumentMoniker": "NewVersion\\css\\Account.aspx",
@@ -59,7 +89,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Smartphones.aspx.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Smartphones.aspx.cs",
               "RelativeDocumentMoniker": "NewVersion\\css\\Smartphones.aspx.cs",
@@ -72,7 +102,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Tablets.aspx",
               "DocumentMoniker": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Tablets.aspx",
               "RelativeDocumentMoniker": "NewVersion\\css\\Tablets.aspx",
@@ -85,7 +115,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Smartphones.aspx",
               "DocumentMoniker": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Smartphones.aspx",
               "RelativeDocumentMoniker": "NewVersion\\css\\Smartphones.aspx",
@@ -98,7 +128,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Home.aspx",
               "DocumentMoniker": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Home.aspx",
               "RelativeDocumentMoniker": "NewVersion\\css\\Home.aspx",
@@ -107,19 +137,6 @@
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2024-08-23T11:47:30.083Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "style.css",
-              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\css\\style.css",
-              "RelativeDocumentMoniker": "NewVersion\\css\\css\\style.css",
-              "ToolTip": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\css\\style.css",
-              "RelativeToolTip": "NewVersion\\css\\css\\style.css",
-              "ViewState": "AgIAAKIAAAAAAAAAAAAAALIAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-08-23T03:27:41.331Z",
               "EditorCaption": ""
             }
           ]

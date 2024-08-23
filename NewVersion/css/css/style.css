@@ -1663,6 +1663,11 @@ li#menu-user.nav-item {
         padding: 15px;
         border-radius: 5px;
 }
+.small-img {
+    max-width: 50%; 
+    height: auto; 
+    align-content: center;
 
+}
 
 
