@@ -90,7 +90,7 @@
 <!-- Start Grey Container -->
 <div class="col-12 col-md-4 col-lg-3 mb-5 grey-container">
 
-        <img src="images/galaxyTabS9plus.png" class="img-fluid product-thumbnail" alt="Galaxy Tab S9+">
+        <img src="images/galaxyTabA9.png" class="img-fluid product-thumbnail" alt="Galaxy Tab S9+">
         <h3 class="product-title">Galaxy Tab S9+ </h3>
         <strong class="product-price">RM 2100.00</strong>
         <del class="product-old-price">RM 2312.90</del>
