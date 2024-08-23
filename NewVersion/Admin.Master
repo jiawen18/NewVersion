@@ -254,24 +254,24 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li class="nav-item">
+                            <%--<li class="nav-item">
                                 <a href="read.aspx">
                                     <i class="fas fa-user-check"></i>
                                     <p>Read</p>
                                 </a>
-                            </li>
+                            </li>--%>
                             <li class="nav-item">
                                 <a href="update.aspx">
                                     <i class="fas fa-user-cog"></i>
                                     <p>Update</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <%--<li class="nav-item">
                                 <a href="delete.aspx">
                                     <i class="fas fa-user-minus"></i>
                                     <p>Delete</p>
                                 </a>
-                            </li>
+                            </li>--%>
                         </ul>
                     </div>
                 </div>

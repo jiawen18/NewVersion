@@ -45,9 +45,9 @@
 					<siteMapNode url="admin/newAdmin.aspx"		title="Create New Admin" />
 					<siteMapNode url="admin/newCustomer.aspx"	title="Create New Customer" />
 				</siteMapNode>
-				<siteMapNode url="admin/read.aspx"				title="View Admins" />
+				<!--<siteMapNode url="admin/read.aspx"				title="View Admins" />-->
 				<siteMapNode url="admin/update.aspx"			title="Update Admins" />
-				<siteMapNode url="admin/delete.aspx"			title="Delete Admins" />
+				<!--<siteMapNode url="admin/delete.aspx"			title="Delete Admins" />-->
 			</siteMapNode>
 
 		</siteMapNode>

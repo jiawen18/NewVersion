@@ -18,7 +18,7 @@
 
         <div class="container light-style flex-grow-1 container-p-y">
     <h4 class="font-weight-bold py-3 mb-4">
-        Account settings
+        Profile Settings
     </h4>
    
     <div class="card overflow-hidden">
