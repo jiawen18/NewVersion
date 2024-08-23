@@ -3,7 +3,6 @@
     flex-direction: column;
 }
 
-
 .padding {
     padding: 3rem !important;
     margin-left: 200px
@@ -85,45 +84,5 @@
 .menu-col p {
     color: black;
     margin: 0;
-}
-
-.wrapper-content {
-    display: flex;
-    flex-direction: row;
-}
-
-.wrapper-content img {
-    padding: 10px;
-}
-
-.wrapper-content a {
-    color: white;
-    text-decoration: none;
-}
-
-.wrapper-content a:hover {
-    color: white;
-    text-decoration: underline;
-}
-
-.wrapper-content a:hover img {
-    opacity: 0.8; 
-}
-
-/* Coupon Page */
-.coupon-header{
-    margin:30px;
-}
-
-.coupon-content {
-    align-items: center;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-}
-
-.coupon-desc {
-    text-align:center;
-    display:flex;
 }
 

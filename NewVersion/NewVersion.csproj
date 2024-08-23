@@ -509,7 +509,6 @@
     <Content Include="css\cart.aspx" />
     <Content Include="css\checkout.aspx" />
     <Content Include="css\Contact.aspx" />
-    <Content Include="css\Coupon.aspx" />
     <Content Include="css\css.1\bootstrap.min.1.css" />
     <Content Include="css\css.1\font-awesome.min.1.css" />
     <Content Include="css\css.1\nouislider.min.1.css" />
@@ -517,6 +516,7 @@
     <Content Include="css\css.1\slick.css" />
     <Content Include="css\css.1\style1.css" />
     <Content Include="css\css\Account.css" />
+    <Content Include="css\css\Address.css" />
     <Content Include="css\css\AdminAccount.css" />
     <Content Include="css\css\bootstrap.min.css" />
     <Content Include="css\css\login.css" />
@@ -899,13 +899,6 @@
     </Compile>
     <Compile Include="css\Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="css\Coupon.aspx.cs">
-      <DependentUpon>Coupon.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="css\Coupon.aspx.designer.cs">
-      <DependentUpon>Coupon.aspx</DependentUpon>
     </Compile>
     <Compile Include="css\Delivery.aspx.cs">
       <DependentUpon>Delivery.aspx</DependentUpon>

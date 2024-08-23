@@ -1,0 +1,45 @@
+﻿.address-header{
+    padding:50px;
+}
+
+
+.wrapper-address-content {
+    display: grid;
+    grid-template-columns: repeat(4, 400px); /* 3 columns, each 100px wide */
+    grid-template-rows: repeat(4, 150px); /* 3 rows, each 100px tall */
+    gap: 15px; /* Gap between grid items */
+    margin:50px;
+}
+
+.address-content {
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+    font-size: 18px;
+}
+
+.address-content a{
+    text-decoration:none;
+    text-align:center;
+    
+}
+
+.address-content p{
+   margin:0;
+}
+
+.address-edit{
+    display:flex;
+    justify-content:flex-start;
+    font-size:15px;
+}
+
+.address-edit a{
+    padding-right:10px;
+}
+
+.address-edit a:hover {
+    text-decoration:underline;
+}
