@@ -1,7 +1,20 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\chong\\documents\\github\\newversion\\newversion\\admin\\adminprofile.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\adminprofile.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\chong\\documents\\github\\newversion\\newversion\\admin.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\chong\\documents\\github\\newversion\\newversion\\admin\\webform2.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\webform2.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -18,6 +31,45 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Admin.Master",
+              "DocumentMoniker": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\Admin.Master",
+              "RelativeDocumentMoniker": "NewVersion\\Admin.Master",
+              "ToolTip": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\Admin.Master",
+              "RelativeToolTip": "NewVersion\\Admin.Master",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-08-23T16:19:25.623Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "WebForm2.aspx",
+              "DocumentMoniker": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\WebForm2.aspx",
+              "RelativeDocumentMoniker": "NewVersion\\admin\\WebForm2.aspx",
+              "ToolTip": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\WebForm2.aspx",
+              "RelativeToolTip": "NewVersion\\admin\\WebForm2.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-08-23T16:16:57.01Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AdminProfile.aspx",
+              "DocumentMoniker": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\AdminProfile.aspx",
+              "RelativeDocumentMoniker": "NewVersion\\admin\\AdminProfile.aspx",
+              "ToolTip": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\AdminProfile.aspx",
+              "RelativeToolTip": "NewVersion\\admin\\AdminProfile.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-08-23T16:16:13.963Z",
+              "EditorCaption": ""
             }
           ]
         }
