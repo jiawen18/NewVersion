@@ -428,19 +428,19 @@
                                                     <div class="u-text">
                                                         <h4>Hizrian</h4>
                                                         <p class="text-muted">hello@example.com</p>
-                                                        <a
+                                                        <%--<a
                                                             href="AdminProfile.aspx"
-                                                            class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+                                                            class="btn btn-xs btn-secondary btn-sm">View Profile</a>--%>
                                                     </div>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="dropdown-divider"></div>                                         
-                                                <a class="dropdown-item" href="#">My Balance</a>
+                                                <%--<a class="dropdown-item" href="#">My Balance</a>
                                                 <a class="dropdown-item" href="#">Inbox</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="AdminProfile.aspx">Account Setting</a>
-                                                <div class="dropdown-divider"></div>
+                                                <div class="dropdown-divider"></div>--%>
+                                                <a class="dropdown-item" href="AdminProfile.aspx">Account Settings</a>
+                                                <%--<div class="dropdown-divider"></div>--%>
                                                 <a class="dropdown-item" href="../css/Home.aspx">Logout</a>
                                             </li>
                                         </div>
@@ -483,7 +483,7 @@
                             Copyright &copy; <%: DateTime.Now.Year %> HanSumg. All rights reserved.
                         </div>
                         <div>
-                            Location
+                            Malaysia
                         </div>
                     </div>
                 </footer>

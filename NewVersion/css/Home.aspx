@@ -1,26 +1,27 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="NewVersion.css.Home" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <!-- Start advertisement "hero" Section -->
-	<div class="hero">
-		<div class="container">
-    <div class="row justify-content-between">
-    <div class="col-lg-5">
-	    <div class="intro-excerpt">
-		    <h1>Next-Gen Tech at Your Fingertips! </h1>
-		    <p class="mb-4">Discover the latest gadgets designed to elevate your digital experience. Shop now for cutting-edge devices that keep you ahead of the curve.</p>
-		    <p><a href="Smartphones.aspx" class="btn btn-secondary me-2">Shop Now</a>
-				<a href="AboutUs.aspx" class="btn btn-white-outline">Explore</a>
-		    </p>
-	    </div>
+    <div class="hero">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-lg-5">
+                    <div class="intro-excerpt">
+                        <h1>Next-Gen Tech at Your Fingertips! </h1>
+                        <p class="mb-4">Discover the latest gadgets designed to elevate your digital experience. Shop now for cutting-edge devices that keep you ahead of the curve.</p>
+                        <p>
+                            <a href="Smartphones.aspx" class="btn btn-secondary me-2">Shop Now</a>
+                            <a href="AboutUs.aspx" class="btn btn-white-outline">Explore</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="hero-img-wrap">
+                        <img src="images/slide_image1.png" class="images">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-lg-7">
-	    <div class="hero-img-wrap">
-		    <img src="images/slide_image1.png" class="images">
-	    </div>
-    </div>
-</div>
-		</div>
-	</div>
 	<!-- End advertisement Section -->
    
 
@@ -557,7 +558,7 @@
 
 
 <!-- Start We Help Section -->
-<div class="testimonial-section before-footer-section">
+<div class="testimonial-section before-footer-section" style="padding:30px 0 !important">
 	<div class="container">
      <div class="row justify-content-between">
      <div class="col-lg-7 mb-5 mb-lg-0">
