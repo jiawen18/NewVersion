@@ -11,12 +11,19 @@
         text-decoration: none;
         margin-bottom: 10px;
         border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
     }
 
         .sidebar a:hover {
-            background-color: #e9ecef;
+            background-color: #e9ecef; /* 浅灰色背景 */
+        }
+
+        .sidebar a.active {
+            background-color: #505050; /* 深灰色背景 */
+            color: white; /* 白色字体 */
         }
 
 .content {
     padding: 15px;
 }
+

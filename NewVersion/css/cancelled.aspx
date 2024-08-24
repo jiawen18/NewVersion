@@ -1,42 +1,33 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="completed.aspx.cs" Inherits="NewVersion.css.css.completed" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="cancelled.aspx.cs" Inherits="NewVersion.css.cancelled" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-        <div class="hero">
+                <div class="hero">
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-lg-5">
                     <div class="intro-excerpt">
                         <h1>My Orders</h1>
-                        <%--<p class="mb-4">Discover the latest gadgets designed to elevate your digital experience. Shop now for cutting-edge devices that keep you ahead of the curve.</p>
-                        <p>
-                            <a href="Smartphones.aspx" class="btn btn-secondary me-2">Shop Now</a>
-                            <a href="AboutUs.aspx" class="btn btn-white-outline">Explore</a>
-                        </p>--%>
-                    </div>
-                </div>
-                <%--<div class="col-lg-7">
-                    <div class="hero-img-wrap">
-                        <img src="images/slide_image1.png" class="images">
-                    </div>
-                </div>--%>
+                       
             </div>
         </div>
     </div>
+             </div>
+                     </div>
 
-     <div class="container-fluid">
- <div class="row">
-     <!-- 侧边栏：订单菜单 -->
-     <nav class="col-md-2 sidebar">
-    <ul>
-        <li><a href="Order.aspx">To Ship</a></li>
-        <li style="border-color:grey; text-decoration-color:white;"><a href="completed.aspx">Completed</a></li>
-        <li><a href="cancelled.aspx">Cancelled</a></li>
-    </ul>
+         <div class="container-fluid">
+    <div class="row">
+        <!-- 侧边栏：订单菜单 -->
+        <nav class="col-md-2 sidebar">
+    <ul class="order">
+     <li><a href="Order.aspx" class="<%= Request.FilePath.Contains("Order.aspx") ? "active" : "" %>">To Ship</a></li>
+    <li><a href="completed.aspx" class="<%= Request.FilePath.Contains("completed.aspx") ? "active" : "" %>">Completed</a></li>
+    <li><a href="cancelled.aspx" class="<%= Request.FilePath.Contains("cancelled.aspx") ? "active" : "" %>">Cancelled</a></li>
+</ul>
 
 </nav>
 
          <!-- 主要内容 -->
          <main class="col-md-10 content">
+             <h2 style="transform: translate(100px, 60px);">Cancelled <img src="images/cancel-order.png" /></h2>
     <%-- Content Section --%>
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -79,9 +70,9 @@
                                 <div class="row d-flex align-items-center">
 
                                     <div class="trackAndReview">
-                                        <asp:Button class="text-muted mb-0 small" ID="btnReview" runat="server" Text="Review" OnClick="btnReview_Click" />
+                                        <asp:Button class="text-muted mb-0 small" ID="btnBuyAgain" runat="server" Text="Buy Again" OnClick="btnBuyAgain_Click" />
                                         &nbsp&nbsp&nbsp&nbsp
-                                        <asp:Button class="text-muted mb-0 small" ID="btnTrack" runat="server" Text="Track Order" OnClick="btnTrack_Click" />
+                                        <asp:Button class="text-muted mb-0 small" ID="btnTrackRefund" runat="server" Text="Track Refund" OnClick="btnTrackRefund_Click" />
                                     </div>
                                 </div>
                             </div>
@@ -122,8 +113,23 @@
         </div>
     </div>
 
-    <%--Css and Js --%>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var menuItems = document.querySelectorAll('.sidebar a');
+
+            menuItems.forEach(function (item) {
+                var currentPage = window.location.pathname;
+                var linkPage = item.getAttribute('href');
+
+                if (currentPage.includes(linkPage)) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        });
+
+
+    </script>
 
 </asp:Content>

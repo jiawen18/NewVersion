@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="completed.aspx.cs" Inherits="NewVersion.css.css.completed" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="completed.aspx.cs" Inherits="NewVersion.css.completed" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-        <div class="hero">
+            <div class="hero">
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-lg-5">
@@ -23,20 +23,22 @@
         </div>
     </div>
 
-     <div class="container-fluid">
- <div class="row">
-     <!-- 侧边栏：订单菜单 -->
-     <nav class="col-md-2 sidebar">
-    <ul>
-        <li><a href="Order.aspx">To Ship</a></li>
-        <li style="border-color:grey; text-decoration-color:white;"><a href="completed.aspx">Completed</a></li>
-        <li><a href="cancelled.aspx">Cancelled</a></li>
-    </ul>
+                  <div class="container-fluid">
+    <div class="row">
+        <!-- 侧边栏：订单菜单 -->
+        <nav class="col-md-2 sidebar">
+    <ul class="order">
+     <li><a href="Order.aspx" class="<%= Request.FilePath.Contains("Order.aspx") ? "active" : "" %>">To Ship</a></li>
+    <li><a href="completed.aspx" class="<%= Request.FilePath.Contains("completed.aspx") ? "active" : "" %>">Completed</a></li>
+    <li><a href="cancelled.aspx" class="<%= Request.FilePath.Contains("cancelled.aspx") ? "active" : "" %>">Cancelled</a></li>
+</ul>
 
 </nav>
 
+
          <!-- 主要内容 -->
          <main class="col-md-10 content">
+             <h2 style="transform: translate(100px, 60px);">Completed <img src="images/package.png" /></h2>
     <%-- Content Section --%>
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -122,8 +124,23 @@
         </div>
     </div>
 
-    <%--Css and Js --%>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+   <script>
+       document.addEventListener('DOMContentLoaded', function () {
+           var menuItems = document.querySelectorAll('.sidebar a');
+
+           menuItems.forEach(function (item) {
+               var currentPage = window.location.pathname;
+               var linkPage = item.getAttribute('href');
+
+               if (currentPage.includes(linkPage)) {
+                   item.classList.add('active');
+               } else {
+                   item.classList.remove('active');
+               }
+           });
+       });
+
+
+   </script>
 
 </asp:Content>

@@ -61,15 +61,15 @@
         <table>
             <tr>
                 <td style="position: relative; left: 800px;">Total</td>
-                <td style="position: relative; left: 915px;">RM 1999.90</td>
+                <td style="position: relative; left: 880px;">RM 1999.90</td>
             </tr>
             <tr>
                 <td style="position: relative; left: 800px;">Delivery Fee</td>
-                <td style="position: relative; left: 922px;">RM 5.90</td>
+                <td style="position: relative; left: 902px;">RM 5.90</td>
             </tr>
             <tr>
                 <td style="position: relative; left: 800px;">Grant Total</td>
-                <td style="position: relative; left: 922px;"><strong>RM 4.90</strong></td>
+                <td style="position: relative; left: 902px;"><strong>RM 4.90</strong></td>
 </tr>
         </table>
     </div>
