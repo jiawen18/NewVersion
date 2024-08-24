@@ -15,7 +15,7 @@
 		<siteMapNode url="CSS/cart.aspx" title="Cart" />-->
 	</siteMapNode>
 
-	<siteMapNode url="CSS/Order.aspx" title="Order" description="">
+	<!--<siteMapNode url="CSS/Order.aspx" title="Order" description="">
 		
 		<siteMapNode url="CSS/Order.aspx" title="To Ship" />
 		
@@ -23,7 +23,7 @@
 		
 		<siteMapNode url="CSS/cancelled.aspx" title="Cancelled"/>
 	
-	</siteMapNode>
+	</siteMapNode>-->
 
 
 </siteMap>
