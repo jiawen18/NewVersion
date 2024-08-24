@@ -23,17 +23,20 @@
         </div>
     </div>
 
-    <div class="container-fluid">
-        <div class="row">
-            <!-- 侧边栏 -->
-            <nav class="col-md-2 sidebar" aria-orientation="vertical">
-                <a href="#to-ship">待发货</a><br />
-                <a href="#completed">已完成</a><br />
-                <a href="#cancelled">已取消</a>
-            </nav>
+     <div class="container-fluid">
+ <div class="row">
+     <!-- 侧边栏：订单菜单 -->
+     <nav class="col-md-2 sidebar">
+    <ul>
+        <li><a href="Order.aspx">To Ship</a></li>
+        <li><a href="completed.aspx">Completed</a></li>
+        <li><a href="cancelled.aspx">Cancelled</a></li>
+    </ul>
 
-            <!-- 主要内容 -->
-            <main class="col-md-10 content">
+</nav>
+
+         <!-- 主要内容 -->
+         <main class="col-md-10 content">
     <%-- Content Section --%>
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">

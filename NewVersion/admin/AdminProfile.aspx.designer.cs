@@ -33,6 +33,24 @@ namespace NewVersion.admin
         protected global::System.Web.UI.WebControls.FileUpload fileUpload;
 
         /// <summary>
+        /// lbl_adm_id control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_adm_id;
+
+        /// <summary>
+        /// txt_adm_id control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_adm_id;
+
+        /// <summary>
         /// lbl_adm_username control.
         /// </summary>
         /// <remarks>

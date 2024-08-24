@@ -1,7 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
-
-	<siteMapNode url="" title="Home"  description="">
+﻿<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
+	<siteMapNode url="Home.aspx" title="Home">
 		<siteMapNode url="CSS/Home.aspx" title="Home" />
 		<siteMapNode url="" title="Shop">
 			<siteMapNode url="CSS/Smartphones.aspx" title="Smartphones" />
@@ -11,11 +9,10 @@
 		<siteMapNode url="CSS/AboutUs.aspx" title="About Us" />
 		<siteMapNode url="CSS/Services.aspx" title="Services" />
 		<siteMapNode url="CSS/Contact.aspx" title="Contact Us" />
-		<!--<siteMapNode url="CSS/UserProfile.aspx" title="User Profile" />
-		<siteMapNode url="CSS/cart.aspx" title="Cart" />-->
 	</siteMapNode>
 
-	<siteMapNode url="CSS/Order.aspx" title="Order" description="">
+
+	<!--<siteMapNode url="CSS/Order.aspx" title="Order" description="">
 		
 		<siteMapNode url="CSS/Order.aspx" title="To Ship" />
 		
@@ -23,7 +20,8 @@
 		
 		<siteMapNode url="CSS/cancelled.aspx" title="Cancelled"/>
 	
-	</siteMapNode>
+	</siteMapNode>-->
 
 
 </siteMap>
+

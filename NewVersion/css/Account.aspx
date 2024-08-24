@@ -6,26 +6,16 @@
             <div class="row justify-content-between">
                 <div class="col-lg-5">
                     <div class="intro-excerpt">
-                        <h1>Account Settings</h1>
-                        <%--<p class="mb-4">Discover the latest gadgets designed to elevate your digital experience. Shop now for cutting-edge devices that keep you ahead of the curve.</p>
-                        <p>
-                            <a href="Smartphones.aspx" class="btn btn-secondary me-2">Shop Now</a>
-                            <a href="AboutUs.aspx" class="btn btn-white-outline">Explore</a>
-                        </p>--%>
+                        <h1>Account Settings</h1>             
                     </div>
                 </div>
-                <%--<div class="col-lg-7">
-                    <div class="hero-img-wrap">
-                        <img src="images/slide_image1.png" class="images">
-                    </div>
-                </div>--%>
+              
             </div>
         </div>
     </div>
     
     <div class="container light-style flex-grow-1 container-p-y" style="margin-top: 3rem">
-        <%--<h4 class="font-weight-bold py-3 mb-4">Account settings
-        </h4>--%>
+       
   
     <div class="card overflow-hidden">
         <div class="row no-gutters row-bordered row-border-light">
@@ -58,6 +48,12 @@
 
                         <!-- User Account -->
                         <div class="card-body">
+
+                             <div class="form-group">
+                            <asp:Label ID="lbl_mb_id" runat="server" Text="Hansumg Account ID" class="form-label"></asp:Label>
+                            <asp:TextBox ID="txt_mb_id" runat="server" class="form-control mb-1" value = "92394732" disabled="disabled"></asp:TextBox>                            
+                            </div>
+                            
                             <div class="form-group">
                                 <asp:Label ID="lbl_acc_username" runat="server" Text="Username" class="form-label"></asp:Label>
                                 <asp:TextBox ID="txt_username" runat="server" class="form-control mb-1" value="shen"></asp:TextBox>                            

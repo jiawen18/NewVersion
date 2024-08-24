@@ -48,12 +48,12 @@
              
           <!-- Social Authentication -->
               <div class="icon_wrapper">
-          <asp:LinkButton ID="login_google" runat="server" CausesValidation="false" class="btn btn-primary btn-lg btn-block" style="background-color: #5D5D5D; border:2px solid #5D5D5D; border-radius:50px;margin-bottom:20px" OnClick="login_google_Click">
+          <asp:LinkButton ID="login_google" runat="server" CausesValidation="false" class="btn btn-primary btn-lg btn-block" style="background-color: #5D5D5D; border:2px solid #5D5D5D; border-radius:50px;margin-bottom:10px" OnClick="login_google_Click">
               <i class="fab fa-google me-2"></i>Continue with Google
           </asp:LinkButton>
     
           <asp:LinkButton ID="login_facebook" runat="server" CausesValidation="false" class="btn btn-primary btn-lg btn-block" style="background-color: #5D5D5D; border:2px solid #5D5D5D; border-radius:50px">        
-            <i class="fab fa-twitter me-2"></i>Continue with Twitter
+            <i class="fab fa-facebook me-2"></i>Continue with Facebook
             </asp:LinkButton>
               </div>
       </div>
