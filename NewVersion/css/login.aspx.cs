@@ -50,11 +50,13 @@ namespace NewVersion.css
             GoogleConnect.Authorize("profile", "email");
         }
 
-        public class GoogleProfile {
+        public class GoogleProfile
+        {
             public string Email { get; set; }
             public string Name { get; set; }
 
+        }
+
+
     }
-
-
 }
