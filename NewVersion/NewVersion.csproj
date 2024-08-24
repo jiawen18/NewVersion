@@ -704,6 +704,16 @@
       <DependentUpon>ModelTest.edmx</DependentUpon>
       <LastGenOutput>ModelTest.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\UserModal.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>UserModal.edmx</DependentUpon>
+      <LastGenOutput>UserModal.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\UserModal.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>UserModal.edmx</DependentUpon>
+      <LastGenOutput>UserModal.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -1031,6 +1041,12 @@
     <Compile Include="Login.Master.designer.cs">
       <DependentUpon>Login.Master</DependentUpon>
     </Compile>
+    <Compile Include="Models\Admin.cs">
+      <DependentUpon>UserModal.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Member.cs">
+      <DependentUpon>UserModal.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ModelTest.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1048,6 +1064,21 @@
     </Compile>
     <Compile Include="Models\Table.cs">
       <DependentUpon>ModelTest.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserModal.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserModal.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserModal.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserModal.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserModal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserModal.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Home.Master.cs">
@@ -1105,6 +1136,16 @@
       <DependentUpon>ModelTest.edmx</DependentUpon>
     </Content>
     <Content Include="Admin.sitemap" />
+<<<<<<< HEAD
+=======
+    <EntityDeploy Include="Models\UserModal.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>UserModal.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\UserModal.edmx.diagram">
+      <DependentUpon>UserModal.edmx</DependentUpon>
+    </Content>
+>>>>>>> dce21624a1ee85e60f2d8622bffd35e9d1cf7608
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
