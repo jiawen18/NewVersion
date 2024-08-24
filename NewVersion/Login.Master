@@ -32,9 +32,6 @@
             </asp:ContentPlaceHolder>
              </div>
         
-        <div id ="footer">
-
-        </div>
       </div>
     </form>
 
