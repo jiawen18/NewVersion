@@ -47,6 +47,7 @@ namespace NewVersion.css
             GoogleConnect.Authorize("profile", "email");
        
         }
+
     }
     public class GoogleProfile
     {
@@ -56,4 +57,5 @@ namespace NewVersion.css
         public string Email { get; set; }
         public string Verified_Email { get; set; }
     }
-}
+    }
+
