@@ -12,7 +12,7 @@
                     OnClientClick="return false;"
                     data-bs-toggle="modal"
                     data-bs-target="#addRowModal">
-                    <i class="fa fa-plus"></i>
+                    <i class="fa fa-plus" style="padding-right: 8px;"></i>
                     Add Row
                 </asp:LinkButton>
 
