@@ -520,8 +520,10 @@
     <Content Include="css\Account.aspx" />
     <Content Include="css\Address.aspx" />
     <Content Include="css\Blog.aspx" />
+    <Content Include="css\cancelled.aspx" />
     <Content Include="css\cart.aspx" />
     <Content Include="css\checkout.aspx" />
+    <Content Include="css\completed.aspx" />
     <Content Include="css\Contact.aspx" />
     <Content Include="css\css.1\bootstrap.min.1.css" />
     <Content Include="css\css.1\font-awesome.min.1.css" />
@@ -555,6 +557,7 @@
     <Content Include="css\images\bowl-3.png" />
     <Content Include="css\images\building.jpg" />
     <Content Include="css\images\camera.png" />
+    <Content Include="css\images\cancel-order.png" />
     <Content Include="css\images\cart.svg" />
     <Content Include="css\images\consumer_trophy.png" />
     <Content Include="css\images\contact.png" />
@@ -616,6 +619,7 @@
     <Content Include="css\images\login.jpg" />
     <Content Include="css\images\logo.png" />
     <Content Include="css\images\order-icon.png" />
+    <Content Include="css\images\package.png" />
     <Content Include="css\images\paypal.png" />
     <Content Include="css\images\person-1.jpg" />
     <Content Include="css\images\person-1.png" />
@@ -658,6 +662,7 @@
     <Content Include="css\images\support.svg" />
     <Content Include="css\images\tab_S9.jpg" />
     <Content Include="css\images\tab_S9plus.jpg" />
+    <Content Include="css\images\truck.png" />
     <Content Include="css\images\truck.svg" />
     <Content Include="css\images\user-bckg.jpg" />
     <Content Include="css\images\user-icon.png" />
@@ -905,6 +910,13 @@
     <Compile Include="css\Blog.aspx.designer.cs">
       <DependentUpon>Blog.aspx</DependentUpon>
     </Compile>
+    <Compile Include="css\cancelled.aspx.cs">
+      <DependentUpon>cancelled.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="css\cancelled.aspx.designer.cs">
+      <DependentUpon>cancelled.aspx</DependentUpon>
+    </Compile>
     <Compile Include="css\cart.aspx.cs">
       <DependentUpon>cart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -918,6 +930,13 @@
     </Compile>
     <Compile Include="css\checkout.aspx.designer.cs">
       <DependentUpon>checkout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="css\completed.aspx.cs">
+      <DependentUpon>completed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="css\completed.aspx.designer.cs">
+      <DependentUpon>completed.aspx</DependentUpon>
     </Compile>
     <Compile Include="css\Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -1136,8 +1155,6 @@
       <DependentUpon>ModelTest.edmx</DependentUpon>
     </Content>
     <Content Include="Admin.sitemap" />
-<<<<<<< HEAD
-=======
     <EntityDeploy Include="Models\UserModal.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>UserModal.Designer.cs</LastGenOutput>
@@ -1145,7 +1162,6 @@
     <Content Include="Models\UserModal.edmx.diagram">
       <DependentUpon>UserModal.edmx</DependentUpon>
     </Content>
->>>>>>> dce21624a1ee85e60f2d8622bffd35e9d1cf7608
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -3,44 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\asus\\documents\\github\\newversion\\newversion\\home.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\home.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\asus\\documents\\github\\newversion\\newversion\\css\\completed.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\completed.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\newversion\\css\\css\\completed.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\css\\completed.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\asus\\documents\\github\\newversion\\newversion\\css\\cancelled.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\cancelled.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\asus\\documents\\github\\newversion\\newversion\\css\\order.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\order.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Order.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:NewVersion\\css\\Order.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\newversion\\css\\order.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\order.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\newversion\\css\\css\\cancelled.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\css\\cancelled.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\newversion\\css\\css\\cancelled.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\css\\cancelled.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\asus\\documents\\github\\newversion\\newversion\\css\\delivery.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\delivery.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\newversion\\css\\css\\completed.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\css\\completed.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\asus\\documents\\github\\newversion\\newversion\\css\\checkout.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\checkout.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\asus\\documents\\github\\newversion\\newversion\\css\\checkout.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\checkout.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\asus\\documents\\github\\newversion\\newversion\\css\\css\\order.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\css\\order.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -70,54 +46,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Delivery.aspx",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Delivery.aspx",
-              "RelativeDocumentMoniker": "NewVersion\\css\\Delivery.aspx",
-              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Delivery.aspx",
-              "RelativeToolTip": "NewVersion\\css\\Delivery.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-08-24T15:54:27.971Z",
+              "DocumentIndex": 3,
+              "Title": "order.css",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\css\\order.css",
+              "RelativeDocumentMoniker": "NewVersion\\css\\css\\order.css",
+              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\css\\order.css",
+              "RelativeToolTip": "NewVersion\\css\\css\\order.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-08-24T17:31:47.926Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "checkout.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\checkout.aspx.cs",
-              "RelativeDocumentMoniker": "NewVersion\\css\\checkout.aspx.cs",
-              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\checkout.aspx.cs",
-              "RelativeToolTip": "NewVersion\\css\\checkout.aspx.cs",
-              "ViewState": "AQIAADQAAAAAAAAAAAAkwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-24T15:25:15.965Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "checkout.aspx",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\checkout.aspx",
-              "RelativeDocumentMoniker": "NewVersion\\css\\checkout.aspx",
-              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\checkout.aspx",
-              "RelativeToolTip": "NewVersion\\css\\checkout.aspx",
+              "DocumentIndex": 1,
+              "Title": "cancelled.aspx",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\cancelled.aspx",
+              "RelativeDocumentMoniker": "NewVersion\\css\\cancelled.aspx",
+              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\cancelled.aspx",
+              "RelativeToolTip": "NewVersion\\css\\cancelled.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-08-24T15:25:03.403Z",
+              "WhenOpened": "2024-08-24T17:06:51.101Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Home.Master",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\Home.Master",
-              "RelativeDocumentMoniker": "NewVersion\\Home.Master",
-              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\Home.Master",
-              "RelativeToolTip": "NewVersion\\Home.Master",
+              "Title": "completed.aspx",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\completed.aspx",
+              "RelativeDocumentMoniker": "NewVersion\\css\\completed.aspx",
+              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\completed.aspx",
+              "RelativeToolTip": "NewVersion\\css\\completed.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-08-24T14:16:02.317Z",
+              "WhenOpened": "2024-08-24T17:02:10.222Z",
               "EditorCaption": ""
             },
             {
@@ -131,71 +94,6 @@
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2024-08-24T11:04:59.824Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "cancelled.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\css\\cancelled.aspx.cs",
-              "RelativeDocumentMoniker": "NewVersion\\css\\css\\cancelled.aspx.cs",
-              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\css\\cancelled.aspx.cs",
-              "RelativeToolTip": "NewVersion\\css\\css\\cancelled.aspx.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAlAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-24T13:36:17.172Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "completed.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\css\\completed.aspx.cs",
-              "RelativeDocumentMoniker": "NewVersion\\css\\css\\completed.aspx.cs",
-              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\css\\completed.aspx.cs",
-              "RelativeToolTip": "NewVersion\\css\\css\\completed.aspx.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAxwBMAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-24T13:33:28.541Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "cancelled.aspx",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\css\\cancelled.aspx",
-              "RelativeDocumentMoniker": "NewVersion\\css\\css\\cancelled.aspx",
-              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\css\\cancelled.aspx",
-              "RelativeToolTip": "NewVersion\\css\\css\\cancelled.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-08-24T13:28:49.264Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Order.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Order.aspx.cs",
-              "RelativeDocumentMoniker": "NewVersion\\css\\Order.aspx.cs",
-              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Order.aspx.cs",
-              "RelativeToolTip": "NewVersion\\css\\Order.aspx.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAuwBgAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-24T11:05:22.935Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "completed.aspx",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\css\\completed.aspx",
-              "RelativeDocumentMoniker": "NewVersion\\css\\css\\completed.aspx",
-              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\css\\completed.aspx",
-              "RelativeToolTip": "NewVersion\\css\\css\\completed.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-08-24T13:28:35.895Z",
               "EditorCaption": ""
             }
           ]

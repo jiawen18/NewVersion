@@ -1,5 +1,5 @@
 ﻿<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
-	<siteMapNode url="Home.aspx" title="Home">
+	<siteMapNode url="" title="Home"  description="">
 		<siteMapNode url="CSS/Home.aspx" title="Home" />
 		<siteMapNode url="" title="Shop">
 			<siteMapNode url="CSS/Smartphones.aspx" title="Smartphones" />
@@ -10,17 +10,6 @@
 		<siteMapNode url="CSS/Services.aspx" title="Services" />
 		<siteMapNode url="CSS/Contact.aspx" title="Contact Us" />
 	</siteMapNode>
-
-	<!--<siteMapNode url="CSS/Order.aspx" title="Order" description="">
-		
-		<siteMapNode url="CSS/Order.aspx" title="To Ship" />
-		
-		<siteMapNode url="CSS/completed.aspx" title="Completed"/>
-		
-		<siteMapNode url="CSS/cancelled.aspx" title="Cancelled"/>
 	
-	</siteMapNode>-->
-
-
 </siteMap>
 
