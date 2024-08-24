@@ -48,10 +48,12 @@
              
           <!-- Social Icon -->
               <div class="icon_wrapper">
-          <a class="btn btn-primary btn-lg btn-block" style="background-color: #5D5D5D; border:2px solid #5D5D5D; border-radius:50px;" href="#!"
-            role="button">
-            <i class="fab fa-facebook-f me-2"></i>Continue with Facebook
-          </a>
+          <asp:LinkButton ID="login_google" runat="server" class="btn btn-primary btn-lg btn-block" style="background-color: #5D5D5D; border:2px solid #5D5D5D; border-radius:50px;" OnClick="login_google_Click">
+              <i class="fab fa-google me-2"></i>Continue with Google
+          </asp:LinkButton>
+    
+            
+          
           <a class="btn btn-primary btn-lg btn-block" style="background-color: #5D5D5D ;border:2px solid #5D5D5D; border-radius:50px; margin-top:15px" href="#!"
             role="button">
             <i class="fab fa-twitter me-2"></i>Continue with Twitter</a>
