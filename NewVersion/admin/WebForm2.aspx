@@ -8,7 +8,7 @@
                 <asp:LinkButton
                     ID="AddRowButton"
                     runat="server"
-                    CssClass="btn btn-primary btn-round ms-auto"
+                    CssClass="btn btn-black btn-border btn-round ms-auto"
                     OnClientClick="return false;"
                     data-bs-toggle="modal"
                     data-bs-target="#addRowModal">
@@ -92,7 +92,7 @@
                             <asp:LinkButton
                                 ID="LinkButton1"
                                 runat="server"
-                                CssClass="btn btn-danger"
+                                CssClass="btn btn-black btn-border"
                                 OnClientClick="$('#addRowModal').modal('hide'); return false;">
                                 Close
                             </asp:LinkButton>
@@ -108,9 +108,41 @@
                         <table class="display table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
+                                    <th>
+                                        Name
+                                        <asp:LinkButton 
+                                            ID="SortByName"
+                                            runat="server"
+                                            CssClass="btn btn-link btn-black"
+                                            CommandArgument="Name"
+                                            OnClick="SortButton_Click">
+                                            <i class="fa fa-sort"></i>
+                                        </asp:LinkButton>
+                                    </th>
+                                    </th>
+                                    <th>
+                                        Price
+                                        <asp:LinkButton 
+                                            ID="SortByPrice"
+                                            runat="server"
+                                            CssClass="btn btn-link btn-black"
+                                            CommandArgument="Price"
+                                            OnClick="SortButton_Click">
+                                            <i class="fa fa-sort"></i>
+                                        </asp:LinkButton>
+                                    </th>
+                                    </th>
+                                    <th>
+                                        Quantity
+                                        <asp:LinkButton 
+                                            ID="SortByQuantity"
+                                            runat="server"
+                                            CssClass="btn btn-link btn-black"
+                                            CommandArgument="Quantity"
+                                            OnClick="SortButton_Click">
+                                            <i class="fa fa-sort"></i>
+                                        </asp:LinkButton>
+                                    </th>
                                     <th colspan="2" style="width: 10%; text-align: center;">Actions</th>
                                 </tr>
                             </thead>
@@ -124,7 +156,8 @@
                                 <asp:LinkButton
                                     ID="CopyItemButton"
                                     runat="server"
-                                    CssClass="btn btn-link btn-primary"
+                                    CssClass="btn btn-link btn-black"
+                                    style="opacity:0.5;"
                                     data-bs-toggle="tooltip"
                                     title="Copy"
                                     data-original-title="Copy Item"
@@ -134,7 +167,7 @@
                                 <asp:LinkButton
                                     ID="EditTaskButton"
                                     runat="server"
-                                    CssClass="btn btn-link btn-warning"
+                                    CssClass="btn btn-link btn-primary"
                                     data-bs-toggle="tooltip"
                                     title="Edit"
                                     data-original-title="Edit Task"

@@ -1,9 +1,27 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="Address.aspx.cs" Inherits="NewVersion.css.Address" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-<div class="address-header">
-<h1 style="text-align:center;font-size:60px">Delivery Address</h1>
-</div>
+    <div class="hero">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-lg-5">
+                    <div class="intro-excerpt">
+                        <h1>Delivery Address</h1>
+                        <%--<p class="mb-4">Discover the latest gadgets designed to elevate your digital experience. Shop now for cutting-edge devices that keep you ahead of the curve.</p>
+                        <p>
+                            <a href="Smartphones.aspx" class="btn btn-secondary me-2">Shop Now</a>
+                            <a href="AboutUs.aspx" class="btn btn-white-outline">Explore</a>
+                        </p>--%>
+                    </div>
+                </div>
+                <%--<div class="col-lg-7">
+                    <div class="hero-img-wrap">
+                        <img src="images/slide_image1.png" class="images">
+                    </div>
+                </div>--%>
+            </div>
+        </div>
+    </div>
     
         <div class="wrapper-address-content">
         <!-- Grid items will be added here -->

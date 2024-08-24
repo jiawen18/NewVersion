@@ -1,9 +1,31 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="Account.aspx.cs" Inherits="NewVersion.css.Account" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container light-style flex-grow-1 container-p-y">
-    <h4 class="font-weight-bold py-3 mb-4">
-        Account settings
-    </h4>
+    
+        <div class="hero">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-lg-5">
+                    <div class="intro-excerpt">
+                        <h1>Account Settings</h1>
+                        <%--<p class="mb-4">Discover the latest gadgets designed to elevate your digital experience. Shop now for cutting-edge devices that keep you ahead of the curve.</p>
+                        <p>
+                            <a href="Smartphones.aspx" class="btn btn-secondary me-2">Shop Now</a>
+                            <a href="AboutUs.aspx" class="btn btn-white-outline">Explore</a>
+                        </p>--%>
+                    </div>
+                </div>
+                <%--<div class="col-lg-7">
+                    <div class="hero-img-wrap">
+                        <img src="images/slide_image1.png" class="images">
+                    </div>
+                </div>--%>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container light-style flex-grow-1 container-p-y" style="margin-top: 3rem">
+        <%--<h4 class="font-weight-bold py-3 mb-4">Account settings
+        </h4>--%>
   
     <div class="card overflow-hidden">
         <div class="row no-gutters row-bordered row-border-light">
