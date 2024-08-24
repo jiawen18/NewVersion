@@ -7,12 +7,15 @@ using System.Web.UI.WebControls;
 using System.Web.Script.Serialization;
 using ASPSnippets.GoogleAPI;
 using System.EnterpriseServices;
+using System.Web.Security;
 
 
 namespace NewVersion.css
 {
     public partial class login : System.Web.UI.Page
     {
+        //connect app to DB through connection string
+        ConnectionString db = new UserDBEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
             /* From google clout platform */

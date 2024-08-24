@@ -33,6 +33,42 @@ namespace NewVersion.css
         protected global::System.Web.UI.WebControls.TextBox txt_addr_name;
 
         /// <summary>
+        /// txt_addr_email control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_addr_email;
+
+        /// <summary>
+        /// txt_addr_address1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_addr_address1;
+
+        /// <summary>
+        /// txt_addr_address2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_addr_address2;
+
+        /// <summary>
+        /// txt_addr_postcode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_addr_postcode;
+
+        /// <summary>
         /// txt_addr_street control.
         /// </summary>
         /// <remarks>
@@ -49,33 +85,6 @@ namespace NewVersion.css
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_addr_city;
-
-        /// <summary>
-        /// txt_addr_postcode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_addr_postcode;
-
-        /// <summary>
-        /// txt_addr_address control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_addr_address;
-
-        /// <summary>
-        /// txt_addr_email control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_addr_email;
 
         /// <summary>
         /// hfAddressID control.
