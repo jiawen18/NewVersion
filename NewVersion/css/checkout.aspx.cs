@@ -16,17 +16,26 @@ namespace NewVersion.css
 
         protected void ddlBanks_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // 获取选择的值
-            string selectedBank = ddlPaymentMethod.SelectedItem.Text;
+            // Update label text with the selected value
+            lblTransfer.Text = ddlPaymentMethod.SelectedItem.Text;
 
-            // 根据选择更新文本
-            if (ddlPaymentMethod.SelectedValue != "0") // 避免第一个选项“--Select a Bank--”
+        }
+
+        protected void btnOrder_Click(object sender, EventArgs e)
+        {
+            string paymentMethod = lblTransfer.Text;
+
+            if (paymentMethod == "Public Bank")
             {
-                lblText.Text = "You selected: " + selectedBank;
+                Response.Redirect("https://www.publicbank.com");
+            }
+            else if (paymentMethod == "Touch n Go")
+            {
+                Response.Redirect("https://www.touchngo.com.my");
             }
             else
             {
-                lblText.Text = "Please select a bank.";
+                lblText.Text = "Please select a valid payment method.";
             }
         }
 
@@ -64,10 +73,6 @@ namespace NewVersion.css
             Response.Redirect("checkout.aspx");
         }
 
-        protected void btnOrder_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("ThankYou.aspx");
-        }
 
     }
 }

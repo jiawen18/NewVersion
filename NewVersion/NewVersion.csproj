@@ -678,7 +678,6 @@
     <Content Include="css\images\zflips.jpg" />
     <Content Include="css\js\bootstrap.bundle.min.js" />
     <Content Include="css\js\bootstrap.min.js" />
-    <Content Include="css\js\checkout.js" />
     <Content Include="css\js\custom.js" />
     <Content Include="css\js\jquery.min.js" />
     <Content Include="css\js\jquery.zoom.min.js" />

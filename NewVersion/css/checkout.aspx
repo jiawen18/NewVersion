@@ -175,37 +175,35 @@
                     </table>
 
                     <div class="group-paymentmethod">
-                        <div class="transfer Bank">
-                            <h3 class="h6 mb-0">
-                                <img src="images/bank%20transfer.png" />
-                                &nbsp&nbsp&nbsp
-                                <asp:Label ID="lblTransfer" runat="server" Text="Direct Transfer"></asp:Label>
-                            </h3>
-                            <div class="text" id="textContainer">
-                                <asp:Label ID="lblText" runat="server" Text="Please select a bank."></asp:Label>
-                            </div>
-                            <asp:DropDownList ID="ddlPaymentMethod" runat="server" AutoPostBack="True" CssClass="dropdown" OnSelectedIndexChanged="ddlBanks_SelectedIndexChanged">
+    <div class="transfer Bank">
+        <h3 class="h6 mb-0">
+            <img src="images/bank%20transfer.png" />
+            &nbsp;&nbsp;&nbsp;
+            <asp:Label ID="lblTransfer" runat="server" Text="Direct Transfer"></asp:Label>
+        </h3>
+        <div class="h6 mb-0" id="textContainer">
+            <br />
+            <asp:Label ID="lblText" runat="server" Text="Please select a bank."></asp:Label>
+            
+        </div>
+        <br />
+        <asp:DropDownList ID="ddlPaymentMethod" runat="server" AutoPostBack="True" CssClass="dropdown" OnSelectedIndexChanged="ddlBanks_SelectedIndexChanged">
+            <asp:ListItem Value="0" Text="Direct Transfer" data-img="images/bank%20transfer.png"></asp:ListItem>
+            <asp:ListItem Value="1" Text="Public Bank"></asp:ListItem>
+            <asp:ListItem Value="2" Text="Touch n Go"></asp:ListItem>
+        </asp:DropDownList>
+    </div>
 
-                                <asp:ListItem Value="1" Text="Public Bank"></asp:ListItem>
-                                <asp:ListItem Value="2" Text="Touch n Go"></asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
+    <div class="form-group">
+        <asp:Button class="btn btn-black btn-lg py-3 btn-block" ID="btnOrder" runat="server" Text="Place Order" OnClick="btnOrder_Click" />
+    </div>
+</div>
+</div>
 
-
-                        <div class="form-group">
-                            <asp:Button
-                                class="btn btn-black btn-lg py-3 btn-block"
-                                ID="btnOrder"
-                                runat="server"
-                                Text="Place Order"
-                                OnClick="btnOrder_Click" />
-                        </div>
-
-                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    
 
 
 
