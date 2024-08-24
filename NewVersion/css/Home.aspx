@@ -38,7 +38,7 @@
 						<h3 class="title">Top selling</h3>
 						<div class="section-nav">
 							<ul class="section-tab-nav tab-nav">
-								<li><a data-toggle="tab" href="#tab2">Smartphones</a></li>
+								<li class="active"><a data-toggle="tab" href="#tab2">Smartphones</a></li>
 								<li><a data-toggle="tab" href="#tab3">Tablets</a></li>
 								<li><a data-toggle="tab" href="#tab4">Accessories</a></li>
 							</ul>
