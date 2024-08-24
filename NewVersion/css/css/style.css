@@ -999,12 +999,25 @@ a {
         cursor: pointer;
     }
 
-    .transfer.active {
-        border-color: blue !important; /* 点击后的蓝色边框 */
-        border-style: solid !important;
-        border-width: 1pt !important;
-        background-color: #e6f7ff !important; /* 点击后的背景色（可选） */
-    }
+.group-paymentmethod {
+    position: relative;
+}
+
+.transfer {
+    height: 150px;
+}
+
+.dropdown {
+    position: absolute;
+}
+
+#lblTransfer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: white; /* Optional: to cover the dropdown */
+}
 
 .trackAndReview {
     display: flex;
