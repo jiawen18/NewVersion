@@ -320,12 +320,17 @@
                </div>
                <div class="modal-body">
                    <asp:Panel ID="pnlEditForm" runat="server">
+                        <asp:Label ID="lbl_memberId" runat="server" Text="Hansumg Account ID"></asp:Label>
+                        <asp:TextBox ID="txt_memberId" runat="server" CssClass="form-control" value = "92394732" disabled="disabled"></asp:TextBox><br />
                        <asp:Label ID="lbl_edit_name" runat="server" Text="Name"></asp:Label>
-                       <asp:TextBox ID="txt_edit_name" runat="server" CssClass="form-control"></asp:TextBox><br />
+                       <asp:TextBox ID="txt_edit_name" runat="server" CssClass="form-control" Value="Shen"></asp:TextBox><br />
                        <asp:Label ID="lbl_edit_email" runat="server" Text="Email"></asp:Label>
-                       <asp:TextBox ID="txt_edit_email" runat="server" CssClass="form-control"></asp:TextBox><br />
+                       <asp:TextBox ID="txt_edit_email" runat="server" CssClass="form-control" value="kelvinchong0457@gmail.com"></asp:TextBox><br />
                        <asp:HiddenField ID="hfEditID" runat="server" />
+                       <div class="modal-button">
                        <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-primary"/>
+                       <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-primary"/>
+                       </div>
                    </asp:Panel>
                </div>
            </div>

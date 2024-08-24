@@ -684,7 +684,6 @@
     <Content Include="css\ProductDetails.aspx" />
     <Content Include="css\Review.aspx" />
     <Content Include="css\Services.aspx" />
-    <Content Include="css\Shop.aspx" />
     <Content Include="css\Signup.aspx" />
     <Content Include="css\Smartphones.aspx" />
     <Content Include="css\Tablets.aspx" />
@@ -969,13 +968,6 @@
     <Compile Include="css\Services.aspx.designer.cs">
       <DependentUpon>Services.aspx</DependentUpon>
     </Compile>
-    <Compile Include="css\Shop.aspx.cs">
-      <DependentUpon>Shop.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="css\Shop.aspx.designer.cs">
-      <DependentUpon>Shop.aspx</DependentUpon>
-    </Compile>
     <Compile Include="css\Signup.aspx.cs">
       <DependentUpon>Signup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1095,7 +1087,6 @@
       <DependentUpon>ModelTest.edmx</DependentUpon>
     </Content>
     <Content Include="Admin.sitemap" />
-    <Content Include="google_login.json" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
