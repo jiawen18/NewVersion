@@ -66,7 +66,7 @@ namespace NewVersion.css
 
         protected void btnOrder_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Review.aspx");
+            Response.Redirect("ThankYou.aspx");
         }
 
     }

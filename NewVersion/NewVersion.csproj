@@ -533,6 +533,7 @@
     <Content Include="css\css\Address.css" />
     <Content Include="css\css\AdminAccount.css" />
     <Content Include="css\css\bootstrap.min.css" />
+    <Content Include="css\css\delivery.css" />
     <Content Include="css\css\login.css" />
     <Content Include="css\css\slick.css" />
     <Content Include="css\css\style.css" />
