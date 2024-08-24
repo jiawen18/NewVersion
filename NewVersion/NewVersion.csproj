@@ -510,13 +510,9 @@
     <Content Include="App_Data\product_log.ldf">
       <DependentUpon>product.mdf</DependentUpon>
     </Content>
-    <Content Include="App_Data\test.mdf" />
-    <Content Include="App_Data\test_log.ldf">
-      <DependentUpon>test.mdf</DependentUpon>
-    </Content>
-    <Content Include="App_Data\user.mdf" />
-    <Content Include="App_Data\user_log.ldf">
-      <DependentUpon>user.mdf</DependentUpon>
+    <Content Include="App_Data\User.mdf" />
+    <Content Include="App_Data\User_log.ldf">
+      <DependentUpon>User.mdf</DependentUpon>
     </Content>
     <Content Include="css\AboutUs.aspx" />
     <Content Include="css\Accessories.aspx" />
