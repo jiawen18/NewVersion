@@ -29,6 +29,8 @@
     <link href="css/css/UserProfile.css" rel="stylesheet" />
     <link href="css/css/Account.css" rel="stylesheet" />
     <link href="css/css/Address.css" rel="stylesheet" />
+    <link href="css/css/order.css" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
 
 
     <title>HanSumg</title>
@@ -206,6 +208,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
         <script src="js/order.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
     </form>
 
 </body>

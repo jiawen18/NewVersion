@@ -21,9 +21,9 @@ namespace NewVersion.css
             Response.Redirect("Delivery.aspx");
         }
 
-        protected void btnReview_Click(object sender, EventArgs e)
+        protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Review.aspx");
+            Response.Redirect("cancelled.aspx");
         }
     }
 

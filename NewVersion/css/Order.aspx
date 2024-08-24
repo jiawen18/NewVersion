@@ -8,22 +8,38 @@
                 <div class="col-lg-5">
                     <div class="intro-excerpt">
                         <h1>My Orders</h1>
-                        <%--<p class="mb-4">Discover the latest gadgets designed to elevate your digital experience. Shop now for cutting-edge devices that keep you ahead of the curve.</p>
-                        <p>
-                            <a href="Smartphones.aspx" class="btn btn-secondary me-2">Shop Now</a>
-                            <a href="AboutUs.aspx" class="btn btn-white-outline">Explore</a>
-                        </p>--%>
+                        
                     </div>
                 </div>
-                <%--<div class="col-lg-7">
-                    <div class="hero-img-wrap">
-                        <img src="images/slide_image1.png" class="images">
-                    </div>
-                </div>--%>
+               
             </div>
         </div>
     </div>
 
+    <div class="navbar">
+    <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="false" />
+
+    <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1"
+        CssClass="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0"
+        Orientation="Horizontal"
+        StaticSelectedStyle-CssClass="nav-item active"
+        StaticMenuItemStyle-CssClass="nav-item">
+        <StaticSelectedStyle CssClass="nav-item active" />
+        <StaticMenuItemStyle CssClass="nav-item" />
+    </asp:Menu>
+
+</div>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- 侧边栏 -->
+            <nav class="col-md-2 sidebar" aria-orientation="vertical">
+                <a href="#to-ship">待发货</a><br />
+                <a href="#completed">已完成</a><br />
+                <a href="#cancelled">已取消</a>
+            </nav>
+
+            <!-- 主要内容 -->
+            <main class="col-md-10 content">
     <%-- Content Section --%>
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -66,7 +82,7 @@
                                 <div class="row d-flex align-items-center">
 
                                     <div class="trackAndReview">
-                                        <asp:Button class="text-muted mb-0 small" ID="btnReview" runat="server" Text="Review" OnClick="btnReview_Click" />
+                                        <asp:Button class="text-muted mb-0 small" ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
                                         &nbsp&nbsp&nbsp&nbsp
                                         <asp:Button class="text-muted mb-0 small" ID="btnTrack" runat="server" Text="Track Order" OnClick="btnTrack_Click" />
                                     </div>
@@ -103,6 +119,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</main>
         </div>
     </div>
 
