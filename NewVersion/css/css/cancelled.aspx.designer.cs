@@ -7,48 +7,30 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NewVersion.css
+namespace NewVersion.css.css
 {
 
 
-    public partial class Order
+    public partial class cancelled
     {
 
         /// <summary>
-        /// SiteMapDataSource1 control.
+        /// btnBuyAgain control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SiteMapDataSource SiteMapDataSource1;
+        protected global::System.Web.UI.WebControls.Button btnBuyAgain;
 
         /// <summary>
-        /// Menu1 control.
+        /// btnTrackRefund control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Menu Menu1;
-
-        /// <summary>
-        /// btnCancel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
-
-        /// <summary>
-        /// btnTrack control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTrack;
+        protected global::System.Web.UI.WebControls.Button btnTrackRefund;
 
         /// <summary>
         /// lblOrderDetails control.
