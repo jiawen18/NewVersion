@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Script.Serialization;
-using ASPSnippets.GoogleAPI;
+using ASPSnippets.GoogleAPI;       
 using System.EnterpriseServices;
 using System.Web.Security;
 
@@ -14,11 +14,10 @@ namespace NewVersion.css
 {
     public partial class login : System.Web.UI.Page
     {
-        //connect app to DB through connection string
-        ConnectionString db = new UserDBEntities();
+  
         protected void Page_Load(object sender, EventArgs e)
         {
-            /* From google clout platform */
+            /* From google cloud platform */
             GoogleConnect.ClientId = "995711205443-95hlaqkilp75fhtolsd1079dql0haqip.apps.googleusercontent.com";
             GoogleConnect.ClientSecret = "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";
             GoogleConnect.RedirectUri = Request.Url.AbsoluteUri.Split('?')[0];
