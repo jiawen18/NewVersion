@@ -14,11 +14,7 @@ namespace NewVersion.css
         {
 
 
-            if (User.Identity.IsAuthenticated)
-            {
-                hlLogin.Visible = false;  // Hide the login link
-                hlProfile.Visible = true; // Show the profile link
-            }
+            
         }
 
         protected void btnBuyNow_Click(object sender, EventArgs e)
