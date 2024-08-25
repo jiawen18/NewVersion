@@ -69,7 +69,7 @@
             </tr>
             <tr>
                 <td style="position: relative; left: 800px;">Grant Total</td>
-                <td style="position: relative; left: 902px;"><strong>RM 4.90</strong></td>
+                <td style="position: relative; left: 879px;"><strong>RM 2005.80</strong></td>
 </tr>
         </table>
     </div>

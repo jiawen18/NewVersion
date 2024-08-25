@@ -43,7 +43,7 @@ namespace NewVersion.css
 
         protected void btnContinue_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Shop.aspx");
+            Response.Redirect("Smartphones.aspx");
         }
 
         protected void btnCheckOut_Click(object sender, EventArgs e)

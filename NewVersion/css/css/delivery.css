@@ -60,7 +60,7 @@ body {
     }
 
         .track .step.active:before {
-            background: #FF5722
+            background: #a8729a;
         }
 
         .track .step::before {
@@ -73,8 +73,8 @@ body {
         }
 
         .track .step.active .icon {
-            background: #ee5435;
-            color: #fff
+            background: #a8729a;
+            color: #a8729a;
         }
 
     .track .icon {
@@ -84,7 +84,7 @@ body {
         line-height: 40px;
         position: relative;
         border-radius: 100%;
-        background: #ddd
+        background: #a8729a;
     }
 
     .track .step.active .text {
@@ -122,15 +122,15 @@ body {
 
 .btn-warning {
     color: #ffffff;
-    background-color: #ee5435;
-    border-color: #ee5435;
+    background-color: #a8729a;
+    border-color: #a8729a;
     border-radius: 1px
 }
 
     .btn-warning:hover {
         color: #ffffff;
-        background-color: #ff2b00;
-        border-color: #ff2b00;
+        background-color: #a8729a;
+        border-color: #a8729a;
         border-radius: 1px
-    }body {
-}
+    }
+
