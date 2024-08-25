@@ -41,7 +41,14 @@ namespace NewVersion.css
 
         protected void btn_sigin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Home.aspx");
+            if(txt_email.Text == "kelvinchong0457@gmail.com")
+            {
+                Response.Redirect("Home.aspx");
+            }
+            else
+            {
+                Response.Redirect("../admin/dashboard.aspx");
+            }
         }
 
         protected void login_google_Click(object sender, EventArgs e)

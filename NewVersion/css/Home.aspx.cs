@@ -13,6 +13,12 @@ namespace NewVersion.css
         protected void Page_Load(object sender, EventArgs e)
         {
 
+
+            if (User.Identity.IsAuthenticated)
+            {
+                hlLogin.Visible = false;  // Hide the login link
+                hlProfile.Visible = true; // Show the profile link
+            }
         }
 
         protected void btnBuyNow_Click(object sender, EventArgs e)
