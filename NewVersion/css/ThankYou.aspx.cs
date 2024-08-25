@@ -11,15 +11,7 @@ namespace NewVersion.css
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // 防止循环重定向
-            if (Session["PaymentCompleted"] == null)
-            {
-                // 只在必要时重定向
-                if (Request.UrlReferrer == null || !Request.UrlReferrer.AbsoluteUri.Contains("Checkout.aspx"))
-                {
-                    Response.Redirect("Checkout.aspx");
-                }
-            }
+            
         }
     }
 }
