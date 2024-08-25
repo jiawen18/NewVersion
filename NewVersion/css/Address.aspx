@@ -6,19 +6,9 @@
             <div class="row justify-content-between">
                 <div class="col-lg-5">
                     <div class="intro-excerpt">
-                        <h1>Delivery Address</h1>
-                        <%--<p class="mb-4">Discover the latest gadgets designed to elevate your digital experience. Shop now for cutting-edge devices that keep you ahead of the curve.</p>
-                        <p>
-                            <a href="Smartphones.aspx" class="btn btn-secondary me-2">Shop Now</a>
-                            <a href="AboutUs.aspx" class="btn btn-white-outline">Explore</a>
-                        </p>--%>
+                        <h1>Delivery Address</h1>   
                     </div>
-                </div>
-                <%--<div class="col-lg-7">
-                    <div class="hero-img-wrap">
-                        <img src="images/slide_image1.png" class="images">
-                    </div>
-                </div>--%>
+                </div>   
             </div>
         </div>
     </div>
@@ -59,11 +49,12 @@
                     <div class="modal-body">
                         <asp:Panel ID="pnlAddressForm" runat="server">
                             <asp:TextBox ID="txt_addr_name" runat="server" CssClass="form-control" placeholder="Name*"></asp:TextBox><br />
-                            <asp:TextBox ID="txt_addr_street" runat="server" CssClass="form-control" placeholder="State*"></asp:TextBox><br />
-                            <asp:TextBox ID="txt_addr_city" runat="server" CssClass="form-control" placeholder="City"></asp:TextBox><br />
-                            <asp:TextBox ID="txt_addr_postcode" runat="server" CssClass="form-control" placeholder="Post Code"></asp:TextBox><br />
-                            <asp:TextBox ID="txt_addr_address" runat="server" CssClass="form-control" placeholder="Address*"></asp:TextBox><br />
                             <asp:TextBox ID="txt_addr_email" runat="server" CssClass="form-control" placeholder="Email Address*"></asp:TextBox><br />
+                            <asp:TextBox ID="txt_addr_address1" runat="server" CssClass="form-control" placeholder="AddressLine1*"></asp:TextBox><br />
+                            <asp:TextBox ID="txt_addr_address2" runat="server" CssClass="form-control" placeholder="AddressLine2"></asp:TextBox><br />
+                            <asp:TextBox ID="txt_addr_postcode" runat="server" CssClass="form-control" placeholder="Post Code*"></asp:TextBox><br />
+                            <asp:TextBox ID="txt_addr_street" runat="server" CssClass="form-control" placeholder="State*"></asp:TextBox><br />
+                            <asp:TextBox ID="txt_addr_city" runat="server" CssClass="form-control" placeholder="City*"></asp:TextBox><br />                         
                             <asp:HiddenField ID="hfAddressID" runat="server" />
                             <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-primary"/>
                         </asp:Panel>

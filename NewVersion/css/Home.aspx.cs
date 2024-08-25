@@ -13,6 +13,8 @@ namespace NewVersion.css
         protected void Page_Load(object sender, EventArgs e)
         {
 
+
+            
         }
 
         protected void btnBuyNow_Click(object sender, EventArgs e)

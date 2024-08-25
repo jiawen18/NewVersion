@@ -5,17 +5,19 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Script.Serialization;
-using ASPSnippets.GoogleAPI;
+using ASPSnippets.GoogleAPI;       
 using System.EnterpriseServices;
+using System.Web.Security;
 
 
 namespace NewVersion.css
 {
     public partial class login : System.Web.UI.Page
     {
+  
         protected void Page_Load(object sender, EventArgs e)
         {
-            /* From google clout platform */
+            /* From google cloud platform */
             GoogleConnect.ClientId = "995711205443-95hlaqkilp75fhtolsd1079dql0haqip.apps.googleusercontent.com";
             GoogleConnect.ClientSecret = "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";
             GoogleConnect.RedirectUri = Request.Url.AbsoluteUri.Split('?')[0];
@@ -39,7 +41,14 @@ namespace NewVersion.css
 
         protected void btn_sigin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Home.aspx");
+            if(txt_email.Text == "kelvinchong0457@gmail.com")
+            {
+                Response.Redirect("Home.aspx");
+            }
+            else
+            {
+                Response.Redirect("../admin/dashboard.aspx");
+            }
         }
 
         protected void login_google_Click(object sender, EventArgs e)
