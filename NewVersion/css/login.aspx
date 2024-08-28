@@ -8,21 +8,20 @@
           <div class="inner_form">
           <!-- Form title -->
           <h2>Sign In</h2>
-              
           <div class="input_wrapper">
           
           <!-- Email input -->
           <div class="form-outline mb-4">
               <asp:Label ID="lbl_email" runat="server" Text="Email Address" class="form-label"></asp:Label>
             <asp:TextBox ID="txt_email" runat="server" class="form-control form-control-lg"></asp:TextBox>
-              <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txt_email" Display="Dynamic" ErrorMessage="*Please Enter Email Address" ForeColor="Red"></asp:RequiredFieldValidator>
+              <asp:RequiredFieldValidator ID="rq_email" runat="server" ControlToValidate="txt_email" Display="Dynamic" ErrorMessage="*Please Enter Email Address" ForeColor="Red"></asp:RequiredFieldValidator>
           </div>
 
           <!-- Password input -->
           <div class="form-outline mb-4">
               <asp:Label ID="lbl_password" runat="server" Text="Password" class="form-label"></asp:Label>
               <asp:TextBox ID="txt_password" runat="server" class="form-control form-control-lg" type="password" ></asp:TextBox> 
-              <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txt_password" Display="Dynamic" ErrorMessage="*Please Enter Password" ForeColor="Red"></asp:RequiredFieldValidator>
+              <asp:RequiredFieldValidator ID="rq_password" runat="server" ControlToValidate="txt_password" Display="Dynamic" ErrorMessage="*Please Enter Password" ForeColor="Red"></asp:RequiredFieldValidator>
           </div>
           </div>
 
@@ -52,7 +51,7 @@
               <i class="fab fa-google me-2"></i>Continue with Google
           </asp:LinkButton>
     
-          <asp:LinkButton ID="login_facebook" runat="server" CausesValidation="false" class="btn btn-primary btn-lg btn-block" style="background-color: #5D5D5D; border:2px solid #5D5D5D; border-radius:50px">        
+          <asp:LinkButton ID="login_facebook" runat="server" CausesValidation="false" class="btn btn-primary btn-lg btn-block" style="background-color: #5D5D5D; border:2px solid #5D5D5D; border-radius:50px" OnClick="login_facebook_Click">        
             <i class="fab fa-facebook me-2"></i>Continue with Facebook
             </asp:LinkButton>
               </div>
