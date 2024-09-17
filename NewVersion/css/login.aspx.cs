@@ -42,13 +42,11 @@ namespace NewVersion.css
 
         protected void btn_sigin_Click(object sender, EventArgs e)
         {
-            if(txt_email.Text == "kelvinchong0457@gmail.com")
+            if (Page.IsValid)
             {
-                Response.Redirect("Home.aspx");
-            }
-            else
-            {
-                Response.Redirect("../admin/dashboard.aspx");
+                string email = txt_email.Text; 
+                string password = txt_password.Text;
+                bool rememberMe = ckb_remember.Checked;
             }
         }
 
