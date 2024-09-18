@@ -65,7 +65,7 @@
                             </div>
 
                             <div class="form-group">
-                                <asp:Label ID="lbl_acc_email" runat="server" Text="Username" class="form-label"></asp:Label>
+                                <asp:Label ID="lbl_acc_email" runat="server" Text="Email" class="form-label"></asp:Label>
                                 <asp:TextBox ID="txt_acc_email" runat="server" class="form-control mb-1" value="kelvinchong0457@gmail.com"></asp:TextBox>                                
                             </div>                           
                         </div>

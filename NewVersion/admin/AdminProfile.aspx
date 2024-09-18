@@ -58,7 +58,7 @@
                         <div class="card-body">
 
                             <div class="form-group">
-                            <asp:Label ID="lbl_adm_id" runat="server" Text="Username" class="form-label"></asp:Label>
+                            <asp:Label ID="lbl_adm_id" runat="server" Text="Admin ID" class="form-label"></asp:Label>
                             <asp:TextBox ID="txt_adm_id" runat="server" class="form-control mb-1" value="009283838" disabled="disabled"></asp:TextBox>                            
                             </div>
 
@@ -73,7 +73,7 @@
                             </div>
 
                             <div class="form-group">
-                                <asp:Label ID="lbl_adm_email" runat="server" Text="Username" class="form-label"></asp:Label>
+                                <asp:Label ID="lbl_adm_email" runat="server" Text="Email" class="form-label"></asp:Label>
                                 <asp:TextBox ID="txt_adm_email" runat="server" class="form-control mb-1" value="hello@example.com"></asp:TextBox>                                
                             </div>     
                             

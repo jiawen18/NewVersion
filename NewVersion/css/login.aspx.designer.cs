@@ -33,13 +33,13 @@ namespace NewVersion.css
         protected global::System.Web.UI.WebControls.TextBox txt_email;
 
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// rq_email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rq_email;
 
         /// <summary>
         /// lbl_password control.
@@ -60,13 +60,13 @@ namespace NewVersion.css
         protected global::System.Web.UI.WebControls.TextBox txt_password;
 
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// rq_password control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rq_password;
 
         /// <summary>
         /// ckb_remember control.

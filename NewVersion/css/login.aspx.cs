@@ -8,6 +8,7 @@ using System.Web.Script.Serialization;
 using ASPSnippets.GoogleAPI;       
 using System.EnterpriseServices;
 using System.Web.Security;
+using Microsoft.Owin.Security;
 
 
 namespace NewVersion.css
@@ -41,13 +42,11 @@ namespace NewVersion.css
 
         protected void btn_sigin_Click(object sender, EventArgs e)
         {
-            if(txt_email.Text == "kelvinchong0457@gmail.com")
+            if (Page.IsValid)
             {
-                Response.Redirect("Home.aspx");
-            }
-            else
-            {
-                Response.Redirect("../admin/dashboard.aspx");
+                string email = txt_email.Text; 
+                string password = txt_password.Text;
+                bool rememberMe = ckb_remember.Checked;
             }
         }
 
@@ -57,14 +56,26 @@ namespace NewVersion.css
        
         }
 
+        public class GoogleProfile
+        {
+            public string Id { get; set; }
+            public string Name { get; set; }
+            public string Picture { get; set; }
+            public string Email { get; set; }
+            public string Verified_Email { get; set; }
+        }
+        protected void login_facebook_Click(object sender, EventArgs e)
+        {
+
+            var properties = new AuthenticationProperties
+            {
+                RedirectUri = "/css/Home.aspx"
+            };
+            HttpContext.Current.GetOwinContext().Authentication.Challenge(properties, "Facebook");
+        }
+
     }
-    public class GoogleProfile
-    {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public string Picture { get; set; }
-        public string Email { get; set; }
-        public string Verified_Email { get; set; }
     }
-    }
+   
+    
 
