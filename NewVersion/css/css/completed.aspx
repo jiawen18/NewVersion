@@ -25,7 +25,7 @@
 
      <div class="container-fluid">
  <div class="row">
-     <!-- 侧边栏：订单菜单 -->
+    <!-- navigation bar (left menu) -->
      <nav class="col-md-2 sidebar">
     <ul>
         <li><a href="Order.aspx">To Ship</a></li>
@@ -35,7 +35,7 @@
 
 </nav>
 
-         <!-- 主要内容 -->
+         <!-- main content -->
          <main class="col-md-10 content">
     <%-- Content Section --%>
     <div class="container py-5 h-100">

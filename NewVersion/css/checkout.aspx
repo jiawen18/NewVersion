@@ -169,7 +169,8 @@
                             </tr>
                             <tr>
                                 <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
-                                <td class="text-black font-weight-bold"><strong>RM 2005.80</strong></td>
+                                <td class="text-black font-weight-bold">
+                                    <asp:Label ID="lblAmount" runat="server" Text="Total Amount"><strong>RM 2005.80</strong></asp:Label></td>
                             </tr>
                         </tbody>
                     </table>
@@ -179,7 +180,7 @@
         <h3 class="h6 mb-0">
             <img src="images/bank%20transfer.png" />
             &nbsp;&nbsp;&nbsp;
-            <asp:Label ID="lblTransfer" runat="server" Text="Direct Transfer"></asp:Label>
+            <asp:Label ID="lblTransfer" runat="server" Text="Transfer Method"></asp:Label>
         </h3>
         <div class="h6 mb-0" id="textContainer">
             <br />
@@ -188,7 +189,7 @@
         </div>
         <br />
         <asp:DropDownList ID="ddlPaymentMethod" runat="server" AutoPostBack="True" CssClass="dropdown" OnSelectedIndexChanged="ddlBanks_SelectedIndexChanged">
-            <asp:ListItem Value="0" Text="Direct Transfer" data-img="images/bank%20transfer.png"></asp:ListItem>
+            <asp:ListItem Value="0" Text="-- Select a payment method --" ></asp:ListItem>
             <asp:ListItem Value="1" Text="Public Bank"></asp:ListItem>
             <asp:ListItem Value="2" Text="Touch n Go"></asp:ListItem>
         </asp:DropDownList>
