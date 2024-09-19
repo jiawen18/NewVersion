@@ -35,6 +35,7 @@ namespace NewVersion.css
 
         protected void btnOrder_Click(object sender, EventArgs e)
         {
+            string amount = lblAmount.Text;
             string paymentMethod = lblTransfer.Text;
 
             if (paymentMethod == "Public Bank")
@@ -53,8 +54,36 @@ namespace NewVersion.css
             {
                 lblText.Text = "Please select a valid payment method.";
             }
-        }
 
+            //connect with the URL and payment gateway (ipay88)
+            string gatewayUrl = "https://sandbox.ipay88.com.my/epayment/entry.asp";
+            string merchantCode = "YourMerchantCode"; //get from ipay88
+            string paymentID = "1";
+
+            //create a form, direct to the payment gateway
+            string responseUrl = "https://localhost:44344/css/ResponsePayment.aspx";
+            string backendUrl = "https://localhost:44344/css/BackendPayment.aspx";
+
+            //request the form
+            string formHtml = $@"
+                <html>
+                <body onload = 'document.form[0].submit();
+                    <form action = '{gatewayUrl}' method='POST'>
+                        <input type='hidden' name='MerchantCode' value='{merchantCode}'/>
+                        <input type='hidden' name='MerchantCode' value='{amount}'/>
+                        <input type='hidden' name='MerchantCode' value='{paymentID}'/>
+                        <input type='hidden' name='MerchantCode' value='{responseUrl}'/>
+                        <input type='hidden' name='MerchantCode' value='{backendUrl}'/>
+                        <noscript><input type='hidden' name='MerchantCode' value='Continue'></noscript>
+                    </form>
+                </body>
+                </html>";
+
+            Response.Clear();
+            Response.Write(formHtml);
+            Response.End();
+        }
+        
 
 
 
