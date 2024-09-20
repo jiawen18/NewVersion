@@ -737,6 +737,41 @@ a {
     color: black;
 }
 
+.error-message {
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid red;
+    background-color: #fdd;
+}
+
+.rotate {
+    transform: rotate(90deg); /* Adjust the angle as needed */
+    transition: transform 0.3s ease;
+}
+
+/* Modal box styles */
+.modal-dialog {
+    max-width: 600px;
+}
+
+#imagePreview {
+    width: 200px; /* Adjust width as needed */
+    height: 150px; /* Adjust height as needed */
+    overflow: hidden;
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 5px; /* Rounded corners */
+    display: flex; /* Center content */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+#previewImage {
+    width: 100%; /* Fill the container */
+    height: auto; /* Maintain aspect ratio */
+    display: none; /* Initially hidden */
+}
 /* End Review Page */
 
 
