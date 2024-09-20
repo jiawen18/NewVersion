@@ -21,7 +21,7 @@
         <!-- Product Details -->
         <div class="prod-details">
             <div class="prod-image">
-                <img src="images/z-flip_blue.jpg" alt="Product Image">
+                <asp:Image ID="Image1" runat="server" src="images/z-flip_blue.jpg"  alt="Product Image"/>
             </div>
             <div class="prod-info">
                 <h3 class="prod-name">Z-flip 2024</h3>
@@ -49,22 +49,29 @@
         <!-- Image/Video upload -->
         <input type="file" id="FileUploadMedia" name="FileUploadMedia" class="file-upload-input" accept="image/*,video/*" onchange="previewMedia(event)" multiple />
         <label for="FileUploadMedia" class="upload-btn">
-            <img src="images/camera.png" alt="Upload Icon" class="upload-icon" />
+            <asp:Image ID="Image2" runat="server" src="images/camera.png"  alt="Upload Icon" class="upload-icon" />
             Add Photo / Video
         </label>
     
-        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="add-more-media-btn" OnClientClick="handleAddMoreMedia(); return false;">
-            <i class="fa fa-plus"></i>
-        </asp:LinkButton>
     </div>
 
-    <!-- Error Message -->
-    <div id="errorMessage" class="error-message" style="display:none; color: red;"></div>
-
+    
 
     <!-- Preview Image -->
     <div id="imagePreview" class="mt-3" style="display: none; width: 200px; height: 150px; overflow: hidden; border: 1px solid #ccc; border-radius: 5px;">
         <asp:Image ID="previewImage" runat="server" style="width: 100%; height: auto;" />
+    </div>
+
+    <div id="mediaContainer" style="display: flex; align-items: flex-start;">
+        <div id="mediaPreview"></div>
+        <div id="addMoreContainer" style="margin-left: 20px;">
+            <div id="addMoreBox" style="display: flex; align-items: center; justify-content: center; width: 150px; height: 150px; border: 2px dashed #ccc; border-radius: 10px; cursor: pointer; position: relative;">
+                <input type="file" id="mediaInput" multiple accept="image/*,video/*" onchange="previewMedia(event)" style="display: none;">
+                <span style="font-size: 48px; color: #ccc;">+</span>
+                <span style="position: absolute; bottom: 10px; font-size: 14px; color: #666;">Add more</span>
+            </div>
+            <div id="errorMessage" style="color: red; display: none;"></div>
+        </div>
     </div>
 
 
@@ -75,9 +82,8 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Edit Photo</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <asp:Button ID="btnClose" runat="server" class="close" data-dismiss="modal" aria-label="Close" />
                             <span aria-hidden="true">&times;</span>
-                        </button>
                     </div>
                     <div class="modal-body">
                         <!-- Display uploaded photo -->
@@ -93,7 +99,7 @@
                     <div class="modal-footer">
                         <asp:Button ID="btnApplyChanges" runat="server" Text="OK" CssClass="btn btn-primary" OnClientClick="applyEdits(); return false;" />
                         <asp:Button ID="btnCancelChanges" runat="server" Text="Cancel" class="btn btn-secondary"  data-dismiss="modal"/>
-                        
+                        <input type="file" id="imageUploadInput" onchange="previewImage(event);" style="display: none;"  />
                     </div>
                 </div>
             </div>
@@ -178,9 +184,9 @@
 
         function previewMedia(event) {
             let files = event.target.files;
-            let mediaPreview = document.getElementById('mediaPreview');
+            const mediaPreview = document.getElementById('mediaPreview');
             mediaPreview.innerHTML = ''; // Clear previous previews
-            selectedFiles = [];
+            let errorMessage = '';
 
             if (files.length > 3) {
                 document.getElementById('errorMessage').style.display = 'block';
@@ -190,7 +196,6 @@
 
             let imageCount = 0;
             let videoCount = 0;
-            let errorMessage = '';
 
             for (let i = 0; i < files.length; i++) {
                 let file = files[i];
@@ -217,80 +222,38 @@
                     break;
                 }
 
-                selectedFiles.push(file);
+                // Create a preview container for each file
+                let previewContainer = document.createElement('div');
+                previewContainer.style.display = 'inline-block';
+                previewContainer.style.margin = '5px';
+                previewContainer.style.width = '200px';
+                previewContainer.style.height = '150px';
+                previewContainer.style.overflow = 'hidden';
+                previewContainer.style.border = '1px solid #ccc';
+                previewContainer.style.borderRadius = '5px';
 
-                // Create preview for each file
                 let reader = new FileReader();
                 reader.onload = function (e) {
                     let mediaElement;
-
                     if (fileType.startsWith('image/')) {
                         mediaElement = document.createElement('img');
                         mediaElement.src = e.target.result;
-                        mediaElement.classList.add('img-fluid');
+                        mediaElement.style.width = '100%';
+                        mediaElement.style.height = 'auto';
                     } else if (fileType.startsWith('video/')) {
                         mediaElement = document.createElement('video');
                         mediaElement.src = e.target.result;
                         mediaElement.controls = true;
-                        mediaElement.classList.add('video-fluid');
+                        mediaElement.style.width = '100%';
+                        mediaElement.style.height = 'auto';
                     }
 
-                    mediaPreview.appendChild(mediaElement);
-                };
-
-                reader.readAsDataURL(file);
-            }
-
-            // Create a new preview container for each image
-            if (fileType.startsWith('image/')) {
-                let previewContainer = document.createElement('div');
-                previewContainer.style.display = 'inline-block';
-                previewContainer.style.margin = '5px';
-                previewContainer.style.width = '200px';
-                previewContainer.style.height = '150px';
-                previewContainer.style.overflow = 'hidden';
-                previewContainer.style.border = '1px solid #ccc';
-                previewContainer.style.borderRadius = '5px';
-
-                let reader = new FileReader();
-                reader.onload = function (e) {
-                    let mediaElement = document.createElement('img');
-                    mediaElement.src = e.target.result;
-                    mediaElement.style.width = '100%';
-                    mediaElement.style.height = 'auto';
                     previewContainer.appendChild(mediaElement);
                     mediaPreview.appendChild(previewContainer);
                 };
 
                 reader.readAsDataURL(file);
             }
-
-            // Create a preview for video files without additional container
-            if (fileType.startsWith('video/')) {
-                let previewContainer = document.createElement('div');
-                previewContainer.style.display = 'inline-block';
-                previewContainer.style.margin = '5px';
-                previewContainer.style.width = '200px';
-                previewContainer.style.height = '150px';
-                previewContainer.style.overflow = 'hidden';
-                previewContainer.style.border = '1px solid #ccc';
-                previewContainer.style.borderRadius = '5px';
-
-                let reader = new FileReader();
-                reader.onload = function (e) {
-                    let mediaElement = document.createElement('video');
-                    mediaElement.src = e.target.result;
-                    mediaElement.controls = true;
-                    mediaElement.style.width = '100%';
-                    mediaElement.style.height = 'auto';
-                    previewContainer.appendChild(mediaElement);
-                    mediaPreview.appendChild(previewContainer);
-                };
-
-                reader.readAsDataURL(file);
-            }
-        }
-
 
             if (errorMessage) {
                 document.getElementById('errorMessage').style.display = 'block';
@@ -299,6 +262,10 @@
                 document.getElementById('errorMessage').style.display = 'none';
             }
         }
+
+        document.getElementById('addMoreBox').addEventListener('click', function () {
+            document.getElementById('mediaInput').click();
+        });
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -315,7 +282,9 @@
         function hideModal() {
             $('#photoModal').modal('hide');
         }
+    </script>
 
+    <script>
         function previewMedia(event) {
             var file = event.target.files[0];
             var reader = new FileReader();
@@ -323,9 +292,14 @@
             if (file) {
                 reader.onload = function (e) {
                     var uploadedImage = document.getElementById('<%= uploadedImage.ClientID %>');
+                    const imagePreviewContainer = document.getElementById('imagePreview');
+
                     if (file.type.startsWith('image/')) {
                     uploadedImage.src = e.target.result; // Set the image source
-
+                    uploadedImage.style.display = 'block';
+                    imagePreviewContainer.style.display = 'block'; 
+                    imagePreviewContainer.innerHTML = '';
+                    imagePreviewContainer.appendChild(uploadedImage.cloneNode());
                     editedImageDataUrl = e.target.result; // Store the image data URL
 
                     // Show the modal for photo editing
@@ -338,12 +312,15 @@
                     videoPreview.src = e.target.result; // Set the video source
                     videoPreview.controls = true; // Add controls for video
                     videoPreview.classList.add('img-fluid'); // Optional styling
+                    
                     uploadedImage.parentNode.replaceChild(videoPreview, uploadedImage); // Replace image with video
 
                     // Show the preview container directly
                     const imagePreviewContainer = document.getElementById('imagePreview');
                     imagePreviewContainer.style.display = 'block'; // Show the container
-                    imagePreviewContainer.appendChild(videoPreview); // Add video to preview
+                        imagePreviewContainer.appendChild(videoPreview); // Add video to preview
+
+
                 }
             };
 
@@ -354,36 +331,67 @@
         }
     }
 
-    // Function to apply edits and show the updated image in the preview
-    function applyEdits() {
-        if (editedImageDataUrl) {
-            const previewImage = document.getElementById('previewImage');
-            const imagePreviewContainer = document.getElementById('imagePreview');
+        // Function to apply edits and show the updated image in the preview
+        function applyEdits() {
+            const uploadedImage = document.getElementById('<%= uploadedImage.ClientID %>');
+        const previewImage = document.getElementById('<%= previewImage.ClientID %>');
+        const imagePreviewDiv = document.getElementById('imagePreview');
 
-            previewImage.src = editedImageDataUrl;
-            previewImage.style.display = 'block'; // Show the image
+        // Use the current image in the modal (uploadedImage) to set it in the preview box
+        previewImage.src = uploadedImage.src;
 
-            // Show the preview container
-            imagePreviewContainer.style.display = 'block';
-        } else {
-            console.error('No edited image data URL available.');
-        }
+        // Show the preview div with the updated image
+        imagePreviewDiv.style.display = 'block';
+
+        // Close the modal
+        $('#photoModal').modal('hide');
     }
 
-    // Event listener for the OK button
-    document.addEventListener('DOMContentLoaded', function () {
-        const btnApplyChanges = document.getElementById('<%= btnApplyChanges.ClientID %>');
+        // Event listener for the OK button
+        document.addEventListener('DOMContentLoaded', function () {
+            const btnApplyChanges = document.getElementById('<%= btnApplyChanges.ClientID %>');
         if (btnApplyChanges) {
             btnApplyChanges.onclick = function (e) {
-                console.log('OK button clicked'); // Log button click
-                e.preventDefault(); // Prevent form submission
-                applyEdits(); // Apply the edits
-                $('#photoModal').modal('hide'); // Close the modal
-            };
-        } else {
-            console.error('Button not found');
+                    applyEdits();
+                    $('#photoModal').modal('hide');
+                    e.preventDefault(); // Ensure the default action is prevented
+                };
+            }
+        });
+
+        function previewMedia(event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
+
+            if (file) {
+                reader.onload = function (e) {
+                    var uploadedImage = document.getElementById('<%= uploadedImage.ClientID %>');
+                const imagePreviewContainer = document.getElementById('imagePreview');
+                    const previewImage = document.getElementById('<%= previewImage.ClientID %>');
+
+                    if (file.type.startsWith('image/')) {
+                        uploadedImage.src = e.target.result; // Set the image source
+                        uploadedImage.style.display = 'block'; // Show the image in the modal
+                        $('#photoModal').modal('show'); // Show the modal for editing
+
+                    } else if (file.type.startsWith('video/')) {
+                        uploadedImage.style.display = 'none'; // Hide image
+                        const videoPreview = document.createElement('video');
+                        videoPreview.src = e.target.result; // Set video source
+                        videoPreview.controls = true; // Add video controls
+                        videoPreview.classList.add('img-fluid'); // Optional styling
+
+                        // Show the video directly in the preview box
+                        const imagePreviewDiv = document.getElementById('imagePreview');
+                        imagePreviewDiv.style.display = 'block'; // Show the container
+                        imagePreviewDiv.innerHTML = ''; // Clear previous content
+                        imagePreviewDiv.appendChild(videoPreview); // Add video to preview
+                    }
+                };
+
+                reader.readAsDataURL(file);
+            }
         }
-    });
 
         btnApplyChanges.onclick = function (e) {
             alert('Button clicked!'); // Test alert
