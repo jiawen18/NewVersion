@@ -69,6 +69,15 @@ namespace NewVersion.css
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rq_password;
 
         /// <summary>
+        /// cvNotMatched control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cvNotMatched;
+
+        /// <summary>
         /// ckb_remember control.
         /// </summary>
         /// <remarks>

@@ -54,9 +54,43 @@ namespace NewVersion.css
                 var AdminUser = ue.AdminUsers.SingleOrDefault(a => a.Email == email || a.Username == email);
                 var MemberUser = ue.MemberUsers.SingleOrDefault(m => m.Email == email || m.Username == email);
 
-                if (AdminUser != null && MemberUser != null)
+                // Handle login for admin users
+                if (AdminUser != null)
                 {
+                    string inputPasswordHash = Security.HashPassword(password);
+                    if (AdminUser.PasswordHash == inputPasswordHash)
+                    {
+                        // Log the user in (Admin)
+                        Security.LoginUser(AdminUser.Username, AdminUser.Role, rememberMe);
+                        Response.Redirect("dashboard.aspx");
+                    }
+                    else
+                    {
+                        //username and password not match
+                        //display error message 
+                        cvNotMatched.IsValid = false;
+                    }
+                }
+                // Handle login for member users
+                else if (MemberUser != null)
+                {
+                    string inputPasswordHash = Security.HashPassword(password);
+                    if (MemberUser.PasswordHash == inputPasswordHash)
+                    {
+                        // Log the user in (Member)
+                        Security.LoginUser(MemberUser.Username, MemberUser.Role, rememberMe);
+                        Response.Redirect("Home.aspx");
+                    }
+                    else
+                    {
 
+                        cvNotMatched.IsValid = false;
+                    }
+                }
+                // No user found in either Admins or Members table
+                else
+                {               
+                    cvNotMatched.IsValid = false;
                 }
 
             }

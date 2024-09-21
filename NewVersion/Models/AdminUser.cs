@@ -18,7 +18,8 @@ namespace NewVersion.Models
         public string Username { get; set; }
         public string Email { get; set; }
         public string PasswordHash { get; set; }
-        public Nullable<System.DateTime> CreatedAt { get; set; }
-        public Nullable<System.DateTime> UpdatedAt { get; set; }
+        public string Role { get; set; }
+        public System.DateTime CreatedAt { get; set; }
+        public System.DateTime UpdatedAt { get; set; }
     }
 }

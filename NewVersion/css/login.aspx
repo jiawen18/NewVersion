@@ -22,6 +22,7 @@
             <asp:Label ID="lbl_password" runat="server" Text="Password" class="form-label"></asp:Label>
             <asp:TextBox ID="txt_password" runat="server" class="form-control form-control-lg" type="password" ></asp:TextBox> 
             <asp:RequiredFieldValidator ID="rq_password" runat="server" ControlToValidate="txt_password" Display="Dynamic" ErrorMessage="*Please Enter Password" ForeColor="Red"></asp:RequiredFieldValidator>
+            <asp:CustomValidator ID="cvNotMatched" runat="server" Display="Dynamic" ErrorMessage="Password and Email not matched"></asp:CustomValidator>
           </div>
           </div>
 
