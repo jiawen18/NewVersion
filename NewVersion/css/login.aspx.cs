@@ -45,14 +45,19 @@ namespace NewVersion.css
         {
             if (Page.IsValid)
             {
-                string email = txt_email.Text; 
+                string email = txt_email.Text;
                 string password = txt_password.Text;
                 bool rememberMe = ckb_remember.Checked;
 
                 // Check if email or username exists in the database
                 // Check if email or username exists in the admin or member database
-                var AdminUser = ue.Admins.SingleOrDefault(a => a.Email == email || a.Username == email);
-                var MemberUser = ue.Members.SingleOrDefault(m => m.Email == email || m.Username == email);
+                var AdminUser = ue.AdminUsers.SingleOrDefault(a => a.Email == email || a.Username == email);
+                var MemberUser = ue.MemberUsers.SingleOrDefault(m => m.Email == email || m.Username == email);
+
+                if (AdminUser != null && MemberUser != null)
+                {
+
+                }
 
             }
         }
