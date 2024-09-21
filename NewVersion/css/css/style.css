@@ -841,6 +841,69 @@ a {
     color: inherit;
     cursor: pointer;
 }
+
+/* Media Upload Styles */
+.media-upload {
+    margin-bottom: 20px; /* Space between media upload and container */
+}
+
+.media-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.media-preview {
+    display: flex;
+    gap: 10px;
+}
+
+.image-preview,
+.add-more-box {
+    width: 150px; 
+    height: 150px; 
+    overflow: hidden;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-preview img, 
+.image-preview video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.add-more-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.add-more-container {
+    margin-left: 20px;
+}
+
+.add-more-icon {
+    font-size: 24px; 
+    line-height: 1; 
+    padding: 5px;
+}
+
+.media-count {
+    text-align: center;
+    margin-top: 5px;
+    font-size: 12px; 
+}
+
+
+.error-message {
+    color: red;
+    display: none;
+}
 /* End Review Page */
 
 
