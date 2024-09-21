@@ -9,13 +9,14 @@ using ASPSnippets.GoogleAPI;
 using System.EnterpriseServices;
 using System.Web.Security;
 using Microsoft.Owin.Security;
+using NewVersion.Models;
 
 
 namespace NewVersion.css
 {
     public partial class login : System.Web.UI.Page
     {
-  
+        userEntities ue = new userEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
             /* From google cloud platform */
@@ -47,6 +48,12 @@ namespace NewVersion.css
                 string email = txt_email.Text; 
                 string password = txt_password.Text;
                 bool rememberMe = ckb_remember.Checked;
+
+                // Check if email or username exists in the database
+                // Check if email or username exists in the admin or member database
+                var AdminUser = ue.Admins.SingleOrDefault(a => a.Email == email || a.Username == email);
+                var MemberUser = ue.Members.SingleOrDefault(m => m.Email == email || m.Username == email);
+
             }
         }
 
