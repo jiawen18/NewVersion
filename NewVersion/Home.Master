@@ -72,7 +72,7 @@
                             </a>
                             <ul class="level2 scrollbar-dynamic" style="box-shadow: none; padding: 0px;" id="dropdown-user">
                                 <li><a class="nav-link" style="text-align:left;" href="login.aspx">Login</a></li>
-                                <li><a class="nav-link" style="text-align:left;" href="Member/signup.aspx">Signup</a></li>
+                                <li><a class="nav-link" style="text-align:left;" href="signup.aspx">Signup</a></li>
                                 <li><a class="nav-link" style="text-align:left;" href="UserProfile.aspx">Profile</a></li>
                             </ul>
                         </li>
