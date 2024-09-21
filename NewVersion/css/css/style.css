@@ -737,6 +737,110 @@ a {
     color: black;
 }
 
+.error-message {
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid red;
+    background-color: #fdd;
+}
+
+.rotate {
+    transform: rotate(90deg); /* Adjust the angle as needed */
+    transition: transform 0.3s ease;
+}
+
+/* Modal box styles */
+.modal-dialog {
+    max-width: 600px;
+}
+
+#imagePreview {
+    width: 200px; /* Adjust width as needed */
+    height: 150px; /* Adjust height as needed */
+    overflow: hidden;
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 5px; /* Rounded corners */
+    display: flex; /* Center content */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+#previewImage {
+    width: 100%; /* Fill the container */
+    height: auto; /* Maintain aspect ratio */
+    display: none; /* Initially hidden */
+}
+
+#previewContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.preview-box {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #ddd;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preview-image, .preview-video {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.media-wrapper {
+    display: inline-block;
+    position: relative;
+    margin: 5px;
+}
+
+.remove-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(255, 0, 0, 0.8);
+    color: white;
+    font-size: 20px;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+
+
+.close-button {
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    font-weight: bold;
+    color: #000;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    padding: 0;
+    line-height: 1;
+}
+
+    .close-button:hover,
+    .close-button:focus {
+        color: #ff0000;
+        outline: none;
+    }
+
+.close-icon {
+    display: inline-block;
+    font-size: 30px;
+    line-height: 1;
+    color: inherit;
+    cursor: pointer;
+}
 /* End Review Page */
 
 
