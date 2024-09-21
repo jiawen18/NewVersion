@@ -6,7 +6,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Razorpay.Api;
 using Newtonsoft.Json;
-using System.Globalization;
 
 
 namespace NewVersion.css
