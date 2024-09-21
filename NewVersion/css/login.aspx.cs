@@ -9,13 +9,14 @@ using ASPSnippets.GoogleAPI;
 using System.EnterpriseServices;
 using System.Web.Security;
 using Microsoft.Owin.Security;
+using NewVersion.Models;
 
 
 namespace NewVersion.css
 {
     public partial class login : System.Web.UI.Page
     {
-  
+        userEntities ue = new userEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
             /* From google cloud platform */
@@ -44,9 +45,54 @@ namespace NewVersion.css
         {
             if (Page.IsValid)
             {
-                string email = txt_email.Text; 
+                string email = txt_email.Text;
                 string password = txt_password.Text;
                 bool rememberMe = ckb_remember.Checked;
+
+                // Check if email or username exists in the database
+                // Check if email or username exists in the admin or member database
+                var AdminUser = ue.AdminUsers.SingleOrDefault(a => a.Email == email || a.Username == email);
+                var MemberUser = ue.MemberUsers.SingleOrDefault(m => m.Email == email || m.Username == email);
+
+                // Handle login for admin users
+                if (AdminUser != null)
+                {
+                    string inputPasswordHash = Security.HashPassword(password);
+                    if (AdminUser.PasswordHash == inputPasswordHash)
+                    {
+                        // Log the user in (Admin)
+                        Security.LoginUser(AdminUser.Username, AdminUser.Role, rememberMe);
+                        Response.Redirect("dashboard.aspx");
+                    }
+                    else
+                    {
+                        //username and password not match
+                        //display error message 
+                        cvNotMatched.IsValid = false;
+                    }
+                }
+                // Handle login for member users
+                else if (MemberUser != null)
+                {
+                    string inputPasswordHash = Security.HashPassword(password);
+                    if (MemberUser.PasswordHash == inputPasswordHash)
+                    {
+                        // Log the user in (Member)
+                        Security.LoginUser(MemberUser.Username, MemberUser.Role, rememberMe);
+                        Response.Redirect("Home.aspx");
+                    }
+                    else
+                    {
+
+                        cvNotMatched.IsValid = false;
+                    }
+                }
+                // No user found in either Admins or Members table
+                else
+                {               
+                    cvNotMatched.IsValid = false;
+                }
+
             }
         }
 

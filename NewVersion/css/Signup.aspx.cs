@@ -68,7 +68,21 @@ namespace NewVersion.css
                 }
 
                 // Save changes to the database
-                ue.SaveChanges();
+                try
+                {
+                    ue.SaveChanges();
+                }
+                catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            // Log or inspect validation error details
+                            Response.Write($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                        }
+                    }
+                }
 
                 Response.Redirect("login.aspx");
             }

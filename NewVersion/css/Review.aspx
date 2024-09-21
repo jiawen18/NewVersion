@@ -44,40 +44,46 @@
         <br />
 
 
-       <!-- Media Uploads -->
+    <!-- Media Uploads -->
     <div class="media-upload">
-        <!-- Image/Video upload -->
         <input type="file" id="FileUploadMedia" name="FileUploadMedia" class="file-upload-input" accept="image/*,video/*" onchange="previewMedia(event)" multiple />
         <label for="FileUploadMedia" class="upload-btn">
-            <asp:Image ID="Image2" runat="server" src="images/camera.png"  alt="Upload Icon" class="upload-icon" />
-            Add Photo / Video
+            <asp:Image ID="Image2" runat="server" src="images/camera.png" alt="Upload Icon" class="upload-icon" />
+            <span class="upload-text">Add Photo / Video</span>
         </label>
-    
     </div>
 
-    
 
-    <!-- Preview Image -->
-    <div id="imagePreview" class="mt-3" style="display: none; width: 200px; height: 150px; overflow: hidden; border: 1px solid #ccc; border-radius: 5px;">
-        <asp:Image ID="previewImage" runat="server" style="width: 100%; height: auto;" />
-    </div>
+    <!-- Media Container -->
+    <div id="mediaContainer" class="media-container">
+        <!-- Preview Image -->
+        <div id="mediaPreview" class="media-preview"></div>
 
-    <div id="mediaContainer" style="display: flex; align-items: flex-start;">
-        <div id="mediaPreview"></div>
-        <div id="addMoreContainer" style="margin-left: 20px;">
-            <div id="addMoreBox" style="display: flex; align-items: center; justify-content: center; width: 150px; height: 150px; border: 2px dashed #ccc; border-radius: 10px; cursor: pointer; position: relative;">
+        <!-- Preview Image -->
+        <div id="imagePreview" class="image-preview" style="display: none;">
+            <asp:Image ID="previewImage" runat="server" class="preview-image" />
+        </div>
+
+        <!-- Add More Container -->
+        <div id="addMoreContainer" class="add-more-container">
+            <div id="addMoreBox" class="add-more-box" onclick="document.getElementById('mediaInput').click();">
                 <input type="file" id="mediaInput" multiple accept="image/*,video/*" onchange="previewMedia(event)" style="display: none;">
-                <span style="font-size: 48px; color: #ccc;">+</span>
-                <span style="position: absolute; bottom: 10px; font-size: 14px; color: #666;">Add more</span>
-            </div>
-            <div id="errorMessage" style="color: red; display: none;"></div>
+                <span class="add-more-icon" >+</span>
+                <div id="mediaCount" class="media-count" >
+                (0/2 photos, 0/1 video)
+                </div>
+            </div>         
         </div>
     </div>
+
+        <br />
+
+       <div id="errorMessage" class="error-message"></div>
 
 
         <!-- Image Modal -->
         <!-- Modal box -->
-        <div class="modal fade" id="photoModal" tabindex="-1" role="dialog">
+        <div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -91,14 +97,14 @@
                 
                         <!-- Options for editing the photo -->
                         <div class="mt-3">
-                            <asp:Button ID="btnCrop" runat="server" Text="Crop" CssClass="btn btn-secondary" />
-                            <asp:Button ID="btnFlip" runat="server" Text="Flip" CssClass="btn btn-secondary" />
-                            <asp:Button ID="btnRotate" runat="server" Text="Rotate" CssClass="btn btn-secondary" />
+                            <asp:Button ID="btnCrop" runat="server" Text="Crop" CssClass="btn btn-secondary" OnClientClick="cropImage(50, 50, 200, 200); return false;" CausesValidation="false"/>
+                            <asp:Button ID="btnFlip" runat="server" Text="Flip" CssClass="btn btn-secondary" OnClientClick="flipImage('horizontal'); return false;" CausesValidation="false" />
+                            <asp:Button ID="btnRotate" runat="server" Text="Rotate" CssClass="btn btn-secondary" OnClientClick="rotateImage(90); return false;" CausesValidation="false" />
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <asp:Button ID="btnApplyChanges" runat="server" Text="OK" CssClass="btn btn-primary" OnClientClick="applyEdits(); return false;" />
-                        <asp:Button ID="btnCancelChanges" runat="server" Text="Cancel" class="btn btn-secondary"  data-dismiss="modal"/>
+                        <asp:Button ID="btnApplyChanges" runat="server" Text="OK" CssClass="btn btn-primary"  OnClientClick="applyEdits(); return false;" />
+                        <asp:Button ID="btnCancelChanges" runat="server" Text="Cancel" Cssclass="btn btn-secondary"  data-dismiss="modal"/>
                         <input type="file" id="imageUploadInput" onchange="previewImage(event);" style="display: none;"  />
                     </div>
                 </div>
@@ -106,18 +112,6 @@
         </div>
 
         <br />
-        
-
-
-
-
-
-
-
-
-
-
-
 
         <!-- Description -->
         <div class="description-section">
@@ -132,285 +126,158 @@
     </div>
 
 
+<!-- Script for Rating Stars -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const ratingStars = document.querySelectorAll('.rating-stars .fa-star');
+<script src="js/Ratingstars.js"></script>
+   
 
-            ratingStars.forEach(star => {
-                star.addEventListener('mouseover', function () {
-                    // Light up stars from left to right
-                    const ratingValue = this.getAttribute('data-value');
-                    ratingStars.forEach(star => {
-                        if (star.getAttribute('data-value') <= ratingValue) {
-                            star.classList.add('hover');
-                        } else {
-                            star.classList.remove('hover');
-                        }
-                    });
-                });
-
-                star.addEventListener('mouseout', function () {
-                    // Remove hover effect, keep selected stars highlighted
-                    const selectedValue = document.querySelector('.rating-stars .fa-star.selected')?.getAttribute('data-value');
-                    ratingStars.forEach(star => {
-                        if (selectedValue && star.getAttribute('data-value') <= selectedValue) {
-                            star.classList.add('selected');
-                        } else {
-                            star.classList.remove('hover');
-                        }
-                    });
-                });
-
-                star.addEventListener('click', function () {
-                    // Set selected rating
-                    const ratingValue = this.getAttribute('data-value');
-                    ratingStars.forEach(star => {
-                        if (star.getAttribute('data-value') <= ratingValue) {
-                            star.classList.add('selected');
-                        } else {
-                            star.classList.remove('selected');
-                        }
-                    });
-                });
-            });
-        });
-    </script>
-
-    <script src="js/Mediareview.js"></script>
-
-    <script>
-        let selectedFiles = [];
-
-        function previewMedia(event) {
-            let files = event.target.files;
-            const mediaPreview = document.getElementById('mediaPreview');
-            mediaPreview.innerHTML = ''; // Clear previous previews
-            let errorMessage = '';
-
-            if (files.length > 3) {
-                document.getElementById('errorMessage').style.display = 'block';
-                document.getElementById('errorMessage').textContent = 'You can only upload a maximum of 3 files.';
-                return;
-            }
-
-            let imageCount = 0;
-            let videoCount = 0;
-
-            for (let i = 0; i < files.length; i++) {
-                let file = files[i];
-                let fileType = file.type;
-
-                // Count images and videos separately
-                if (fileType.startsWith('image/')) {
-                    imageCount++;
-                } else if (fileType.startsWith('video/')) {
-                    videoCount++;
-                } else {
-                    errorMessage = 'Invalid file type. Only images and videos are allowed.';
-                    break;
-                }
-
-                // Validate combination: max 2 photos, max 1 video
-                if (videoCount > 1) {
-                    errorMessage = 'You can only upload 1 video.';
-                    break;
-                }
-
-                if (imageCount > 2) {
-                    errorMessage = 'You can upload a maximum of 2 photos.';
-                    break;
-                }
-
-                // Create a preview container for each file
-                let previewContainer = document.createElement('div');
-                previewContainer.style.display = 'inline-block';
-                previewContainer.style.margin = '5px';
-                previewContainer.style.width = '200px';
-                previewContainer.style.height = '150px';
-                previewContainer.style.overflow = 'hidden';
-                previewContainer.style.border = '1px solid #ccc';
-                previewContainer.style.borderRadius = '5px';
-
-                let reader = new FileReader();
-                reader.onload = function (e) {
-                    let mediaElement;
-                    if (fileType.startsWith('image/')) {
-                        mediaElement = document.createElement('img');
-                        mediaElement.src = e.target.result;
-                        mediaElement.style.width = '100%';
-                        mediaElement.style.height = 'auto';
-                    } else if (fileType.startsWith('video/')) {
-                        mediaElement = document.createElement('video');
-                        mediaElement.src = e.target.result;
-                        mediaElement.controls = true;
-                        mediaElement.style.width = '100%';
-                        mediaElement.style.height = 'auto';
-                    }
-
-                    previewContainer.appendChild(mediaElement);
-                    mediaPreview.appendChild(previewContainer);
-                };
-
-                reader.readAsDataURL(file);
-            }
-
-            if (errorMessage) {
-                document.getElementById('errorMessage').style.display = 'block';
-                document.getElementById('errorMessage').textContent = errorMessage;
-            } else {
-                document.getElementById('errorMessage').style.display = 'none';
-            }
-        }
-
-        document.getElementById('addMoreBox').addEventListener('click', function () {
-            document.getElementById('mediaInput').click();
-        });
-    </script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        let editedImageDataUrl = null;
-
-        // Show modal
-        function showModal() {
-            $('#photoModal').modal('show');
-        }
-
-        // Hide modal
-        function hideModal() {
-            $('#photoModal').modal('hide');
-        }
-    </script>
-
-    <script>
-        function previewMedia(event) {
-            var file = event.target.files[0];
-            var reader = new FileReader();
-
-            if (file) {
-                reader.onload = function (e) {
-                    var uploadedImage = document.getElementById('<%= uploadedImage.ClientID %>');
-                    const imagePreviewContainer = document.getElementById('imagePreview');
-
-                    if (file.type.startsWith('image/')) {
-                    uploadedImage.src = e.target.result; // Set the image source
-                    uploadedImage.style.display = 'block';
-                    imagePreviewContainer.style.display = 'block'; 
-                    imagePreviewContainer.innerHTML = '';
-                    imagePreviewContainer.appendChild(uploadedImage.cloneNode());
-                    editedImageDataUrl = e.target.result; // Store the image data URL
-
-                    // Show the modal for photo editing
-                    $('#photoModal').modal('show');
-
-                } else if (file.type.startsWith('video/')) {
-                    // Handle video uploads
-                    uploadedImage.src = ''; // Clear image source
-                    const videoPreview = document.createElement('video');
-                    videoPreview.src = e.target.result; // Set the video source
-                    videoPreview.controls = true; // Add controls for video
-                    videoPreview.classList.add('img-fluid'); // Optional styling
-                    
-                    uploadedImage.parentNode.replaceChild(videoPreview, uploadedImage); // Replace image with video
-
-                    // Show the preview container directly
-                    const imagePreviewContainer = document.getElementById('imagePreview');
-                    imagePreviewContainer.style.display = 'block'; // Show the container
-                        imagePreviewContainer.appendChild(videoPreview); // Add video to preview
+<!-- Script for Preview Media -->
 
 
-                }
-            };
 
-            reader.readAsDataURL(file);
-        } else {
-            document.getElementById('errorMessage').style.display = 'block';
-            console.log('Please upload a valid image or video file.');
-        }
+
+<script src="js/ImageEditing.js"></script>
+
+<script>
+    let selectedImageFile = null;
+
+    // Show modal for image editing
+    function showModal(imageFile) {
+        const uploadedImage = document.getElementById('<%= uploadedImage.ClientID %>'); // Replace with correct client-side ID for the modal image
+        const fileURL = URL.createObjectURL(imageFile); // Create a temporary URL for the image file
+
+        uploadedImage.src = fileURL; // Display the image in the modal window
+        selectedImageFile = imageFile;
+        $('#photoModal').modal('show'); // Show the modal window
     }
 
-        // Function to apply edits and show the updated image in the preview
-        function applyEdits() {
-            const uploadedImage = document.getElementById('<%= uploadedImage.ClientID %>');
-        const previewImage = document.getElementById('<%= previewImage.ClientID %>');
-        const imagePreviewDiv = document.getElementById('imagePreview');
 
-        // Use the current image in the modal (uploadedImage) to set it in the preview box
-        previewImage.src = uploadedImage.src;
-
-        // Show the preview div with the updated image
-        imagePreviewDiv.style.display = 'block';
-
-        // Close the modal
+    // Hide modal
+    function hideModal() {
         $('#photoModal').modal('hide');
     }
 
-        // Event listener for the OK button
-        document.addEventListener('DOMContentLoaded', function () {
-            const btnApplyChanges = document.getElementById('<%= btnApplyChanges.ClientID %>');
-        if (btnApplyChanges) {
-            btnApplyChanges.onclick = function (e) {
-                    applyEdits();
-                    $('#photoModal').modal('hide');
-                    e.preventDefault(); // Ensure the default action is prevented
-                };
+    // Function to trigger the hidden file input when the "Add More" box is clicked
+    function triggerFileUpload() {
+        document.getElementById('mediaInput').click();
+    }
+
+    // Function to handle the media preview when files are selected
+    function previewMedia(event) {
+        const mediaPreview = document.getElementById('mediaPreview');
+        const files = Array.from(event.target.files);
+
+        let imageCount = mediaPreview.querySelectorAll('img').length;
+        let videoCount = mediaPreview.querySelectorAll('video').length;
+
+        const errorMessage = document.getElementById('errorMessage');
+        errorMessage.style.display = 'none';
+
+        files.forEach(file => {
+            const fileURL = URL.createObjectURL(file);
+            const previewBox = document.createElement('div');
+            previewBox.classList.add('image-preview');
+            previewBox.style.position = 'relative';
+
+            const removeButton = document.createElement('span');
+            removeButton.textContent = 'x';
+            removeButton.classList.add('remove-button');
+            removeButton.onclick = function () {
+                mediaPreview.removeChild(previewBox);
+                if (file.type.startsWith('image/')) {
+                    imageCount--;
+                } else if (file.type.startsWith('video/')) {
+                    videoCount--;
+                }
+                document.getElementById('mediaCount').textContent = `(${imageCount}/2 photos, ${videoCount}/1 video)`;
+            };
+            previewBox.appendChild(removeButton);
+
+            if (file.type.startsWith('image/')) {
+                if (imageCount < 2) {
+                    const img = document.createElement('img');
+                    img.src = fileURL;
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    img.style.objectFit = 'cover';
+                    previewBox.appendChild(img);
+                    mediaPreview.appendChild(previewBox);
+                    imageCount++;
+
+                    // Open the modal immediately after adding the image
+                    showModal(file);
+                } else {
+                    errorMessage.textContent = "You can only upload a maximum of two images.";
+                    errorMessage.style.display = 'block';
+                }
+            } else if (file.type.startsWith('video/') && videoCount === 0) {
+                const video = document.createElement('video');
+                video.src = fileURL;
+                video.controls = true;
+                video.style.width = '100%';
+                video.style.height = '100%';
+                video.style.objectFit = 'cover';
+                previewBox.appendChild(video);
+                mediaPreview.appendChild(previewBox);
+                videoCount++;
+            } else if (file.type.startsWith('video/') && videoCount > 0) {
+                errorMessage.textContent = "You can only upload one video.";
+                errorMessage.style.display = 'block';
             }
         });
 
-        function previewMedia(event) {
-            var file = event.target.files[0];
-            var reader = new FileReader();
+        document.getElementById('mediaCount').textContent = `(${imageCount}/2 photos, ${videoCount}/1 video)`;
+    }
 
-            if (file) {
-                reader.onload = function (e) {
-                    var uploadedImage = document.getElementById('<%= uploadedImage.ClientID %>');
-                const imagePreviewContainer = document.getElementById('imagePreview');
-                    const previewImage = document.getElementById('<%= previewImage.ClientID %>');
+    // Apply edits to the image and update preview
+    function applyEdits() {
+        const uploadedImage = document.getElementById('uploadedImage');
+        const previewImage = document.getElementById('previewImage');
+        const imagePreviewDiv = document.getElementById('imagePreview');
 
-                    if (file.type.startsWith('image/')) {
-                        uploadedImage.src = e.target.result; // Set the image source
-                        uploadedImage.style.display = 'block'; // Show the image in the modal
-                        $('#photoModal').modal('show'); // Show the modal for editing
-
-                    } else if (file.type.startsWith('video/')) {
-                        uploadedImage.style.display = 'none'; // Hide image
-                        const videoPreview = document.createElement('video');
-                        videoPreview.src = e.target.result; // Set video source
-                        videoPreview.controls = true; // Add video controls
-                        videoPreview.classList.add('img-fluid'); // Optional styling
-
-                        // Show the video directly in the preview box
-                        const imagePreviewDiv = document.getElementById('imagePreview');
-                        imagePreviewDiv.style.display = 'block'; // Show the container
-                        imagePreviewDiv.innerHTML = ''; // Clear previous content
-                        imagePreviewDiv.appendChild(videoPreview); // Add video to preview
-                    }
-                };
-
-                reader.readAsDataURL(file);
-            }
+        if (uploadedImage.src) {
+            // Update preview with the edited image
+            previewImage.src = uploadedImage.src;
+            imagePreviewDiv.style.display = 'block'; // Show preview div
+        } else {
+            console.error("No uploaded image found.");
         }
 
-        btnApplyChanges.onclick = function (e) {
-            alert('Button clicked!'); // Test alert
-            e.preventDefault();
-            applyEdits();
-            $('#photoModal').modal('hide');
-        };
+        // Close modal after applying edits (removed duplicate call)
+        hideModal();
+    }
 
-        // Handle adding more media
-        function handleAddMoreMedia() {
-            var newInput = document.createElement('input');
-            newInput.type = 'file';
-            newInput.classList.add('file-upload-input');
-            newInput.accept = 'image/*,video/*';
-            newInput.onchange = previewMedia;
-
-            // Add the new input to the media upload section
-            document.querySelector('.media-upload').appendChild(newInput);
+    // Attach event listeners after DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', function () {
+        const btnApplyChanges = document.getElementById('btnApplyChanges');
+        if (btnApplyChanges) {
+            btnApplyChanges.onclick = function (e) {
+                e.preventDefault(); // Prevent default action
+                applyEdits(); // Apply edits to image
+                // Removed duplicate hideModal() call
+            };
         }
+
+        // Attach event listener to the initial file input
+        const mediaInput = document.getElementById('mediaInput');
+        if (mediaInput) {
+            mediaInput.onchange = previewMedia;
+        }
+    });
+
+    // Handle adding more media inputs dynamically
+    function handleAddMoreMedia() {
+        const newInput = document.createElement('input');
+        newInput.type = 'file';
+        newInput.classList.add('file-upload-input');
+        newInput.accept = 'image/*,video/*';
+        newInput.multiple = true; // Allow multiple selections
+        newInput.onchange = previewMedia; // Attach preview handler to new input
+
+        // Append the new input to the media upload section
+        document.querySelector('.media-upload').appendChild(newInput);
+    }
 </script>
+
 
 </asp:Content>

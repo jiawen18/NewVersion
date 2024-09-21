@@ -706,12 +706,15 @@
     <Content Include="css\js\bootstrap.bundle.min.js" />
     <Content Include="css\js\bootstrap.min.js" />
     <Content Include="css\js\custom.js" />
+    <Content Include="css\js\ImageEditing.js" />
     <Content Include="css\js\jquery.min.js" />
     <Content Include="css\js\jquery.zoom.min.js" />
     <Content Include="css\js\main.js" />
     <Content Include="css\js\Mediareview.js" />
     <Content Include="css\js\nouislider.min.js" />
     <Content Include="css\js\order.js" />
+    <Content Include="css\js\PreviewMedia.js" />
+    <Content Include="css\js\Ratingstars.js" />
     <Content Include="css\js\slick.min.js" />
     <Content Include="css\js\tiny-slider.js" />
     <Content Include="css\login.aspx" />
@@ -1233,9 +1236,7 @@
     </None>
     <Content Include="Web.sitemap" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Member\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

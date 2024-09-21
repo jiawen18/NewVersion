@@ -617,35 +617,28 @@ a {
 
 /* Style for buttons */
 .upload-btn {
-    background-color: transparent;
-    color: black;
-    border: grey;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     display: flex;
-    margin-right: 10px;
-    margin-bottom: 20px;
-    width: 150px;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    transition: background-color 0.3s, border-radius 0.3s;
 }
 
 .upload-btn:hover {
-    background-color: lightgray;
-    color: black;
+    background-color: #d3d3d3;
+    color: white;
+    border-radius: 5px;
 }
 
-/* Style for icons */
 .upload-icon {
+    margin-bottom: 4px;
     width: 30px;
     height: auto;
-    display: block;
-    margin-bottom: 5px;
-    margin-right: 5px;
+}
+
+.upload-text {
+    margin-left: 8px; 
 }
 
 /* Hide the file input */
@@ -841,6 +834,83 @@ a {
     color: inherit;
     cursor: pointer;
 }
+
+/* Media Upload Styles */
+.media-upload {
+    margin-bottom: 20px; /* Space between media upload and container */
+}
+
+.media-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.media-preview {
+    display: flex;
+    gap: 10px;
+}
+
+.image-preview,
+.add-more-box {
+    width: 150px; 
+    height: 150px; 
+    overflow: hidden;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-preview img, 
+.image-preview video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.add-more-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.add-more-container {
+    margin-left: 20px;
+}
+
+.add-more-icon {
+    font-size: 24px; 
+    line-height: 1; 
+    padding: 5px;
+}
+
+.media-count {
+    text-align: center;
+    margin-top: 5px;
+    font-size: 12px; 
+}
+
+
+.error-message {
+    color: red;
+    display: none;
+}
+
+.remove-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: red;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+    border: none;
+    background: none;
+}
+
 /* End Review Page */
 
 

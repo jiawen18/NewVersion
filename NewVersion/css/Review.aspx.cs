@@ -23,14 +23,6 @@ namespace NewVersion.css
             Response.Redirect("Home.aspx");
         }
 
-        protected void btnApplyChanges_Click(object sender, EventArgs e)
-        {
-            // Logic for applying changes like cropping, flipping, or rotating can go here.
-            // Example: Saving the final edited photo to a folder.
-
-            // Hide the modal after applying changes
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "hideModal", "hideModal();", true);
-        }
 
     }
-    }
+}
