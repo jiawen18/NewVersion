@@ -11,16 +11,25 @@ namespace NewVersion.css
 {
 
 
-    public partial class ResponsePayment
+    public partial class FailurePage
     {
 
         /// <summary>
-        /// lblMessage control.
+        /// btnRetryPayment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
+        protected global::System.Web.UI.WebControls.Button btnRetryPayment;
+
+        /// <summary>
+        /// btnReturnHome control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReturnHome;
     }
 }

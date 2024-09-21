@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="checkout.aspx.cs" Inherits="NewVersion.css.checkout" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="checkout.aspx.cs" Inherits="NewVersion.css.checkout"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -170,44 +170,53 @@
                             <tr>
                                 <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
                                 <td class="text-black font-weight-bold">
-                                    <asp:Label ID="lblAmount" runat="server" Text="Total Amount"><strong>RM 2005.80</strong></asp:Label></td>
+                                    <asp:Label ID="lblAmount" runat="server" Text="RM 2005.80"></asp:Label></td>
                             </tr>
                         </tbody>
                     </table>
 
                     <div class="group-paymentmethod">
-    <div class="transfer Bank">
-        <h3 class="h6 mb-0">
-            <img src="images/bank%20transfer.png" />
-            &nbsp;&nbsp;&nbsp;
-            <asp:Label ID="lblTransfer" runat="server" Text="Transfer Method"></asp:Label>
-        </h3>
-        <div class="h6 mb-0" id="textContainer">
-            <br />
-            <asp:Label ID="lblText" runat="server" Text="Please select a bank."></asp:Label>
-            
-        </div>
-        <br />
-        <asp:DropDownList ID="ddlPaymentMethod" runat="server" AutoPostBack="True" CssClass="dropdown" OnSelectedIndexChanged="ddlBanks_SelectedIndexChanged">
-            <asp:ListItem Value="0" Text="-- Select a payment method --" ></asp:ListItem>
-            <asp:ListItem Value="1" Text="Public Bank"></asp:ListItem>
-            <asp:ListItem Value="2" Text="Touch n Go"></asp:ListItem>
-        </asp:DropDownList>
-    </div>
-
-    <div class="form-group">
-        <asp:Button class="btn btn-black btn-lg py-3 btn-block" ID="btnOrder" runat="server" Text="Place Order" OnClick="btnOrder_Click" />
-    </div>
-</div>
-</div>
-
-                </div>
+                         <div class="form-group">
+                            <asp:Button class="btn btn-black btn-lg py-3 btn-block" ID="btnPay" runat="server" Text="Place Order" OnClick="btnPay_Click1"/>
+                        </div>
+                    </div>
             </div>
         </div>
-    
-
-
-
+     </div>
+</div>
     <!-- </form> -->
+
+    <script src ="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        function OpenPaymentWindow(key, currency, amountInSubunits, descritpion, imageLogo, orderId, notes) {
+            notes = $.parseJSON(notes);
+            var options = {
+                "key": key, // Enter the Key ID generated from the Dashboard
+                "currency": currency,
+                "amount": amountInSubunits,
+                "description": descritpion,
+                "image": imageLogo,
+                "order_id": orderId, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                "handler": function (response) {
+                    window.location.href = "SuccessPage.aspx?orderId=" + response.razorpay_order_id + "&TransactionId=" + response.razorpay_payment_id;
+                    //alert(response.razorpay_payment_id);
+                    //alert(response.razorpay_order_id);
+                    //alert(response.razorpay_signature)
+                },
+                "notes": notes,
+                "theme": {
+                    "color": "#528FF0"
+                }
+            };
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+            rzp1.on('payment.failed', function (response) {
+                console.log(response.error);
+                alert("Oops, something went wrong and payment failed. Please try again later");
+            });
+        }
+
+
+    </script>
 
 </asp:Content>
