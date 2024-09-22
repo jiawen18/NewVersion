@@ -1102,7 +1102,7 @@ a {
 .continueShopping {
     position: relative;
     left: 200px;
-    /* 调整按钮的宽度和高度，使其变小 */
+    /* Adjust the width and height of the button to make it smaller */
     max-width: 400px;
 }
 
@@ -1110,41 +1110,41 @@ a {
 
 .checkOut {
     position: relative;
-    right: 210px; /* 调整右侧偏移量以适应页面布局 */
+    right: 210px; /* Adjust the right offset to fit the page layout */
     max-width: 400px;
 }
 
 .quantity-controls {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* 左中右对齐 */
-    width: 100%; /* 确保宽度填满整个td */
+    justify-content: space-between; /* Align left, center, and right */
+    width: 100%; /* fill the td */
 }
 
 .decrease {
-    margin-right: 1px; /* 减号按钮与TextBox的距离 */
+    margin-right: 1px; /* distance between - and textbox */
 }
 
 .quantity-amount {
     text-align: center;
-    flex-grow: 1; /* 确保TextBox居中 */
-    margin: 0 1px; /* 控制TextBox两侧的间距 */
+    flex-grow: 1; /* ensure textbox at middle */
+    margin: 0 1px; /* control distance of textbox with + and - */
 }
 
 .increase {
-    margin-left: 1px; /* 加号按钮与TextBox的距离 */
+    margin-left: 1px; /* distance between + and textbox */
 }
 
 .border {
-    cursor: pointer; /* 将光标更改为手型 */
+    cursor: pointer; /* pointer */
 }
 
     .border:hover {
-        background-color: #f0f0f0; /* 悬停时的背景色 */
+        background-color: #f0f0f0; /* hover color */
     }
 
 .card-details {
-    display: none; /* 初始隐藏 */
+    display: none; /* initialize:hide */
     padding: 10px;
     background-color: #f8f9fa;
     border-top: 1px solid white;
@@ -1152,11 +1152,11 @@ a {
 }
 
     .card-details.show {
-        display: block; /* 显示 */
+        display: block; /* show */
     }
 
     .card-details.hide {
-        display: none; /* 隐藏 */
+        display: none; /* hide */
     }
 
 
@@ -1164,12 +1164,12 @@ a {
 .transfer {
     padding: 10px;
     margin-bottom: 10px;
-    border: 1pt solid #ccc; /* 默认边框颜色 */
-    transition: background-color 0.3s, border-color 0.3s; /* 平滑过渡效果 */
+    border: 1pt solid #ccc; /* default color */
+    transition: background-color 0.3s, border-color 0.3s; /* effect */
 }
 
     .transfer:hover {
-        background-color: #f0f0f0; /* 悬停时的背景色 */
+        background-color: #f0f0f0; /* hover color */
         cursor: pointer;
     }
 
@@ -1195,10 +1195,17 @@ a {
 
 .trackAndReview {
     display: flex;
-    justify-content: flex-end; /* 将按钮推到容器的右边 */
+    justify-content: flex-end; /* push button to right */
 }
 
+.select-checkbox {
+    width: 20px;
+    height: 20px;
+}
 
+#lblSelectAll, #trash-icon {
+    margin-left: 10px; /* 可根据需要调整 */
+}
 
 .why-choose-section {
     padding: 7rem 0;

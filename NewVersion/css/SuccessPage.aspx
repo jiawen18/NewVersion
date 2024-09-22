@@ -28,4 +28,8 @@
         </div>
     </div>
 
+    <script>
+        setTimeout("location = 'Home.aspx'", 3000);
+    </script>
+
 </asp:Content>

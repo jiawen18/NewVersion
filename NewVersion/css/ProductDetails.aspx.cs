@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aspose.Imaging.FileFormats.Cdr.Types;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -35,6 +36,21 @@ protected void btnViewMore_Click(object sender, EventArgs e)
             }
 
 
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            int productId = 1;
+            string productImage = ProductImg.ImageUrl;
+            string productName = lblProductName.Text;
+            string storage = Button1.Text;
+            string color = ColorButton1.Text;
+            decimal price = Decimal.Parse(lblPrice.Text);
+            List<CartItem> cartItems = ShoppingCart.GetCartItemsFromSession();
+            int quantity = cartItems.FirstOrDefault(item => item.ProductId == productId)?.Quantity ?? 1;
+
+
+            ShoppingCart.AddProduct(productId,productImage,productName, storage, color, price,quantity);
         }
     }
     }

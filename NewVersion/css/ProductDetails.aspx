@@ -22,7 +22,8 @@
     <div class="product-detail">
         <!-- Product Image Carousel -->
         <div class="product-image-carousel">
-            <div><img src="images/z-flip_blue.jpg" alt="Product Image 1"></div>
+            <div>
+                <asp:Image ID="ProductImg" alt="Product Image 1" runat="server" ImageUrl="images/z-flip_blue.jpg"/></div>
             <div><img src="images/z-flip_blue.jpg" alt="Product Image 2"></div>
             <div><img src="images/z-flip_blue.jpg" alt="Product Image 3"></div>
         </div>
@@ -30,7 +31,9 @@
         <!-- Product Information -->
         <div class="product-info">
             <div class="product-desc">
-                <h1 class="product-name">Z-Flip</h1>
+                <h1 class="product-name">
+                    <asp:Label ID="lblProductName" runat="server" Text="Z-Flip">Z-Flip</asp:Label>
+                </h1>
                 <p class="product-description">Product description goes here. This section provides details about the product, its features, and benefits.</p>
             </div>
 
@@ -50,15 +53,17 @@
             <h3 class="heading-large">Now select your color:</h3>
             <h3 class="heading-small">Select Color</h3>
             <div class="color-selection">
-                <asp:Button ID="ColorButton1" runat="server" CssClass="color-button" OnClientClick="return selectColor(this);" style="background-color: #dcf5fc;" />
+                <asp:Button ID="ColorButton1" runat="server" CssClass="color-button" OnClientClick="return selectColor(this);" style="background-color: #dcf5fc;" Text="Blue"/>
                 <asp:Button ID="ColorButton2" runat="server" CssClass="color-button" OnClientClick="return selectColor(this);" style="background-color: #fffdcf;" />
                 <asp:Button ID="ColorButton3" runat="server" CssClass="color-button" OnClientClick="return selectColor(this);" style="background-color: #000000;" />
             </div>
         </div>
 
+            <div class="price-container"> <asp:Label ID="lblPrice" runat="server" Text="200.50"></asp:Label></div>
+
             <!-- Add to Cart Button -->
             <div class="AddToCart">
-                <asp:Button ID="Button4" runat="server" CssClass="add-to-cart-btn" Text="Add to Cart"/>
+                <asp:Button ID="Button4" runat="server" CssClass="add-to-cart-btn" Text="Add to Cart" OnClick="Button4_Click"/>
             </div>
         </div>
     </div>

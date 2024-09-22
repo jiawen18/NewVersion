@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="cart.aspx.cs" Inherits="NewVersion.css.cart" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-            <asp:SqlDataSource ID="dsProduct" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Product]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="dsProduct" runat="server" ConnectionString="<%$ ConnectionStrings:productConnectionString %>" ProviderName="<%$ ConnectionStrings:productConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Product]"></asp:SqlDataSource>
 
 <!-- Start Hero Section -->
 <div class="hero">
@@ -24,10 +24,19 @@
    <div class="container">
      <div class="row mb-5">
            <div class="col-md-12" method="post">
-             <div class="site-blocks-table">
+
+             <div style="position: relative; margin-bottom: 10px;">
+                    <asp:Button ID="btnSelectAll" runat="server" Text="Select All" style="cursor:pointer; position: absolute; right: 80px; top: -25px;" />
+                    <span id="trash-icon" style="display:none; cursor:pointer; position: absolute; right: 80px; top: 0px;" OnClick="deleteSelectedItems()">
+                        <img src="images/delete.png" alt="Delete"/>
+                    </span>
+                 </div>
+
+               <div class="site-blocks-table">
                <table class="table">
-                 <thead>
+                 <thead style="position:sticky; top:0; background-color:white; z-index:1;">
                    <tr>
+                     <th class="product-checkbox"></th>       
                      <th class="product-thumbnail">Image</th>
                      <th class="product-name">Product</th>
                      <th class="product-price">Price</th>
@@ -36,23 +45,33 @@
                    </tr>
                  </thead>
 
-                 <tbody>
-                         <asp:Repeater ID="rptProduct" runat="server">
+                 <tbody style="max-height:400px; overflow-y:auto;">  <!-- tbody can scroll -->
+                         <asp:Repeater ID="rptProduct" runat="server" OnItemCommand="rptProduct_ItemCommand">
                              <ItemTemplate>
                                 <tr>
                                 <div class="product-item">
-                                    <td class="image1" id="image1"><img src='<%# Eval("ProductImageURL") %>' alt='<%# Eval("Name") %>' style="max-width: 200px; max-height:175px;"/></td>
-                                    <td class="productName" id="productName"><%# Eval("Name") %></td>
+                                    <td class="select-item">
+                                        <asp:CheckBox ID="chkSelectItem" runat="server" CssClass="select-checkbox" OnClick="toggleTrashIcon()" />
+                                    </td>
+
+                                    <td class="productImg" id="productImg"><img src='<%# Eval("ProductImageURL") %>' alt='<%# Eval("ProductName") %>' style="max-width: 200px; max-height:175px;"/></td>
+                                    <td class="productName" id="productName">
+                                        <%# Eval("ProductName") %><br />
+                                        <%# Eval("ProductStorage") %><br />
+                                        <%# Eval("ProductColor") %>
+                                    </td>
                                     <td class="productPrice" id="productPrice"><%# Eval("Price", "{0:F2}") %></td>
+                                    
                                     <td class="quantity-container" rowspan="3">
-                                 <div class="quantity-controls">
-                                  <asp:Button class="btn btn-outline-black decrease" ID="btnDecrease" runat="server" Text="-" />
+                                         <div class="quantity-controls">
+                                             <asp:Button class="btn btn-outline-black decrease" ID="btnDecrease" runat="server" Text="-" />
         
-                                 <asp:TextBox class="form-control text-center quantity-amount" ID="txtQuantity" runat="server" value="1" style="max-width: 120px; max-height:30px;"></asp:TextBox>
+                                             <asp:TextBox class="form-control text-center quantity-amount" ID="txtQuantity" runat="server" value="1" style="max-width: 120px; max-height:30px;"></asp:TextBox>
         
-                                 <asp:Button class="btn btn-outline-black increase" ID="btnIncrease" runat="server" Text="+" />
-                                 </div>
-                                  </td>
+                                             <asp:Button class="btn btn-outline-black increase" ID="btnIncrease" runat="server" Text="+" />
+                                        </div>
+                                    </td>
+                                    
                                     <td>
                                     <asp:Label ID="lblTotalPrice" runat="server"><%# Eval("TotalPrice","{0:F2}") %></asp:Label>
                                     </td>
@@ -93,7 +112,8 @@
                      <span class="text-black">Subtotal</span>
                    </div>
                    <div class="col-md-6 text-right">
-                     <strong class="text-black">RM 1999.90</strong>
+                       <asp:Label class="text-black" ID="lblSubtotal" runat="server" Text="RM 1999.90"></asp:Label>
+                     
                    </div>
                  </div>
                  <div class="row mb-5">
@@ -101,7 +121,7 @@
                      <span class="text-black">Total</span>
                    </div>
                    <div class="col-md-6 text-right">
-                     <strong class="text-black">RM 1999.90</strong>
+                     <asp:Label class="text-black" ID="lblTotal" runat="server" Text="RM 1999.90"></asp:Label>
                    </div>
                  </div>
    
@@ -114,4 +134,62 @@
              </div>
            </div>
          </div>
+
+    <script type="text/javascript">
+
+        //show or hide Trash icon
+        function toggleTrashIcon() {
+            var isAnyChecked = false;
+
+            var repeaters = document.querySelectorAll('input[type="checkbox"][id$="_chkSelectItem"]');
+
+            console.log(checkbox.id + " checked: " + checkbox.checked);
+
+            repeaters.forEach(function (checkbox) {
+                if (checkbox.checked) {
+                    isAnyChecked = true;
+                }
+            });
+
+            var trashIcon = document.getElementById('trash-icon');
+
+            // Show or hide trash icon based on checkbox status
+            trashIcon.style.display = isAnyChecked ? 'inline' : 'none';
+
+            // Debug information
+            console.log("Is any checkbox checked: " + isAnyChecked);
+        }
+
+        //delete selected items
+        function deleteSelectedItems() {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"][id$="_chkSelectItem"]');
+
+            //traversal checkbox and delete the selected items
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    var row = checkbox.closest('tr'); //find row of the item
+                    if (row) {
+                        console.log("Deleting row for: " + checkbox.id); // Debug information
+                        row.parentNode.removeChild(row); // Delete that row
+                    }
+                }
+            });
+
+            //After deleted, hide the trush icon
+            toggleTrashIcon();
+        }
+
+        document.getElementById('lblSelectAll').addEventListener('click', function () {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"][id$="_chkSelectItem"]');
+            var isChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+
+            checkboxes.forEach(function (checkbox) {
+                checkbox.checked = !isChecked; // 反转当前状态
+            });
+
+            toggleTrashIcon();
+        });
+
+    </script>
+
 </asp:Content>

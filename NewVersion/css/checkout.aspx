@@ -212,10 +212,9 @@
             rzp1.open();
             rzp1.on('payment.failed', function (response) {
                 console.log(response.error);
-                alert("Oops, something went wrong and payment failed. Please try again later");
+                window.location.href = "FailurePage.aspx";
             });
         }
-
 
     </script>
 

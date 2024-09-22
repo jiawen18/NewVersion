@@ -4,7 +4,7 @@
 
 <div class="container">
     <br />
-        <h1>Payment Failed</h1>
+        <h1>Payment Failed !</h1>
         <p class="message">Unfortunately, your payment could not be processed.</p>
         <div class="actions">
             <asp:Button ID="btnRetryPayment" runat="server" Text="Retry Payment" CssClass="btn btn-primary" OnClick="btnRetryPayment_Click" />
