@@ -65,26 +65,10 @@ namespace NewVersion.css
 
                     // Add new member to the Member table
                     ue.MemberUsers.Add(newMember);
-                }
-
-                // Save changes to the database
-                try
-                {
                     ue.SaveChanges();
+                    Response.Redirect("login.aspx");
                 }
-                catch (System.Data.Entity.Validation.DbEntityValidationException ex)
-                {
-                    foreach (var validationErrors in ex.EntityValidationErrors)
-                    {
-                        foreach (var validationError in validationErrors.ValidationErrors)
-                        {
-                            // Log or inspect validation error details
-                            Response.Write($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
-                        }
-                    }
-                }
-
-                Response.Redirect("login.aspx");
+               
             }
         }
 
