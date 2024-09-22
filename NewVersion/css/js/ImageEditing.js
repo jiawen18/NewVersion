@@ -1,87 +1,99 @@
-﻿let currentImage = null; // Stores the image being edited
-let canvas = null; // Canvas for editing
+﻿let cropping = false;
+let startX, startY, endX, endY;
+let cropWidth, cropHeight;
+const canvas = document.getElementById('editingCanvas');
+const ctx = canvas.getContext('2d');
+let uploadedImage = document.getElementById('<%= uploadedImage.ClientID %>'); // Replace with correct ID if needed
 
-// Function to initialize the canvas with the uploaded image
-function loadImageForEditing(imageElement) {
-    currentImage = imageElement;
-    canvas = document.getElementById('editingCanvas');
-    const context = canvas.getContext('2d');
+// Show modal for image editing
+function showModal(imageFile) {
+    const fileURL = URL.createObjectURL(imageFile); // Create a temporary URL for the image file
+    uploadedImage.src = fileURL; // Display the image in the modal window
 
-    const img = new Image();
-    img.src = imageElement.src;
-
-    img.onload = () => {
-        // Adjust canvas size to image dimensions
-        canvas.width = img.width;
-        canvas.height = img.height;
-
-        // Draw the image on the canvas
-        context.drawImage(img, 0, 0, img.width, img.height);
+    uploadedImage.onload = function () {
+        canvas.width = uploadedImage.width; // Set canvas size to image size
+        canvas.height = uploadedImage.height;
+        ctx.drawImage(uploadedImage, 0, 0); // Draw the uploaded image on the canvas
     };
+
+    $('#photoModal').modal('show'); // Show the modal window
 }
 
-// Crop function
-function cropImage(x, y, width, height) {
-    const context = canvas.getContext('2d');
-    const croppedData = context.getImageData(x, y, width, height);
-
-    // Adjust canvas to new cropped size
-    canvas.width = width;
-    canvas.height = height;
-
-    // Clear and redraw the cropped section
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.putImageData(croppedData, 0, 0);
+// Hide modal
+function hideModal() {
+    $('#photoModal').modal('hide');
 }
 
-// Rotate function
-function rotateImage(angle) {
-    const context = canvas.getContext('2d');
-    const img = new Image();
-    img.src = currentImage.src;
+// Mouse down event to start cropping selection
+canvas.addEventListener('mousedown', function (e) {
+    const rect = canvas.getBoundingClientRect();
+    startX = e.clientX - rect.left;
+    startY = e.clientY - rect.top;
+    cropping = true;
+});
 
-    img.onload = () => {
-        const width = img.width;
-        const height = img.height;
-        const radians = angle * (Math.PI / 180);
+// Mouse move event to update selection rectangle
+canvas.addEventListener('mousemove', function (e) {
+    if (cropping) {
+        const rect = canvas.getBoundingClientRect();
+        endX = e.clientX - rect.left;
+        endY = e.clientY - rect.top;
+        drawSelectionRect(); // Draw the rectangle during selection
+    }
+});
 
-        canvas.width = width;
-        canvas.height = height;
+// Mouse up event to finalize selection
+canvas.addEventListener('mouseup', function () {
+    cropping = false;
+    cropWidth = endX - startX;
+    cropHeight = endY - startY;
+});
 
-        context.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Translate to the center, rotate, and then translate back
-        context.translate(width / 2, height / 2);
-        context.rotate(radians);
-        context.translate(-width / 2, -height / 2);
-
-        context.drawImage(img, 0, 0);
-    };
+// Function to draw the selection rectangle
+function drawSelectionRect() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+    ctx.drawImage(uploadedImage, 0, 0); // Redraw the uploaded image
+    ctx.setLineDash([6]); // Optional: dashed line for selection
+    ctx.strokeStyle = 'red';
+    ctx.strokeRect(startX, startY, endX - startX, endY - startY);
 }
 
-// Flip function (horizontal or vertical)
+// Function to crop the selected area
+function cropImage() {
+    if (cropWidth > 0 && cropHeight > 0) {
+        const croppedImage = ctx.getImageData(startX, startY, cropWidth, cropHeight);
+        canvas.width = cropWidth;
+        canvas.height = cropHeight;
+        ctx.putImageData(croppedImage, 0, 0);
+    } else {
+        alert("Please select an area to crop.");
+    }
+}
+
+// Button click handlers
+document.getElementById('<%= btnCrop.ClientID %>').onclick = cropImage; // Attach crop function to the crop button
+
+// Other button click handlers (e.g., flip and rotate) can be added similarly
 function flipImage(direction) {
-    const context = canvas.getContext('2d');
-    const img = new Image();
-    img.src = currentImage.src;
-
-    img.onload = () => {
-        canvas.width = img.width;
-        canvas.height = img.height;
-
-        context.clearRect(0, 0, canvas.width, canvas.height);
-
-        if (direction === 'horizontal') {
-            context.scale(-1, 1); // Flip horizontally
-            context.drawImage(img, -canvas.width, 0, canvas.width, canvas.height);
-        } else if (direction === 'vertical') {
-            context.scale(1, -1); // Flip vertically
-            context.drawImage(img, 0, -canvas.height, canvas.width, canvas.height);
-        }
-    };
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+    ctx.save(); // Save the current state
+    ctx.scale(direction === 'horizontal' ? -1 : 1, direction === 'horizontal' ? 1 : -1);
+    ctx.drawImage(originalImage, direction === 'horizontal' ? -canvas.width : 0, 0);
+    ctx.restore(); // Restore the state
 }
 
-// Apply the changes from canvas to the actual image element
-function applyCanvasToImage(imageElement) {
-    imageElement.src = canvas.toDataURL(); // Update the image element with the edited canvas data
+function rotateImage(degrees) {
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+    ctx.save(); // Save the current state
+    ctx.translate(canvas.width / 2, canvas.height / 2);
+    ctx.rotate(degrees * Math.PI / 180);
+    ctx.drawImage(originalImage, -canvas.width / 2, -canvas.height / 2);
+    ctx.restore(); // Restore the state
+    ctx.putImageData(imageData, 0, 0); // Reapply image data if needed
+}
+
+function applyEdits() {
+    const croppedDataUrl = canvas.toDataURL('image/png');
+    // Use croppedDataUrl as needed
 }

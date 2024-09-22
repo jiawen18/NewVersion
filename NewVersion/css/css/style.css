@@ -692,6 +692,29 @@ a {
     height: auto; 
 }
 
+.media-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Space between previews */
+    max-width: 100%; /* Ensure it fits within the container */
+}
+
+.image-preview {
+    width: 150px; 
+    height: 100px; 
+    overflow: hidden; 
+    position: relative; 
+}
+
+
+.add-more-icon {
+    font-size: 24px; /* Size of the add icon */
+}
+
+.media-count {
+    margin-top: 5px; /* Space below the media count */
+}
+
 /* Style for status label */
 .UploadStatus {
     margin-top: 20px; 
@@ -740,24 +763,45 @@ a {
 }
 
 .rotate {
-    transform: rotate(90deg); /* Adjust the angle as needed */
+    transform: rotate(90deg); 
     transition: transform 0.3s ease;
 }
 
 /* Modal box styles */
 .modal-dialog {
-    max-width: 600px;
+    max-width: 700px; 
+    width: 100%; 
+}
+
+.modal-content img {
+    width: 100%; 
+    height: auto;
+}
+
+.modal {
+    z-index: 1050;
+}
+
+.modal-backdrop {
+    z-index: 1040;
+}
+
+.modal img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; 
 }
 
 #imagePreview {
-    width: 200px; /* Adjust width as needed */
-    height: 150px; /* Adjust height as needed */
+    width: 200px;
+    height: 150px;
     overflow: hidden;
-    border: 1px solid #ccc; /* Light grey border */
-    border-radius: 5px; /* Rounded corners */
-    display: flex; /* Center content */
-    align-items: center; /* Center vertically */
-    justify-content: center; /* Center horizontally */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
 }
 
 #previewImage {
@@ -765,6 +809,7 @@ a {
     height: auto; /* Maintain aspect ratio */
     display: none; /* Initially hidden */
 }
+
 
 #previewContainer {
     display: flex;
@@ -911,6 +956,19 @@ a {
     background: none;
 }
 
+
+
+#uploadedImage {
+    max-width: 100%; 
+    height: auto; 
+}
+
+#editingCanvas,
+#cropCanvas {
+    width: 600px; 
+    height: 400px; 
+    border: 1px solid black;
+}
 /* End Review Page */
 
 
