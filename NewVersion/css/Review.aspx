@@ -232,19 +232,19 @@
 <script>
     let selectedImageFile = null;
     let isModalOpen = false;
+    let imageCount = 0;
+    let videoCount = 0;
 
     // Show modal for image editing
     function showModal(imageFile) {
-        const uploadedImage = document.getElementById('<%= uploadedImage.ClientID %>'); // Replace with correct client-side ID for the modal image
-        const fileURL = URL.createObjectURL(imageFile); // Create a temporary URL for the image file
-
-        uploadedImage.src = fileURL; // Display the image in the modal window
+        const uploadedImage = document.getElementById('<%= uploadedImage.ClientID %>');
+        const fileURL = URL.createObjectURL(imageFile);
+        uploadedImage.src = fileURL;
         selectedImageFile = imageFile;
 
-        $('#photoModal').modal('show'); // Show the modal window
+        $('#photoModal').modal('show');
         isModalOpen = true;
     }
-
 
     // Hide modal
     function hideModal() {
@@ -252,62 +252,52 @@
         isModalOpen = false;
     }
 
-    // Function to trigger the hidden file input when the "Add More" box is clicked
     function triggerFileUpload() {
         document.getElementById('mediaInput').click();
     }
 
-    // Function to handle the media preview when files are selected
-    function previewMedia(event) {
-        const mediaPreview = document.getElementById('mediaPreview');
-        const files = Array.from(event.target.files);
+   function previewMedia(event) {
+    const mediaPreview = document.getElementById('mediaPreview');
+    const files = Array.from(event.target.files);
+    const errorMessage = document.getElementById('errorMessage');
+    errorMessage.style.display = 'none';
 
-        let imageCount = mediaPreview.querySelectorAll('img').length;
-        let videoCount = mediaPreview.querySelectorAll('video').length;
+    files.forEach(file => {
+        const fileURL = URL.createObjectURL(file);
+        const previewBox = document.createElement('div');
+        previewBox.classList.add('image-preview');
+        previewBox.style.position = 'relative';
 
-        const errorMessage = document.getElementById('errorMessage');
-        errorMessage.style.display = 'none';
+        const removeButton = document.createElement('span');
+        removeButton.textContent = 'x';
+        removeButton.classList.add('remove-button');
 
-        files.forEach(file => {
-            const fileURL = URL.createObjectURL(file);
-            const previewBox = document.createElement('div');
-            previewBox.classList.add('image-preview');
-            previewBox.style.position = 'relative';
+        previewBox.appendChild(removeButton);
 
-            const removeButton = document.createElement('span');
-            removeButton.textContent = 'x';
-            removeButton.classList.add('remove-button');
-            removeButton.onclick = function () {
-                mediaPreview.removeChild(previewBox);
-                updateCount(file.type, -1);
-                if (file.type.startsWith('image/')) {
-                    imageCount--;
-                } else if (file.type.startsWith('video/')) {
-                    videoCount--;
-                }
-                document.getElementById('mediaCount').textContent = `(${imageCount}/2 photos, ${videoCount}/1 video)`;
-            };
-            previewBox.appendChild(removeButton);
+        if (file.type.startsWith('image/')) {
+            if (imageCount < 2) {
+                const img = document.createElement('img');
+                img.src = fileURL;
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.objectFit = 'contain';
 
+                // Open modal immediately when the image is added
+                showModal(file);
 
-            if (file.type.startsWith('image/')) {
-                if (imageCount < 2) {
-                    const img = document.createElement('img');
-                    img.src = fileURL;
-                    img.style.width = '100%';
-                    img.style.height = '100%';
-                    img.style.objectFit = 'contain';
-                    previewBox.appendChild(img);
-                    mediaPreview.appendChild(previewBox);
-                    imageCount++;
+                // Add click event to open modal for editing when clicking on the preview image
+                img.addEventListener('click', () => showModal(file));
 
-                    // Open the modal immediately after adding the image
-                    showModal(file);
-                } else {
-                    errorMessage.textContent = "You can only upload a maximum of two images.";
-                    errorMessage.style.display = 'block';
-                }
-            } else if (file.type.startsWith('video/') && videoCount === 0) {
+                previewBox.appendChild(img);
+                mediaPreview.appendChild(previewBox);
+                imageCount++;
+            } else {
+                errorMessage.textContent = "You can only upload a maximum of two images.";
+                errorMessage.style.display = 'block';
+            }
+        } else if (file.type.startsWith('video/') && videoCount === 0) {
+            const existingVideo = mediaPreview.querySelector('video');
+            if (!existingVideo) {
                 const video = document.createElement('video');
                 video.src = fileURL;
                 video.controls = true;
@@ -317,82 +307,89 @@
                 previewBox.appendChild(video);
                 mediaPreview.appendChild(previewBox);
                 videoCount++;
-            } else if (file.type.startsWith('video/') && videoCount > 0) {
-                errorMessage.textContent = "You can only upload one video.";
-                errorMessage.style.display = 'block';
             }
-        });
+        } else if (file.type.startsWith('video/') && videoCount > 0) {
+            errorMessage.textContent = "You can only upload one video.";
+            errorMessage.style.display = 'block';
+        }
 
+        removeButton.onclick = function () {
+            if (previewBox.querySelector('img')) {
+                imageCount--;
+            } else if (previewBox.querySelector('video')) {
+                videoCount--;
+            }
+            mediaPreview.removeChild(previewBox);
+            updateMediaCount();
+        };
+    });
+
+    updateMediaCount();
+}
+
+    function updateMediaCount() {
         document.getElementById('mediaCount').textContent = `(${imageCount}/2 photos, ${videoCount}/1 video)`;
-
     }
 
-    // Apply edits to the image and update preview
     function applyEdits() {
         const canvas = document.getElementById('editingCanvas');
-        const croppedImage = canvas.toDataURL('image/png'); // Get the cropped image data as a base64-encoded PNG
+        const croppedImage = canvas.toDataURL('image/png');
 
-        // Get the media preview container
         const mediaPreview = document.getElementById('mediaPreview');
+        const uneditedImages = mediaPreview.querySelectorAll('.image-preview:not(.edited-image-preview)');
+        uneditedImages.forEach(box => {
+            mediaPreview.removeChild(box);
+            imageCount--;
+        });
 
-        // Clear all existing previews before adding the edited image
-        mediaPreview.innerHTML = ''; // This removes all existing previews
-
-        // Create a new preview box for the cropped (edited) image
         const previewBox = document.createElement('div');
-        previewBox.classList.add('image-preview');
-        previewBox.classList.add('edited-image-preview'); // Mark this as an edited image
+        previewBox.classList.add('image-preview', 'edited-image-preview');
         previewBox.style.position = 'relative';
 
-        // Create the remove button
         const removeButton = document.createElement('span');
         removeButton.textContent = 'x';
         removeButton.classList.add('remove-button');
         removeButton.onclick = function () {
-            previewBox.remove(); // Remove the preview box when clicked
+            previewBox.remove();
+            imageCount--;
+            updateMediaCount();
         };
         previewBox.appendChild(removeButton);
 
-        // Create and append the edited image
         const img = document.createElement('img');
-        img.src = croppedImage; // Set the source to the cropped image
-        img.style.width = '100%';
-        img.style.height = '100%';
-        img.style.objectFit = 'cover';
+        img.src = croppedImage;
+
+        img.style.maxWidth = '100%';  
+        img.style.maxHeight = '100%';  
+
         previewBox.appendChild(img);
-
-        // Append the edited image preview box to the media preview container
         mediaPreview.appendChild(previewBox);
-
-        // Close the modal
+        imageCount++;
+        updateMediaCount();
         hideModal();
     }
 
-    // Attach event listeners after DOM is fully loaded
     document.addEventListener('DOMContentLoaded', function () {
         const btnApplyChanges = document.getElementById('<%= btnApplyChanges.ClientID %>');
         if (btnApplyChanges) {
             btnApplyChanges.onclick = function (e) {
-                e.preventDefault(); // Prevent default action
-                applyEdits(); // Apply edits to image
+                e.preventDefault();
+                applyEdits();
                 $('#photoModal').modal('hide');
             };
         }
     });
 
-    // Handle adding more media inputs dynamically
     function handleAddMoreMedia() {
         const newInput = document.createElement('input');
         newInput.type = 'file';
         newInput.classList.add('file-upload-input');
         newInput.accept = 'image/*,video/*';
-        newInput.multiple = true; // Allow multiple selections
-        newInput.onchange = previewMedia; // Attach preview handler to new input
+        newInput.multiple = true;
+        newInput.onchange = previewMedia;
 
-        // Append the new input to the media upload section
         document.querySelector('.media-upload').appendChild(newInput);
     }
-
 
 </script>
 <!-- End Script for Preview Media -->
@@ -479,9 +476,12 @@
 
         if (cropWidth > 0 && cropHeight > 0) {
             const croppedImage = cropCtx.getImageData(startX, startY, cropWidth, cropHeight);
+            // Resize the canvas to the cropped dimensions
             canvas.width = cropWidth;
             canvas.height = cropHeight;
             ctx.putImageData(croppedImage, 0, 0);
+            // Update the uploaded image
+            uploadedImage.src = canvas.toDataURL(); // Ensure the uploaded image reflects the crop
         } else {
             alert("Please select an area to crop.");
         }
@@ -548,24 +548,24 @@
     rotatedImageDataUrl = canvas.toDataURL();
 }
 
-// Update rotation angle based on slider value
-function updateRotationAngle(value) {
-    rotationAngle = parseInt(value); // Update the current rotation angle
-    document.getElementById('rotationAngleDisplay').textContent = rotationAngle; // Update display
-    rotateImage(rotationAngle, 'modalImageCanvas'); // Rotate image with the new angle in modal
-}
-
-// Show rotate modal
-    function showRotateModal() {
-        $('#rotateModal').modal('show');
-        document.getElementById('rotationAngleSlider').value = rotationAngle; // Assuming you have a slider with this ID
-        rotateImage(rotationAngle, 'modalImageCanvas'); // Show the image with the current rotation angle
+    // Update rotation angle based on slider value
+    function updateRotationAngle(value) {
+        rotationAngle = parseInt(value); // Update the current rotation angle
+        document.getElementById('rotationAngleDisplay').textContent = rotationAngle; // Update display
+        rotateImage(rotationAngle, 'modalImageCanvas'); // Rotate image with the new angle in modal
     }
 
-// Hide rotate modal
-function hideRotateModal() {
-    $('#rotateModal').modal('hide');
-}
+    // Show rotate modal
+        function showRotateModal() {
+            $('#rotateModal').modal('show');
+            document.getElementById('rotationAngleSlider').value = rotationAngle; // Assuming you have a slider with this ID
+            rotateImage(rotationAngle, 'modalImageCanvas'); // Show the image with the current rotation angle
+    }
+
+    // Hide rotate modal
+    function hideRotateModal() {
+        $('#rotateModal').modal('hide');
+    }
 
     // Apply rotation and save to preview box
     function applyRotation() {
@@ -575,9 +575,8 @@ function hideRotateModal() {
         newPreviewBox.style.position = 'relative';
 
         const rotatedImage = document.createElement('img');
-        rotatedImage.src = rotatedImageDataUrl; // Use the stored data URL
+        rotatedImage.src = rotatedImageDataUrl; 
 
-        // Set styles to maintain original aspect ratio
         const img = new Image();
         img.src = rotatedImageDataUrl;
         img.onload = function () {
@@ -589,7 +588,9 @@ function hideRotateModal() {
         removeButton.textContent = 'x';
         removeButton.classList.add('remove-button');
         removeButton.onclick = function () {
-            newPreviewBox.remove(); // Remove the preview box when clicked
+            newPreviewBox.remove();
+            imageCount--; 
+            updateMediaCount();
         };
 
         newPreviewBox.appendChild(removeButton);
@@ -598,12 +599,15 @@ function hideRotateModal() {
         // Append to the media preview section without clearing previous images
         document.getElementById('mediaPreview').appendChild(newPreviewBox);
 
+        imageCount++;
+
         // Save the rotated image to the first modal window
         const firstModalImage = document.getElementById('<%= uploadedImage.ClientID %>');
-    firstModalImage.src = rotatedImageDataUrl; // Update the original image in the first modal
+        firstModalImage.src = rotatedImageDataUrl; 
 
     // Close the rotate modal
     hideRotateModal();
+    updateMediaCount();
 }
 </script>
 <!-- End Script for Rotate Image -->
@@ -623,50 +627,75 @@ function hideRotateModal() {
     };
 }
 
-function loadImageToCanvas(image) {
-    const canvas = document.getElementById('imageCanvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = image.width; // Set canvas width
-    canvas.height = image.height; // Set canvas height
-    ctx.drawImage(image, 0, 0); // Draw the image on canvas
-}
+    function loadImageToCanvas(image) {
+        const canvas = document.getElementById('imageCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = image.width; // Set canvas width
+        canvas.height = image.height; // Set canvas height
+        ctx.drawImage(image, 0, 0); // Draw the image on canvas
+    }
 
-function flipMedia(direction) {
-    flipDirection = direction; // Store the direction
-    const canvas = document.getElementById('imageCanvas');
-    const ctx = canvas.getContext('2d');
+    function flipMedia(direction) {
+        flipDirection = direction; // Store the direction
+        const canvas = document.getElementById('imageCanvas');
+        const ctx = canvas.getContext('2d');
 
-    // Clear the canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // Clear the canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
     
-    // Check if we need to flip based on the current flippedImage
-    if (flippedImage.src) {
-        // Use the flipped image if it exists
-        originalImage = flippedImage;
+        // Check if we need to flip based on the current flippedImage
+        if (flippedImage.src) {
+            // Use the flipped image if it exists
+            originalImage = flippedImage;
+        }
+
+        // Perform the flip
+        if (direction === 'horizontal') {
+            ctx.save();
+            ctx.scale(-1, 1); // Flip horizontally
+            ctx.drawImage(originalImage, -canvas.width, 0);
+            ctx.restore();
+        } else if (direction === 'vertical') {
+            ctx.save();
+            ctx.scale(1, -1); // Flip vertically
+            ctx.drawImage(originalImage, 0, -canvas.height);
+            ctx.restore();
+        }
+
+        // Update the flipped image source
+        flippedImage.src = canvas.toDataURL();
     }
 
-    // Perform the flip
-    if (direction === 'horizontal') {
-        ctx.save();
-        ctx.scale(-1, 1); // Flip horizontally
-        ctx.drawImage(originalImage, -canvas.width, 0);
-        ctx.restore();
-    } else if (direction === 'vertical') {
-        ctx.save();
-        ctx.scale(1, -1); // Flip vertically
-        ctx.drawImage(originalImage, 0, -canvas.height);
-        ctx.restore();
-    }
+    function applyFlip() {
+        const canvas = document.getElementById('imageCanvas');
+        const uploadedImage = document.getElementById('<%= uploadedImage.ClientID %>'); 
+        uploadedImage.src = canvas.toDataURL(); 
+        $('#flipModal').modal('hide'); 
 
-    // Update the flipped image source
-    flippedImage.src = canvas.toDataURL();
-}
+        const flippedImage = new Image();
+        flippedImage.src = uploadedImage.src;
 
-function applyFlip() {
-    const canvas = document.getElementById('imageCanvas');
-        const uploadedImage = document.getElementById('<%= uploadedImage.ClientID %>'); // Replace with the correct client ID
-        uploadedImage.src = canvas.toDataURL(); // Update the original image with the flipped version
-        $('#flipModal').modal('hide'); // Close the modal
+        const newPreviewBox = document.createElement('div');
+        newPreviewBox.classList.add('image-preview');
+        newPreviewBox.style.position = 'relative';
+
+        const removeButton = document.createElement('span');
+        removeButton.textContent = 'x';
+        removeButton.classList.add('remove-button');
+        removeButton.onclick = function () {
+            newPreviewBox.remove();
+            imageCount--; 
+            updateMediaCount();
+        };
+
+        newPreviewBox.appendChild(removeButton);
+        newPreviewBox.appendChild(flippedImage);
+
+        document.getElementById('mediaPreview').appendChild(newPreviewBox);
+        imageCount++; 
+        updateMediaCount(); 
+        hideFlipModal();
+
     }
 
     function hideFlipModal() {
