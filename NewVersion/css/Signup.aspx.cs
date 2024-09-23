@@ -22,54 +22,58 @@ namespace NewVersion.css
         {
             if (Page.IsValid)
             {
-                // Get user input from form fields
                 string email = txt_emailsignup.Text.Trim();
                 string username = txt_username.Text.Trim();
                 string password = txt_passwordsingup.Text.Trim();
-
                 string hashedPassword = Security.HashPassword(password);
 
-             
-                // Check in the Admin table
-                AdminUser admin = ue.AdminUsers.SingleOrDefault(x => x.Username == username && x.Email == email);
-
-                // Check in the Member table if no admin is found
-                MemberUser member = ue.MemberUsers.SingleOrDefault(x => x.Username == username && x.Email == email);
-
-                // Determine the role based on email
                 string role = DetermineUserRole(email);
-
-                // Save to respective table based on role
-                if (role == "Admin")
-                {
-                    // Create a new admin object and save to Admin table
-                    AdminUser newAdmin = new AdminUser
+             
+                    if (role == "Admin")
                     {
-                        Username = username,
-                        Email = email,
-                        PasswordHash = hashedPassword
-                    };
+                        AdminUser existingAdmin = ue.AdminUsers.SingleOrDefault(x => x.Username == username && x.Email == email);
+                        if (existingAdmin != null)
+                        {
+                            // show error message
+                            cvExisted.IsValid = false;
+                            return;
+                        }
 
-                    // Add new admin to the Admin table
-                    ue.AdminUsers.Add(newAdmin);
-                }
-                else if (role == "Member")
-                {
-                    // Create a new member object and save to Member table
-                    MemberUser newMember = new MemberUser
+                        AdminUser newAdmin = new AdminUser
+                        {
+                            Username = username,
+                            Email = email,
+                            PasswordHash = hashedPassword
+                        };
+
+                        ue.AdminUsers.Add(newAdmin);
+                        ue.SaveChanges();
+                        Response.Redirect("login.aspx");
+                    }
+                    else if (role == "Member")
                     {
-                        Username = username,
-                        Email = email,
-                        PasswordHash = hashedPassword                        
-                    };
+                        MemberUser existingMember = ue.MemberUsers.SingleOrDefault(x => x.Username == username && x.Email == email);
+                        if (existingMember != null)
+                        {
+                            // show error message
+                            cvExisted.IsValid = false;
+                            return;
+                        }
 
-                    // Add new member to the Member table
-                    ue.MemberUsers.Add(newMember);
-                    ue.SaveChanges();
-                    Response.Redirect("login.aspx");
-                }
+                        MemberUser newMember = new MemberUser
+                        {
+                            Username = username,
+                            Email = email,
+                            PasswordHash = hashedPassword
+                        };
+
+                        ue.MemberUsers.Add(newMember);
+                        ue.SaveChanges();
+                        Response.Redirect("login.aspx");
+                    }              
                
             }
+
         }
 
         public class UserDetails
