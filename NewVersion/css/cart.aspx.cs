@@ -27,12 +27,29 @@ namespace NewVersion.css
             }
         }
 
+        private void LogInUser(int memberId)
+        {
+            // 将 MemberID 存储在 Session 中
+            HttpContext.Current.Session["MemberID"] = memberId;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if (!IsPostBack)
             {
-                BindCart(); //initialize data bind
+                if (Session["MemberID"] != null)
+                {
+                    int memberId = Convert.ToInt32(Session["MemberID"]);
+                    LoadCartFromDatabase(memberId);
+                    BindCart(); // initialize data bind
+                }
+                else
+                {
+                    // remind user to Login
+                    Response.Redirect("Login.aspx");
+                }
+
             }
         }
 
@@ -85,6 +102,7 @@ namespace NewVersion.css
             //bind the cart data to repeater
             rptProduct.DataSource = cartItems; //get cart item from session
             rptProduct.DataBind();
+
             UpdateCartTotals();  
         }
 
@@ -141,29 +159,95 @@ namespace NewVersion.css
             if (item != null)
             {
                 item.Quantity = quantity; // update quantity
-                
+                UpdateCarItemInDatabase(item);
+
             }
             HttpContext.Current.Session["Cart"] = cart; // update session
             UpdateCartTotals();
         }
 
+        
 
-        /* private void RemoveFromCart(int productId)
+        private void UpdateCarItemInDatabase(CartItem item)
+        {
+            SqlConnection con = new SqlConnection(cs);
+
+            string query = "UPDATE ShoppingCart SET Quantity = @Quantity WHERE MemberID = @MemberID AND ProductID = @Id";
+
+            SqlCommand cmd = new SqlCommand(query, con);
+
+            cmd.Parameters.AddWithValue("@Quantity", item.Quantity);
+            cmd.Parameters.AddWithValue("@MemberID", Session["MemberID"]);
+            cmd.Parameters.AddWithValue("@ProductID", item.ProductId);
+
+            con.Open();
+            cmd.ExecuteNonQuery();
+        }
+
+
+        private void RemoveFromCart(int productId)
          {
              List<CartItem> cart = GetCartItems();
-             var itemToRemove = cart.FirstOrDefault(item => item.ProductId == productId);
+            
+             CartItem itemToRemove = cart.FirstOrDefault(item => item.ProductId == productId);
+            
              if (itemToRemove != null)
              {
                  cart.Remove(itemToRemove);
-                 Session["Cart"] = cart; // update cart to Session
+                DeleteCartItemFromDatabase(productId);
              }
+            Session["Cart"] = cart; // update cart to Session
          }
-        */
+
+        private void DeleteCartItemFromDatabase(int productId)
+        {
+            SqlConnection con = new SqlConnection(cs);
+
+            string query = "DELETE FROM ShoppingCart WHERE MemberID = @MemberID AND ProductID = @Id";
+
+            SqlCommand cmd = new SqlCommand(query, con);
+
+            cmd.Parameters.AddWithValue("MemberID", Session["MemberID"]);
+            cmd.Parameters.AddWithValue("ProductID", productId);
+
+            con.Open();
+            cmd.ExecuteNonQuery();
+        }
+
+        private void LoadCartFromDatabase(int memberId)
+        {
+            List<CartItem> cart = new List<CartItem>();
+            SqlConnection con = new SqlConnection(cs);
+
+            string query = "SELECT ProductID,ProductImageURL,ProductStorage,ProductColor,Price,Quantity,TotalPrice FROM ShoppingCart WHERE MemberID = @MemberID";
+
+            SqlCommand cmd = new SqlCommand(query, con);
+            
+            cmd.Parameters.AddWithValue("MemberID",memberId);
+            con.Open();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                cart.Add(new CartItem
+                {
+                    ProductId = Convert.ToInt32(reader["ProductID"]),
+                    ProductName = reader["ProductName"].ToString(),
+                    ProductImageURL = reader["ProductImageURL"].ToString(),
+                    ProductStorage = reader["ProductStorage"].ToString(),
+                    ProductColor = reader["ProductColor"].ToString(),
+                    Price = Convert.ToDecimal(reader["Price"]),
+                    Quantity = Convert.ToInt32(reader["Quantity"])
+                });
+            }
+            Session["Cart"] = cart;
+        }
     }
 
     public static class ShoppingCart
     {
-        public static void AddProduct(int productId,string productImage, string productName, string storage, string color, decimal price,int quantity)
+        public static void AddProduct(int memberId, int productId,string productImage, string productName, string storage, string color, decimal price,int quantity)
         {
             List<CartItem> cartItems = GetCartItemsFromSession();
             
@@ -171,13 +255,13 @@ namespace NewVersion.css
             
             if (existingItem != null)
             {
-                // 如果商品存在，则增加数量
+                // item exist add quantity
                 existingItem.Quantity += quantity;
             }
             else
             {
-                // 否则，添加一个新商品，指定数量
-                cartItems.Add(new CartItem
+                // else add new item and quantity
+                var newItem = new CartItem
                 {
                     ProductId = productId,
                     ProductImageURL = productImage,
@@ -185,8 +269,11 @@ namespace NewVersion.css
                     ProductStorage = storage,
                     ProductColor = color,
                     Price = price,
-                    Quantity = quantity
-                });
+                    Quantity = quantity,
+                };
+
+                cartItems.Add(newItem);
+                InsertCartItemToDatabase(newItem);
             }
 
             HttpContext.Current.Session["Cart"] = cartItems;
@@ -196,6 +283,37 @@ namespace NewVersion.css
         {
             return HttpContext.Current.Session["Cart"] as List<CartItem> ?? new List<CartItem>();
         }
+
+        private static void InsertCartItemToDatabase(CartItem item)
+        {
+            int memberId = Convert.ToInt32(HttpContext.Current.Session["MemberID"]);
+
+            if (memberId <= 0)
+            {
+                throw new Exception("无效的会员 ID。请确保会员 ID 在会话中有效。");
+            }
+
+            string cs = Global.CS;
+
+            SqlConnection con = new SqlConnection(cs);
+
+            string query = "INSERT INTO ShoppingCart(MemberID, ProductID, ProductName, ProductImageURL, ProductStorage, ProductColor, Price, Quantity, TotalPrice) VALUES (@MemberID, @ProductID, @ProductName, @ProductImageURL, @ProductStorage, @ProductColor, @Price, @Quantity, @TotalPrice)";
+
+            SqlCommand cmd = new SqlCommand(query, con);
+
+            cmd.Parameters.AddWithValue("@MemberID", memberId);
+            cmd.Parameters.AddWithValue("@ProductID", item.ProductId);
+            cmd.Parameters.AddWithValue("@ProductName", item.ProductName);
+            cmd.Parameters.AddWithValue("@ProductImageURL", item.ProductImageURL);
+            cmd.Parameters.AddWithValue("@ProductStorage", item.ProductStorage);
+            cmd.Parameters.AddWithValue("@ProductColor", item.ProductColor);
+            cmd.Parameters.AddWithValue("@Price", item.Price);
+            cmd.Parameters.AddWithValue("@Quantity", item.Quantity);
+            cmd.Parameters.AddWithValue("@TotalPrice", item.TotalPrice);
+            con.Open();
+            cmd.ExecuteNonQuery();
+        }
+
     }
 
     public class CartItem
