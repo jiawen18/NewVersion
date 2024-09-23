@@ -41,9 +41,13 @@ namespace NewVersion
                 string redirectUrl = FormsAuthentication.GetRedirectUrl(username, rememberMe);
                 ctx.Response.Redirect(redirectUrl);
             }
+            catch (ThreadAbortException)
+            {
+                // Ignore ThreadAbortException, this is expected during Response.Redirect
+            }
             catch (Exception ex)
             {
-                // Handle exception (e.g., logging)
+                // Handle other exceptions (e.g., logging)
                 throw new Exception("Error during user login: " + ex.Message);
             }
         }

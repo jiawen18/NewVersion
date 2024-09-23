@@ -41,7 +41,7 @@ namespace NewVersion.css
 
         }
 
-        protected void btn_sigin_Click(object sender, EventArgs e)
+        protected void btn_signin_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
             {
@@ -62,7 +62,8 @@ namespace NewVersion.css
                     {
                         // Log the user in (Admin)
                         Security.LoginUser(AdminUser.Username, AdminUser.Role, rememberMe);
-                        Response.Redirect("dashboard.aspx");
+                        HttpContext.Current.ApplicationInstance.CompleteRequest();
+                        Response.Redirect("AboutUs.aspx");
                     }
                     else
                     {
@@ -79,7 +80,7 @@ namespace NewVersion.css
                     {
                         // Log the user in (Member)
                         Security.LoginUser(MemberUser.Username, MemberUser.Role, rememberMe);
-                        Response.Redirect("Home.aspx");
+                        Response.Redirect("AboutUs.aspx");
                     }
                     else
                     {

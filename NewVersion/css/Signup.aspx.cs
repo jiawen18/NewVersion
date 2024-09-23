@@ -1,6 +1,8 @@
 ﻿using NewVersion.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -18,7 +20,7 @@ namespace NewVersion.css
 
         }
 
-        protected void btn_sigup_Click1(object sender, EventArgs e)
+        protected void btn_sigup_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
             {
@@ -42,13 +44,13 @@ namespace NewVersion.css
                         AdminUser newAdmin = new AdminUser
                         {
                             Username = username,
-                            Email = email,
-                            PasswordHash = hashedPassword
+                            Email = email,                     
+                            PasswordHash = hashedPassword,
+                            Role = role
                         };
 
                         ue.AdminUsers.Add(newAdmin);
-                        ue.SaveChanges();
-                        Response.Redirect("login.aspx");
+                       
                     }
                     else if (role == "Member")
                     {
@@ -60,18 +62,32 @@ namespace NewVersion.css
                             return;
                         }
 
-                        MemberUser newMember = new MemberUser
-                        {
-                            Username = username,
-                            Email = email,
-                            PasswordHash = hashedPassword
-                        };
+                    MemberUser newMember = new MemberUser
+                    {
+                        Username = username,
+                        Email = email,
+                        PasswordHash = hashedPassword,
+                        Role = role
+                    };
 
                         ue.MemberUsers.Add(newMember);
-                        ue.SaveChanges();
-                        Response.Redirect("login.aspx");
-                    }              
-               
+                        
+                    }
+                try
+                {
+                    ue.SaveChanges();
+                    Response.Redirect("login.aspx");
+                }
+                catch (DbUpdateException ex)
+                {
+                    // Get more details from the inner exception
+                    var innerException = ex.InnerException?.InnerException;
+                    if (innerException != null)
+                    {
+                        Console.WriteLine(innerException.Message); // Log or display the inner exception
+                    }
+                }
+
             }
 
         }

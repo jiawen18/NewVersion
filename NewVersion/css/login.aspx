@@ -25,7 +25,7 @@
             <asp:CustomValidator ID="cvNotMatched" runat="server" Display="Dynamic" ErrorMessage="Password and Email not matched"></asp:CustomValidator>
           </div>
           </div>
-
+           
           <div class="d-flex justify-content-around align-items-center mb-4">
             <!-- Checkbox -->
            <div class="form-check">
@@ -37,7 +37,7 @@
 
           <!-- Submit button -->
           <div class="button_wrapper">
-            <asp:Button ID="btn_sigin" runat="server" Text="Sign In" class="btn btn-primary btn-lg btn-block" OnClick="btn_sigin_Click"/>
+            <asp:Button ID="btn_sigin" runat="server" Text="Sign In" class="btn btn-primary btn-lg btn-block" OnClick="btn_signin_Click"/>
           </div>
           
           <p style="text-align:center; margin:10px">Dont have an account? <a href="signup.aspx">Sign Up</a></p>

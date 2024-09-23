@@ -49,7 +49,7 @@
 
          <!-- Submit button -->
          <div class="button_wrapper">
-         <asp:Button ID="btn_sigup" runat="server" Text="Sign Up" class="btn btn-primary btn-lg btn-block" OnClick="btn_sigup_Click1"/>
+         <asp:Button ID="btn_sigup" runat="server" Text="Sign Up" class="btn btn-primary btn-lg btn-block" OnClick="btn_sigup_Click"/>
          </div>      
          <p style="text-align:center;padding-top:10px;"><a href="login.aspx"> Already have an account? Sign In.</a></p>
         
