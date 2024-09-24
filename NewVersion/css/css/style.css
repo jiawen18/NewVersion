@@ -1261,7 +1261,16 @@ a {
 }
 
 #lblSelectAll, #trash-icon {
-    margin-left: 10px; /* 可根据需要调整 */
+    margin-left: 10px; 
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+    background-image: url(../images/error.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 25px;
 }
 
 .why-choose-section {

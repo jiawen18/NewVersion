@@ -22,6 +22,10 @@
                 <td><asp:Label ID="lblInvoiceId" runat="server"></asp:Label></td>
             </tr>
             <tr>
+                <th>Invoice Date</th>
+                <td><asp:Label ID="lblInvoiceDate" runat="server"></asp:Label></td>
+            </tr>
+            <tr>
                 <th>Amount</th>
                 <td><asp:Label ID="lblAmount" runat="server"></asp:Label></td>
             </tr>
