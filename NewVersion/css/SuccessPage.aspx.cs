@@ -16,6 +16,7 @@ namespace NewVersion.css
                 // data from session
                 lblOrderId.Text = Request.QueryString["orderId"];
                 lblTransactionId.Text = Request.QueryString["TransactionId"];
+                lblInvoiceId.Text = Request.QueryString["InvoiceId"];
                 
                 if (Session["Amount"] != null)
                 {

@@ -30,11 +30,12 @@
             </div>
             <div>
                 <p>
-                    <asp:PlaceHolder ID="PlaceHolder1" runat="server">Tang Yan Chun | (+60) 04-899 5230
+                    <asp:PlaceHolder ID="PlaceHolder1" runat="server">
+                        <asp:Label ID="lblNameAndPhone" runat="server">Tang Yan Chun | (+60) 04-899 5230</asp:Label>
                 <br />
-                        77, Lorong Lembah Permai 3,
+                        <asp:Label ID="lblCurrentAddress" runat="server">77, Lorong Lembah Permai 3,
                 <br />
-                        11200 Tanjung Bungah, Pulau Pinang
+                        11200 Tanjung Bungah, Pulau Pinang</asp:Label>
                     </asp:PlaceHolder>
                 </p>
             </div>
@@ -155,17 +156,19 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Galaxy A55 5G<strong class="mx-2">x</strong> 1</td>
-                                <td>RM 1999.90</td>
+                                <td>
+                                    <asp:Label ID="lblProductName" runat="server" Text="Galaxy A55 5G"></asp:Label><strong class="mx-2">x</strong><asp:Label ID="lblQuantity" runat="server" Text="1"></asp:Label></td>
+                                <td>
+                                    <asp:Label ID="lblPrice" runat="server" Text="RM 1999.90"></asp:Label></td>
                             </tr>
 
                             <tr>
                                 <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
-                                <td class="text-black">RM 1999.90</td>
+                                <td class="text-black"><asp:Label ID="lblCartSubTotal" runat="server" Text="RM 1999.90"></asp:Label></td>
                             </tr>
                             <tr>
                                 <td class="text-black font-weight-bold"><strong>Delivery Fee</strong></td>
-                                <td class="text-black">RM 5.90</td>
+                                <td class="text-black"><asp:Label ID="lblDeliveryFee" runat="server" Text="RM 5.90"></asp:Label></td>
                             </tr>
                             <tr>
                                 <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
@@ -187,6 +190,7 @@
     <!-- </form> -->
 
     <script src ="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>https://api.razorpay.com/v1/invoices</script>
     <script>
         function OpenPaymentWindow(key, currency, amountInSubunits, descritpion, imageLogo, orderId, notes) {
             notes = $.parseJSON(notes);
@@ -198,10 +202,24 @@
                 "image": imageLogo,
                 "order_id": orderId, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
                 "handler": function (response) {
-                    window.location.href = "SuccessPage.aspx?orderId=" + response.razorpay_order_id + "&TransactionId=" + response.razorpay_payment_id;
+
+                    const profile = {
+                        name: sessionStorage.getItem('UserName'), // 从 Session 中获取用户信息
+                        contact: sessionStorage.getItem('Contact'),
+                        email: sessionStorage.getItem('Email')
+                    };
+
+                    CreateInvoice(profile).then(invoiceData => {
+                        console.log('Received invoice data: ', invoiceData);
+
+                        // 将发票数据存储在 sessionStorage，以便在成功页面上显示
+                        sessionStorage.setItem('InvoiceData', JSON.stringify(invoiceData));
+
+                    window.location.href = "SuccessPage.aspx?orderId=" + response.razorpay_order_id + "&TransactionId=" + response.razorpay_payment_id + "&InvoiceId" + response.r;
                     //alert(response.razorpay_payment_id);
                     //alert(response.razorpay_order_id);
-                    //alert(response.razorpay_signature)
+                        //alert(response.razorpay_signature)
+                    });
                 },
                 "notes": notes,
                 "theme": {
@@ -215,6 +233,71 @@
                 window.location.href = "FailurePage.aspx";
             });
         }
+
+        function CreateInvoice(profile) {
+            const _key = "rzp_test_7sBM0c2utoTQ59";
+            const _secret = "OKDPvhfckfnU2BnhPs7dKERM";
+
+            console.log('User Profile:', profile.name, profile.contact, profile.email);
+
+            const billingAddress = {
+                stressAddress: document.getElementById(lblCurrentAddress).innerHTML
+            };
+
+            const shippingAddress = {
+                stressAddress: document.getElementById(lblCurrentAddress).innerHTML
+            };
+
+            const invoiceDetails = {
+                type: "invoice",
+                description: "Invoice for the month of September 2024",
+                partial_payment: true,
+                customer: {
+                    name: profile.name,
+                    contact: profile.contact,
+                    email: profile.email,
+                    billing_address: billingAddress,
+                    shipping_address: shippingAddress
+                },
+                line_items: [
+                    {
+                        itemName: document.getElementById(lblProductName).innerText,
+                        description: "128GB Blue",
+                        priceText = document.getElementById('lblPrice').innerText,
+                        amount: parseDecimal(priceText.replace('RM ', '')) * 100,
+                        currency: "MYR",
+                        quantity: parseInt(document.getElementById('lblQuantity').innerText)
+                    }
+                ],
+                email_notify: 1,
+                currency: "MYR",
+                expire_by: 1589765167
+            };
+
+            return fetch('https://api.razorpay.com/v1/invoices', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Basic ' + btoa(`${_key}: ${_secret}`)
+                },
+                body:JSON.stringify(invoiceDetails)
+            })
+                .then(response => {
+                    if(!response.ok){
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Invoice created successfully: ', data);
+                    return data;
+                })
+                .catch(error => {
+                    console.error('Error creating invoice: ', error);
+                    throw error;
+                })
+        }
+
 
     </script>
 

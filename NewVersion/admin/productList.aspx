@@ -1,377 +1,209 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="productList.aspx.cs" Inherits="NewVersion.admin.productList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <div class="d-flex align-items-center">
-                    <h4 class="card-title">Add Row</h4>
-                    <button
-                        class="btn btn-primary btn-round ms-auto"
-                        data-bs-toggle="modal"
-                        data-bs-target="#addRowModal">
-                        <i class="fa fa-plus"></i>
-                        Add Row
-                    </button>
-                </div>
+    <asp:SqlDataSource 
+    ID="SqlDataSource1" 
+    runat="server" 
+    ConnectionString="<%$ ConnectionStrings:productConnectionString %>"
+    ProviderName="System.Data.SqlClient"
+    SelectCommand="SELECT ProductID, ProductName, ProductImageURL, Price, Quantity, IsVisible, TotalPrice FROM Product">
+</asp:SqlDataSource>
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex align-items-center">
+                <h4 class="card-title">Add Row</h4>
+                <asp:Button ID="btnAddRow" runat="server" Text="Add Row"  class="btn btn-primary btn-round ms-auto" data-bs-toggle="modal" data-bs-target="#addRowModal" OnClientClick="showModal(); return false;" />
             </div>
-            <div class="card-body">
-                <!-- Modal -->
-                <div
-                    class="modal fade"
-                    id="addRowModal"
-                    tabindex="-1"
-                    role="dialog"
-                    aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header border-0">
-                                <h5 class="modal-title">
-                                    <span class="fw-mediumbold">New</span>
-                                    <span class="fw-light">Row </span>
-                                </h5>
-                                <button
-                                    type="button"
-                                    class="close"
-                                    data-dismiss="modal"
-                                    aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p class="small">
-                                    Create a new row using this form, make sure you
-                fill them all
-                                </p>
-                                <div>
+        </div>
+        <div class="card-body">
+            <!-- Modal -->
+            <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header border-0">
+                            <h5 class="modal-title">
+                                <span class="fw-mediumbold">New</span>
+                                <span class="fw-light">Row </span>
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="small">
+                                Create a new product using this form. Make sure to fill in all the required fields.
+                            </p>
+                            <div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group form-group-default">
+                                            <label for="txtProductID">Product ID:</label>
+                                            <asp:HiddenField ID="txtProductID" runat="server" />
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="form-group form-group-default">
-                                                <label>Name</label>
-                                                <input
-                                                    id="addName"
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder="fill name" />
+                                                <label for="txtProductName">Product Name:</label>
+                                                <asp:TextBox ID="txtProductName" runat="server" class="form-control" placeholder="Enter product name" />
                                             </div>
                                         </div>
-                                        <div class="col-md-6 pe-0">
+                                        <div class="col-sm-12">
                                             <div class="form-group form-group-default">
-                                                <label>Position</label>
-                                                <input
-                                                    id="addPosition"
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder="fill position" />
+                                                <label for="txtProductImageURL">Product Image URL:</label>
+                                                <asp:TextBox ID="txtProductImageURL" runat="server" class="form-control" placeholder="Enter image URL" />
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-sm-6 pe-0">
                                             <div class="form-group form-group-default">
-                                                <label>Office</label>
-                                                <input
-                                                    id="addOffice"
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder="fill office" />
+                                                <label for="txtPrice">Price:</label>
+                                                <asp:TextBox ID="txtPrice" runat="server" class="form-control" placeholder="Enter price" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group form-group-default">
+                                                <label for="txtQuantity">Quantity:</label>
+                                                <asp:TextBox ID="txtQuantity" runat="server" class="form-control" placeholder="Enter quantity" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group form-group-default">
+                                                <label for="chkIsVisible">Is Visible:</label>
+                                                <asp:CheckBox ID="chkIsVisible" runat="server" />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal-footer border-0">
-                                <button
-                                    type="button"
-                                    id="addRowButton"
-                                    class="btn btn-primary">
-                                    Add
-                                </button>
-                                <button
-                                    type="button"
-                                    class="btn btn-danger"
-                                    data-dismiss="modal">
-                                    Close
-                                </button>
-                            </div>
+                        </div>
+                        <div class="modal-footer border-0">
+                            <asp:Button ID="btnAddProduct" runat="server" Text="Add Product" CssClass="btn btn-primary" OnClick="btnAddProduct_Click" />
+                            <asp:Button ID="btnClose" runat="server" Text="Close" class="btn btn-danger" data-dismiss="modal" OnClientClick="return cancelFunction();"/>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="table-responsive">
-                    <table
-                        id="add-row"
-                        class="display table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th style="width: 10%">Action</th>
-                            </tr>
-                        </thead>
-                        <%--<tfoot>
-                            <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Action</th>
-                            </tr>
-                        </tfoot>--%>
-                        <tbody>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>
-                                    <div class="form-button-action">
-                                        <button
-                                            type="button"
-                                            data-bs-toggle="tooltip"
-                                            title=""
-                                            class="btn btn-link btn-primary btn-lg"
-                                            data-original-title="Edit Task">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                        <button
-                                            type="button"
-                                            data-bs-toggle="tooltip"
-                                            title=""
-                                            class="btn btn-link btn-danger"
-                                            data-original-title="Remove">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>
-                                    <div class="form-button-action">
-                                        <button
-                                            type="button"
-                                            data-bs-toggle="tooltip"
-                                            title=""
-                                            class="btn btn-link btn-primary btn-lg"
-                                            data-original-title="Edit Task">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                        <button
-                                            type="button"
-                                            data-bs-toggle="tooltip"
-                                            title=""
-                                            class="btn btn-link btn-danger"
-                                            data-original-title="Remove">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>Junior Technical Author</td>
-                                <td>San Francisco</td>
-                                <td>
-                                    <div class="form-button-action">
-                                        <button
-                                            type="button"
-                                            data-bs-toggle="tooltip"
-                                            title=""
-                                            class="btn btn-link btn-primary btn-lg"
-                                            data-original-title="Edit Task">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                        <button
-                                            type="button"
-                                            data-bs-toggle="tooltip"
-                                            title=""
-                                            class="btn btn-link btn-danger"
-                                            data-original-title="Remove">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Cedric Kelly</td>
-                                <td>Senior Javascript Developer</td>
-                                <td>Edinburgh</td>
-                                <td>
-                                    <div class="form-button-action">
-                                        <button
-                                            type="button"
-                                            data-bs-toggle="tooltip"
-                                            title=""
-                                            class="btn btn-link btn-primary btn-lg"
-                                            data-original-title="Edit Task">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                        <button
-                                            type="button"
-                                            data-bs-toggle="tooltip"
-                                            title=""
-                                            class="btn btn-link btn-danger"
-                                            data-original-title="Remove">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Airi Satou</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>
-                                    <div class="form-button-action">
-                                        <button
-                                            type="button"
-                                            data-bs-toggle="tooltip"
-                                            title=""
-                                            class="btn btn-link btn-primary btn-lg"
-                                            data-original-title="Edit Task">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                        <button
-                                            type="button"
-                                            data-bs-toggle="tooltip"
-                                            title=""
-                                            class="btn btn-link btn-danger"
-                                            data-original-title="Remove">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Brielle Williamson</td>
-                                <td>Integration Specialist</td>
-                                <td>New York</td>
-                                <td>
-                                    <div class="form-button-action">
-                                        <button
-                                            type="button"
-                                            data-bs-toggle="tooltip"
-                                            title=""
-                                            class="btn btn-link btn-primary btn-lg"
-                                            data-original-title="Edit Task">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                        <button
-                                            type="button"
-                                            data-bs-toggle="tooltip"
-                                            title=""
-                                            class="btn btn-link btn-danger"
-                                            data-original-title="Remove">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Herrod Chandler</td>
-                                <td>Sales Assistant</td>
-                                <td>San Francisco</td>
-                                <td>
-                                    <div class="form-button-action">
-                                        <button
-                                            type="button"
-                                            data-bs-toggle="tooltip"
-                                            title=""
-                                            class="btn btn-link btn-primary btn-lg"
-                                            data-original-title="Edit Task">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                        <button
-                                            type="button"
-                                            data-bs-toggle="tooltip"
-                                            title=""
-                                            class="btn btn-link btn-danger"
-                                            data-original-title="Remove">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Rhona Davidson</td>
-                                <td>Integration Specialist</td>
-                                <td>Tokyo</td>
-                                <td>
-                                    <div class="form-button-action">
-                                        <button
-                                            type="button"
-                                            data-bs-toggle="tooltip"
-                                            title=""
-                                            class="btn btn-link btn-primary btn-lg"
-                                            data-original-title="Edit Task">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                        <button
-                                            type="button"
-                                            data-bs-toggle="tooltip"
-                                            title=""
-                                            class="btn btn-link btn-danger"
-                                            data-original-title="Remove">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Colleen Hurst</td>
-                                <td>Javascript Developer</td>
-                                <td>San Francisco</td>
-                                <td>
-                                    <div class="form-button-action">
-                                        <button
-                                            type="button"
-                                            data-bs-toggle="tooltip"
-                                            title=""
-                                            class="btn btn-link btn-primary btn-lg"
-                                            data-original-title="Edit Task">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                        <button
-                                            type="button"
-                                            data-bs-toggle="tooltip"
-                                            title=""
-                                            class="btn btn-link btn-danger"
-                                            data-original-title="Remove">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Sonya Frost</td>
-                                <td>Software Engineer</td>
-                                <td>Edinburgh</td>
-                                <td>
-                                    <div class="form-button-action">
-                                        <button
-                                            type="button"
-                                            data-bs-toggle="tooltip"
-                                            title=""
-                                            class="btn btn-link btn-primary btn-lg"
-                                            data-original-title="Edit Task">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                        <button
-                                            type="button"
-                                            data-bs-toggle="tooltip"
-                                            title=""
-                                            class="btn btn-link btn-danger"
-                                            data-original-title="Remove">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+    <asp:Label ID="lblMessage" runat="server" />
+
+            <!-- Edit Row Modal -->
+            <div class="modal fade" id="editRowModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header border-0">
+                            <h5 class="modal-title">
+                                <span class="fw-mediumbold">Edit</span>
+                                <span class="fw-light">Product </span>
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group form-group-default">
+                                <label for="txtProductName">Product Name:</label>
+                                <asp:TextBox ID="TextBox1" runat="server" class="form-control" placeholder="Enter product name" />
+                            </div>
+                            <div class="form-group form-group-default">
+                                <label for="txtProductImageURL">Product Image URL:</label>
+                                <asp:TextBox ID="TextBox2" runat="server" class="form-control" placeholder="Enter image URL" />
+                            </div>
+                            <div class="form-group form-group-default">
+                                <label for="txtPrice">Price:</label>
+                                <asp:TextBox ID="TextBox3" runat="server" class="form-control" placeholder="Enter price" />
+                            </div>
+                            <div class="form-group form-group-default">
+                                <label for="txtQuantity">Quantity:</label>
+                                <asp:TextBox ID="TextBox4" runat="server" class="form-control" placeholder="Enter quantity" />
+                            </div>
+                            <div class="form-group form-group-default">
+                                <label for="chkIsVisible">Is Visible:</label>
+                                <asp:CheckBox ID="CheckBox1" runat="server" />
+                            </div>
+                        </div>
+                        <div class="modal-footer border-0">
+                            <asp:Button ID="btnUpdateProduct" runat="server" Text="Update Product" CssClass="btn btn-primary" OnClick="btnUpdateProduct_Click" />
+                            <asp:Button ID="Button1" runat="server" Text="Close" class="btn btn-danger" data-dismiss="modal" />
+                        </div>
+                    </div>
                 </div>
             </div>
+            <!-- Product Table -->
+            <div class="table-responsive">
+                <table id="add-row" class="display table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Product Name</th>
+                            <th>Product Image</th>
+                            <th>Price</th>
+                            <th style="width: 10%">Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTableBody">
+                        <%-- Dynamically generated rows go here --%>
+                        <asp:Repeater ID="ProductRepeater" runat="server" OnItemCommand="ProductRepeater_ItemCommand">
+                            <ItemTemplate>
+                                <tr>
+                                    <td><%# Eval("ProductID") %></td>
+                                    <td><%# Eval("ProductName") %></td>
+                                    <td><img src='<%# Eval("ProductImageURL") %>' alt="Product Image" style="width:50px;height:50px;" /></td>
+                                    <td><%# Eval("Price") %></td>
+                                    <td><%# Eval("Quantity") %></td>
+                                    <td>
+                                <div class="form-button-action">
+                                    <asp:LinkButton runat="server" CssClass="btn btn-link btn-primary btn-lg" 
+                                        CommandName="EditProduct" 
+                                        CommandArgument='<%# Eval("ProductID") %>' 
+                                        ToolTip="Edit Task" 
+                                        OnClientClick='<%# "openEditModal(" + Eval("ProductID") + ", \"" + Eval("ProductName") + "\", \"" + Eval("Price") + "\", \"" + Eval("Quantity") + "\", \"" + Eval("ProductImageURL") + "\"); return false;" %>'>
+                                        <i class="fa fa-edit"></i>
+                                    </asp:LinkButton>
+                                    <asp:LinkButton runat="server" CssClass="btn btn-link btn-danger" 
+                                        CommandName="DeleteProduct" 
+                                        CommandArgument='<%# Eval("ProductID") %>' 
+                                        ToolTip="Remove">
+                                        <i class="fa fa-times"></i>
+                                    </asp:LinkButton>
+                                </div>
+                                    </td>
+                                </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </tbody>
+                </table>
+            </div> 
         </div>
     </div>
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMjWSh2D8Oj/AnjU5OamAftPZyC6M+qFcO1yLq" crossorigin="anonymous">
+<script>
+    function showModal() {
+        var myModal = new bootstrap.Modal(document.getElementById('addRowModal'));
+        myModal.show();
+    }
+
+    function cancelFunction() {
+        alert('Cancel button clicked.');
+        return false;
+    }
+
+    function openEditModal(productID, productName, price, quantity, imageURL) {
+        // Set the values in the edit modal
+        document.getElementById('<%= txtProductID.ClientID %>').value = productID;
+        document.getElementById('<%= txtProductName.ClientID %>').value = productName;
+        document.getElementById('<%= txtPrice.ClientID %>').value = price;
+        document.getElementById('<%= txtQuantity.ClientID %>').value = quantity;
+        document.getElementById('<%= txtProductImageURL.ClientID %>').value = imageURL;
+
+        // Show the edit modal
+        var editModal = new bootstrap.Modal(document.getElementById('editRowModal'));
+        editModal.show();
+    }
+</script>
+
 
 </asp:Content>

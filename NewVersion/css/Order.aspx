@@ -19,7 +19,7 @@
 
              <div class="container-fluid">
     <div class="row">
-        <!-- 侧边栏：订单菜单 -->
+        <!-- menu navigation -->
         <nav class="col-md-2 sidebar">
     <ul class="order">
          <li><a href="Order.aspx" class="<%= Request.FilePath.Contains("Order.aspx") ? "active" : "" %>">To Ship</a></li>
@@ -31,7 +31,7 @@
 
         
 
-            <!-- 主要内容 -->
+            <!-- content -->
             <main class="col-md-10 content">
                 <h2 style="transform: translate(100px, 60px);">To Ship <img src="images/truck.png" /></h2>
     <%-- Content Section --%>

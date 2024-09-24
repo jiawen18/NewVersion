@@ -17,7 +17,15 @@ namespace NewVersion.css
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // if data already store at the Session 
+            string userName = Session["UserName"] != null ? Session["UserName"].ToString() : "Default Name";
+            string contact = Session["Contact"] != null ? Session["Contact"].ToString() : "0000000000";
+            string email = Session["Email"] != null ? Session["Email"].ToString() : "default@example.com";
 
+            // input the user details to javascript(checkout) 
+            ClientScript.RegisterStartupScript(this.GetType(), "setUserInfo",
+                $"<script>var userDetails = {{ name: '{userName}', contact: '{contact}', email: '{email}' }};</script>",
+                false);
         }
 
         

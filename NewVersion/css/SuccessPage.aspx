@@ -18,6 +18,10 @@
                 <td><asp:Label ID="lblTransactionId" runat="server"></asp:Label></td>
             </tr>
             <tr>
+                <th>Invoice ID</th>
+                <td><asp:Label ID="lblInvoiceId" runat="server"></asp:Label></td>
+            </tr>
+            <tr>
                 <th>Amount</th>
                 <td><asp:Label ID="lblAmount" runat="server"></asp:Label></td>
             </tr>
@@ -29,7 +33,7 @@
     </div>
 
     <script>
-        setTimeout("location = 'Home.aspx'", 3000);
+       // setTimeout("location = 'Home.aspx'", 3000);
     </script>
 
 </asp:Content>
