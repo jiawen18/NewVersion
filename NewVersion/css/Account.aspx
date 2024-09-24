@@ -133,7 +133,7 @@
         </div>
     </div>
     <div class="text-right mt-3">
-        <asp:Button ID="btn_acc_svChanges" runat="server" Text="Save Changes" class="btn btn-primary" OnClick="btn_acc_svChanges_Click" />
+        <asp:Button ID="btn_acc_svChanges" runat="server" Text="Save Changes" class="btn btn-primary"/>
         <asp:Button ID="btn_acc_cancel" runat="server" Text="Cancel" class="btn btn-default" OnClick="btn_acc_cancel_Click" />       
     </div>
 </div>

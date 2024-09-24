@@ -33,7 +33,9 @@
     </div>
 
     <script>
-       // setTimeout("location = 'Home.aspx'", 3000);
+        // setTimeout("location = 'Home.aspx'", 3000);
+
+
     </script>
 
 </asp:Content>

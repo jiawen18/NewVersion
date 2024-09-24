@@ -190,8 +190,8 @@
     <!-- </form> -->
 
     <script src ="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <script>https://api.razorpay.com/v1/invoices</script>
     <script>
+
         function OpenPaymentWindow(key, currency, amountInSubunits, descritpion, imageLogo, orderId, notes) {
             notes = $.parseJSON(notes);
             var options = {
@@ -200,26 +200,12 @@
                 "amount": amountInSubunits,
                 "description": descritpion,
                 "image": imageLogo,
-                "order_id": orderId, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                "order_id": orderId, //This is a sample Order ID. Pass the id obtained in the response of Step 1
                 "handler": function (response) {
-
-                    const profile = {
-                        name: sessionStorage.getItem('UserName'), // 从 Session 中获取用户信息
-                        contact: sessionStorage.getItem('Contact'),
-                        email: sessionStorage.getItem('Email')
-                    };
-
-                    CreateInvoice(profile).then(invoiceData => {
-                        console.log('Received invoice data: ', invoiceData);
-
-                        // 将发票数据存储在 sessionStorage，以便在成功页面上显示
-                        sessionStorage.setItem('InvoiceData', JSON.stringify(invoiceData));
-
-                    window.location.href = "SuccessPage.aspx?orderId=" + response.razorpay_order_id + "&TransactionId=" + response.razorpay_payment_id + "&InvoiceId" + response.r;
+                    window.location.href = "SuccessPage.aspx?orderId=" + response.razorpay_order_id + "&TransactionId=" + response.razorpay_payment_id;
                     //alert(response.razorpay_payment_id);
                     //alert(response.razorpay_order_id);
-                        //alert(response.razorpay_signature)
-                    });
+                    //alert(response.razorpay_signature)
                 },
                 "notes": notes,
                 "theme": {
@@ -233,72 +219,7 @@
                 window.location.href = "FailurePage.aspx";
             });
         }
-
-        function CreateInvoice(profile) {
-            const _key = "rzp_test_7sBM0c2utoTQ59";
-            const _secret = "OKDPvhfckfnU2BnhPs7dKERM";
-
-            console.log('User Profile:', profile.name, profile.contact, profile.email);
-
-            const billingAddress = {
-                stressAddress: document.getElementById(lblCurrentAddress).innerHTML
-            };
-
-            const shippingAddress = {
-                stressAddress: document.getElementById(lblCurrentAddress).innerHTML
-            };
-
-            const invoiceDetails = {
-                type: "invoice",
-                description: "Invoice for the month of September 2024",
-                partial_payment: true,
-                customer: {
-                    name: profile.name,
-                    contact: profile.contact,
-                    email: profile.email,
-                    billing_address: billingAddress,
-                    shipping_address: shippingAddress
-                },
-                line_items: [
-                    {
-                        itemName: document.getElementById(lblProductName).innerText,
-                        description: "128GB Blue",
-                        priceText = document.getElementById('lblPrice').innerText,
-                        amount: parseDecimal(priceText.replace('RM ', '')) * 100,
-                        currency: "MYR",
-                        quantity: parseInt(document.getElementById('lblQuantity').innerText)
-                    }
-                ],
-                email_notify: 1,
-                currency: "MYR",
-                expire_by: 1589765167
-            };
-
-            return fetch('https://api.razorpay.com/v1/invoices', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Basic ' + btoa(`${_key}: ${_secret}`)
-                },
-                body:JSON.stringify(invoiceDetails)
-            })
-                .then(response => {
-                    if(!response.ok){
-                        throw new Error('Network response was not ok ' + response.statusText);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Invoice created successfully: ', data);
-                    return data;
-                })
-                .catch(error => {
-                    console.error('Error creating invoice: ', error);
-                    throw error;
-                })
-        }
-
-
     </script>
 
+        
 </asp:Content>
