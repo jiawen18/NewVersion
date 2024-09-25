@@ -2,12 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
 
-    <script type="text/javascript">
-        function confirmDelete() {
-            return confirm("Are you sure you want to remove this supplier?");
-        }
-    </script>
-
     <div class="card">
         <div class="card-header">
             <div class="d-flex align-items-center">
