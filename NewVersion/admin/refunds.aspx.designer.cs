@@ -24,6 +24,24 @@ namespace NewVersion.admin
         protected global::System.Web.UI.WebControls.Label FeedbackLabel;
 
         /// <summary>
+        /// lblStatusFilter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStatusFilter;
+
+        /// <summary>
+        /// statusFilter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList statusFilter;
+
+        /// <summary>
         /// GridView1 control.
         /// </summary>
         /// <remarks>
