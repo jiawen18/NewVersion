@@ -30,46 +30,17 @@ namespace NewVersion.css
         protected void btnReview_Click(object sender, EventArgs e)
         {
 
-            try
-            {
-                // Check if the hidden fields are not null and have values
-                if (string.IsNullOrEmpty(HiddenFieldRating.Value) ||
-                    string.IsNullOrEmpty(HiddenFieldProductID.Value))
-                {
-                    lblErrorMessage.Text = "Rating or Product ID is missing.";
-                    return;
-                }
-
-            int rating = Convert.ToInt32(HiddenFieldRating.Value); ;
-            int productId = Convert.ToInt32(HiddenFieldProductID.Value);
+            //get user input value
+            int rating = int.Parse(HiddenFieldRating.Value);
             string description = txtReviewDescription.Text;
+            int productId = int.Parse(HiddenFieldProductID.Value);
             string imagePath = "";
+
             DateTime reviewDate = DateTime.Now;
-
-            if (FileUploadMedia.HasFile)
-            {
-                string fileName = Path.GetFileName(FileUploadMedia.PostedFile.FileName);
-                string uploadPath = Server.MapPath("~/Uploads/");
-                string fullPath = Path.Combine(uploadPath, fileName);
-
-                // Save the file to the server
-                FileUploadMedia.SaveAs(fullPath);
-
-                Response.Write($"File saved to: {fullPath}<br/>");
-
-                // Set the image path to save in the database
-                imagePath = "~/Uploads/" + fileName; // Store relative path
-                HiddenFieldImagePath.Value = imagePath; // Store in hidden field if needed
-            }
-
-            else
-            {
-                Response.Write("No file uploaded.<br/>");
-            }
 
             // Save the review to the database
             string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
-
+            
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = "INSERT INTO Review (ReviewDate, ReviewRating, ReviewImage, ReviewDescription, ProductID) " +
@@ -77,7 +48,7 @@ namespace NewVersion.css
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@ReviewDate", reviewDate);
+                    command.Parameters.AddWithValue("@ReviewDate", DateTime.Now);
                     command.Parameters.AddWithValue("@ReviewRating", rating);
                     command.Parameters.AddWithValue("@ReviewImage", imagePath);
                     command.Parameters.AddWithValue("@ReviewDescription", description);
@@ -89,24 +60,6 @@ namespace NewVersion.css
             }
 
             txtReviewDescription.Text = string.Empty;
-
-            Response.Redirect("Home.aspx");
-            }
-            catch (FormatException ex)
-            {
-                lblErrorMessage.Text = "Invalid input format. Please check your entries.";
-                Console.WriteLine("FormatException: " + ex.Message);
-            }
-            catch (NullReferenceException ex)
-            {
-                lblErrorMessage.Text = "An unexpected error occurred. Please try again later.";
-                Console.WriteLine("NullReferenceException: " + ex.Message);
-            }
-            catch (Exception ex)
-            {
-                lblErrorMessage.Text = "An error occurred while submitting your review. Please try again.";
-                Console.WriteLine("Exception: " + ex.Message);
-            }
 
         }
 
