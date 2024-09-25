@@ -50,12 +50,11 @@ namespace NewVersion.admin
                             txt_adm_phone.Text = reader["Phone"].ToString();
                             txt_adm_role.Text = reader["Role"].ToString();
 
-
                             // Display the current profile picture
-                            string profilePicturePath = reader["ProfilePicture"].ToString();
-                            if (!string.IsNullOrEmpty(profilePicturePath))
+                            string profilePictureFilename = reader["ProfilePicture"].ToString();
+                            if (!string.IsNullOrEmpty(profilePictureFilename))
                             {
-                                imgProfile.ImageUrl = profilePicturePath;
+                                imgProfile.ImageUrl = "assets/img/" + profilePictureFilename;
                             }
                             else
                             {
@@ -69,25 +68,25 @@ namespace NewVersion.admin
 
        protected void btn_acc_svChanges_Click(object sender, EventArgs e)
 {
-    string username = HttpContext.Current.User.Identity.Name;
+          string username = HttpContext.Current.User.Identity.Name;
 
-    // Get the new values from the textboxes
-    string newUsername = txt_adm_username.Text;
-    string newPosition = txt_adm_position.Text;
-    string newOffice = txt_adm_office.Text;
-    string newEmail = txt_adm_email.Text;
-    string newBirthday = txt_adm_birthday.Text;
-    string newPhone = txt_adm_phone.Text;
-    string profilePicturePath = imgProfile.ImageUrl; // Keep the current profile picture by default
+          // Get the new values from the textboxes
+          string newUsername = txt_adm_username.Text;
+          string newPosition = txt_adm_position.Text;
+          string newOffice = txt_adm_office.Text;
+          string newEmail = txt_adm_email.Text;
+          string newBirthday = txt_adm_birthday.Text;
+          string newPhone = txt_adm_phone.Text;
+          string profilePictureFilename = null; // Will store just the filename
 
-    // Get password fields for password update
-    string currentPassword = txt_adm_crPassword.Text;
-    string newPassword = txt_adm_newPassword.Text;
-    string repeatNewPassword = txt_adm_rpNewPassword.Text;
+          // Get password fields for password update
+          string currentPassword = txt_adm_crPassword.Text;
+          string newPassword = txt_adm_newPassword.Text;
+          string repeatNewPassword = txt_adm_rpNewPassword.Text;
 
-    // Handle file upload for profile picture
-    if (fileUpload.HasFile)
-    {
+       // Handle file upload for profile picture
+       if (fileUpload.HasFile)
+       {
         // Define the path to save the uploaded file
         string uploadFolderPath = Server.MapPath("~/admin/assets/img/");
 
@@ -105,18 +104,18 @@ namespace NewVersion.admin
 
         // Process the image: convert to square and resize
         img.Square();
-        img.Resize(150); // Assuming you want a thumbnail
+        
 
         // Save the processed image to the defined path
         string filePath = Path.Combine(uploadFolderPath, filename);
         img.SaveAs(filePath);
 
-        // Update the profile picture path to the relative URL used in the database
-        profilePicturePath = "~/admin/assets/img/" + filename;
+        // Update the profile picture filename (only the filename is saved to the database)
+        profilePictureFilename = filename;
 
         // Update the ImageUrl of imgProfile to show the new uploaded picture
-        imgProfile.ImageUrl = profilePicturePath; // Optional: update image immediately
-    }
+        imgProfile.ImageUrl = "assets/img/" + filename;
+       }
 
     // Connect to the database and update the admin's details
     string connString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
@@ -199,12 +198,12 @@ namespace NewVersion.admin
             }
 
             // Only add the profile picture parameter if it's not empty
-            if (fileUpload.HasFile)
+            if (!string.IsNullOrEmpty(profilePictureFilename))
             {
-                cmd.Parameters.AddWithValue("@ProfilePicture", profilePicturePath);
+                cmd.Parameters.AddWithValue("@ProfilePicture", profilePictureFilename);
             }
 
-            cmd.ExecuteNonQuery();
+               cmd.ExecuteNonQuery();
 
             // Notify user of successful update
             Response.Write("<script>alert('Profile updated successfully.');</script>");
@@ -219,7 +218,6 @@ namespace NewVersion.admin
         }
     }
 }
-
 
 
         protected void btn_acc_cancel_Click(object sender, EventArgs e)

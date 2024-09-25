@@ -35,7 +35,7 @@ namespace NewVersion
 
                     if (result != null)
                     {
-                        profilePictureUrl = "~/admin/assets/img/" + result.ToString(); // Append the profile picture filename
+                        profilePictureUrl = "assets/img/" + result.ToString(); // Append the profile picture filename
                     }
                 }
             }
