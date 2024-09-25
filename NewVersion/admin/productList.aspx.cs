@@ -32,52 +32,35 @@ namespace NewVersion.admin
 
         protected void btnAddProduct_Click(object sender, EventArgs e)
         {
-            string productName = txtProductName.Text;
-            string productImageURL = txtProductImageURL.Text;
-            decimal price;
-            int quantity;
+                string productName = txtProductName.Text;
+                string productImageURL = txtProductImageURL.Text;
+                decimal price = decimal.Parse(txtPrice.Text);
+                int quantity = int.Parse(txtQuantity.Text);
+                bool isVisible = chkIsVisible.Checked;
 
-            // Validate inputs
-            if (!decimal.TryParse(txtPrice.Text, out price))
-            {
-                lblMessage.Text = "Please enter a valid price.";
-                lblMessage.CssClass = "text-danger";
-                return;
-            }
+                string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
 
-            if (!int.TryParse(txtQuantity.Text, out quantity))
-            {
-                lblMessage.Text = "Please enter a valid quantity.";
-                lblMessage.CssClass = "text-danger";
-                return;
-            }
-
-            bool isVisible = chkIsVisible.Checked;
-
-            // Connection string from Web.config
-            string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
-
-            string query = @"INSERT INTO Product (ProductImageURL, ProductName, Price, Quantity, IsVisible) 
+                string query = @"INSERT INTO Product (ProductImageURL, ProductName, Price, Quantity, IsVisible) 
                      VALUES (@ProductImageURL, @ProductName, @Price, @Quantity, @IsVisible)";
 
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand(query, con))
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString))
                 {
-                    // Supply input/data into parameters
-                    cmd.Parameters.AddWithValue("@ProductImageURL", productImageURL);
-                    cmd.Parameters.AddWithValue("@ProductName", productName);
-                    cmd.Parameters.AddWithValue("@Price", price);
-                    cmd.Parameters.AddWithValue("@Quantity", quantity);
-                    cmd.Parameters.AddWithValue("@IsVisible", isVisible);
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        // Supply input/data into parameters
+                        cmd.Parameters.AddWithValue("@ProductImageURL", productImageURL);
+                        cmd.Parameters.AddWithValue("@ProductName", productName);
+                        cmd.Parameters.AddWithValue("@Price", price);
+                        cmd.Parameters.AddWithValue("@Quantity", quantity);
+                        cmd.Parameters.AddWithValue("@IsVisible", isVisible);
 
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    lblMessage.Text = "Product added successfully.";
-                    lblMessage.CssClass = "text-success";
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        lblMessage.Text = "Product added successfully.";
+                        lblMessage.CssClass = "text-success";
 
+                    }
                 }
-            }
         }
 
         private void BindProductTable()
@@ -141,7 +124,7 @@ namespace NewVersion.admin
                     {
                         if (reader.Read())
                         {
-                            txtProductID.Value = productId; // Assuming you have a hidden field for ProductID
+                            txtProductID.Value = productId; 
                             txtProductName.Text = reader["ProductName"].ToString();
                             txtProductImageURL.Text = reader["ProductImageURL"].ToString();
                             txtPrice.Text = reader["Price"].ToString();
@@ -166,23 +149,9 @@ namespace NewVersion.admin
                 string productId = txtProductID.Value;
                 string productName = txtProductName.Text;
                 string productImageUrl = txtProductImageURL.Text;
-                decimal price;
-                int quantity;
+                decimal price = decimal.Parse(txtPrice.Text);
+                int quantity = int.Parse(txtQuantity.Text);
 
-                // Validate inputs
-                if (!decimal.TryParse(txtPrice.Text, out price))
-                {
-                    lblMessage.Text = "Please enter a valid price.";
-                    lblMessage.CssClass = "text-danger";
-                    return;
-                }
-
-                if (!int.TryParse(txtQuantity.Text, out quantity))
-                {
-                    lblMessage.Text = "Please enter a valid quantity.";
-                    lblMessage.CssClass = "text-danger";
-                    return;
-                }
 
                 bool isVisible = chkIsVisible.Checked;
 
@@ -225,10 +194,8 @@ namespace NewVersion.admin
                     }
                 }
 
-                // Refresh the product list after updating
                 BindProductTable();
 
-                // Optionally, reset fields and close the modal
                 ClearFields();
                 CloseEditModal();
             }
@@ -265,10 +232,12 @@ namespace NewVersion.admin
 
         private void DeleteProduct(string productId)
         {
-            string sql = "DELETE FROM Product WHERE ProductID = @ProductID";
-            using (SqlConnection con = new SqlConnection(cs))
+            string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
+            string query = "DELETE FROM Product WHERE ProductID = @ProductID";
+
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand(sql, con))
+                using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@ProductID", productId);
                     con.Open();
