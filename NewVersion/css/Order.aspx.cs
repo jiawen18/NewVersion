@@ -44,7 +44,7 @@ namespace NewVersion.css
 
             try
             {
-                string query1 = "SELECT InvoiceNumber,InvoiceDate FROM Transaction WHERE OrderID = @OrderID";
+                string query1 = "SELECT InvoiceNumber,InvoiceDate FROM [Transaction] WHERE OrderID = @OrderID";
 
                 SqlCommand cmd1 = new SqlCommand(query1, con1);
 
