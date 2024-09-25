@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using NewVersion.Models;
 
 namespace NewVersion.css
 {
@@ -153,9 +154,34 @@ namespace NewVersion.css
             Response.Redirect("Delivery.aspx");
         }
 
+        // yujing edited this for refund
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("cancelled.aspx");
+            Button cancelButton = sender as Button;
+            if (cancelButton != null)
+            {
+                int orderID = Convert.ToInt32(cancelButton.CommandArgument);
+
+                using (var context = new userEntities())
+                {
+
+                    var refundRequest = new Refund
+                    {
+                        OrderID = orderID.ToString(),
+                        RefundRequestDate = DateTime.Now,
+                        RefundStatus = "Pending",
+
+                    };
+
+                    context.Refunds.Add(refundRequest);
+                    context.SaveChanges();
+                }
+
+                //FeedbackLabel.Text = "Refund request submitted successfully!";
+                //FeedbackLabel.CssClass = "text-success";
+
+                Response.Redirect("cancelled.aspx");
+            }
         }
     }
 
