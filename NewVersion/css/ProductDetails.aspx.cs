@@ -1,6 +1,7 @@
 ﻿using Aspose.Imaging.FileFormats.Cdr.Types;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,6 +11,7 @@ namespace NewVersion.css
 {
     public partial class ProductDetails : System.Web.UI.Page
     {
+        string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -40,18 +42,19 @@ protected void btnViewMore_Click(object sender, EventArgs e)
 
         protected void Button4_Click(object sender, EventArgs e)
         {
-            int productId = 1;
-            string productImage = ProductImg.ImageUrl;
-            string productName = lblProductName.Text;
-            string storage = Button1.Text;
-            string color = ColorButton1.Text;
-            decimal price = Convert.ToDecimal(lblPrice.Text);
-            List<CartItem> cartItems = ShoppingCart.GetCartItemsFromSession();
-            int quantity = cartItems.FirstOrDefault(item => item.ProductId == productId)?.Quantity ?? 1;
+            SqlConnection con= new SqlConnection(cs);
 
-            //int memberId = Convert.ToInt32(Session["MemberID"]);
+            string query = "INSERT Product(ProductID,ProductName,ProductImageURl,Price,Quantity,ProductStorage,ProductColor) VALUES(@ProductID,@ProductName,@ProductImageURL,@Price,@Quantity,@ProductStorage,@ProductColor";
 
-            ShoppingCart.AddProduct(productId,productImage,productName, storage, color, price,quantity);
+            SqlCommand cmd = new SqlCommand(query, con);
+
+            cmd.Parameters.AddWithValue("@ProductName", lblProductName.Text);
+            cmd.Parameters.AddWithValue("@ProductImageURL", ProductImg.ImageUrl);
+            cmd.Parameters.AddWithValue("@Price", lblPrice.Text);
+            cmd.Parameters.AddWithValue("@Quantity",lblQuantity);
+            cmd.Parameters.AddWithValue("@ProductStorage", Button1.Text);
+            cmd.Parameters.AddWithValue("@ProductColor", ColorButton1.Text);
+
         }
     }
  }

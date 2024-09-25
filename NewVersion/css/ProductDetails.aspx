@@ -61,6 +61,8 @@
 
             <div class="price-container"> <asp:Label ID="lblPrice" runat="server" Text="200.50"></asp:Label></div>
 
+            <div class="quantity-container"> <asp:Label ID="lblQuantity" runat="server" Text="1">Quantity : 1</asp:Label></div>
+
             <!-- Add to Cart Button -->
             <div class="AddToCart">
                 <asp:Button ID="Button4" runat="server" CssClass="add-to-cart-btn" Text="Add to Cart" OnClick="Button4_Click"/>
