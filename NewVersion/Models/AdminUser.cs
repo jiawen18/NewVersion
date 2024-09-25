@@ -24,6 +24,5 @@ namespace NewVersion.Models
         public string DOB { get; set; }
         public string Phone { get; set; }
         public System.DateTime CreatedAt { get; set; }
-        public string ProfilePicture { get; set; }
     }
 }

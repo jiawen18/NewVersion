@@ -11,43 +11,52 @@ namespace NewVersion.admin
 {
 
 
-    public partial class refunds
+    public partial class shippingServices
     {
 
         /// <summary>
-        /// FeedbackLabel control.
+        /// AddRowButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label FeedbackLabel;
+        protected global::System.Web.UI.WebControls.LinkButton AddRowButton;
 
         /// <summary>
-        /// lblStatusFilter control.
+        /// CloseModalButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStatusFilter;
+        protected global::System.Web.UI.WebControls.LinkButton CloseModalButton;
 
         /// <summary>
-        /// statusFilter control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList statusFilter;
+        protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
-        /// GridView1 control.
+        /// LinkButton1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+
+        /// <summary>
+        /// Repeater1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater Repeater1;
     }
 }

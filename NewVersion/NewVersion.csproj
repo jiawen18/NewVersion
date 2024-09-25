@@ -121,15 +121,14 @@
     <Content Include="admin\inventory.aspx" />
     <Content Include="admin\newAdmin.aspx" />
     <Content Include="admin\newInventory.aspx" />
-    <Content Include="admin\newShipper.aspx" />
     <Content Include="admin\newSupplier.aspx" />
     <Content Include="admin\orderList.aspx" />
     <Content Include="admin\productList.aspx" />
     <Content Include="admin\productPages.aspx" />
-    <Content Include="admin\refunds.aspx" />
+    <Content Include="admin\returnsAndRefunds.aspx" />
     <Content Include="admin\reviews.aspx" />
     <Content Include="admin\sales.aspx" />
-    <Content Include="admin\shippers.aspx" />
+    <Content Include="admin\shippingServices.aspx" />
     <Content Include="admin\suppliers.aspx" />
     <Content Include="admin\support.aspx" />
     <Content Include="admin\transactions.aspx" />
@@ -592,7 +591,6 @@
     <Content Include="css\images\couch.png" />
     <Content Include="css\images\coupon-icon.png" />
     <Content Include="css\images\cross.svg" />
-    <Content Include="admin\assets\img\default.jpg" />
     <Content Include="css\images\delete.png" />
     <Content Include="css\images\dots-green.svg" />
     <Content Include="css\images\dots-light.svg" />
@@ -821,13 +819,6 @@
     <Compile Include="admin\newInventory.aspx.designer.cs">
       <DependentUpon>newInventory.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\newShipper.aspx.cs">
-      <DependentUpon>newShipper.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\newShipper.aspx.designer.cs">
-      <DependentUpon>newShipper.aspx</DependentUpon>
-    </Compile>
     <Compile Include="admin\newSupplier.aspx.cs">
       <DependentUpon>newSupplier.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -856,12 +847,12 @@
     <Compile Include="admin\productPages.aspx.designer.cs">
       <DependentUpon>productPages.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\refunds.aspx.cs">
-      <DependentUpon>refunds.aspx</DependentUpon>
+    <Compile Include="admin\returnsAndRefunds.aspx.cs">
+      <DependentUpon>returnsAndRefunds.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\refunds.aspx.designer.cs">
-      <DependentUpon>refunds.aspx</DependentUpon>
+    <Compile Include="admin\returnsAndRefunds.aspx.designer.cs">
+      <DependentUpon>returnsAndRefunds.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\reviews.aspx.cs">
       <DependentUpon>reviews.aspx</DependentUpon>
@@ -877,12 +868,12 @@
     <Compile Include="admin\sales.aspx.designer.cs">
       <DependentUpon>sales.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\shippers.aspx.cs">
-      <DependentUpon>shippers.aspx</DependentUpon>
+    <Compile Include="admin\shippingServices.aspx.cs">
+      <DependentUpon>shippingServices.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\shippers.aspx.designer.cs">
-      <DependentUpon>shippers.aspx</DependentUpon>
+    <Compile Include="admin\shippingServices.aspx.designer.cs">
+      <DependentUpon>shippingServices.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\suppliers.aspx.cs">
       <DependentUpon>suppliers.aspx</DependentUpon>
@@ -1139,13 +1130,7 @@
     <Compile Include="Login.Master.designer.cs">
       <DependentUpon>Login.Master</DependentUpon>
     </Compile>
-    <Compile Include="Models\Address.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\AdminUser.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CheckOut.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Inventory.cs">
@@ -1169,22 +1154,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelTest.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Order.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Product.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Refund.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Review.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Shipper.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ShoppingCart.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SuperAminUser.cs">
@@ -1195,9 +1165,6 @@
     </Compile>
     <Compile Include="Models\Table.cs">
       <DependentUpon>ModelTest.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Transaction.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -1223,7 +1190,6 @@
       <DependentUpon>Home.Master</DependentUpon>
     </Compile>
     <Compile Include="Security.cs" />
-    <Compile Include="SimpleImage.cs" />
     <Compile Include="startup.cs" />
   </ItemGroup>
   <ItemGroup>
