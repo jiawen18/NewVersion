@@ -43,13 +43,13 @@
                     <a class="list-group-item list-group-item-action" data-toggle="list"
                         href="#account-info"><span style="padding-left:30px">Info</span></a>                                                      
                 </div>
-            </div>
-          
+            </div>    
+        
                 <div class="col-md-9">
                     <div class="tab-content">
                         <div class="tab-pane fade active show" id="account-Account">
                             <div class="card-body media align-items-center">
-                                <asp:Image ID="imgProfile" runat="server" ImageUrl="../css/images/default.jpg" Width="150px" Height="150px" Style="cursor:pointer;" OnClick="triggerFileUpload();" />
+                                <asp:Image ID="imgProfile" runat="server"  Width="150px" Height="150px" Style="cursor:pointer;" OnClick="triggerFileUpload();" />
                                 <asp:FileUpload ID="fileUpload" runat="server" OnChange="previewImage(this);" />
                                 <div class="media-body ml-4">
                                     <label class="btn btn-outline-primary">

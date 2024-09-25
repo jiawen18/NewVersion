@@ -58,7 +58,7 @@ namespace NewVersion.admin
                             }
                             else
                             {
-                                imgProfile.ImageUrl = "../css/images/default.jpg"; // Use a default picture if no picture exists
+                                imgProfile.ImageUrl = "assets/img/default.jpg"; // Use a default picture if no picture exists
                             }
                         }
                     }
@@ -88,21 +88,25 @@ namespace NewVersion.admin
             if (fileUpload.HasFile)
             {
                 // Define the path to save the uploaded file
-                string uploadFolderPath = Server.MapPath("../css/images/");
+                string uploadFolderPath = Server.MapPath("assets/img/");
 
-                // Create directory if it doesn't exist
-                if (!Directory.Exists(uploadFolderPath))
-                {
-                    Directory.CreateDirectory(uploadFolderPath);
-                }
-
-                string fileExtension = Path.GetExtension(fileUpload.FileName);
-                string fileName = "Profile_" + username + fileExtension;
-                profilePicturePath = "../css/images/" + fileName;
+                // Generate a new unique filename using GUID
+                string fileName = Guid.NewGuid().ToString("N") + ".jpg";  // Ensure the file is saved as .jpg
+                
 
                 // Save the file
                 string filePath = Path.Combine(uploadFolderPath, fileName);
-                fileUpload.SaveAs(filePath);
+
+                // Convert uploaded image to JPG if necessary
+                using (var img = System.Drawing.Image.FromStream(fileUpload.PostedFile.InputStream))
+                {
+                    // Save the image as a JPG file
+                    img.Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                }
+
+                // Set the profile picture path to the new filename
+                profilePicturePath = "assets/img/" + fileName;
+
 
                 // Update the ImageUrl of imgProfile to show the new uploaded picture
                 imgProfile.ImageUrl = profilePicturePath;
