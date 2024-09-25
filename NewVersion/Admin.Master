@@ -169,18 +169,24 @@
                                 <div class="collapse" id="inventory">
                                     <ul class="nav nav-collapse">
                                         <li>
-                                            <a href="inventoryList.aspx">
-                                                <span class="sub-item">Inventory List</span>
+                                            <a href="newInventory.aspx">
+                                                <span class="sub-item">Add Inventory</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="newSupplier.aspx">
-                                                <span class="sub-item">New Supplier</span>
+                                                <span class="sub-item">Add Supplier</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                        <li>
+                                            <a href="inventory.aspx">
+                                                <span class="sub-item">View Inventory</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="suppliers.aspx">
-                                                <span class="sub-item">Suppliers</span>
+                                                <span class="sub-item">View Suppliers</span>
                                             </a>
                                         </li>
                                     </ul>
