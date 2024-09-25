@@ -433,11 +433,14 @@
                                             <li>
                                                 <div class="user-box">
                                                     <div class="avatar-lg">
-                                                       <img src='<%= GetProfilePictureUrl() %>' alt="User Profile" class="avatar-img rounded" />
+                                                        <img
+                                                            src="assets/img/profile.jpg"
+                                                            alt="image profile"
+                                                            class="avatar-img rounded" />
                                                     </div>
                                                     <div class="u-text">
-                                                        <asp:Label ID="lbl_user_name" runat="server" Text=""></asp:Label>
-                                                        <asp:Label ID="lbl_user_email" runat="server" Text=""  class="text-muted"></asp:Label>                                            
+                                                        <h4>Hizrian</h4>
+                                                        <p class="text-muted">hello@example.com</p>
                                                     </div>
                                                 </div>
                                             </li>

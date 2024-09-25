@@ -31,5 +31,8 @@ namespace NewVersion.Models
         public virtual DbSet<AdminUser> AdminUsers { get; set; }
         public virtual DbSet<Inventory> Inventories { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Refund> Refunds { get; set; }
+        public virtual DbSet<Shipper> Shippers { get; set; }
     }
 }

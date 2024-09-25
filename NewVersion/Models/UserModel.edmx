@@ -18,6 +18,7 @@
           <Property Name="Office" Type="nvarchar" MaxLength="50" />
           <Property Name="DOB" Type="nvarchar" MaxLength="15" />
           <Property Name="Phone" Type="nvarchar" MaxLength="15" />
+          <Property Name="ProfilePicture" Type="nvarchar" MaxLength="225" />
           <Property Name="CreatedAt" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="Inventory">
@@ -40,6 +41,17 @@
           <Property Name="Role" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="CreatedAt" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="PaymentStatus" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DeliveryStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OrderDetails" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ProductID" />
@@ -51,6 +63,26 @@
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="IsVisible" Type="bit" Nullable="false" />
           <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Refund">
+          <Key>
+            <PropertyRef Name="RefundID" />
+          </Key>
+          <Property Name="RefundID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="RefundRequestDate" Type="datetime" Nullable="false" />
+          <Property Name="RefundClosureDate" Type="datetime" />
+          <Property Name="RefundStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shipper">
+          <Key>
+            <PropertyRef Name="shipperID" />
+          </Key>
+          <Property Name="shipperID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="shipperName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="shipperEmail" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="shipperPhone" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="shipperAddress" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="SuperAminUser">
           <Key>
@@ -73,13 +105,48 @@
           <Property Name="supplierPhone" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="supplierAddress" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Order_ToRefund">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Refund" Type="Self.Refund" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Refund">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ToOrder">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="UserModelStoreContainer">
           <EntitySet Name="AdminUser" EntityType="Self.AdminUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MemberUser" EntityType="Self.MemberUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Refund" EntityType="Self.Refund" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shipper" EntityType="Self.Shipper" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SuperAminUser" EntityType="Self.SuperAminUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Order_ToRefund" Association="Self.FK_Order_ToRefund">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Refund" EntitySet="Refund" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ToOrder" Association="Self.FK_Product_ToOrder">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -92,6 +159,17 @@
           <EntitySet Name="AdminUsers" EntityType="UserModel.AdminUser" />
           <EntitySet Name="Inventories" EntityType="UserModel.Inventory" />
           <EntitySet Name="Products" EntityType="UserModel.Product" />
+          <EntitySet Name="Orders" EntityType="UserModel.Order" />
+          <EntitySet Name="Refunds" EntityType="UserModel.Refund" />
+          <EntitySet Name="Shippers" EntityType="UserModel.Shipper" />
+          <AssociationSet Name="FK_Order_ToRefund" Association="UserModel.FK_Order_ToRefund">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="Refund" EntitySet="Refunds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ToOrder" Association="UserModel.FK_Product_ToOrder">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="MemberUser">
           <Key>
@@ -139,6 +217,7 @@
           <Property Name="DOB" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ProfilePicture" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Inventory">
           <Key>
@@ -160,7 +239,66 @@
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="IsVisible" Type="Boolean" Nullable="false" />
           <Property Name="TotalPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="Orders" Relationship="UserModel.FK_Product_ToOrder" FromRole="Product" ToRole="Order" />
         </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PaymentStatus" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DeliveryStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrderDetails" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Refunds" Relationship="UserModel.FK_Order_ToRefund" FromRole="Order" ToRole="Refund" />
+          <NavigationProperty Name="Product" Relationship="UserModel.FK_Product_ToOrder" FromRole="Order" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Refund">
+          <Key>
+            <PropertyRef Name="RefundID" />
+          </Key>
+          <Property Name="RefundID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RefundRequestDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RefundClosureDate" Type="DateTime" Precision="3" />
+          <Property Name="RefundStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Order" Relationship="UserModel.FK_Order_ToRefund" FromRole="Refund" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Shipper">
+          <Key>
+            <PropertyRef Name="shipperID" />
+          </Key>
+          <Property Name="shipperID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="shipperName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="shipperEmail" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="shipperPhone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="shipperAddress" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Order_ToRefund">
+          <End Type="UserModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="UserModel.Refund" Role="Refund" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Refund">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ToOrder">
+          <End Type="UserModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="UserModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -205,6 +343,7 @@
           <EntitySetMapping Name="AdminUsers">
             <EntityTypeMapping TypeName="UserModel.AdminUser">
               <MappingFragment StoreEntitySet="AdminUser">
+                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="DOB" ColumnName="DOB" />
@@ -238,6 +377,40 @@
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="ProductImageURL" ColumnName="ProductImageURL" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="UserModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="OrderDetails" ColumnName="OrderDetails" />
+                <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Refunds">
+            <EntityTypeMapping TypeName="UserModel.Refund">
+              <MappingFragment StoreEntitySet="Refund">
+                <ScalarProperty Name="RefundStatus" ColumnName="RefundStatus" />
+                <ScalarProperty Name="RefundClosureDate" ColumnName="RefundClosureDate" />
+                <ScalarProperty Name="RefundRequestDate" ColumnName="RefundRequestDate" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="RefundID" ColumnName="RefundID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shippers">
+            <EntityTypeMapping TypeName="UserModel.Shipper">
+              <MappingFragment StoreEntitySet="Shipper">
+                <ScalarProperty Name="shipperAddress" ColumnName="shipperAddress" />
+                <ScalarProperty Name="shipperPhone" ColumnName="shipperPhone" />
+                <ScalarProperty Name="shipperEmail" ColumnName="shipperEmail" />
+                <ScalarProperty Name="shipperName" ColumnName="shipperName" />
+                <ScalarProperty Name="shipperID" ColumnName="shipperID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
