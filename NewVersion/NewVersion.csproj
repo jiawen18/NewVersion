@@ -542,7 +542,6 @@
     <Content Include="css\AboutUs.aspx" />
     <Content Include="css\Accessories.aspx" />
     <Content Include="css\Account.aspx" />
-    <Content Include="css\Address.aspx" />
     <Content Include="css\Blog.aspx" />
     <Content Include="css\cancelled.aspx" />
     <Content Include="css\cart.aspx" />
@@ -929,13 +928,6 @@
     <Compile Include="css\Account.aspx.designer.cs">
       <DependentUpon>Account.aspx</DependentUpon>
     </Compile>
-    <Compile Include="css\Address.aspx.cs">
-      <DependentUpon>Address.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="css\Address.aspx.designer.cs">
-      <DependentUpon>Address.aspx</DependentUpon>
-    </Compile>
     <Compile Include="css\Blog.aspx.cs">
       <DependentUpon>Blog.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1121,9 +1113,6 @@
     <Compile Include="Login.Master.designer.cs">
       <DependentUpon>Login.Master</DependentUpon>
     </Compile>
-    <Compile Include="Models\Address.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\AdminUser.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
@@ -1144,6 +1133,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelTest.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SuperAminUser.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Table.cs">
       <DependentUpon>ModelTest.tt</DependentUpon>

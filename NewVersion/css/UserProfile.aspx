@@ -35,13 +35,6 @@
             </div>
         </a>
 
-        <a href="Address.aspx">
-            <div class="menu-col">
-                <img src="images/location-icon.png" />
-                <strong style="font-size: 15px; padding: 5px;">Address Book</strong>
-                <p>Manager our address for delivery</p>
-            </div>
-        </a>
 
         <a href="Account.aspx">
             <div class="menu-col">

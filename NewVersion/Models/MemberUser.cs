@@ -20,6 +20,5 @@ namespace NewVersion.Models
         public string PasswordHash { get; set; }
         public string Role { get; set; }
         public System.DateTime CreatedAt { get; set; }
-        public System.DateTime UpdatedAt { get; set; }
     }
 }

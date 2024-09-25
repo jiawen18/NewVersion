@@ -1,128 +1,128 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.Script.Serialization;
-using ASPSnippets.GoogleAPI;       
-using System.EnterpriseServices;
-using System.Web.Security;
-using Microsoft.Owin.Security;
-using NewVersion.Models;
+﻿    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using System.Web.UI;
+    using System.Web.UI.WebControls;
+    using System.Web.Script.Serialization;
+    using ASPSnippets.GoogleAPI;       
+    using System.EnterpriseServices;
+    using System.Web.Security;
+    using Microsoft.Owin.Security;
+    using NewVersion.Models;
 
 
-namespace NewVersion.css
-{
-    public partial class login : System.Web.UI.Page
+    namespace NewVersion.css
     {
-        userEntities ue = new userEntities();
-        protected void Page_Load(object sender, EventArgs e)
+        public partial class login : System.Web.UI.Page
         {
-            /* From google cloud platform */
-            GoogleConnect.ClientId = "995711205443-95hlaqkilp75fhtolsd1079dql0haqip.apps.googleusercontent.com";
-            GoogleConnect.ClientSecret = "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";
-            GoogleConnect.RedirectUri = Request.Url.AbsoluteUri.Split('?')[0];
-
-            if (!this.IsPostBack)
+            userEntities ue = new userEntities();
+            protected void Page_Load(object sender, EventArgs e)
             {
-                string code = Request.QueryString["code"];
-                if (!string.IsNullOrEmpty(code))
+                /* From google cloud platform */
+                GoogleConnect.ClientId = "995711205443-95hlaqkilp75fhtolsd1079dql0haqip.apps.googleusercontent.com";
+                GoogleConnect.ClientSecret = "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";
+                GoogleConnect.RedirectUri = Request.Url.AbsoluteUri.Split('?')[0];
+
+                if (!this.IsPostBack)
                 {
-                    GoogleConnect connect = new GoogleConnect();
-                    string json = connect.Fetch("me", code);
-                    GoogleProfile profile = new JavaScriptSerializer().Deserialize<GoogleProfile>(json);    
-                    txt_email.Text = profile.Email;
-
-                    /* Redirect User to home page after successfully login */
-                    Response.Redirect("Home.aspx");
-                }
-            }
-
-        }
-
-        protected void btn_signin_Click(object sender, EventArgs e)
-        {
-            if (Page.IsValid)
-            {
-                string email = txt_email.Text;
-                string password = txt_password.Text;
-                bool rememberMe = ckb_remember.Checked;
-
-                // Check if email or username exists in the database
-                // Check if email or username exists in the admin or member database
-                var AdminUser = ue.AdminUsers.SingleOrDefault(a => a.Email == email || a.Username == email);
-                var MemberUser = ue.MemberUsers.SingleOrDefault(m => m.Email == email || m.Username == email);
-
-                // Handle login for admin users
-                if (AdminUser != null)
-                {
-                    string inputPasswordHash = Security.HashPassword(password);
-                    if (AdminUser.PasswordHash == inputPasswordHash)
+                    string code = Request.QueryString["code"];
+                    if (!string.IsNullOrEmpty(code))
                     {
-                        // Log the user in (Admin)
-                        Security.LoginUser(AdminUser.Username, AdminUser.Role, rememberMe);
-                        HttpContext.Current.ApplicationInstance.CompleteRequest();
-                        Response.Redirect("AboutUs.aspx");
-                    }
-                    else
-                    {
-                        //username and password not match
-                        //display error message 
-                        cvNotMatched.IsValid = false;
-                    }
-                }
-                // Handle login for member users
-                else if (MemberUser != null)
-                {
-                    string inputPasswordHash = Security.HashPassword(password);
-                    if (MemberUser.PasswordHash == inputPasswordHash)
-                    {
-                        // Log the user in (Member)
-                        Security.LoginUser(MemberUser.Username, MemberUser.Role, rememberMe);
-                        Response.Redirect("AboutUs.aspx");
-                    }
-                    else
-                    {
+                        GoogleConnect connect = new GoogleConnect();
+                        string json = connect.Fetch("me", code);
+                        GoogleProfile profile = new JavaScriptSerializer().Deserialize<GoogleProfile>(json);    
+                        txt_email.Text = profile.Email;
 
-                        cvNotMatched.IsValid = false;
+                        /* Redirect User to home page after successfully login */
+                        Response.Redirect("Home.aspx");
                     }
-                }
-                // No user found in either Admins or Members table
-                else
-                {               
-                    cvNotMatched.IsValid = false;
                 }
 
             }
-        }
 
-        protected void login_google_Click(object sender, EventArgs e)
-        {
-            GoogleConnect.Authorize("profile", "email");
+            protected void btn_signin_Click(object sender, EventArgs e)
+            {
+                if (Page.IsValid)
+                {
+                    string email = txt_email.Text;
+                    string password = txt_password.Text;
+                    bool rememberMe = ckb_remember.Checked;
+
+                    // Check if email or username exists in the database
+                    // Check if email or username exists in the admin or member database
+                    var AdminUser = ue.AdminUsers.SingleOrDefault(a => a.Email == email || a.Username == email);
+                    var MemberUser = ue.MemberUsers.SingleOrDefault(m => m.Email == email || m.Username == email);
+
+                    // Handle login for admin users
+                    if (AdminUser != null)
+                    {
+                        string inputPasswordHash = Security.HashPassword(password);
+                        if (AdminUser.PasswordHash == inputPasswordHash)
+                        {
+                            // Log the user in (Admin)
+                            Security.LoginUser(AdminUser.Username, AdminUser.Role, rememberMe);
+                            HttpContext.Current.ApplicationInstance.CompleteRequest();
+                            Response.Redirect("AboutUs.aspx");
+                        }
+                        else
+                        {
+                            //username and password not match
+                            //display error message 
+                            cvNotMatched.IsValid = false;
+                        }
+                    }
+                    // Handle login for member users
+                    else if (MemberUser != null)
+                    {
+                        string inputPasswordHash = Security.HashPassword(password);
+                        if (MemberUser.PasswordHash == inputPasswordHash)
+                        {
+                            // Log the user in (Member)
+                            Security.LoginUser(MemberUser.Username, MemberUser.Role, rememberMe);
+                            Response.Redirect("AboutUs.aspx");
+                        }
+                        else
+                        {
+
+                            cvNotMatched.IsValid = false;
+                        }
+                    }
+                    // No user found in either Admins or Members table
+                    else
+                    {               
+                        cvNotMatched.IsValid = false;
+                    }
+
+                }
+            }
+
+            protected void login_google_Click(object sender, EventArgs e)
+            {
+                GoogleConnect.Authorize("profile", "email");
        
-        }
+            }
 
-        public class GoogleProfile
-        {
-            public string Id { get; set; }
-            public string Name { get; set; }
-            public string Picture { get; set; }
-            public string Email { get; set; }
-            public string Verified_Email { get; set; }
-        }
-        protected void login_facebook_Click(object sender, EventArgs e)
-        {
-
-            var properties = new AuthenticationProperties
+            public class GoogleProfile
             {
-                RedirectUri = "/css/Home.aspx"
-            };
-            HttpContext.Current.GetOwinContext().Authentication.Challenge(properties, "Facebook");
-        }
+                public string Id { get; set; }
+                public string Name { get; set; }
+                public string Picture { get; set; }
+                public string Email { get; set; }
+                public string Verified_Email { get; set; }
+            }
+            protected void login_facebook_Click(object sender, EventArgs e)
+            {
 
-    }
-    }
+                var properties = new AuthenticationProperties
+                {
+                    RedirectUri = "/css/Home.aspx"
+                };
+                HttpContext.Current.GetOwinContext().Authentication.Challenge(properties, "Facebook");
+            }
+
+        }
+        }
    
     
 

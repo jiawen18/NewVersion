@@ -25,8 +25,8 @@ namespace NewVersion.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Address> Addresses { get; set; }
-        public virtual DbSet<AdminUser> AdminUsers { get; set; }
         public virtual DbSet<MemberUser> MemberUsers { get; set; }
+        public virtual DbSet<SuperAminUser> SuperAminUsers { get; set; }
+        public virtual DbSet<AdminUser> AdminUsers { get; set; }
     }
 }
