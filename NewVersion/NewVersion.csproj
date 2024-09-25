@@ -120,7 +120,6 @@
     <Content Include="admin\edit.aspx" />
     <Content Include="admin\inventory.aspx" />
     <Content Include="admin\newAdmin.aspx" />
-    <Content Include="admin\newCustomer.aspx" />
     <Content Include="admin\newInventory.aspx" />
     <Content Include="admin\newShipper.aspx" />
     <Content Include="admin\newSupplier.aspx" />
@@ -136,7 +135,6 @@
     <Content Include="admin\transactions.aspx" />
     <Content Include="admin\update.aspx" />
     <Content Include="admin\userStatistics.aspx" />
-    <Content Include="admin\WebForm1.aspx" />
     <Content Include="admin\assets\css\bootstrap.min.css" />
     <Content Include="admin\assets\css\demo.css" />
     <Content Include="admin\assets\css\fonts.css" />
@@ -517,28 +515,6 @@
     <Content Include="admin\assets\js\plugin\webfont\webfont.min.js" />
     <Content Include="admin\assets\js\setting-demo.js" />
     <Content Include="admin\assets\js\setting-demo2.js" />
-    <Content Include="admin\charts\charts.html" />
-    <Content Include="admin\charts\sparkline.html" />
-    <Content Include="admin\components\avatars.html" />
-    <Content Include="admin\components\buttons.html" />
-    <Content Include="admin\components\font-awesome-icons.html" />
-    <Content Include="admin\components\gridsystem.html" />
-    <Content Include="admin\components\notifications.html" />
-    <Content Include="admin\components\panels.html" />
-    <Content Include="admin\components\simple-line-icons.html" />
-    <Content Include="admin\components\sweetalert.html" />
-    <Content Include="admin\components\typography.html" />
-    <Content Include="admin\forms\forms.html" />
-    <Content Include="admin\icon-menu.html" />
-    <Content Include="admin\index.html" />
-    <Content Include="admin\maps\googlemaps.html" />
-    <Content Include="admin\maps\jsvectormap.html" />
-    <Content Include="admin\sidebar-style-2.html" />
-    <Content Include="admin\starter-template.html" />
-    <Content Include="admin\tables\datatables.html" />
-    <Content Include="admin\tables\tables.html" />
-    <Content Include="admin\WebForm2.aspx" />
-    <Content Include="admin\widgets.html" />
     <Content Include="App_Data\product.mdf" />
     <Content Include="App_Data\product_log.ldf">
       <DependentUpon>product.mdf</DependentUpon>
@@ -815,13 +791,6 @@
     <Compile Include="admin\newAdmin.aspx.designer.cs">
       <DependentUpon>newAdmin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\newCustomer.aspx.cs">
-      <DependentUpon>newCustomer.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\newCustomer.aspx.designer.cs">
-      <DependentUpon>newCustomer.aspx</DependentUpon>
-    </Compile>
     <Compile Include="admin\newInventory.aspx.cs">
       <DependentUpon>newInventory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -926,20 +895,6 @@
     </Compile>
     <Compile Include="admin\userStatistics.aspx.designer.cs">
       <DependentUpon>userStatistics.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\WebForm2.aspx.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\WebForm2.aspx.designer.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
     </Compile>
     <Compile Include="css\AboutUs.aspx.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
@@ -1260,8 +1215,6 @@
     <Content Include="admin\assets\fonts\summernote\summernote.ttf" />
     <Content Include="admin\assets\fonts\summernote\summernote.woff" />
     <Content Include="admin\assets\fonts\summernote\summernote.woff2" />
-    <Content Include="admin\mics\LICENSE" />
-    <Content Include="admin\mics\README.md" />
     <Content Include="Home.Master" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
