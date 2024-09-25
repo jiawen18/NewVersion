@@ -258,31 +258,13 @@ namespace NewVersion.css
         protected global::System.Web.UI.WebControls.Button btnSubmit;
 
         /// <summary>
-        /// lblProductName control.
+        /// phCartItems control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProductName;
-
-        /// <summary>
-        /// lblQuantity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblQuantity;
-
-        /// <summary>
-        /// lblPrice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrice;
+        protected global::System.Web.UI.WebControls.PlaceHolder phCartItems;
 
         /// <summary>
         /// lblCartSubTotal control.

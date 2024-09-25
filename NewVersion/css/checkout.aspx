@@ -164,12 +164,9 @@
                             <th>Total</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <asp:Label ID="lblProductName" runat="server" Text="Galaxy A55 5G"></asp:Label><strong class="mx-2">x</strong><asp:Label ID="lblQuantity" runat="server" Text="1"></asp:Label></td>
-                                <td>
-                                    <asp:Label ID="lblPrice" runat="server" Text="RM 1999.90"></asp:Label></td>
-                            </tr>
+                            <asp:PlaceHolder ID="phCartItems" runat="server">
+                            
+                            </asp:PlaceHolder>
 
                             <tr>
                                 <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>

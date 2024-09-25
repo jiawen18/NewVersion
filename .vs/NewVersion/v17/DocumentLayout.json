@@ -1,25 +1,38 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\TAR UC\\Documents\\GitHub\\NewVersion\\",
+  "WorkspaceRootPath": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\tar uc\\documents\\github\\newversion\\newversion\\css\\smartphones.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\smartphones.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\newversion\\css\\checkout.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\checkout.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\tar uc\\documents\\github\\newversion\\newversion\\css\\smartphones.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\smartphones.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\newversion\\css\\checkout.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\checkout.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\tar uc\\documents\\github\\newversion\\newversion\\admin\\productlist.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\productlist.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\newversion\\css\\cart.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\cart.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/C__USERS_TAR_UC_DOCUMENTS_GITHUB_NEWVERSION_NEWVERSION_APP_DATA_PRODUCT.MDF/True/SqlTable/dbo.Product.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\newversion\\css\\cart.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\cart.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\tar uc\\documents\\github\\newversion\\newversion\\admin\\productlist.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\productlist.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\newversion\\css\\order.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\order.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\newversion\\css\\order.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\order.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\asus\\documents\\github\\newversion\\newversion\\css\\successpage.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\successpage.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\newversion\\css\\successpage.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\successpage.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
   ],
   "DocumentGroupContainers": [
@@ -29,81 +42,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "productList.aspx",
-              "DocumentMoniker": "C:\\Users\\TAR UC\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\productList.aspx",
-              "RelativeDocumentMoniker": "NewVersion\\admin\\productList.aspx",
-              "ToolTip": "C:\\Users\\TAR UC\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\productList.aspx",
-              "RelativeToolTip": "NewVersion\\admin\\productList.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-09-25T01:46:44.833Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Smartphones.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\TAR UC\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Smartphones.aspx.cs",
-              "RelativeDocumentMoniker": "NewVersion\\css\\Smartphones.aspx.cs",
-              "ToolTip": "C:\\Users\\TAR UC\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Smartphones.aspx.cs",
-              "RelativeToolTip": "NewVersion\\css\\Smartphones.aspx.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAowEAAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-25T02:53:43.014Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Smartphones.aspx",
-              "DocumentMoniker": "C:\\Users\\TAR UC\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Smartphones.aspx",
-              "RelativeDocumentMoniker": "NewVersion\\css\\Smartphones.aspx",
-              "ToolTip": "C:\\Users\\TAR UC\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Smartphones.aspx",
-              "RelativeToolTip": "NewVersion\\css\\Smartphones.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-09-25T03:08:06.45Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "dbo.Product [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/C__USERS_TAR_UC_DOCUMENTS_GITHUB_NEWVERSION_NEWVERSION_APP_DATA_PRODUCT.MDF/True/SqlTable/dbo.Product.sql",
-              "ToolTip": "dbo.Product [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-09-25T03:06:22.247Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "productList.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\TAR UC\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\productList.aspx.cs",
-              "RelativeDocumentMoniker": "NewVersion\\admin\\productList.aspx.cs",
-              "ToolTip": "C:\\Users\\TAR UC\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\productList.aspx.cs",
-              "RelativeToolTip": "NewVersion\\admin\\productList.aspx.cs",
-              "ViewState": "AgIAAEgBAAAAAAAAAADwv34BAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-25T02:55:54.546Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Bookmark",
@@ -116,6 +59,110 @@
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "checkout.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\checkout.aspx.cs",
+              "RelativeDocumentMoniker": "NewVersion\\css\\checkout.aspx.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\checkout.aspx.cs",
+              "RelativeToolTip": "NewVersion\\css\\checkout.aspx.cs",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAAAHEAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-25T09:43:50.58Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "checkout.aspx",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\checkout.aspx",
+              "RelativeDocumentMoniker": "NewVersion\\css\\checkout.aspx",
+              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\checkout.aspx",
+              "RelativeToolTip": "NewVersion\\css\\checkout.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-25T09:43:38.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "cart.aspx",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\cart.aspx",
+              "RelativeDocumentMoniker": "NewVersion\\css\\cart.aspx",
+              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\cart.aspx",
+              "RelativeToolTip": "NewVersion\\css\\cart.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-25T08:52:00.577Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "cart.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\cart.aspx.cs",
+              "RelativeDocumentMoniker": "NewVersion\\css\\cart.aspx.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\cart.aspx.cs",
+              "RelativeToolTip": "NewVersion\\css\\cart.aspx.cs",
+              "ViewState": "AgIAALEAAAAAAAAAAAAQwL0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-25T09:05:43.678Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Order.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Order.aspx.cs",
+              "RelativeDocumentMoniker": "NewVersion\\css\\Order.aspx.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Order.aspx.cs",
+              "RelativeToolTip": "NewVersion\\css\\Order.aspx.cs",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAAwB8AAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-25T07:57:59.416Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Order.aspx",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Order.aspx",
+              "RelativeDocumentMoniker": "NewVersion\\css\\Order.aspx",
+              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Order.aspx",
+              "RelativeToolTip": "NewVersion\\css\\Order.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-25T04:36:18.25Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SuccessPage.aspx",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\SuccessPage.aspx",
+              "RelativeDocumentMoniker": "NewVersion\\css\\SuccessPage.aspx",
+              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\SuccessPage.aspx",
+              "RelativeToolTip": "NewVersion\\css\\SuccessPage.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-25T08:23:51.514Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SuccessPage.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\SuccessPage.aspx.cs",
+              "RelativeDocumentMoniker": "NewVersion\\css\\SuccessPage.aspx.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\SuccessPage.aspx.cs",
+              "RelativeToolTip": "NewVersion\\css\\SuccessPage.aspx.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwCYAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-25T08:59:34.786Z",
+              "EditorCaption": ""
             }
           ]
         }

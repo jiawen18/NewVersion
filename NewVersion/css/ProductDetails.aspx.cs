@@ -49,9 +49,9 @@ protected void btnViewMore_Click(object sender, EventArgs e)
             List<CartItem> cartItems = ShoppingCart.GetCartItemsFromSession();
             int quantity = cartItems.FirstOrDefault(item => item.ProductId == productId)?.Quantity ?? 1;
 
-            int memberId = Convert.ToInt32(Session["MemberID"]);
+            //int memberId = Convert.ToInt32(Session["MemberID"]);
 
-            ShoppingCart.AddProduct(memberId,productId,productImage,productName, storage, color, price,quantity);
+            ShoppingCart.AddProduct(productId,productImage,productName, storage, color, price,quantity);
         }
     }
  }

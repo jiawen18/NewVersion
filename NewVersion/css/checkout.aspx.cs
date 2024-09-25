@@ -6,12 +6,15 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Razorpay.Api;
 using Newtonsoft.Json;
+using System.Data.SqlClient;
 
 
 namespace NewVersion.css
 {
     public partial class checkout : System.Web.UI.Page
     {
+        String cs = Global.CS;
+
         private const string _key = "rzp_test_7sBM0c2utoTQ59";
         private const string _secret = "OKDPvhfckfnU2BnhPs7dKERM";
 
@@ -21,12 +24,13 @@ namespace NewVersion.css
             if (!IsPostBack)
             {
                 LoadSessionValues();
+                LoadCartItems();
             }
         }
 
         private void LoadSessionValues()
         {
-            // 仅在第一次加载页面时填充输入框的值
+            
             if (Session["FirstName"] != null)
             {
                 c_diff_fname.Text = Session["FirstName"].ToString();
@@ -90,26 +94,89 @@ namespace NewVersion.css
             }
         }
 
-        
+        private void LoadCartItems()
+        {
+            List<CartItem> cart = Session["CartProducts"] as List<CartItem>;
+
+            if (cart != null && cart.Count > 0)
+            {
+                decimal cartSubtotal = 0m;
+
+                foreach (var cartItem in cart)
+                {
+                    TableRow row = new TableRow();
+
+                    TableCell cell1 = new TableCell();
+                    cell1.Controls.Add(new Label { Text = cartItem.ProductName });
+                    cell1.Controls.Add(new Label { Text = "<strong class='mx-2'>x</strong>" });
+                    cell1.Controls.Add(new Literal { Text = cartItem.Quantity.ToString() });
+                    row.Cells.Add(cell1);
+
+                    TableCell cell2 = new TableCell();
+                    cell2.Controls.Add(new Label { Text = "RM" + cartItem.Price.ToString("F2") });
+                    row.Cells.Add(cell2);
+
+                    phCartItems.Controls.Add(row);
+
+                    decimal itemPrice = cartItem.Price * cartItem.Quantity;
+
+                    cartSubtotal += itemPrice;
+                }
+
+                lblCartSubTotal.Text = "RM " + cartSubtotal.ToString("F2");
+                string subTotal = lblCartSubTotal.Text;
+
+                decimal deliveryFeeInitial = 5.90m; 
+                lblDeliveryFee.Text = "RM " + deliveryFeeInitial.ToString("F2");
+                string deliveryFee = lblDeliveryFee.Text;
+
+                lblAmount.Text = "RM " + (cartSubtotal + deliveryFeeInitial).ToString("F2");
+                string amount = lblAmount.Text;
+
+                StoreCartItems(cart, deliveryFee, subTotal,amount);
+            }
+        }
+
+        private void StoreCartItems(List<CartItem> cart, string deliveryFee, string subTotal,string amount)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+
+                foreach (var cartItem in cart)
+                {
+                    string query = "INSERT INTO CheckOut (SubTotal, DeliveryFee, TotalPrice) VALUES (@SubTotal, @DeliveryFee, @TotalPrice)";
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    { 
+                        cmd.Parameters.AddWithValue("@Subtotal", subTotal);
+                        cmd.Parameters.AddWithValue("@DeliveryFee", deliveryFee); 
+                        cmd.Parameters.AddWithValue("@Total", amount); 
+
+                        cmd.ExecuteNonQuery(); 
+                    }
+                }
+            }
+        }
 
         protected void btnPay_Click1(object sender, EventArgs e)
         {
             string currency = "MYR";
-            double amount = GetAmountFromLabel(lblAmount.Text);
+            decimal amount = GetAmountFromLabel(lblAmount.Text);
 
             if (amount <= 0)
             {
                 throw new Exception("Parsed amount is less than or equal to 0: " + amount);
             }
 
-            double amountInSubunits = amount * 100;
+            decimal amountInSubunits = amount * 100;
 
             if (amountInSubunits <= 0)
             {
                 throw new Exception("Amount in subunits is less than or equal to 0: " + amountInSubunits);
             }
 
-            double Amount = GetAmountFromLabel(lblAmount.Text);
+            decimal Amount = GetAmountFromLabel(lblAmount.Text);
+
             Session["Amount"] = Amount; // store to session
 
             string description = "Razorpay Payment Gateway";
@@ -126,13 +193,13 @@ namespace NewVersion.css
             ClientScript.RegisterStartupScript(this.GetType(), "OpenPaymentWindow", jsFunction, true);
         }
 
-        private double GetAmountFromLabel(string amountText)
+        private decimal GetAmountFromLabel(string amountText)
         {
             // slipt "RM"
             string cleanedAmountText = amountText.Replace("RM ", "").Trim();
 
-            double amount;
-            if (double.TryParse(cleanedAmountText, out amount))
+            decimal amount;
+            if (decimal.TryParse(cleanedAmountText, out amount))
             {
                 return amount; //successful,return amount
             }
@@ -142,7 +209,7 @@ namespace NewVersion.css
             }
         }
 
-        private string CreateOrder(string currency, double amountInSubunits, Dictionary<string, string> notes)
+        private string CreateOrder(string currency, decimal amountInSubunits, Dictionary<string, string> notes)
         {
             try
             {

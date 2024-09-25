@@ -46,7 +46,7 @@
                  </thead>
 
                  <tbody style="max-height:400px; overflow-y:auto;">  <!-- tbody can scroll -->
-                         <asp:Repeater ID="rptProduct" runat="server" OnItemCommand="rptProduct_ItemCommand">
+                         <asp:Repeater ID="rptProduct" runat="server" OnItemCommand="rptProduct_ItemCommand" >
                              <ItemTemplate>
                                 <tr>
                                 <div class="product-item">
@@ -138,7 +138,7 @@
     <script type="text/javascript">
 
         //show or hide Trash icon
-        function toggleTrashIcon() {
+       /* function toggleTrashIcon() {
             var isAnyChecked = false;
 
             var repeaters = document.querySelectorAll('input[type="checkbox"][id$="_chkSelectItem"]');
@@ -188,7 +188,7 @@
             });
 
             toggleTrashIcon();
-        });
+        });*/
 
     </script>
 
