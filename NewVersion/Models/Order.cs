@@ -12,22 +12,26 @@ namespace NewVersion.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MemberUser
+    public partial class Order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MemberUser()
+        public Order()
         {
-            this.ShoppingCarts = new HashSet<ShoppingCart>();
+            this.Transactions = new HashSet<Transaction>();
+            this.Refunds = new HashSet<Refund>();
         }
     
-        public int MemberID { get; set; }
-        public string Username { get; set; }
-        public string Email { get; set; }
-        public string PasswordHash { get; set; }
-        public string Role { get; set; }
-        public System.DateTime CreatedAt { get; set; }
+        public string OrderID { get; set; }
+        public int ProductID { get; set; }
+        public System.DateTime OrderDate { get; set; }
+        public string PaymentStatus { get; set; }
+        public string DeliveryStatus { get; set; }
+        public string OrderDetails { get; set; }
     
+        public virtual Product Product { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
+        public virtual ICollection<Transaction> Transactions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Refund> Refunds { get; set; }
     }
 }

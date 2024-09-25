@@ -7,47 +7,47 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NewVersion.css
+namespace NewVersion.admin
 {
 
 
-    public partial class Smartphones
+    public partial class refunds
     {
 
         /// <summary>
-        /// SqlDataSource1 control.
+        /// FeedbackLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.Label FeedbackLabel;
 
         /// <summary>
-        /// rptProducts control.
+        /// lblStatusFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProducts;
+        protected global::System.Web.UI.WebControls.Label lblStatusFilter;
 
         /// <summary>
-        /// rptProducts2 control.
+        /// statusFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProducts2;
+        protected global::System.Web.UI.WebControls.DropDownList statusFilter;
 
         /// <summary>
-        /// rptProducts3 control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProducts3;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
     }
 }

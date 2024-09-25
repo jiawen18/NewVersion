@@ -12,18 +12,14 @@ namespace NewVersion.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AdminUser
+    public partial class Address
     {
-        public int AdminID { get; set; }
-        public string Username { get; set; }
-        public string Email { get; set; }
-        public string PasswordHash { get; set; }
-        public string Role { get; set; }
-        public string Position { get; set; }
-        public string Office { get; set; }
-        public string DOB { get; set; }
-        public string Phone { get; set; }
-        public System.DateTime CreatedAt { get; set; }
-        public string ProfilePicture { get; set; }
+        public int AddressID { get; set; }
+        public int MemberID { get; set; }
+        public string Address1 { get; set; }
+        public string Address2 { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string PostalCode { get; set; }
     }
 }

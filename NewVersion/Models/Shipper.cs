@@ -12,18 +12,12 @@ namespace NewVersion.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AdminUser
+    public partial class Shipper
     {
-        public int AdminID { get; set; }
-        public string Username { get; set; }
-        public string Email { get; set; }
-        public string PasswordHash { get; set; }
-        public string Role { get; set; }
-        public string Position { get; set; }
-        public string Office { get; set; }
-        public string DOB { get; set; }
-        public string Phone { get; set; }
-        public System.DateTime CreatedAt { get; set; }
-        public string ProfilePicture { get; set; }
+        public int shipperID { get; set; }
+        public string shipperName { get; set; }
+        public string shipperEmail { get; set; }
+        public string shipperPhone { get; set; }
+        public string shipperAddress { get; set; }
     }
 }

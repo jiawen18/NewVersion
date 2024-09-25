@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="productList.aspx.cs" Inherits="NewVersion.admin.productList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="productList.aspx.cs" Inherits="NewVersion.admin.productList"  EnableViewState="true"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
 <asp:SqlDataSource 
