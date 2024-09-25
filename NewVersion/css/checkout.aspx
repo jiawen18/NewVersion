@@ -170,16 +170,16 @@
 
                             <tr>
                                 <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
-                                <td class="text-black"><asp:Label ID="lblCartSubTotal" runat="server" Text=""></asp:Label></td>
+                                <td class="text-black"><asp:Label ID="lblCartSubTotal" runat="server" Text="RM 1999.90"></asp:Label></td>
                             </tr>
                             <tr>
                                 <td class="text-black font-weight-bold"><strong>Delivery Fee</strong></td>
-                                <td class="text-black"><asp:Label ID="lblDeliveryFee" runat="server" Text=""></asp:Label></td>
+                                <td class="text-black"><asp:Label ID="lblDeliveryFee" runat="server" Text="RM 5.90"></asp:Label></td>
                             </tr>
                             <tr>
                                 <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
                                 <td class="text-black font-weight-bold">
-                                    <asp:Label ID="lblAmount" runat="server" Text=""></asp:Label></td>
+                                    <asp:Label ID="lblAmount" runat="server" Text="RM 2005.80"></asp:Label></td>
                             </tr>
                         </tbody>
                     </table>

@@ -61,9 +61,7 @@
 
             <div class="price-container"> <asp:Label ID="lblPrice" runat="server" Text="200.50"></asp:Label></div>
 
-            <div class="quantity-container"> <asp:Label ID="lblQuantity" runat="server" Text="1"></asp:Label></div>
-
-            <asp:HiddenField ID="hiddenProductId" runat="server" Value="1" /> 
+            <div class="quantity-container"> <asp:Label ID="lblQuantity" runat="server" Text="1">Quantity : 1</asp:Label></div>
 
             <!-- Add to Cart Button -->
             <div class="AddToCart">
