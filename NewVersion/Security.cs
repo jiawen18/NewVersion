@@ -44,7 +44,7 @@ namespace NewVersion
                 }
                 else
                 {
-                    ctx.Response.Redirect("~/css/Home.aspx");  // Redirect to the member's home page
+                    ctx.Response.Redirect("~/css/AboutUs.aspx");  // Redirect to the member's home page
                 }
             }
             catch (ThreadAbortException)

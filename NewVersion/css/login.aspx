@@ -12,7 +12,7 @@
           
           <!-- Email input -->
           <div class="form-outline mb-4">
-            <asp:Label ID="lbl_email" runat="server" Text="Email Address" class="form-label"></asp:Label>
+            <asp:Label ID="lbl_email" runat="server" Text="Email Address or Username" class="form-label"></asp:Label>
             <asp:TextBox ID="txt_email" runat="server" class="form-control form-control-lg"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rq_email" runat="server" ControlToValidate="txt_email" Display="Dynamic" ErrorMessage="*Please Enter Email Address" ForeColor="Red"></asp:RequiredFieldValidator>
           </div>
