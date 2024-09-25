@@ -15,48 +15,82 @@ namespace NewVersion.css
         private const string _key = "rzp_test_7sBM0c2utoTQ59";
         private const string _secret = "OKDPvhfckfnU2BnhPs7dKERM";
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            // if data already store at the Session 
-            //string userName = Session["UserName"] != null ? Session["UserName"].ToString() : "Default Name";
-           // string contact = Session["Contact"] != null ? Session["Contact"].ToString() : "0000000000";
-            //string email = Session["Email"] != null ? Session["Email"].ToString() : "default@example.com";
-
-            // input the user details to javascript(checkout) 
-           // ClientScript.RegisterStartupScript(this.GetType(), "setUserInfo",
-            //    $"<script>var userDetails = {{ name: '{userName}', contact: '{contact}', email: '{email}' }};</script>",
-             //   false);
+            if (!IsPostBack)
+            {
+                LoadSessionValues();
+            }
         }
 
-        
+        private void LoadSessionValues()
+        {
+            // 仅在第一次加载页面时填充输入框的值
+            if (Session["FirstName"] != null)
+            {
+                c_diff_fname.Text = Session["FirstName"].ToString();
+            }
+
+            if (Session["LastName"] != null)
+            {
+                c_diff_lname.Text = Session["LastName"].ToString();
+            }
+
+            if (Session["Phone"] != null)
+            {
+                c_diff_phone.Text = Session["Phone"].ToString();
+            }
+
+            if (Session["Address"] != null)
+            {
+                c_diff_address.Text = Session["Address"].ToString();
+            }
+        }
+
+
         protected void btnCloseDialog_Click(object sender, EventArgs e)
         {
-            Response.Redirect("checkout.aspx");
+
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            PlaceHolder1.Controls.Clear();
+            if (Page.IsValid) { 
+                PlaceHolder1.Controls.Clear();
 
-            Label lbl1 = new Label();
-            lbl1.ID = "lbl1";
-            lbl1.Text = "First Name: " + c_diff_fname.Text;
+                Label lbl1 = new Label();
+                lbl1.ID = "lbl1";
+                lbl1.Text = c_diff_fname.Text.Trim();  // First Name
 
-            Label lbl2 = new Label();
-            lbl2.ID = "lbl2";
-            lbl2.Text = "Phone Number: " + c_diff_phone.Text;
+                Label lbl2 = new Label();
+                lbl2.ID = "lbl2";
+                lbl2.Text = c_diff_lname.Text.Trim();  // Last Name
 
-            Label lbl3 = new Label();
-            lbl3.ID = "lbl3";
-            lbl3.Text = "Address: " + c_diff_address.Text;
+                Label lbl3 = new Label();
+                lbl3.ID = "lbl3";
+                lbl3.Text = c_diff_phone.Text;  // Phone Number
 
-            PlaceHolder1.Controls.Add(lbl1);
-            PlaceHolder1.Controls.Add(new LiteralControl("<br />"));
-            PlaceHolder1.Controls.Add(lbl2);
-            PlaceHolder1.Controls.Add(new LiteralControl("<br />"));
-            PlaceHolder1.Controls.Add(lbl3);
+                Label lbl4 = new Label();
+                lbl4.ID = "lbl4";
+                lbl4.Text = c_diff_address.Text;  // Address
 
+                PlaceHolder1.Controls.Add(lbl1);
+                PlaceHolder1.Controls.Add(new LiteralControl(" "));
+                PlaceHolder1.Controls.Add(lbl2);
+                PlaceHolder1.Controls.Add(new LiteralControl(" | "));
+                PlaceHolder1.Controls.Add(lbl3);
+                PlaceHolder1.Controls.Add(new LiteralControl("<br />"));
+                PlaceHolder1.Controls.Add(lbl4);
+
+                Session["FirstName"] = c_diff_fname.Text.Trim();
+                Session["LastName"] = c_diff_lname.Text.Trim();
+                Session["Phone"] = c_diff_phone.Text;
+                Session["Address"] = c_diff_address.Text;
+            }
         }
+
+        
 
         protected void btnPay_Click1(object sender, EventArgs e)
         {

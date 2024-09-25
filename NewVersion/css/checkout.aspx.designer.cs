@@ -69,24 +69,6 @@ namespace NewVersion.css
         protected global::System.Web.UI.WebControls.Button btnClose;
 
         /// <summary>
-        /// lblCountry control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCountry;
-
-        /// <summary>
-        /// c_diff_country control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList c_diff_country;
-
-        /// <summary>
         /// lblFirstName control.
         /// </summary>
         /// <remarks>
@@ -103,6 +85,15 @@ namespace NewVersion.css
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox c_diff_fname;
+
+        /// <summary>
+        /// RequiredFieldValidatorFirstName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorFirstName;
 
         /// <summary>
         /// lblLastName control.
@@ -123,6 +114,15 @@ namespace NewVersion.css
         protected global::System.Web.UI.WebControls.TextBox c_diff_lname;
 
         /// <summary>
+        /// RequiredFieldValidatorLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorLastName;
+
+        /// <summary>
         /// lblAddress control.
         /// </summary>
         /// <remarks>
@@ -141,6 +141,24 @@ namespace NewVersion.css
         protected global::System.Web.UI.WebControls.TextBox c_diff_address;
 
         /// <summary>
+        /// RequiredFieldValidatorAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorAddress;
+
+        /// <summary>
+        /// RegularExpressionValidatorAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidatorAddress;
+
+        /// <summary>
         /// txtUnit control.
         /// </summary>
         /// <remarks>
@@ -148,6 +166,24 @@ namespace NewVersion.css
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUnit;
+
+        /// <summary>
+        /// lblCountry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCountry;
+
+        /// <summary>
+        /// c_diff_country control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList c_diff_country;
 
         /// <summary>
         /// lblCity control.
@@ -159,13 +195,13 @@ namespace NewVersion.css
         protected global::System.Web.UI.WebControls.Label lblCity;
 
         /// <summary>
-        /// c_diff_state_country control.
+        /// c_diff_city control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList c_diff_state_country;
+        protected global::System.Web.UI.WebControls.DropDownList c_diff_city;
 
         /// <summary>
         /// lblPhone control.
@@ -184,6 +220,24 @@ namespace NewVersion.css
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox c_diff_phone;
+
+        /// <summary>
+        /// RequiredFieldValidatorPhone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorPhone;
+
+        /// <summary>
+        /// RegularExpressionValidatorPhone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidatorPhone;
 
         /// <summary>
         /// btnCloseDialog control.

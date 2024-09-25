@@ -31,7 +31,7 @@
             <div>
                 <p>
                     <asp:PlaceHolder ID="PlaceHolder1" runat="server">
-                        <asp:Label ID="lblNameAndPhone" runat="server">Tang Yan Chun | (+60) 04-899 5230</asp:Label>
+                        <asp:Label ID="lblNameAndPhone" runat="server">Tang Yan Chun | 014 899 5230</asp:Label>
                 <br />
                         <asp:Label ID="lblCurrentAddress" runat="server">77, Lorong Lembah Permai 3,
                 <br />
@@ -48,12 +48,12 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
         <div class="modal-dialog" role="document" style="max-width: 1000px;">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Delivery Details</h5>
-                    <asp:Button ID="btnClose" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true" runat="server" Text="&times;" OnClientCloseClick="$('#myModal').modal('hide'); return false;" />
+                    <asp:Button ID="btnClose" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true" runat="server" Text="&times;" CausesValidation="false" OnClientCloseClick="$('#myModal').modal('hide'); return false;" />
                 </div>
 
                 <div class="modal-body" style="position: center; transform: translateX(25%);">
@@ -61,40 +61,34 @@
                     <div class="row">
                         <div class="col-md-6 mb-5 mb-md-0">
                             <div class="py-2">
-                                <div class="form-group">
-                                    <asp:Label ID="lblCountry" class="text-black" runat="server">
-                         Country <span class="text-danger">*</span>
-                                    </asp:Label>
-                                    <asp:DropDownList ID="c_diff_country" class="form-control" runat="server">
-                                        <asp:ListItem Text="Select a country" Value="1"></asp:ListItem>
-                                        <asp:ListItem Text="Malaysia" Value="2"></asp:ListItem>
-                                        <asp:ListItem Text="China" Value="3"></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-
-
+                                
                                 <div class="form-group row">
                                     <div class="col-md-6">
                                         <asp:Label ID="lblFirstName" class="text-black" runat="server">
-                        First Name <span class="text-danger">*</span>
+                                             First Name <span class="text-danger">*</span>
                                         </asp:Label>
                                         <asp:TextBox ID="c_diff_fname" class="form-control" runat="server"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorFirstName" runat="server" ErrorMessage="Please enter [First Name]." ControlToValidate="c_diff_fname" CssClass="error" Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
                                     </div>
 
                                     <div class="col-md-6">
                                         <asp:Label ID="lblLastName" class="text-black" runat="server">
-                        Last Name <span class="text-danger">*</span>
+                                              Last Name <span class="text-danger">*</span>
                                         </asp:Label>
                                         <asp:TextBox ID="c_diff_lname" class="form-control" runat="server"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorLastName" runat="server" ErrorMessage="Please enter [Last Name]." ControlToValidate="c_diff_lname" CssClass="error" Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
 
                                 <div class="form-group row  mb-3">
                                     <div class="col-md-12">
                                         <asp:Label ID="lblAddress" class="text-black" runat="server">
-                        Address <span class="text-danger">*</span>
+                                                Address <span class="text-danger">*</span>
                                         </asp:Label>
                                         <asp:TextBox ID="c_diff_address" class="form-control" placeholder="Street address" runat="server"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorAddress" runat="server" ErrorMessage="Please enter [Address]." ControlToValidate="c_diff_address" CssClass="error" Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidatorAddress" runat="server" ControlToValidate="c_diff_address" CssClass="error" Display="Dynamic" 
+                                         ForeColor="Red" ErrorMessage="Invalid [Address] format. Only accept (, . - /) symbol, letters and digits. Please enter a valid [Address]." ValidationExpression="^[a-zA-Z0-9\s,.-/]+$"></asp:RegularExpressionValidator>
                                     </div>
                                 </div>
 
@@ -102,12 +96,24 @@
                                     <asp:TextBox ID="txtUnit" class="form-control" runat="server" placeholder="Apartment, suite, unit etc. (optional)"></asp:TextBox>
                                 </div>
 
+                                <div class="form-group">
+                                    <asp:Label ID="lblCountry" class="text-black" runat="server">
+                                        Country 
+                                    </asp:Label>
+                                    <asp:DropDownList ID="c_diff_country" class="form-control" runat="server" >
+                                        <asp:ListItem Text="-- Select a country --" Value="1" Selected="True" Disabled="True"></asp:ListItem>
+                                        <asp:ListItem Text="Malaysia" Value="2"></asp:ListItem>
+                                        <asp:ListItem Text="China" Value="3"></asp:ListItem>
+                                    </asp:DropDownList>
+
+                                </div>
+
                                 <div class="form-group row">
                                     <asp:Label ID="lblCity" class="text-black" runat="server">
-                        City <span class="text-danger">*</span>
+                                        City
                                     </asp:Label>
-                                    <asp:DropDownList ID="c_diff_state_country" class="form-control" runat="server">
-                                        <asp:ListItem Text="Select a city" Value="1"></asp:ListItem>
+                                    <asp:DropDownList ID="c_diff_city" class="form-control" runat="server" >
+                                        <asp:ListItem Text="-- Select a city --" Value="1" Selected="True" Disabled="True" ></asp:ListItem>
                                         <asp:ListItem Text="Penang" Value="2"></asp:ListItem>
                                         <asp:ListItem Text="Kuala Lumpur" Value="3"></asp:ListItem>
                                         <asp:ListItem Text="BeiJing" Value="4"></asp:ListItem>
@@ -117,9 +123,12 @@
 
                                 <div class="form-group row mb-5">
                                     <asp:Label ID="lblPhone" class="text-black" runat="server">
-                        Phone <span class="text-danger">*</span>
+                                        Phone <span class="text-danger">*</span>
                                     </asp:Label>
-                                    <asp:TextBox ID="c_diff_phone" class="form-control" placeholder="Phone Number" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="c_diff_phone" class="form-control" placeholder="For example: 012-3456-7890" runat="server"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorPhone" runat="server" ErrorMessage="Please enter [Phone Number]." ControlToValidate="c_diff_phone" CssClass="error" Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidatorPhone" runat="server" ControlToValidate="c_diff_phone" CssClass="error" Display="Dynamic" 
+                                        ForeColor="Red" ErrorMessage="Invalid [Phone Number] format. Please enter a valid [Phone Number]. For example: 0123567890." ValidationExpression="^\d{10,11}$"></asp:RegularExpressionValidator>
                                 </div>
 
                                 <div class="form-group">
@@ -128,8 +137,8 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <asp:Button ID="btnCloseDialog" CssClass="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" OnClick="btnCloseDialog_Click" />
-                                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary" OnClick="btnSubmit_Click" />
+                                    <asp:Button ID="btnCloseDialog" CssClass="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" OnClick="btnCloseDialog_Click" CausesValidation="false"/>
+                                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary" OnClick="btnSubmit_Click" CausesValidation="true"/>
                                 </div>
 
                             </div>
@@ -180,7 +189,7 @@
 
                     <div class="group-paymentmethod">
                          <div class="form-group">
-                            <asp:Button class="btn btn-black btn-lg py-3 btn-block" ID="btnPay" runat="server" Text="Place Order" OnClick="btnPay_Click1"/>
+                            <asp:Button class="btn btn-black btn-lg py-3 btn-block" ID="btnPay" runat="server" Text="Place Order" OnClick="btnPay_Click1" CausesValidation="false"/>
                         </div>
                     </div>
             </div>

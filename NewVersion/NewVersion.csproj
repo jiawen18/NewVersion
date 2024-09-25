@@ -595,6 +595,7 @@
     <Content Include="css\images\dots-yellow.svg" />
     <Content Include="css\images\earphoneB.png" />
     <Content Include="css\images\envelope-outline.svg" />
+    <Content Include="css\images\error.png" />
     <Content Include="css\images\gadgets-removebg-preview.png" />
     <Content Include="css\images\galaxy1.png" />
     <Content Include="css\images\GalaxyA.png" />
