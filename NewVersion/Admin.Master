@@ -330,7 +330,7 @@
                                 <li class="nav-item topbar-icon dropdown hidden-caret">
                                     <a
                                         class="nav-link"
-                                        data-bs-toggle="dropdown"
+                                        data-toggle="dropdown"
                                         href="#"
                                         aria-expanded="false">
                                         <i class="fas fa-layer-group"></i>
@@ -404,7 +404,7 @@
                                 <li class="nav-item topbar-user dropdown hidden-caret">
                                     <a
                                         class="dropdown-toggle profile-pic"
-                                        data-bs-toggle="dropdown"
+                                        data-toggle="dropdown"
                                         href="#"
                                         aria-expanded="false">
                                         <div class="avatar-sm">
@@ -418,8 +418,9 @@
                                             <span class="fw-bold">Hizrian</span>
                                         </span>
                                     </a>
+                                     <div class="dropdown-user-scroll scrollbar-outer">
                                     <ul class="dropdown-menu dropdown-user animated fadeIn">
-                                        <div class="dropdown-user-scroll scrollbar-outer">
+                                       
                                             <li>
                                                 <div class="user-box">
                                                     <div class="avatar-lg">
@@ -446,8 +447,9 @@
                                                 <%--<div class="dropdown-divider"></div>--%>
                                                 <a class="dropdown-item" href="../css/Home.aspx">Logout</a>
                                             </li>
-                                        </div>
+                                        
                                     </ul>
+                                   </div>
                                 </li>
                             </ul>
                         </div>

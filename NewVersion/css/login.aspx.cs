@@ -35,69 +35,63 @@
                         txt_email.Text = profile.Email;
 
                         /* Redirect User to home page after successfully login */
-                        Response.Redirect("Home.aspx");
+                        Response.Redirect("AboutUs.aspx");
                     }
                 }
 
             }
 
-            protected void btn_signin_Click(object sender, EventArgs e)
+        protected void btn_signin_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
             {
-                if (Page.IsValid)
+                string emailOrUsername = txt_email.Text.Trim();
+                string password = txt_password.Text.Trim();
+                bool rememberMe = ckb_remember.Checked;
+
+                // Check if user exists in Admin or Member table
+                var AdminUser = ue.AdminUsers.SingleOrDefault(a => a.Email == emailOrUsername || a.Username == emailOrUsername);
+                var MemberUser = ue.MemberUsers.SingleOrDefault(m => m.Email == emailOrUsername || m.Username == emailOrUsername);
+
+                // Handle login for admin users
+                if (AdminUser != null)
                 {
-                    string email = txt_email.Text;
-                    string password = txt_password.Text;
-                    bool rememberMe = ckb_remember.Checked;
-
-                    // Check if email or username exists in the database
-                    // Check if email or username exists in the admin or member database
-                    var AdminUser = ue.AdminUsers.SingleOrDefault(a => a.Email == email || a.Username == email);
-                    var MemberUser = ue.MemberUsers.SingleOrDefault(m => m.Email == email || m.Username == email);
-
-                    // Handle login for admin users
-                    if (AdminUser != null)
+                    string inputPasswordHash = Security.HashPassword(password);
+                    if (AdminUser.PasswordHash == inputPasswordHash)
                     {
-                        string inputPasswordHash = Security.HashPassword(password);
-                        if (AdminUser.PasswordHash == inputPasswordHash)
-                        {
-                            // Log the user in (Admin)
-                            Security.LoginUser(AdminUser.Username, AdminUser.Role, rememberMe);
-                            HttpContext.Current.ApplicationInstance.CompleteRequest();
-                            Response.Redirect("AboutUs.aspx");
-                        }
-                        else
-                        {
-                            //username and password not match
-                            //display error message 
-                            cvNotMatched.IsValid = false;
-                        }
+                        // Log in the user as Admin
+                        Security.LoginUser(AdminUser.Username, "Admin", rememberMe);                   
                     }
-                    // Handle login for member users
-                    else if (MemberUser != null)
-                    {
-                        string inputPasswordHash = Security.HashPassword(password);
-                        if (MemberUser.PasswordHash == inputPasswordHash)
-                        {
-                            // Log the user in (Member)
-                            Security.LoginUser(MemberUser.Username, MemberUser.Role, rememberMe);
-                            Response.Redirect("AboutUs.aspx");
-                        }
-                        else
-                        {
-
-                            cvNotMatched.IsValid = false;
-                        }
-                    }
-                    // No user found in either Admins or Members table
                     else
-                    {               
+                    {
+                        // Invalid credentials
                         cvNotMatched.IsValid = false;
                     }
-
+                }
+                // Handle login for member users 
+                else if (MemberUser != null)
+                {
+                    string inputPasswordHash = Security.HashPassword(password);
+                    if (MemberUser.PasswordHash == inputPasswordHash)
+                    {
+                        // Log in the user as Member
+                        Security.LoginUser(MemberUser.Username, "Member", rememberMe);                  
+                    }
+                    else
+                    {
+                        // Invalid credentials
+                        cvNotMatched.IsValid = false;
+                    }
+                }
+                // If no user is found
+                else
+                {
+                    cvNotMatched.IsValid = false; // Display error for non-existent user
                 }
             }
+        }
 
-            protected void login_google_Click(object sender, EventArgs e)
+        protected void login_google_Click(object sender, EventArgs e)
             {
                 GoogleConnect.Authorize("profile", "email");
        
@@ -116,7 +110,7 @@
 
                 var properties = new AuthenticationProperties
                 {
-                    RedirectUri = "/css/Home.aspx"
+                    RedirectUri = "AboutUs.aspx"
                 };
                 HttpContext.Current.GetOwinContext().Authentication.Challenge(properties, "Facebook");
             }

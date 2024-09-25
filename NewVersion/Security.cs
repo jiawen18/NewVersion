@@ -38,8 +38,14 @@ namespace NewVersion
                 ctx.Response.Cookies.Add(authCookie);
 
                 // Redirect user to the appropriate URL
-                string redirectUrl = FormsAuthentication.GetRedirectUrl(username, rememberMe);
-                ctx.Response.Redirect(redirectUrl);
+                if (role == "Admin")
+                {
+                    ctx.Response.Redirect("~/admin/dashboard.aspx");  // Redirect to the admin dashboard
+                }
+                else
+                {
+                    ctx.Response.Redirect("~/css/AboutUs.aspx");  // Redirect to the member's home page
+                }
             }
             catch (ThreadAbortException)
             {

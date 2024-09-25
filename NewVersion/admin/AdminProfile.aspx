@@ -65,12 +65,17 @@
                             <div class="form-group">
                                 <asp:Label ID="lbl_adm_username" runat="server" Text="Username" class="form-label"></asp:Label>
                                 <asp:TextBox ID="txt_adm_username" runat="server" class="form-control mb-1" value="Hizrian"></asp:TextBox>                            
-                            </div>
-
-                            <div class="form-group">
-                                <asp:Label ID="lbl_adm_name" runat="server" Text="Name" class="form-label"></asp:Label>
-                                <asp:TextBox ID="txt_adm_name" runat="server" class="form-control mb-1" value="Hizrian"></asp:TextBox>                  
-                            </div>
+                            </div> 
+                            
+                             <div class="form-group">
+                                 <asp:Label ID="lbl_adm_position" runat="server" Text="Position" class="form-label"></asp:Label>
+                                 <asp:TextBox ID="txt_adm_position" runat="server" class="form-control mb-1" ></asp:TextBox>                            
+                             </div>   
+                        
+                             <div class="form-group">
+                                 <asp:Label ID="lbl_adm_office" runat="server" Text="Office" class="form-label"></asp:Label>
+                                 <asp:TextBox ID="txt_adm_office" runat="server" class="form-control mb-1"></asp:TextBox>                            
+                             </div>   
 
                             <div class="form-group">
                                 <asp:Label ID="lbl_adm_email" runat="server" Text="Email" class="form-label"></asp:Label>
@@ -144,7 +149,7 @@
         </div>
     </div>
     <div class="text-right mt-3">
-        <asp:Button ID="btn_acc_svChanges" runat="server" Text="Save Changes" class="btn btn-primary" />
+        <asp:Button ID="btn_acc_svChanges" runat="server" Text="Save Changes" class="btn btn-primary" OnClick="btn_acc_svChanges_Click" />
         <asp:Button ID="btn_acc_cancel" runat="server" Text="Cancel" class="btn btn-danger" OnClick="btn_acc_cancel_Click"   />       
     </div>
  </div>
