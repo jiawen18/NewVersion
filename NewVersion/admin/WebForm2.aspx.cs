@@ -29,36 +29,6 @@ namespace NewVersion.admin
             }
         }
 
-        protected void AddRowButton_Click(object sender, EventArgs e)
-        {
-            if (Page.IsValid)
-            {
-                using (var context = new userEntities())
-                {
-                    var supplier = new Supplier
-                    {
-                        supplierBranch = addBranch.Text,
-                        supplierEmail = addEmail.Text,
-                        supplierPhone = addPhone.Text,
-                        supplierAddress = addAddress.Text
-                    };
-
-                    context.Suppliers.Add(supplier);
-                    context.SaveChanges();
-                }
-
-                addBranch.Text = string.Empty;
-                addEmail.Text = string.Empty;
-                addPhone.Text = string.Empty;
-                addAddress.Text = string.Empty;
-
-                BindGrid();
-
-                ScriptManager.RegisterStartupScript(this, GetType(), "hideModal", "$('#editRowModal').modal('hide');", true);
-
-            }
-        }
-
         protected void GridView1_Sorting(object sender, GridViewSortEventArgs e)
         {
             var sortColumn = e.SortExpression;
@@ -86,35 +56,109 @@ namespace NewVersion.admin
                 GridView1.DataBind();
             }
         }
+        protected void AddRowButton_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                using (var context = new userEntities())
+                {
+                    int supplierID;
+                    if (int.TryParse(HiddenSupplierID.Value, out supplierID) && supplierID > 0)
+                    {
+                        // Editing existing supplier
+                        var supplier = context.Suppliers.Find(supplierID);
+                        if (supplier != null)
+                        {
+                            supplier.supplierBranch = addBranch.Text;
+                            supplier.supplierEmail = addEmail.Text;
+                            supplier.supplierPhone = addPhone.Text;
+                            supplier.supplierAddress = addAddress.Text;
+                        }
+                    }
+                    else
+                    {
+                        // Adding new supplier
+                        var supplier = new Supplier
+                        {
+                            supplierBranch = addBranch.Text,
+                            supplierEmail = addEmail.Text,
+                            supplierPhone = addPhone.Text,
+                            supplierAddress = addAddress.Text
+                        };
+                        context.Suppliers.Add(supplier);
+                    }
 
-        //protected void ButtonEdit_Click(object sender, EventArgs e)
-        //{
-        //    string branch = editBranch.Text;
-        //    string email = editEmail.Text;
-        //    string phone = editPhone.Text;
-        //    string address = editAddress.Text;
+                    context.SaveChanges();
+                }
 
-        //    int supplierID = int.Parse(editSupplierID.Value);
+                // Clear input fields
+                addBranch.Text = string.Empty;
+                addEmail.Text = string.Empty;
+                addPhone.Text = string.Empty;
+                addAddress.Text = string.Empty;
 
-        //    using (var context = new userEntities())
-        //    {
-        //        var supplier = context.Suppliers.Find(supplierID);
-        //        if (supplier != null)
-        //        {
-        //            supplier.supplierBranch = branch;
-        //            supplier.supplierEmail = email;
-        //            supplier.supplierPhone = phone;
-        //            supplier.supplierAddress = address;
+                // Clear hidden supplier ID
+                HiddenSupplierID.Value = string.Empty;
 
-        //            context.SaveChanges();
-        //        }
-        //    }
+                BindGrid();
+                FeedbackLabel.Text = "Supplier saved successfully!";
+                FeedbackLabel.CssClass = "text-success";
+            }
+        }
 
-        //    BindGrid();
 
-        //    ScriptManager.RegisterStartupScript(this, GetType(), "hideModal", "$('#editRowModal').modal('hide');", true);
-        //}
+        protected void EditTaskButton_Click(object sender, EventArgs e)
+        {
+            Button editButton = sender as Button;
+            if (editButton != null)
+            {
+                int supplierID = Convert.ToInt32(editButton.CommandArgument);
 
+                using (var context = new userEntities())
+                {
+                    var supplier = context.Suppliers.Find(supplierID);
+                    if (supplier != null)
+                    {
+                        // Populate fields with the supplier's data
+                        addBranch.Text = supplier.supplierBranch;
+                        addEmail.Text = supplier.supplierEmail;
+                        addPhone.Text = supplier.supplierPhone;
+                        addAddress.Text = supplier.supplierAddress;
+
+                        // Store the supplierID in a hidden field to identify it during update
+                        HiddenSupplierID.Value = supplierID.ToString(); // Ensure you have a hidden field to store supplierID
+
+                        // Open the modal
+                        ScriptManager.RegisterStartupScript(this, GetType(), "showModal", "$('#addRowModal').modal('show');", true);
+                    }
+                }
+            }
+        }
+
+
+        protected void RemoveSupplierButton_Click(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "Delete")
+            {
+                int supplierId = Convert.ToInt32(e.CommandArgument);
+
+                using (var context = new userEntities())
+                {
+                    // Find the supplier by ID
+                    var supplierToRemove = context.Suppliers.Find(supplierId);
+                    if (supplierToRemove != null)
+                    {
+                        context.Suppliers.Remove(supplierToRemove);
+                        context.SaveChanges();
+                    }
+                }
+
+                // Rebind the GridView to reflect the changes
+                BindGrid();
+                FeedbackLabel.Text = "Supplier removed successfully!";
+                FeedbackLabel.CssClass = "text-success";
+            }
+        }
 
     }
 }
