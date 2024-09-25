@@ -26,7 +26,10 @@ namespace NewVersion.admin
                 string username = txt_adm_username.Text.Trim();
                 string email = txt_adm_email.Text.Trim();
                 string password = txt_adm_password.Text.Trim();
-                string hashedPassword = Security.HashPassword(password); 
+                string hashedPassword = Security.HashPassword(password);
+                string position = txt_adm_position.Text.Trim();
+                string office = txt_adm_office.Text.Trim();
+
 
                 // Check if the username or email already exists in the database
                 var existingAdmin = ue.AdminUsers.SingleOrDefault(a => a.Username == username || a.Email == email);
@@ -44,6 +47,8 @@ namespace NewVersion.admin
                     Username = username,
                     Email = email,
                     PasswordHash = hashedPassword, // Store the hashed password
+                    Position = position,
+                    Office  = office,
                     Role = "Admin" // Set the role to Admin (or use role-based logic)     
                 };
 

@@ -51,6 +51,7 @@
                                          <asp:RequiredFieldValidator ID="rqvld_username" runat="server" ControlToValidate="txt_adm_username" ErrorMessage="*Please Enter Username" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                                     </div>
 
+
                                       <div class="col-sm-12"> 
                                         <div class="form-group form-group-default">                                        
                                             <asp:Label ID="lbl_adm_email" runat="server" Text="Email" class="form-label"></asp:Label>
@@ -61,6 +62,21 @@
                                             <asp:RegularExpressionValidator ID="revld_email" runat="server" ControlToValidate="txt_adm_email" Display="Dynamic" ErrorMessage="*Invalid Email Addrerss" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                                             <asp:CustomValidator ID="cvExisted" runat="server" ControlToValidate="txt_adm_email" Display="Dynamic" ErrorMessage="CustomValidator" ForeColor="Red">*Email Address Already Exist</asp:CustomValidator>
                                     </div>
+
+                                    
+                                   <div class="col-md-6 pe-0">
+                                     <div class="form-group form-group-default">                                        
+                                         <asp:Label ID="lbl_adm_position" runat="server" Text="Position" class="form-label"></asp:Label>
+                                         <asp:TextBox ID="txt_adm_position" runat="server" class="form-control"></asp:TextBox>                                                   
+                                      </div>                                 
+                                 </div>
+
+                                      <div class="col-md-6">
+                                    <div class="form-group form-group-default">                                        
+                                        <asp:Label ID="lbl_adm_office" runat="server" Text="Office" class="form-label"></asp:Label>
+                                        <asp:TextBox ID="txt_adm_office" runat="server" class="form-control"></asp:TextBox>                                                   
+                                     </div>                                 
+                                </div>
 
                                       <div class="col-sm-12"> 
                                         <div class="form-group form-group-default">

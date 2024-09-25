@@ -1,138 +1,212 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
+using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using NewVersion.Models;
 
 namespace NewVersion.admin
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
-        string cs = Global.CS; // Your connection string
-
-        private string SortDirection
-        {
-            get
-            {
-                return ViewState["SortDirection"] as string ?? "ASC";
-            }
-            set
-            {
-                ViewState["SortDirection"] = value;
-            }
-        }
-
-        private string SortExpression
-        {
-            get
-            {
-                return ViewState["SortExpression"] as string ?? "Name";
-            }
-            set
-            {
-                ViewState["SortExpression"] = value;
-            }
-        }
+        private userEntities db = new userEntities();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                BindRepeater(SortExpression, SortDirection);
+                BindGrid();
             }
         }
 
-        private void BindRepeater(string sortBy, string sortDirection)
+        private void BindGrid()
         {
-            string query = $"SELECT Name, Price, Quantity FROM Product ORDER BY {sortBy} {sortDirection}";
-
-            using (SqlConnection conn = new SqlConnection(cs))
+            using (var context = new userEntities())
             {
-                SqlCommand cmd = new SqlCommand(query, conn);
-                DataSet ds = new DataSet();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-
-                Repeater1.DataSource = ds;
-                Repeater1.DataBind();
-
-                conn.Close();
+                var suppliers = context.Suppliers.ToList();
+                GridView1.DataSource = suppliers;
+                GridView1.DataBind();
             }
         }
 
-        protected void SortButton_Click(object sender, EventArgs e)
+        protected void GridView1_Sorting(object sender, GridViewSortEventArgs e)
         {
-            var button = (System.Web.UI.WebControls.LinkButton)sender;
-            string sortBy = button.CommandArgument;
-            string sortDirection = SortDirection == "ASC" ? "DESC" : "ASC";
-
-            // Update sort direction and expression
-            SortDirection = sortDirection;
-            SortExpression = sortBy;
-
-            // Rebind the repeater
-            BindRepeater(sortBy, sortDirection);
-
-            // Update button icons
-            UpdateSortIcons();
-        }
-
-        private void UpdateSortIcons()
-        {
-            // Access the header template and find the sorting buttons
-            RepeaterItem headerItem = Repeater1.Controls[0] as RepeaterItem;
-
-            if (headerItem != null)
+            var sortColumn = e.SortExpression;
+            using (var context = new userEntities())
             {
-                // Find the sorting buttons by their IDs
-                System.Web.UI.WebControls.LinkButton sortByName = headerItem.FindControl("SortByName") as System.Web.UI.WebControls.LinkButton;
-                System.Web.UI.WebControls.LinkButton sortByPrice = headerItem.FindControl("SortByPrice") as System.Web.UI.WebControls.LinkButton;
-                System.Web.UI.WebControls.LinkButton sortByQuantity = headerItem.FindControl("SortByQuantity") as System.Web.UI.WebControls.LinkButton;
+                var suppliers = context.Suppliers.ToList();
 
-                // Update icons based on the current sort expression and direction
-                if (sortByName != null)
+                switch (sortColumn)
                 {
-                    sortByName.Text = SortExpression == "Name" ? (SortDirection == "ASC" ? "<i class='fa fa-sort-up'></i>" : "<i class='fa fa-sort-down'></i>") : "<i class='fa fa-sort'></i>";
+                    case "supplierBranch":
+                        suppliers = suppliers.OrderBy(s => s.supplierBranch).ToList();
+                        break;
+                    case "supplierEmail":
+                        suppliers = suppliers.OrderBy(s => s.supplierEmail).ToList();
+                        break;
+                    case "supplierPhone":
+                        suppliers = suppliers.OrderBy(s => s.supplierPhone).ToList();
+                        break;
+                    case "supplierAddress":
+                        suppliers = suppliers.OrderBy(s => s.supplierAddress).ToList();
+                        break;
                 }
 
-                if (sortByPrice != null)
-                {
-                    sortByPrice.Text = SortExpression == "Price" ? (SortDirection == "ASC" ? "<i class='fa fa-sort-up'></i>" : "<i class='fa fa-sort-down'></i>") : "<i class='fa fa-sort'></i>";
-                }
-
-                if (sortByQuantity != null)
-                {
-                    sortByQuantity.Text = SortExpression == "Quantity" ? (SortDirection == "ASC" ? "<i class='fa fa-sort-up'></i>" : "<i class='fa fa-sort-down'></i>") : "<i class='fa fa-sort'></i>";
-                }
+                GridView1.DataSource = suppliers;
+                GridView1.DataBind();
             }
         }
-
-
         protected void AddRowButton_Click(object sender, EventArgs e)
         {
-            string script = "alert('Add button clicked!');";
-            ClientScript.RegisterStartupScript(this.GetType(), "AlertScript", script, true);
+            if (Page.IsValid)
+            {
+                using (var context = new userEntities())
+                {
+                    int supplierID;
+                    if (int.TryParse(HiddenSupplierID.Value, out supplierID) && supplierID > 0)
+                    {
+                        // Editing existing supplier
+                        var supplier = context.Suppliers.Find(supplierID);
+                        if (supplier != null)
+                        {
+                            supplier.supplierBranch = addBranch.Text;
+                            supplier.supplierEmail = addEmail.Text;
+                            supplier.supplierPhone = addPhone.Text;
+                            supplier.supplierAddress = addAddress.Text;
+                        }
+                    }
+                    else
+                    {
+                        // Adding new supplier
+                        var supplier = new Supplier
+                        {
+                            supplierBranch = addBranch.Text,
+                            supplierEmail = addEmail.Text,
+                            supplierPhone = addPhone.Text,
+                            supplierAddress = addAddress.Text
+                        };
+                        context.Suppliers.Add(supplier);
+                    }
+
+                    context.SaveChanges();
+                }
+
+                // Clear input fields
+                addBranch.Text = string.Empty;
+                addEmail.Text = string.Empty;
+                addPhone.Text = string.Empty;
+                addAddress.Text = string.Empty;
+
+                // Clear hidden supplier ID
+                HiddenSupplierID.Value = string.Empty;
+
+                BindGrid();
+                FeedbackLabel.Text = "Supplier saved successfully!";
+                FeedbackLabel.CssClass = "text-success";
+            }
         }
-        protected void CopyItemButton_Click(object sender, EventArgs e)
-        {
-            string script = "alert('Button clicked!');";
-            ClientScript.RegisterStartupScript(this.GetType(), "AlertScript", script, true);
-        }
+
 
         protected void EditTaskButton_Click(object sender, EventArgs e)
         {
-            string script = "alert('Button clicked!');";
-            ClientScript.RegisterStartupScript(this.GetType(), "AlertScript", script, true);
+            Button editButton = sender as Button;
+            if (editButton != null)
+            {
+                int supplierID = Convert.ToInt32(editButton.CommandArgument);
+
+                using (var context = new userEntities())
+                {
+                    var supplier = context.Suppliers.Find(supplierID);
+                    if (supplier != null)
+                    {
+                        // Populate fields with the supplier's data
+                        addBranch.Text = supplier.supplierBranch;
+                        addEmail.Text = supplier.supplierEmail;
+                        addPhone.Text = supplier.supplierPhone;
+                        addAddress.Text = supplier.supplierAddress;
+
+                        // Store the supplierID in a hidden field to identify it during update
+                        HiddenSupplierID.Value = supplierID.ToString(); // Ensure you have a hidden field to store supplierID
+
+                        // Open the modal
+                        ScriptManager.RegisterStartupScript(this, GetType(), "showModal", "$('#addRowModal').modal('show');", true);
+                    }
+                }
+            }
         }
 
-        protected void RemoveItemButton_Click(object sender, EventArgs e)
+
+        protected void RemoveSupplierButton_Click(object sender, EventArgs e)
         {
-            string script = "alert('Button clicked!');";
-            ClientScript.RegisterStartupScript(this.GetType(), "AlertScript", script, true);
+            Button btn = (Button)sender; // Cast sender to Button
+            int supplierId = Convert.ToInt32(btn.CommandArgument); // Get CommandArgument which contains supplierID
+
+            using (var context = new userEntities())
+            {
+                // Find the supplier by ID
+                var supplierToRemove = context.Suppliers.Find(supplierId);
+                if (supplierToRemove != null)
+                {
+                    context.Suppliers.Remove(supplierToRemove);
+                    context.SaveChanges();
+                }
+            }
+
+            // Rebind the GridView to reflect the changes
+            BindGrid();
+            FeedbackLabel.Text = "Supplier removed successfully!";
+            FeedbackLabel.CssClass = "text-success";
+        }
+
+        protected void UpdateRowButton_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                using (var context = new userEntities())
+                {
+                    int supplierID;
+                    if (int.TryParse(HiddenSupplierID.Value, out supplierID) && supplierID > 0)
+                    {
+                        var supplier = context.Suppliers.Find(supplierID);
+                        if (supplier != null)
+                        {
+                            supplier.supplierBranch = addBranch.Text;
+                            supplier.supplierEmail = addEmail.Text;
+                            supplier.supplierPhone = addPhone.Text;
+                            supplier.supplierAddress = addAddress.Text;
+
+                            context.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        FeedbackLabel.Text = "Invalid Supplier ID.";
+                        FeedbackLabel.CssClass = "text-danger";
+                        return;
+                    }
+                }
+
+                // Reset fields and state after update
+                ResetModalState();
+
+                FeedbackLabel.Text = "Supplier updated successfully!";
+                FeedbackLabel.CssClass = "text-success";
+            }
+        }
+
+        private void ResetModalState()
+        {
+            addBranch.Text = string.Empty;
+            addEmail.Text = string.Empty;
+            addPhone.Text = string.Empty;
+            addAddress.Text = string.Empty;
+            HiddenSupplierID.Value = string.Empty;
+
+            // Optionally, you can close the modal here if needed
+            ScriptManager.RegisterStartupScript(this, GetType(), "closeModal", "$('#addRowModal').modal('hide');", true);
+            BindGrid(); // Refresh the grid to show the updated data
         }
     }
 }

@@ -1,27 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="WebForm2.aspx.cs" Inherits="NewVersion.admin.WebForm2" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="newSupplier.aspx.cs" Inherits="NewVersion.admin.newSupplier" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-
-    <script type="text/javascript">
-        function confirmDelete() {
-            return confirm("Are you sure you want to remove this supplier?");
-        }
-
-        function populateModal(branch, email, phone, address, supplierID) {
-            document.getElementById('<%= addBranch.ClientID %>').value = branch;
-            document.getElementById('<%= addEmail.ClientID %>').value = email;
-            document.getElementById('<%= addPhone.ClientID %>').value = phone;
-            document.getElementById('<%= addAddress.ClientID %>').value = address;
-            document.getElementById('<%= HiddenSupplierID.ClientID %>').value = supplierID;
-
-            $('#addRowModal').modal('show');
-        }
-    </script>
 
     <div class="card">
         <div class="card-header">
             <div class="d-flex align-items-center">
-                <h4 class="card-title">Add Row</h4>
+                <h4 class="card-title">New Supplier</h4>
                 <asp:LinkButton
                     ID="AddRowButton"
                     runat="server"
@@ -30,7 +14,7 @@
                     data-bs-toggle="modal"
                     data-bs-target="#addRowModal">
                     <i class="fa fa-plus" style="padding-right: 8px;"></i>
-                    Add Row
+                    Add
                 </asp:LinkButton>
             </div>
             <asp:Label ID="FeedbackLabel" runat="server"></asp:Label>
@@ -45,12 +29,12 @@
                     <div class="modal-content">
                         <div class="modal-header border-0">
                             <h5 class="modal-title">
-                                <span class="fw-mediumbold">Edit</span>
+                                <span class="fw-mediumbold">New</span>
                                 <span class="fw-light">Supplier</span>
                             </h5>
                         </div>
                         <div class="modal-body">
-                            <p class="small">Edit the supplier information</p>
+                            <p class="small">Create a new supplier using this form, make sure you fill them all</p>
                             <div>
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -141,7 +125,7 @@
                             </div>
                         </div>
                         <div class="modal-footer border-0">
-                            <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary" Text="Update" OnClick="UpdateRowButton_Click" />
+                            <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary" Text="Add" OnClick="AddRowButton_Click" />
                         </div>
                     </div>
                 </div>
@@ -152,34 +136,15 @@
                     ID="GridView1"
                     runat="server"
                     AutoGenerateColumns="False"
-                    AllowSorting="True"
+                    AllowSorting="False"
                     CssClass="display table table-striped table-hover"
-                    DataKeyNames="supplierID"
-                    OnSorting="GridView1_Sorting">
+                    DataKeyNames="supplierID">
                     <Columns>
-                        <asp:BoundField DataField="supplierID" HeaderText="ID" SortExpression="supplierID" Visible="false" />
-                        <asp:BoundField DataField="supplierBranch" HeaderText="Branch" SortExpression="supplierBranch" />
-                        <asp:BoundField DataField="supplierEmail" HeaderText="Email" SortExpression="supplierEmail" />
-                        <asp:BoundField DataField="supplierPhone" HeaderText="Phone" SortExpression="supplierPhone" />
-                        <asp:BoundField DataField="supplierAddress" HeaderText="Address" SortExpression="supplierAddress" />
-                        <asp:TemplateField HeaderText="Actions">
-                            <ItemTemplate>
-                                <asp:Button
-                                    ID="EditTaskButton"
-                                    runat="server"
-                                    CssClass="btn btn-link btn-primary"
-                                    OnClientClick='<%# "populateModal(\"" + Eval("supplierBranch") + "\", \"" + Eval("supplierEmail") + "\", \"" + Eval("supplierPhone") + "\", \"" + Eval("supplierAddress") + "\", \"" + Eval("supplierID") + "\"); return false;" %>'
-                                    Text="Edit" />
-                                <asp:Button
-                                    ID="RemoveItemButton"
-                                    runat="server"
-                                    CssClass="btn btn-link btn-danger"
-                                    OnClientClick="return confirm('Are you sure you want to remove this supplier?');"
-                                    OnClick="RemoveSupplierButton_Click"
-                                    CommandArgument='<%# Eval("supplierID") %>'
-                                    Text="Remove" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
+                        <asp:BoundField DataField="supplierID" HeaderText="ID" SortExpression="supplierID" Visible="false" HeaderStyle-ForeColor="Black" />
+                        <asp:BoundField DataField="supplierBranch" HeaderText="Branch" SortExpression="supplierBranch" HeaderStyle-ForeColor="Black" />
+                        <asp:BoundField DataField="supplierEmail" HeaderText="Email" SortExpression="supplierEmail" HeaderStyle-ForeColor="Black" />
+                        <asp:BoundField DataField="supplierPhone" HeaderText="Phone" SortExpression="supplierPhone" HeaderStyle-ForeColor="Black" />
+                        <asp:BoundField DataField="supplierAddress" HeaderText="Address" SortExpression="supplierAddress" HeaderStyle-ForeColor="Black" />
                     </Columns>
                 </asp:GridView>
             </div>
@@ -187,3 +152,4 @@
     </div>
 
 </asp:Content>
+

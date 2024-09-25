@@ -11,8 +11,17 @@ namespace NewVersion.admin
 {
 
 
-    public partial class supplier
+    public partial class newSupplier
     {
+
+        /// <summary>
+        /// AddRowButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton AddRowButton;
 
         /// <summary>
         /// FeedbackLabel control.

@@ -69,22 +69,40 @@ namespace NewVersion.admin
         protected global::System.Web.UI.WebControls.TextBox txt_adm_username;
 
         /// <summary>
-        /// lbl_adm_name control.
+        /// lbl_adm_position control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_adm_name;
+        protected global::System.Web.UI.WebControls.Label lbl_adm_position;
 
         /// <summary>
-        /// txt_adm_name control.
+        /// txt_adm_position control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_adm_name;
+        protected global::System.Web.UI.WebControls.TextBox txt_adm_position;
+
+        /// <summary>
+        /// lbl_adm_office control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_adm_office;
+
+        /// <summary>
+        /// txt_adm_office control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_adm_office;
 
         /// <summary>
         /// lbl_adm_email control.
@@ -195,24 +213,6 @@ namespace NewVersion.admin
         protected global::System.Web.UI.WebControls.TextBox txt_adm_birthday;
 
         /// <summary>
-        /// lbl_adm_country control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_adm_country;
-
-        /// <summary>
-        /// dll_adm_country control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dll_adm_country;
-
-        /// <summary>
         /// lbl_adm_phone control.
         /// </summary>
         /// <remarks>
@@ -222,13 +222,13 @@ namespace NewVersion.admin
         protected global::System.Web.UI.WebControls.Label lbl_adm_phone;
 
         /// <summary>
-        /// txt_adm_phonr control.
+        /// txt_adm_phone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_adm_phonr;
+        protected global::System.Web.UI.WebControls.TextBox txt_adm_phone;
 
         /// <summary>
         /// btn_acc_svChanges control.

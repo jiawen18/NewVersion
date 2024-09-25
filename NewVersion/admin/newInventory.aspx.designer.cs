@@ -7,83 +7,101 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NewVersion
+namespace NewVersion.admin
 {
 
 
-    public partial class Admin
+    public partial class newInventory
     {
 
         /// <summary>
-        /// form1 control.
+        /// AddRowButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.LinkButton AddRowButton;
 
         /// <summary>
-        /// ToggleSidebarButton control.
+        /// FeedbackLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ToggleSidebarButton;
+        protected global::System.Web.UI.WebControls.Label FeedbackLabel;
 
         /// <summary>
-        /// SidenavTogglerButton control.
+        /// HiddenInventoryID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton SidenavTogglerButton;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenInventoryID;
 
         /// <summary>
-        /// TopbarTogglerButton control.
+        /// addInventoryName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton TopbarTogglerButton;
+        protected global::System.Web.UI.WebControls.DropDownList addInventoryName;
 
         /// <summary>
-        /// login_adm_username control.
+        /// addInventorySupplier control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LoginName login_adm_username;
+        protected global::System.Web.UI.WebControls.DropDownList addInventorySupplier;
 
         /// <summary>
-        /// AdminBreadcrumbDataSource control.
+        /// addInventoryQuantity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SiteMapDataSource AdminBreadcrumbDataSource;
+        protected global::System.Web.UI.WebControls.TextBox addInventoryQuantity;
 
         /// <summary>
-        /// AdminBreadcrumb control.
+        /// QuantityValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SiteMapPath AdminBreadcrumb;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator QuantityValidator;
 
         /// <summary>
-        /// main control.
+        /// RequiredFieldValidatorQuantity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder main;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorQuantity;
+
+        /// <summary>
+        /// Button1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
+
+        /// <summary>
+        /// GridView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView1;
     }
 }

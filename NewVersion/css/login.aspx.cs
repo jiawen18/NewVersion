@@ -45,14 +45,14 @@
             {
                 if (Page.IsValid)
                 {
-                    string email = txt_email.Text;
+                    string emailorusername = txt_email.Text;
                     string password = txt_password.Text;
                     bool rememberMe = ckb_remember.Checked;
 
                     // Check if email or username exists in the database
                     // Check if email or username exists in the admin or member database
-                    var AdminUser = ue.AdminUsers.SingleOrDefault(a => a.Email == email || a.Username == email);
-                    var MemberUser = ue.MemberUsers.SingleOrDefault(m => m.Email == email || m.Username == email);
+                    var AdminUser = ue.AdminUsers.SingleOrDefault(a => a.Email ==  emailorusername || a.Username ==  emailorusername);
+                    var MemberUser = ue.MemberUsers.SingleOrDefault(m => m.Email ==  emailorusername || m.Username ==  emailorusername);
 
                     // Handle login for admin users
                     if (AdminUser != null)
@@ -62,8 +62,6 @@
                         {
                             // Log the user in (Admin)
                             Security.LoginUser(AdminUser.Username, AdminUser.Role, rememberMe);
-                            HttpContext.Current.ApplicationInstance.CompleteRequest();
-                            Response.Redirect("AboutUs.aspx");
                         }
                         else
                         {
@@ -80,7 +78,7 @@
                         {
                             // Log the user in (Member)
                             Security.LoginUser(MemberUser.Username, MemberUser.Role, rememberMe);
-                            Response.Redirect("AboutUs.aspx");
+                    
                         }
                         else
                         {
