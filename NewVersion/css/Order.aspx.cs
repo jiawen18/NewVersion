@@ -15,7 +15,7 @@ namespace NewVersion.css
         String cs2 = Global.CS;
         String cs3 = Global.CS;
 
-        /*protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             // Retrieve order data from the database or Session
             List<Order> orders = GetOrdersFromSessionOrDatabase();
@@ -58,8 +58,8 @@ namespace NewVersion.css
                 {
                     orders.Add(new Order
                     {
-                        InvoiceNumber = (dr1["InvoiceNumber"]).ToString(),
-                        InvoiceDate = dr1["InvoiceDate"].ToString()
+                        InvoiceNumber = dr1["InvoiceNumber"].ToString(),
+                        InvoiceDate = Convert.ToDateTime(dr1["InvoiceDate"])
                     });
                 }
 
@@ -145,7 +145,7 @@ namespace NewVersion.css
             List<Order> orders = Session["Orders"] as List<Order> ?? new List<Order>();
             orders.Add(order);
             Session["Orders"] = orders;
-        }*/
+        }
 
 
         protected void btnTrack_Click(object sender, EventArgs e)
@@ -158,12 +158,12 @@ namespace NewVersion.css
             Response.Redirect("cancelled.aspx");
         }
     }
-    /*
+
     public partial class Order
     {
         public int OrderID { get; set; }
         public string InvoiceNumber { get; set; }
-        public string InvoiceDate { get; set; }
+        public DateTime InvoiceDate { get; set; }
         public string ProductImageUrl { get; set; }
         public string ProductName { get; set; }
         public string ProductColor { get; set; }
@@ -173,7 +173,7 @@ namespace NewVersion.css
         public string TotalPrice { get; set; }
         public string DeliveryFee { get; set; }
         public string TotalPaid { get; set; }
-    }*/
+    }
 }
 
 
