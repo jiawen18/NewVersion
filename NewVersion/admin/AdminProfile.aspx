@@ -1,30 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AdminProfile.aspx.cs" Inherits="NewVersion.admin.AdminProfile" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
 
-  
     <!-- Script to upload file -->
-    <script type="text/javascript">
+     <script type="text/javascript">
         function triggerFileUpload() {
             document.getElementById('<%= fileUpload.ClientID %>').click();
-        }
-
-        function previewImage(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    document.getElementById('<%= imgProfile.ClientID %>').src = e.target.result;
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
+        }      
     </script>
 
-      <style>
+     <style>
         /* Hide the actual file input */
         input[type="file"] {
             display: none;
         }
-    </style>
+     </style>
 
 
         <div class="container light-style flex-grow-1 container-p-y">
@@ -43,22 +32,27 @@
                     <a class="list-group-item list-group-item-action" data-toggle="list"
                         href="#account-info"><span style="padding-left:30px">Info</span></a>                                                      
                 </div>
-            </div>    
-        
-                <div class="col-md-9">
-                    <div class="tab-content">
-                        <div class="tab-pane fade active show" id="account-Account">
-                            <div class="card-body media align-items-center">
-                                <asp:Image ID="imgProfile" runat="server"  Width="150px" Height="150px" Style="cursor:pointer;" OnClick="triggerFileUpload();" />
-                                <asp:FileUpload ID="fileUpload" runat="server" OnChange="previewImage(this);" />
-                                <div class="media-body ml-4">
-                                    <label class="btn btn-outline-primary">
-                                        Upload new photo
-                                        <input type="file" class="account-settings-fileinput" onchange="previewImage(this);" />
-                                    </label>
-                                </div>
-                            </div>
-                            <hr class="border-light m-0">
+            </div>
+          
+            <div class="col-md-9">
+                <div class="tab-content">
+                    <div class="tab-pane fade active show" id="account-Account">
+                        <div class="card-body media align-items-center">                            
+                       <asp:Image ID="imgProfile" runat="server" 
+                       ImageUrl="assets/img/profile.jpg" 
+                       Width="150px" Height="150px" 
+                       Style="cursor:pointer;"
+                       OnClick="triggerFileUpload();" /> 
+                       <asp:FileUpload ID="fileUpload" runat="server" OnChange="previewImage(this);" />
+                       <div class="media-body ml-4">
+                       <label class="btn btn-outline-primary">
+                         Upload new photo
+                         <input type="file" class="account-settings-fileinput">
+                       </label>                                                     
+  </div>
+                            
+                        </div>
+                        <hr class="border-light m-0">
 
                         <!-- Admin Account -->
                         <div class="card-body">
@@ -85,8 +79,7 @@
 
                             <div class="form-group">
                                 <asp:Label ID="lbl_adm_email" runat="server" Text="Email" class="form-label"></asp:Label>
-                                <asp:TextBox ID="txt_adm_email" runat="server" class="form-control mb-1" ></asp:TextBox>     
-                                <asp:RegularExpressionValidator ID="revld_email" runat="server" ControlToValidate="txt_adm_email" Display="Dynamic" ErrorMessage="*Invalid Email Addrerss" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                                <asp:TextBox ID="txt_adm_email" runat="server" class="form-control mb-1" ></asp:TextBox>                                
                             </div>     
                             
                              <div class="form-group">
@@ -109,7 +102,6 @@
                                 <asp:Label ID="lbl_adm_newPassword" runat="server" Text="New Password" class="form-label"></asp:Label>
                                 <asp:TextBox ID="txt_adm_newPassword" runat="server" type="password" class="form-control"></asp:TextBox>                      
                                 <p style="font-size:12px;font-weight:lighter">*Password must contains at least eight characters, including at least one number,one uppercase letter and at least one special characters.</p>
-                                 <asp:RegularExpressionValidator ID="revld_password" runat="server" ControlToValidate="txt_adm_newPassword" Display="Dynamic" ErrorMessage="*Invalid Password." ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&amp;])[A-Za-z\d@$!%*#?&amp;]{8,}$" ForeColor="Red"></asp:RegularExpressionValidator>
                             </div>
 
                             <div class="form-group">

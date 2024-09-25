@@ -15,22 +15,22 @@ namespace NewVersion.css
     {
 
         /// <summary>
-        /// SqlDataSource1 control.
+        /// hfProductId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.HiddenField hfProductId;
 
         /// <summary>
-        /// ProductsRepeater control.
+        /// btnBuyNow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater ProductsRepeater;
+        protected global::System.Web.UI.WebControls.Button btnBuyNow;
 
         /// <summary>
         /// HiddenField5 control.

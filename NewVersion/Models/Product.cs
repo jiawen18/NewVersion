@@ -14,14 +14,6 @@ namespace NewVersion.Models
     
     public partial class Product
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Product()
-        {
-            this.Orders = new HashSet<Order>();
-            this.ShoppingCarts = new HashSet<ShoppingCart>();
-            this.Transactions = new HashSet<Transaction>();
-        }
-    
         public int ProductID { get; set; }
         public string ProductImageURL { get; set; }
         public string ProductName { get; set; }
@@ -29,12 +21,5 @@ namespace NewVersion.Models
         public int Quantity { get; set; }
         public bool IsVisible { get; set; }
         public decimal TotalPrice { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }
