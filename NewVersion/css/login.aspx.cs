@@ -45,13 +45,13 @@
         {
             if (Page.IsValid)
             {
-                string emailOrUsername = txt_email.Text.Trim();
+                string emailorusername = txt_email.Text.Trim();
                 string password = txt_password.Text.Trim();
                 bool rememberMe = ckb_remember.Checked;
 
                 // Check if user exists in Admin or Member table
-                var AdminUser = ue.AdminUsers.SingleOrDefault(a => a.Email == emailOrUsername || a.Username == emailOrUsername);
-                var MemberUser = ue.MemberUsers.SingleOrDefault(m => m.Email == emailOrUsername || m.Username == emailOrUsername);
+                var AdminUser = ue.AdminUsers.SingleOrDefault(a => a.Email == emailorusername || a.Username == emailorusername);
+                var MemberUser = ue.MemberUsers.SingleOrDefault(m => m.Email == emailorusername || m.Username == emailorusername);
 
                 // Handle login for admin users
                 if (AdminUser != null)

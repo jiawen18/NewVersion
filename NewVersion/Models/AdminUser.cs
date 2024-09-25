@@ -22,5 +22,7 @@ namespace NewVersion.Models
         public string Position { get; set; }
         public string Office { get; set; }
         public System.DateTime CreatedAt { get; set; }
+        public Nullable<System.DateTime> DOB { get; set; }
+        public string Phone { get; set; }
     }
 }

@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="UserModel.MemberUser" Width="1.5" PointX="3.125" PointY="0.875" />
         <EntityTypeShape EntityType="UserModel.SuperAminUser" Width="1.5" PointX="5.25" PointY="0.875" />
         <EntityTypeShape EntityType="UserModel.AdminUser" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="UserModel.Supplier" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="UserModel.Supplier" PointX="7.5" PointY="1.75" Width="1.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

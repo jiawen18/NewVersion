@@ -29,7 +29,7 @@ namespace NewVersion.admin
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
-                string query = "SELECT AdminID, Username, Position, Office, Email, Birthday, Phone FROM AdminUser WHERE Username = @Username";
+                string query = "SELECT AdminID, Username, Position, Office, Email, DOB, Phone FROM AdminUser WHERE Username = @Username";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@Username", username);
@@ -43,7 +43,7 @@ namespace NewVersion.admin
                         txt_adm_position.Text = reader["Position"].ToString();
                         txt_adm_office.Text = reader["Office"].ToString();
                         txt_adm_email.Text = reader["Email"].ToString();
-                        txt_adm_birthday.Text = Convert.ToDateTime(reader["Birthday"]).ToString("yyyy-MM-dd");
+                        txt_adm_birthday.Text = Convert.ToDateTime(reader["DOB"]).ToString("yyyy-MM-dd");
                         txt_adm_phonr.Text = reader["Phone"].ToString();        
                     }
                 }
@@ -73,9 +73,8 @@ namespace NewVersion.admin
                                 Position = @Position,
                                 Office = @Office,
                                 Email = @Email,
-                                Birthday = @Birthday,
-                                Phone = @Phone,
-                                Country = @Country
+                                DOB = @Birthday,
+                                Phone = @Phone,                             
                                 WHERE Username = @OriginalUsername";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
