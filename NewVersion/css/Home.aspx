@@ -1,6 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="NewVersion.css.Home" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <!-- Start advertisement "hero" Section -->
+
+	<asp:SqlDataSource 
+    ID="SqlDataSource1" 
+    runat="server" 
+    ConnectionString="<%$ ConnectionStrings:productConnectionString %>"
+    ProviderName="System.Data.SqlClient"
+    SelectCommand="SELECT P.ProductID, P.ProductName, P.ProductImageURL, P.Price, P.Quantity, P.IsVisible, 
+                          R.ReviewID, R.ReviewDate, R.ReviewRating, R.ReviewDescription
+                   FROM Product P
+                   LEFT JOIN Review R ON P.ProductID = R.ProductID
+                   WHERE P.IsVisible = 1">
+	</asp:SqlDataSource>
+
+    <!-- Start advertisement "hero" Section -->
     <div class="hero">
         <div class="container">
             <div class="row justify-content-between">
@@ -55,36 +68,40 @@
 							<div id="tab2" class="tab-pane active">
 								<div class="products-slick" data-nav="#slick-nav-1">
 									<!-- product -->
-									<div class="product">
-										<div class="product-img">
-											<div class="product-label">
-												<span class="sale">-30%</span>
-												<span class="new">NEW</span>
+									<asp:Repeater ID="ProductsRepeater" runat="server">
+									<ItemTemplate>
+										<div class="product">
+											<div class="product-img">
+												<div class="product-label">
+													<span class="sale">-30%</span>
+													<span class="new">NEW</span>
+												</div>
+												<img src='<%# Eval("ProductImageURL") %>' alt="image" style="width: 350px; height: 300px;">
 											</div>
-											<img src="images/zflips.jpg" alt="image" style="width: 350px; height: 300px;"></div>
-										<div class="product-body">
-											<h3 class="product-name"><a href="#">Galaxy Z flip 3</a></h3>
-											<h4 class="product-price">RM 895.95 </h4>
-                                            <h4 class="product-price"><del class="product-old-price">RM 1200.89</del></h4>
+											<div class="product-body">
+												<h3 class="product-name"><a href="#"><%# Eval("ProductName") %></a></h3>
+												<h4 class="product-price">RM <%# Eval("Price", "{0:F2}") %></h4>
+												<h4 class="product-price"><del class="product-old-price">RM <%# Eval("TotalPrice", "{0:F2}") %></del></h4>
 											<div class="product-rating">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
+												<% 
+													int rating = (int)Eval("AverageRating");
+													for (int i = 1; i <= 5; i++) 
+													{ 
+												%>
+													<i class="fa fa-star<% if (i > rating) { %>-o<% } %>"></i>
+												<% 
+													} 
+												%>
 											</div>
-
-
+											</div>
+											<div class="add-to-cart">
+												<asp:HiddenField ID="hfProductId" runat="server" Value='<%# Eval("ProductID") %>' />
+												<asp:Button ID="btnBuyNow" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" 
+													OnClick="btnBuyNow_Click" CommandArgument='<%# Eval("ProductID") %>' />
+											</div>
 										</div>
-										<!-- Add-to-cart section -->
-										<div class="add-to-cart">
-											<!-- Hidden field to store product ID or other data -->
-											<asp:HiddenField ID="hfProductId" runat="server" Value="1" />
-
-											<!-- Button to trigger an action (e.g., add to cart) -->
-											<asp:Button ID="btnBuyNow" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
-										</div>
-									</div>
+									</ItemTemplate>
+								</asp:Repeater>
 									<!-- /product -->
 
 									<!-- product -->
@@ -689,7 +706,7 @@
 
 <script>
     // Set the date and time we're counting down to
-    var countDownDate = new Date("Sept 15, 2024 23:59:59").getTime();
+    var countDownDate = new Date("Sept 31, 2024 23:59:59").getTime();
 
     // Update the countdown every 1 second
     var countdownFunction = setInterval(function () {
