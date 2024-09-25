@@ -80,6 +80,36 @@ namespace NewVersion.admin
             }
         }
 
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                string refundStatus = DataBinder.Eval(e.Row.DataItem, "RefundStatus").ToString();
+
+                Button approveButton = (Button)e.Row.FindControl("ApproveRefundButton");
+                Button rejectButton = (Button)e.Row.FindControl("RejectRefundButton");
+
+                if (refundStatus == "Approved")
+                {
+                    approveButton.Enabled = false;
+                    rejectButton.Enabled = true;
+                }
+                else if (refundStatus == "Rejected")
+                {
+                    approveButton.Enabled = true;
+                    rejectButton.Enabled = false;
+                }
+                else // Pending
+                {
+                    approveButton.Enabled = true;
+                    rejectButton.Enabled = true;
+                }
+            }
+        }
+
+
         protected void ApproveRefundButton_Click(object sender, EventArgs e)
         {
             Button approveButton = sender as Button;

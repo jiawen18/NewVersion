@@ -38,5 +38,6 @@ namespace NewVersion.Models
         public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
+        public virtual DbSet<Shipper> Shippers { get; set; }
     }
 }

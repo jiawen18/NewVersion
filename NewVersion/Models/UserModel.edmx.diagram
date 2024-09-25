@@ -26,6 +26,7 @@
         <AssociationConnector Association="UserModel.FK__Review__ProductI__1387E197" />
         <AssociationConnector Association="UserModel.FK_ShoppingCart_ToProduct" />
         <AssociationConnector Association="UserModel.FK_Transaction_ToProduct" />
+        <EntityTypeShape EntityType="UserModel.Shipper" Width="1.5" PointX="3.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

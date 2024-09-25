@@ -122,6 +122,7 @@
     <Content Include="admin\newAdmin.aspx" />
     <Content Include="admin\newCustomer.aspx" />
     <Content Include="admin\newInventory.aspx" />
+    <Content Include="admin\newShipper.aspx" />
     <Content Include="admin\newSupplier.aspx" />
     <Content Include="admin\orderList.aspx" />
     <Content Include="admin\productList.aspx" />
@@ -129,7 +130,7 @@
     <Content Include="admin\refunds.aspx" />
     <Content Include="admin\reviews.aspx" />
     <Content Include="admin\sales.aspx" />
-    <Content Include="admin\shippingServices.aspx" />
+    <Content Include="admin\shippers.aspx" />
     <Content Include="admin\suppliers.aspx" />
     <Content Include="admin\support.aspx" />
     <Content Include="admin\transactions.aspx" />
@@ -828,6 +829,13 @@
     <Compile Include="admin\newInventory.aspx.designer.cs">
       <DependentUpon>newInventory.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\newShipper.aspx.cs">
+      <DependentUpon>newShipper.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\newShipper.aspx.designer.cs">
+      <DependentUpon>newShipper.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\newSupplier.aspx.cs">
       <DependentUpon>newSupplier.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -877,12 +885,12 @@
     <Compile Include="admin\sales.aspx.designer.cs">
       <DependentUpon>sales.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\shippingServices.aspx.cs">
-      <DependentUpon>shippingServices.aspx</DependentUpon>
+    <Compile Include="admin\shippers.aspx.cs">
+      <DependentUpon>shippers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\shippingServices.aspx.designer.cs">
-      <DependentUpon>shippingServices.aspx</DependentUpon>
+    <Compile Include="admin\shippers.aspx.designer.cs">
+      <DependentUpon>shippers.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\suppliers.aspx.cs">
       <DependentUpon>suppliers.aspx</DependentUpon>
@@ -1179,6 +1187,9 @@
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Review.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Shipper.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ShoppingCart.cs">

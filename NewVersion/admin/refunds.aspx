@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="refunds.aspx.cs" Inherits="NewVersion.admin.refunds" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
+
     <script type="text/javascript">
         function confirmAction(action) {
             return confirm("Are you sure you want to " + action + " this refund request?");
@@ -35,7 +36,8 @@
                     CssClass="display table table-striped table-hover"
                     DataKeyNames="refundID"
                     OnSorting="GridView1_Sorting"
-                    OnPageIndexChanging="GridView1_PageIndexChanging">
+                    OnPageIndexChanging="GridView1_PageIndexChanging"
+                    OnRowDataBound="GridView1_RowDataBound">
                     <Columns>
                         <asp:BoundField DataField="refundID" HeaderText="Refund ID" SortExpression="refundID" Visible="false" HeaderStyle-ForeColor="Black" />
                         <asp:BoundField DataField="OrderID" HeaderText="Order ID" SortExpression="OrderID" HeaderStyle-ForeColor="Black" />
@@ -47,7 +49,7 @@
                                 <asp:Button
                                     ID="ApproveRefundButton"
                                     runat="server"
-                                    CssClass="btn btn-link btn-success"
+                                    CssClass="btn btn-link"
                                     OnClientClick="return confirmAction('approve');"
                                     CommandArgument='<%# Eval("refundID") %>'
                                     Text="Approve"
@@ -55,7 +57,7 @@
                                 <asp:Button
                                     ID="RejectRefundButton"
                                     runat="server"
-                                    CssClass="btn btn-link btn-danger"
+                                    CssClass="btn btn-link"
                                     OnClientClick="return confirmAction('reject');"
                                     CommandArgument='<%# Eval("refundID") %>'
                                     Text="Reject"

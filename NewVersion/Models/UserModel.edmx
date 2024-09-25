@@ -115,6 +115,16 @@
           <Property Name="ReviewDescription" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="ProductID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Shipper">
+          <Key>
+            <PropertyRef Name="shipperID" />
+          </Key>
+          <Property Name="shipperID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="shipperName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="shipperEmail" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="shipperPhone" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="shipperAddress" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
         <EntityType Name="ShoppingCart">
           <Key>
             <PropertyRef Name="CartID" />
@@ -268,6 +278,7 @@
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Refund" EntityType="Self.Refund" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shipper" EntityType="Self.Shipper" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShoppingCart" EntityType="Self.ShoppingCart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SuperAminUser" EntityType="Self.SuperAminUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
@@ -355,6 +366,7 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="Transaction" EntitySet="Transactions" />
           </AssociationSet>
+          <EntitySet Name="Shippers" EntityType="UserModel.Shipper" />
         </EntityContainer>
         <EntityType Name="MemberUser">
           <Key>
@@ -625,6 +637,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Shipper">
+          <Key>
+            <PropertyRef Name="shipperID" />
+          </Key>
+          <Property Name="shipperID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="shipperName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="shipperEmail" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="shipperPhone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="shipperAddress" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -798,6 +820,17 @@
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shippers">
+            <EntityTypeMapping TypeName="UserModel.Shipper">
+              <MappingFragment StoreEntitySet="Shipper">
+                <ScalarProperty Name="shipperAddress" ColumnName="shipperAddress" />
+                <ScalarProperty Name="shipperPhone" ColumnName="shipperPhone" />
+                <ScalarProperty Name="shipperEmail" ColumnName="shipperEmail" />
+                <ScalarProperty Name="shipperName" ColumnName="shipperName" />
+                <ScalarProperty Name="shipperID" ColumnName="shipperID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
