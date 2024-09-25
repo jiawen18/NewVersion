@@ -22,10 +22,22 @@ namespace NewVersion.admin
         {
             using (var context = new userEntities())
             {
-                var refundRequests = context.Refunds.ToList();
-                GridView1.DataSource = refundRequests;
+                var refundRequests = context.Refunds.AsQueryable();
+
+                string selectedStatus = statusFilter.SelectedValue;
+                if (!string.IsNullOrEmpty(selectedStatus))
+                {
+                    refundRequests = refundRequests.Where(r => r.RefundStatus == selectedStatus);
+                }
+
+                GridView1.DataSource = refundRequests.ToList();
                 GridView1.DataBind();
             }
+        }
+
+        protected void StatusFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGrid();
         }
 
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -39,22 +51,31 @@ namespace NewVersion.admin
             var sortColumn = e.SortExpression;
             using (var context = new userEntities())
             {
-                var refundRequests = context.Refunds.ToList();
+                var refundRequests = context.Refunds.AsQueryable();
+
+                string selectedStatus = statusFilter.SelectedValue;
+                if (!string.IsNullOrEmpty(selectedStatus))
+                {
+                    refundRequests = refundRequests.Where(r => r.RefundStatus == selectedStatus);
+                }
 
                 switch (sortColumn)
                 {
                     case "OrderID":
-                        refundRequests = refundRequests.OrderBy(r => r.OrderID).ToList();
+                        refundRequests = refundRequests.OrderBy(r => r.OrderID);
                         break;
                     case "RefundRequestDate":
-                        refundRequests = refundRequests.OrderBy(r => r.RefundRequestDate).ToList();
+                        refundRequests = refundRequests.OrderBy(r => r.RefundRequestDate);
                         break;
                     case "RefundStatus":
-                        refundRequests = refundRequests.OrderBy(r => r.RefundStatus).ToList();
+                        refundRequests = refundRequests.OrderBy(r => r.RefundStatus);
+                        break;
+                    case "refundClosureDate":
+                        refundRequests = refundRequests.OrderBy(r => r.RefundClosureDate);
                         break;
                 }
 
-                GridView1.DataSource = refundRequests;
+                GridView1.DataSource = refundRequests.ToList();
                 GridView1.DataBind();
             }
         }

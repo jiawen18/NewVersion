@@ -29,7 +29,6 @@ namespace NewVersion.Models
         public decimal Price { get; set; }
         public int Quantity { get; set; }
         public bool IsVisible { get; set; }
-        public decimal TotalPrice { get; set; }
         public string ProductCategory { get; set; }
         public string ProductColor { get; set; }
         public string ProductType { get; set; }

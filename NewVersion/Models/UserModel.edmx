@@ -424,7 +424,6 @@
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="IsVisible" Type="Boolean" Nullable="false" />
-          <Property Name="TotalPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <NavigationProperty Name="Orders" Relationship="UserModel.FK_Product_ToOrder" FromRole="Product" ToRole="Order" />
           <NavigationProperty Name="Reviews" Relationship="UserModel.FK__Review__ProductI__1387E197" FromRole="Product" ToRole="Review" />
           <NavigationProperty Name="ShoppingCarts" Relationship="UserModel.FK_ShoppingCart_ToProduct" FromRole="Product" ToRole="ShoppingCart" />
