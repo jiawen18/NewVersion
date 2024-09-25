@@ -419,10 +419,7 @@
                                         href="#"
                                         aria-expanded="false">
                                         <div class="avatar-sm">
-                                            <img
-                                                src="assets/img/profile.jpg"
-                                                alt="..."
-                                                class="avatar-img rounded-circle" />
+                                             <img src='<%= GetProfilePictureUrl() %>' alt="User Profile" class="avatar-img rounded-circle" />
                                         </div>
                                         <span class="profile-username">                                 
                                             <asp:LoginName ID="login_adm_username"

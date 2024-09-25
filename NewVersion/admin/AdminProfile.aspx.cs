@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace NewVersion.admin
 {
     public partial class AdminProfile : System.Web.UI.Page
@@ -48,7 +49,7 @@ namespace NewVersion.admin
                             txt_adm_birthday.Text = reader["DOB"].ToString();
                             txt_adm_phone.Text = reader["Phone"].ToString();
                             txt_adm_role.Text = reader["Role"].ToString();
-                           
+
 
                             // Display the current profile picture
                             string profilePicturePath = reader["ProfilePicture"].ToString();
@@ -88,29 +89,35 @@ namespace NewVersion.admin
             if (fileUpload.HasFile)
             {
                 // Define the path to save the uploaded file
-                string uploadFolderPath = Server.MapPath("assets/img/");
+                string uploadFolderPath = Server.MapPath("~/admin/assets/img/");
 
-                // Generate a new unique filename using GUID
-                string fileName = Guid.NewGuid().ToString("N") + ".jpg";  // Ensure the file is saved as .jpg
-                
-
-                // Save the file
-                string filePath = Path.Combine(uploadFolderPath, fileName);
-
-                // Convert uploaded image to JPG if necessary
-                using (var img = System.Drawing.Image.FromStream(fileUpload.PostedFile.InputStream))
+                // Create directory if it doesn't exist
+                if (!Directory.Exists(uploadFolderPath))
                 {
-                    // Save the image as a JPG file
-                    img.Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    Directory.CreateDirectory(uploadFolderPath);
                 }
 
-                // Set the profile picture path to the new filename
-                profilePicturePath = "assets/img/" + fileName;
+                // Generate a new unique filename using GUID
+                string filename = Guid.NewGuid().ToString("N") + ".jpg"; // Save as .jpg
 
+                // Create a SimpleImage instance with the uploaded file
+                SimpleImage img = new SimpleImage(fileUpload.PostedFile.InputStream);
+
+                // Process the image: convert to square and resize
+                img.Square();
+                img.Resize(150);
+
+                // Save the processed image to the defined path
+                string filePath = Path.Combine(uploadFolderPath, filename);
+                img.SaveAs(filePath);
+
+                // Update the profile picture path
+                profilePicturePath = "~/admin/assets/img/" + filename;
 
                 // Update the ImageUrl of imgProfile to show the new uploaded picture
                 imgProfile.ImageUrl = profilePicturePath;
             }
+
 
             // Connect to the database and update the admin's details
             string connString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
@@ -213,7 +220,7 @@ namespace NewVersion.admin
             }
         }
 
-     
+
         protected void btn_acc_cancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("dashboard.aspx");
