@@ -105,6 +105,17 @@
           <Property Name="supplierPhone" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="supplierAddress" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
+        <EntityType Name="Support">
+          <Key>
+            <PropertyRef Name="SupportID" />
+          </Key>
+          <Property Name="SupportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" />
+        </EntityType>
         <Association Name="FK_Order_ToRefund">
           <End Role="Order" Type="Self.Order" Multiplicity="1" />
           <End Role="Refund" Type="Self.Refund" Multiplicity="*" />
@@ -139,6 +150,7 @@
           <EntitySet Name="Shipper" EntityType="Self.Shipper" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SuperAminUser" EntityType="Self.SuperAminUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Support" EntityType="Self.Support" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Order_ToRefund" Association="Self.FK_Order_ToRefund">
             <End Role="Order" EntitySet="Order" />
             <End Role="Refund" EntitySet="Refund" />
@@ -170,6 +182,7 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
+          <EntitySet Name="Supports" EntityType="UserModel.Support" />
         </EntityContainer>
         <EntityType Name="MemberUser">
           <Key>
@@ -299,6 +312,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Support">
+          <Key>
+            <PropertyRef Name="SupportID" />
+          </Key>
+          <Property Name="SupportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -411,6 +435,18 @@
                 <ScalarProperty Name="shipperEmail" ColumnName="shipperEmail" />
                 <ScalarProperty Name="shipperName" ColumnName="shipperName" />
                 <ScalarProperty Name="shipperID" ColumnName="shipperID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Supports">
+            <EntityTypeMapping TypeName="UserModel.Support">
+              <MappingFragment StoreEntitySet="Support">
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="SupportID" ColumnName="SupportID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -69,8 +69,8 @@ namespace NewVersion
                         if (reader.Read())
                         {
                             // Populate the textboxes with the username and email
-                            lbl_user_name.Text = reader["Username"].ToString();
-                            lbl_user_email.Text = reader["Email"].ToString();
+                            //lbl_user_name.Text = reader["Username"].ToString();
+                            //lbl_user_email.Text = reader["Email"].ToString();
                         }
                     }
                 }

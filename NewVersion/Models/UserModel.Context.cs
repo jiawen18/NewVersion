@@ -34,5 +34,6 @@ namespace NewVersion.Models
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Refund> Refunds { get; set; }
         public virtual DbSet<Shipper> Shippers { get; set; }
+        public virtual DbSet<Support> Supports { get; set; }
     }
 }
