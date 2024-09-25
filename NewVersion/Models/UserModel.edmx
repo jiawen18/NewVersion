@@ -86,10 +86,13 @@
           <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductImageURL" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="ProductName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProductCategory" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ProductColor" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ProductType" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ProductDescription" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="IsVisible" Type="bit" Nullable="false" />
-          <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Refund">
           <Key>
@@ -159,7 +162,7 @@
           <Property Name="InvoiceID" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="InvoiceDate" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Review__ProductI__1387E197">
+        <Association Name="FK__Review__ProductI__3C89F72A">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="Review" Type="Self.Review" Multiplicity="*" />
           <ReferentialConstraint>
@@ -269,7 +272,7 @@
           <EntitySet Name="SuperAminUser" EntityType="Self.SuperAminUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Transaction" EntityType="Self.Transaction" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Review__ProductI__1387E197" Association="Self.FK__Review__ProductI__1387E197">
+          <AssociationSet Name="FK__Review__ProductI__3C89F72A" Association="Self.FK__Review__ProductI__3C89F72A">
             <End Role="Product" EntitySet="Product" />
             <End Role="Review" EntitySet="Review" />
           </AssociationSet>
@@ -426,6 +429,10 @@
           <NavigationProperty Name="Reviews" Relationship="UserModel.FK__Review__ProductI__1387E197" FromRole="Product" ToRole="Review" />
           <NavigationProperty Name="ShoppingCarts" Relationship="UserModel.FK_ShoppingCart_ToProduct" FromRole="Product" ToRole="ShoppingCart" />
           <NavigationProperty Name="Transactions" Relationship="UserModel.FK_Transaction_ToProduct" FromRole="Product" ToRole="Transaction" />
+          <Property Name="ProductCategory" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ProductColor" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ProductType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ProductDescription" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Address">
           <Key>
@@ -690,7 +697,10 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="UserModel.Product">
               <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="ProductType" ColumnName="ProductType" />
+                <ScalarProperty Name="ProductColor" ColumnName="ProductColor" />
+                <ScalarProperty Name="ProductCategory" ColumnName="ProductCategory" />
                 <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
