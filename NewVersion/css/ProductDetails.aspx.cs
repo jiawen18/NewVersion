@@ -52,6 +52,7 @@ protected void btnViewMore_Click(object sender, EventArgs e)
             //int memberId = Convert.ToInt32(Session["MemberID"]);
 
             ShoppingCart.AddProduct(productId,productImage,productName, storage, color, price,quantity);
+
         }
     }
  }

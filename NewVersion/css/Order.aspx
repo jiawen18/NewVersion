@@ -60,45 +60,45 @@
                     <ItemTemplate>
                         <div class="card" style="border-radius: 10px;">
                             <div class="card-header px-4 py-5">
-                                <h5 class="text-muted mb-0"><%# Eval("CompanyName") %></h5>
+                                <h5 class="text-muted mb-0">Hansumg</h5>
                             </div>
 
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center mb-4">
                                     <p class="lead fw-normal mb-0" style="color: #a8729a;">Order</p>
-                                    <p class="small text-muted mb-0">Order ID : <%# Eval("OrderID") %></p>
+                                    <p class="small text-muted mb-0">Order ID : Order12345</p>
                                 </div>
 
                                 <div class="border">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-2">
-                                                <img src="<%# Eval("ProductImageUrl") %>" style="max-width: 80px; max-height: 175px;" />
+                                                <img src="images\GalaxyA.png" style="max-width: 80px; max-height: 175px;" />
 
                                             </div>
                                             <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                <p class="text-muted mb-0"><%# Eval("ProductName") %></p>
+                                                <p class="text-muted mb-0">GalaxyA</p>
                                             </div>
                                             <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                <p class="text-muted mb-0">Color：<%# Eval("ProductColor") %></p>
+                                                <p class="text-muted mb-0">Color：Blue</p>
                                             </div>
                                             <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                <p class="text-muted mb-0">Capacity: <%# Eval("ProductCapacity") %></p>
+                                                <p class="text-muted mb-0">Capacity: 128GB</p>
                                             </div>
                                             <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                <p class="text-muted mb-0">Qty: <%# Eval("ProductQuantity") %></p>
+                                                <p class="text-muted mb-0">Qty: 1</p>
                                             </div>
                                             <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                <p class="text-muted mb-0">RM <%# Eval("ProductPrice") %></p>
+                                                <p class="text-muted mb-0">RM 1999.99</p>
                                             </div>
                                         </div>
                                         <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
                                         <div class="row d-flex align-items-center">
 
                                             <div class="trackAndReview">
-                                                <asp:Button class="text-muted mb-0 small" ID="btnCancel" runat="server" Text="Cancel" CommandArgument='<%# Eval("OrderID") %>' OnClick="btnCancel_Click" />
+                                                <asp:Button class="text-muted mb-0 small" ID="btnCancel" runat="server" Text="Cancel"  OnClick="btnCancel_Click" />
                                                 &nbsp&nbsp&nbsp&nbsp
-                                                <asp:Button class="text-muted mb-0 small" ID="btnTrack" runat="server" Text="Track Order" CommandArgument='<%# Eval("OrderID") %>' OnClick="btnTrack_Click" />
+                                                <asp:Button class="text-muted mb-0 small" ID="btnTrack" runat="server" Text="Track Order"  OnClick="btnTrack_Click" />
                                             </div>
                                         </div>
                                     </div>
@@ -113,20 +113,20 @@
                                         </div>
 
                                         <div class="d-flex justify-content-between pt-2">
-                                            <p class="text-muted mb-0" style="position: relative; left: 30px;">Invoice Number : <%# Eval("InvoiceNumber") %></p>
-                                            <p class="text-muted mb-0" style="position: relative; right: 30px;"><span class="fw-bold me-4">Total</span> RM <%# Eval("TotalPrice") %></p>
+                                            <p class="text-muted mb-0" style="position: relative; left: 30px;">Invoice Number : 1234567</p>
+                                            <p class="text-muted mb-0" style="position: relative; right: 30px;"><span class="fw-bold me-4">Total</span> RM 1999.99</p>
                                         </div>
 
                                         <div class="d-flex justify-content-between">
-                                            <p class="text-muted mb-0" style="position: relative; left: 30px;">Invoice Date : <%# Eval("InvoiceDate", "{0:dd MMM, yyyy}") %></p>
-                                            <p class="text-muted mb-0" style="position: relative; right: 30px;"><span class="fw-bold me-4">Delivery Charges</span> RM <%# Eval("DeliveryCharges") %></p>
+                                            <p class="text-muted mb-0" style="position: relative; left: 30px;">Invoice Date : 23 Sep 2024</p>
+                                            <p class="text-muted mb-0" style="position: relative; right: 30px;"><span class="fw-bold me-4">Delivery Charges</span> RM 5.90</p>
                                         </div>
                                         <br />
 
 
                                         <div class="card-footer border-0 px-4 py-5"
                                             style="background-color: #a8729a; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-                                            <h5 class="d-flex align-items-center justify-content-end text-white text-uppercase mb-0">Total paid: <span class="h2 mb-0 ms-2">RM <%# Eval("TotalPaid") %></span></h5>
+                                            <h5 class="d-flex align-items-center justify-content-end text-white text-uppercase mb-0">Total paid: <span class="h2 mb-0 ms-2">RM 2500.00</span></h5>
                                         </div>
                                     </div>
                                 </div>
