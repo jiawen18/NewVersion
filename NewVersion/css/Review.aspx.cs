@@ -15,6 +15,8 @@ namespace NewVersion.css
 {
     public partial class Review : System.Web.UI.Page
     {
+        //step 2: retrieve CS from Global.asax
+        string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -63,7 +65,7 @@ namespace NewVersion.css
 
         private void LoadProductDetails(int productId)
         {
-            string connectionString = "YourConnectionStringHere"; // Update with your actual connection string
+            string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
             string query = "SELECT ProductImageURL, ProductName, Price FROM Product WHERE ProductID = @ProductID";
 
             using (SqlConnection conn = new SqlConnection(connectionString))

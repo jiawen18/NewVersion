@@ -146,11 +146,6 @@ namespace NewVersion.admin
                         cmd.Parameters.AddWithValue("@NewPassword", hashedNewPassword);
                     }
 
-                    System.Diagnostics.Debug.WriteLine("New Username: " + txt_adm_username.Text);
-                    System.Diagnostics.Debug.WriteLine("New Position: " + txt_adm_position.Text);
-                    System.Diagnostics.Debug.WriteLine("New password " + newPassword);
-                    System.Diagnostics.Debug.WriteLine("New office: " + txt_adm_office.Text);
-
                     cmd.ExecuteNonQuery();
                     // Notify user of successful update
                     Response.Write("<script>alert('Profile updated successfully.');</script>");
