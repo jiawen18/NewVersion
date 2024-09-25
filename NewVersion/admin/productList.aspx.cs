@@ -53,13 +53,12 @@ namespace NewVersion.admin
             }
 
             bool isVisible = chkIsVisible.Checked;
-            decimal totalPrice = price * quantity;
 
             // Connection string from Web.config
             string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
 
-            string query = @"INSERT INTO Product (ProductImageURL, ProductName, Price, Quantity, IsVisible, TotalPrice) 
-                     VALUES (@ProductImageURL, @ProductName, @Price, @Quantity, @IsVisible, @TotalPrice)";
+            string query = @"INSERT INTO Product (ProductImageURL, ProductName, Price, Quantity, IsVisible) 
+                     VALUES (@ProductImageURL, @ProductName, @Price, @Quantity, @IsVisible)";
 
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString))
             {
@@ -71,7 +70,6 @@ namespace NewVersion.admin
                     cmd.Parameters.AddWithValue("@Price", price);
                     cmd.Parameters.AddWithValue("@Quantity", quantity);
                     cmd.Parameters.AddWithValue("@IsVisible", isVisible);
-                    cmd.Parameters.AddWithValue("@TotalPrice", totalPrice);
 
                     con.Open();
                     cmd.ExecuteNonQuery();
@@ -286,9 +284,8 @@ namespace NewVersion.admin
 
         public void AddProduct(string productImageURL, string productName, decimal price, int quantity, bool isVisible)
         {
-            decimal totalPrice = price * quantity;
-            string query = @"INSERT INTO Product (ProductImageURL, ProductName, Price, Quantity, IsVisible, TotalPrice) 
-                             VALUES (@ProductImageURL, @ProductName, @Price, @Quantity, @IsVisible, @TotalPrice)";
+            string query = @"INSERT INTO Product (ProductImageURL, ProductName, Price, Quantity, IsVisible) 
+                             VALUES (@ProductImageURL, @ProductName, @Price, @Quantity, @IsVisible)";
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -299,7 +296,7 @@ namespace NewVersion.admin
                     cmd.Parameters.AddWithValue("@Price", price);
                     cmd.Parameters.AddWithValue("@Quantity", quantity);
                     cmd.Parameters.AddWithValue("@IsVisible", isVisible);
-                    cmd.Parameters.AddWithValue("@TotalPrice", totalPrice);
+
 
                     con.Open();
                     cmd.ExecuteNonQuery();
