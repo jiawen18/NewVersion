@@ -29,5 +29,7 @@ namespace NewVersion.Models
         public virtual DbSet<SuperAminUser> SuperAminUsers { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<AdminUser> AdminUsers { get; set; }
+        public virtual DbSet<Inventory> Inventories { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
     }
 }

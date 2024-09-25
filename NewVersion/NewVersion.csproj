@@ -117,9 +117,12 @@
     <Content Include="admin\AdminProfile.aspx" />
     <Content Include="admin\customerList.aspx" />
     <Content Include="admin\dashboard.aspx" />
-    <Content Include="admin\inventoryList.aspx" />
+    <Content Include="admin\edit.aspx" />
+    <Content Include="admin\inventory.aspx" />
     <Content Include="admin\newAdmin.aspx" />
     <Content Include="admin\newCustomer.aspx" />
+    <Content Include="admin\newInventory.aspx" />
+    <Content Include="admin\newSupplier.aspx" />
     <Content Include="admin\orderList.aspx" />
     <Content Include="admin\productList.aspx" />
     <Content Include="admin\productPages.aspx" />
@@ -789,12 +792,19 @@
     <Compile Include="admin\dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\inventoryList.aspx.cs">
-      <DependentUpon>inventoryList.aspx</DependentUpon>
+    <Compile Include="admin\edit.aspx.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\inventoryList.aspx.designer.cs">
-      <DependentUpon>inventoryList.aspx</DependentUpon>
+    <Compile Include="admin\edit.aspx.designer.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\inventory.aspx.cs">
+      <DependentUpon>inventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\inventory.aspx.designer.cs">
+      <DependentUpon>inventory.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\newAdmin.aspx.cs">
       <DependentUpon>newAdmin.aspx</DependentUpon>
@@ -809,6 +819,20 @@
     </Compile>
     <Compile Include="admin\newCustomer.aspx.designer.cs">
       <DependentUpon>newCustomer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\newInventory.aspx.cs">
+      <DependentUpon>newInventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\newInventory.aspx.designer.cs">
+      <DependentUpon>newInventory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\newSupplier.aspx.cs">
+      <DependentUpon>newSupplier.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\newSupplier.aspx.designer.cs">
+      <DependentUpon>newSupplier.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\orderList.aspx.cs">
       <DependentUpon>orderList.aspx</DependentUpon>
@@ -1117,6 +1141,9 @@
     <Compile Include="Models\AdminUser.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Inventory.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MemberUser.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
@@ -1134,6 +1161,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelTest.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SuperAminUser.cs">
       <DependentUpon>UserModel.tt</DependentUpon>

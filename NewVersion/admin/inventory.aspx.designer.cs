@@ -11,7 +11,7 @@ namespace NewVersion.admin
 {
 
 
-    public partial class supplier
+    public partial class inventory
     {
 
         /// <summary>
@@ -24,121 +24,94 @@ namespace NewVersion.admin
         protected global::System.Web.UI.WebControls.Label FeedbackLabel;
 
         /// <summary>
-        /// HiddenSupplierID control.
+        /// HiddenInventoryID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenSupplierID;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenInventoryID;
 
         /// <summary>
-        /// addBranch control.
+        /// addInventoryName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox addBranch;
+        protected global::System.Web.UI.WebControls.TextBox addInventoryName;
 
         /// <summary>
-        /// BranchValidator control.
+        /// NameValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator BranchValidator;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator NameValidator;
 
         /// <summary>
-        /// RequiredFieldValidatorBranch control.
+        /// RequiredFieldValidatorName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorBranch;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorName;
 
         /// <summary>
-        /// addEmail control.
+        /// addInventorySupplier control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox addEmail;
+        protected global::System.Web.UI.WebControls.TextBox addInventorySupplier;
 
         /// <summary>
-        /// EmailValidator control.
+        /// SupplierValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator EmailValidator;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator SupplierValidator;
 
         /// <summary>
-        /// RequiredFieldValidatorEmail control.
+        /// RequiredFieldValidatorSupplier control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorEmail;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorSupplier;
 
         /// <summary>
-        /// addPhone control.
+        /// addInventoryQuantity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox addPhone;
+        protected global::System.Web.UI.WebControls.TextBox addInventoryQuantity;
 
         /// <summary>
-        /// PhoneValidator control.
+        /// QuantityValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator PhoneValidator;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator QuantityValidator;
 
         /// <summary>
-        /// RequiredFieldValidatorPhone control.
+        /// RequiredFieldValidatorQuantity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorPhone;
-
-        /// <summary>
-        /// addAddress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox addAddress;
-
-        /// <summary>
-        /// AddressValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator AddressValidator;
-
-        /// <summary>
-        /// RequiredFieldValidatorAddress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorAddress;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorQuantity;
 
         /// <summary>
         /// Button1 control.

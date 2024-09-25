@@ -22,8 +22,8 @@
 
 			<!-- Inventory Section -->
 			<siteMapNode title="Inventory">
-				<siteMapNode url="admin/inventoryList.aspx"		title="Inventory List" />
-				<siteMapNode url="admin/suppliers.aspx"			title="Suppliers" />
+				<siteMapNode url="admin/inventoryList.aspx" />
+				<siteMapNode url="admin/suppliers.aspx"/>
 			</siteMapNode>
 
 			<!-- Customers Section -->
