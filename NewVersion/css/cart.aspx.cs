@@ -1,6 +1,8 @@
-﻿using Razorpay.Api;
+﻿using NewVersion.Models;
+using Razorpay.Api;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.EnterpriseServices;
 using System.Linq;
@@ -15,20 +17,6 @@ namespace NewVersion.css
     {
         string cs = Global.CS;
 
-        private List<CartItem> Cart
-         {
-             get
-             {
-                 // get cart from Session，if empty => initialize
-                 return Session["Cart"] as List<CartItem> ?? new List<CartItem>();
-             }
-             set
-             {
-                 // store cart to Session
-                 Session["Cart"] = value;
-             }
-         }
-
         /* private void LogInUser(int memberId)
          {
              // 将 MemberID 存储在 Session 中
@@ -37,90 +25,283 @@ namespace NewVersion.css
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!IsPostBack)
             {
-                /*if (Session["MemberID"] != null)
+                LoadCartItems();
+                UpdateCartTotals();
+            }
+
+            /*if (Session["MemberID"] != null)
+            {
+                int memberId = Convert.ToInt32(Session["MemberID"]);
+                LoadCartFromDatabase(memberId);
+                BindCart(); // initialize data bind
+            }
+            else
+            {
+                // remind user to Login
+                Response.Redirect("Login.aspx");
+            }*/
+
+        }
+
+        private void LoadCartItems()
+        {
+            using(SqlConnection con = new SqlConnection(cs))
+            {
+                string query = "SELECT * FROM CartItems  WHERE CartID = @CartID";
+
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                int cartId = GetCurrentCartID();
+
+                cmd.Parameters.AddWithValue("@CartID", cartId);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                if (dt.Rows.Count > 0)
                 {
-                    int memberId = Convert.ToInt32(Session["MemberID"]);
-                    LoadCartFromDatabase(memberId);
-                    BindCart(); // initialize data bind
+                    rptProduct.DataSource = dt;
+                    rptProduct.DataBind();
                 }
                 else
                 {
-                    // remind user to Login
-                    Response.Redirect("Login.aspx");
-                }*/
-
+                    // 可能显示一个消息或做其他处理
+                    rptProduct.DataSource = null;
+                    rptProduct.DataBind(); // 绑定空数据以清除旧数据
+                }
             }
         }
 
-       private void AddToCart(int productId)
+        private int GetCurrentCartID()
         {
-            //Step 1: sql statement
-            string sql = "SELECT * FROM Product WHERE ProductID = @Id";
+            int cartId = -1;
 
-            //Step 2: sqlconnection - establish connection
-            //between app and db
             SqlConnection con = new SqlConnection(cs);
 
-            //step 3: sql command
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("@Id", productId);
+            string query = "SELECT CartID FROM ShoppingCart";
 
-            con.Open();
+            SqlCommand cmd = new SqlCommand(query, con);
 
-            //step 4: handle the return records
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            if (dr.Read())
+            try
             {
-                CartItem item = new CartItem
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read()) // if read
                 {
-                    ProductId = productId,
-                    ProductName = dr["Name"].ToString(),
-                    ProductImageURL = dr["ProductImageURL"].ToString(),
-                    Price = Convert.ToDecimal(dr["Price"]),
-                    Quantity = 1
-                };
-
-                List<CartItem> cart = (List<CartItem>) Session["Cart"] ?? new List<CartItem>();
-                cart.Add(item);
-                Session["Cart"] = cart;
+                    cartId = reader.GetInt32(0); // get first cartId
+                }
+                reader.Close();
             }
-            
-            //rptProduct.DataSource = dr;
-            //rptProduct.DataBind();
+            catch (Exception ex)
+            {
+                Response.Write($"<script>alert('Error: {ex.Message}');</script>");
+            }
+            finally
+            {
+                con.Close();
+            }
 
-            //Step5: close connection & dr
-            dr.Close();
-            con.Close();
+            return cartId;
         }
 
-        private void BindCart()
+        protected void btnDecrease_Click(object sender, EventArgs e)
         {
-            List<CartItem> cartItems = ShoppingCart.GetCartItemsFromSession();
+            Button btn = (Button)sender;
 
-            //bind the cart data to repeater
-            rptProduct.DataSource = cartItems; //get cart item from session
-            rptProduct.DataBind();
+            string[] arguments = btn.CommandArgument.Split(','); // 拆分字符串
+            string ciId = arguments[0]; // CartItemID
+            string pId = arguments[1];
 
-            UpdateCartTotals();  
+            int cartItemId = Convert.ToInt32(arguments[0]);
+            int productID = Convert.ToInt32(arguments[1]);
+
+            // 获取当前购物车的数量
+            int currentQuantity = GetCurrentQuantity(cartItemId,productID);
+
+            if (currentQuantity > 1)
+            {
+                // 如果数量大于 1，正常减少数量
+                UpdateCartQuantity(cartItemId, -1, productID);
+                LoadCartItems();
+            }
+            else
+            {
+                DeleteCartItem(cartItemId, productID);
+                LoadCartItems();
+            }
+
         }
 
-        private List<CartItem> GetCartItems()
+        protected void btnIncrease_Click(object sender, EventArgs e)
         {
-            return (List<CartItem>)Session["Cart"] ?? new List<CartItem>();
+            Button btn = (Button)sender;
+
+            string[] arguments = btn.CommandArgument.Split(','); // 拆分字符串
+            string ciId = arguments[0]; // CartItemID
+            string pId = arguments[1];
+
+            int cartItemId = Convert.ToInt32(arguments[0]);
+            int productID = Convert.ToInt32(arguments[1]);
+
+            // 增加产品数量的逻辑
+            UpdateCartQuantity(cartItemId, 1,productID); // 假设你有一个方法来处理数量更新
+        }
+
+        private int GetCurrentQuantity(int cartItemId, int productID)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string query = "SELECT Quantity FROM CartItems WHERE CartItemID = @CartItemID AND ProductID=@ProductID AND CartID=@CartID" ;
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                cmd.Parameters.AddWithValue("@CartID", GetCurrentCartID());
+                cmd.Parameters.AddWithValue("@CartItemID", cartItemId);
+                cmd.Parameters.AddWithValue("@ProductID", productID);
+
+                con.Open();
+                object result = cmd.ExecuteScalar();
+                con.Close();
+
+                return result != null ? Convert.ToInt32(result) : 0;
+            }
+        }
+
+        private void DeleteCartItem(int cartItemId,int productID)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string query = "DELETE FROM CartItems WHERE CartItemID = @CartItemID AND ProductID=@ProductID AND CartID=@CartID";
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                cmd.Parameters.AddWithValue("@CartID", GetCurrentCartID());
+                cmd.Parameters.AddWithValue("@CartItemID", cartItemId);
+                cmd.Parameters.AddWithValue("@ProductID", productID);
+
+                con.Open();
+                int rowsAffected = cmd.ExecuteNonQuery(); // 返回受影响的行数
+
+                if (rowsAffected == 0)
+                {
+                    // 如果没有行被删除，可能是因为条件不匹配
+                    Response.Write("<script>alert('没有找到匹配的项，删除失败。');</script>");
+                }
+
+                con.Close();
+            }
+        }
+
+        private void UpdateCartQuantity(int cartItemId, int change, int productID)
+        {
+            int currentQuantity = 0; // Declare these variables at the start
+            decimal price = 0;
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string query = "SELECT Quantity, Price FROM CartItems WHERE CartItemID = @CartItemID AND ProductID=@ProductID AND CartID=@CartID";
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                cmd.Parameters.AddWithValue("@CartID", GetCurrentCartID());
+                cmd.Parameters.AddWithValue("@CartItemID", cartItemId);
+                cmd.Parameters.AddWithValue("@ProductID", productID);
+
+                con.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        currentQuantity = reader.GetInt32(0); // Get quantity
+                        price = reader.GetDecimal(1); // Get price
+                    }
+                } // The reader is closed here automatically
+            } // The connection is closed here automatically
+
+            // Calculate the new quantity
+            int newQuantity = currentQuantity + change;
+
+            // If the new quantity is valid
+            if (newQuantity > 0)
+            {
+                // Calculate the new total price for this item
+                decimal newTotalPrice = price * newQuantity;
+
+                // Now update the quantity and total price
+                using (SqlConnection con = new SqlConnection(cs))
+                {
+                    string updateQuery = "UPDATE CartItems SET Quantity = @Quantity, TotalPrice = @TotalPrice WHERE CartItemID = @CartItemID AND ProductID=@ProductID AND CartID=@CartID";
+                    SqlCommand updateCmd = new SqlCommand(updateQuery, con);
+
+                    updateCmd.Parameters.AddWithValue("@Quantity", newQuantity);
+                    updateCmd.Parameters.AddWithValue("@TotalPrice", newTotalPrice);
+                    updateCmd.Parameters.AddWithValue("@CartID", GetCurrentCartID());
+                    updateCmd.Parameters.AddWithValue("@CartItemID", cartItemId);
+                    updateCmd.Parameters.AddWithValue("@ProductID", productID);
+
+                    con.Open();
+                    updateCmd.ExecuteNonQuery();
+                }
+            }
+            else
+            {
+                // If quantity goes below 1, delete the item
+                DeleteCartItem(cartItemId, productID);
+            }
+
+            LoadCartItems(); // Refresh cart items
+            UpdateCartTotals(); // Update the overall totals
+        }
+
+
+        private decimal CalculateSubtotal()
+        {
+            decimal subtotal = 0;
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string query = "SELECT Quantity, Price FROM CartItems WHERE CartID = @CartID";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@CartID", GetCurrentCartID());
+
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    int quantity = reader.GetInt32(0); // Quantity
+                    decimal price = reader.GetDecimal(1); // Price
+                    subtotal += quantity * price; // Calculate subtotal
+                }
+                reader.Close();
+            }
+
+            return subtotal;
         }
 
         private void UpdateCartTotals()
         {
-            var cartItems = ShoppingCart.GetCartItemsFromSession();
-            
-            decimal subtotal = cartItems.Sum(item => item.Price * item.Quantity);
-            
+            decimal subtotal = CalculateSubtotal();
+            decimal total = subtotal; // Assuming no additional fees for simplicity
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string query = "UPDATE ShoppingCart SET Subtotal = @SubTotal, CartTotal = @CartTotal WHERE CartID = @CartID";
+
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                cmd.Parameters.AddWithValue("@SubTotal", subtotal);
+                cmd.Parameters.AddWithValue("@CartTotal", total);
+                cmd.Parameters.AddWithValue("@CartID", GetCurrentCartID());
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+
+            // Update UI Labels
             lblSubtotal.Text = $"RM {subtotal:F2}";
-            lblTotal.Text = $"RM {subtotal:F2}";
+            lblTotal.Text = $"RM {total:F2}";
         }
 
         protected void btnContinue_Click(object sender, EventArgs e)
@@ -128,266 +309,14 @@ namespace NewVersion.css
             Response.Redirect("Smartphones.aspx");
         }
 
-        private void StoreSessionForCheckOut()
-        {
-
-        }
+        
         protected void btnCheckOut_Click(object sender, EventArgs e)
         {
-            List<CartItem> cart = new List<CartItem>();
+            int cartId = GetCurrentCartID(); // 获取当前购物车 ID
 
-            foreach (RepeaterItem item in rptProduct.Items)
-            {
-                var productName = ((Label)item.FindControl("ProductName")).Text;
-                var productPrice = ((Label)item.FindControl("lblProductPrice")).Text;
-                var productColor = ((Label)item.FindControl("ProductColor")).Text;
-                var productStorage = ((Label)item.FindControl("ProductStorage")).Text;
-                var productQuantity = Convert.ToInt32((TextBox)item.FindControl("txtQuantity"));
-
-                // slipt "RM"
-                var Price = Convert.ToDecimal(productPrice.Replace("RM ", "").Trim());
-
-                cart.Add(new CartItem
-                {
-                    ProductName = productName,
-                    Price = Price,
-                    ProductColor = productColor,
-                    ProductStorage = productStorage,
-                    Quantity = productQuantity
-                });
-
-                Session["CartProducts"] = cart;
-
-                if (cart.Count > 0)
-                {
-                    CheckOutProducts(cart);
-                    Response.Redirect("checkout.aspx");
-                }
-            }
-
-        }
-
-         private void CheckOutProducts(List<CartItem> cart)
-         {
-            using (SqlConnection con = new SqlConnection(cs))
-            {
-                 con.Open();
-                 foreach(var CartProduct in cart) {
-
-                    string productDetails = CartProduct.ProductColor + "</br>" + CartProduct.ProductStorage;
-
-                    string query = "INSERT INTO CheckOut (ProductName,Price,Quantity,ProductDetails) VALUES (@ProductName,@Price,@Quantity,@ProductDetails)";
-
-                    using (SqlCommand cmd = new SqlCommand(query, con))
-                    {
-                        cmd.Parameters.AddWithValue("@ProductName", CartProduct.ProductName);
-                        cmd.Parameters.AddWithValue("@Price", CartProduct.Price);
-                        cmd.Parameters.AddWithValue("@Quantity", CartProduct.Quantity);
-                        cmd.Parameters.AddWithValue("@ProductDetails", productDetails);
-
-                        cmd.ExecuteNonQuery();
-                    }
-
-                }
-            }
-            Session.Remove("CartProducts");
-        }
-
-       
-        protected void rptProduct_ItemCommand(object source, RepeaterCommandEventArgs e)
-        {
-            if (e.CommandName == "UpdateQuantity")
-            {
-                int productId = Convert.ToInt32(e.CommandArgument);
-
-                TextBox txtQuantity = (TextBox)e.Item.FindControl("txtQuantity");
-               
-                int quantity;
-                
-                if (int.TryParse(txtQuantity.Text, out quantity) && quantity > 0)
-                {
-                    
-                    UpdateQuantity(productId, quantity);
-                    BindCart();
-                }
-            }
-        }
-
-        private void UpdateQuantity(int productId, int quantity)
-        {
-            List<CartItem> cart = ShoppingCart.GetCartItemsFromSession();
-            
-            CartItem item = cart.FirstOrDefault(i => i.ProductId == productId);
-           
-            if (item != null)
-            {
-                item.Quantity = quantity; // update quantity
-                UpdateCarItemInDatabase(item);
-
-            }
-            HttpContext.Current.Session["Cart"] = cart; // update session
-            UpdateCartTotals();
-        }
-
-        
-
-        private void UpdateCarItemInDatabase(CartItem item)
-        {
-            SqlConnection con = new SqlConnection(cs);
-
-            string query = "UPDATE ShoppingCart SET Quantity = @Quantity WHERE ProductID = @Id";
-
-            SqlCommand cmd = new SqlCommand(query, con);
-
-            cmd.Parameters.AddWithValue("@Quantity", item.Quantity);
-            //cmd.Parameters.AddWithValue("@MemberID", Session["MemberID"]);
-            cmd.Parameters.AddWithValue("@ProductID", item.ProductId);
-
-            con.Open();
-            cmd.ExecuteNonQuery();
-        }
-
-
-        /*private void RemoveFromCart(int productId)
-         {
-             List<CartItem> cart = GetCartItems();
-            
-             CartItem itemToRemove = cart.FirstOrDefault(item => item.ProductId == productId);
-            
-             if (itemToRemove != null)
-             {
-                 cart.Remove(itemToRemove);
-                DeleteCartItemFromDatabase(productId);
-             }
-            Session["Cart"] = cart; // update cart to Session
-         }
-
-        private void DeleteCartItemFromDatabase(int productId)
-        {
-            SqlConnection con = new SqlConnection(cs);
-
-            string query = "DELETE FROM ShoppingCart WHERE MemberID = @MemberID AND ProductID = @Id";
-
-            SqlCommand cmd = new SqlCommand(query, con);
-
-            cmd.Parameters.AddWithValue("MemberID", Session["MemberID"]);
-            cmd.Parameters.AddWithValue("ProductID", productId);
-
-            con.Open();
-            cmd.ExecuteNonQuery();
-        }
-
-        private void LoadCartFromDatabase(int memberId)
-        {
-            List<CartItem> cart = new List<CartItem>();
-            SqlConnection con = new SqlConnection(cs);
-
-            string query = "SELECT ProductID,ProductImageURL,ProductStorage,ProductColor,Price,Quantity,TotalPrice FROM ShoppingCart WHERE MemberID = @MemberID";
-
-            SqlCommand cmd = new SqlCommand(query, con);
-            
-            cmd.Parameters.AddWithValue("MemberID",memberId);
-            con.Open();
-
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                cart.Add(new CartItem
-                {
-                    ProductId = Convert.ToInt32(reader["ProductID"]),
-                    ProductName = reader["ProductName"].ToString(),
-                    ProductImageURL = reader["ProductImageURL"].ToString(),
-                    ProductStorage = reader["ProductStorage"].ToString(),
-                    ProductColor = reader["ProductColor"].ToString(),
-                    Price = Convert.ToDecimal(reader["Price"]),
-                    Quantity = Convert.ToInt32(reader["Quantity"])
-                });
-            }
-            Session["Cart"] = cart;
-        }*/
-    }
-
-    public static class ShoppingCart
-    {
-        public static void AddProduct(int productId,string productImage, string productName, string storage, string color, decimal price,int quantity)
-        {
-            List<CartItem> cartItems = GetCartItemsFromSession();
-            
-            CartItem existingItem = cartItems.FirstOrDefault(item => item.ProductId == productId);
-            
-            if (existingItem != null)
-            {
-                // item exist add quantity
-                existingItem.Quantity += quantity;
-            }
-            else
-            {
-                // else add new item and quantity
-                var newItem = new CartItem
-                {
-                    ProductId = productId,
-                    ProductImageURL = productImage,
-                    ProductName = productName,
-                    ProductStorage = storage,
-                    ProductColor = color,
-                    Price = price,
-                    Quantity = quantity,
-                };
-
-                cartItems.Add(newItem);
-                InsertCartItemToDatabase(newItem);
-            }
-
-            HttpContext.Current.Session["Cart"] = cartItems;
-        }
-
-        public static List<CartItem> GetCartItemsFromSession()
-        {
-            return HttpContext.Current.Session["Cart"] as List<CartItem> ?? new List<CartItem>();
-        }
-
-        private static void InsertCartItemToDatabase(CartItem item)
-        {
-           /* int memberId = Convert.ToInt32(HttpContext.Current.Session["MemberID"]);
-
-            if (memberId <= 0)
-            {
-                throw new Exception("无效的会员 ID。请确保会员 ID 在会话中有效。");
-            }*/
-
-            string cs = Global.CS;
-
-            SqlConnection con = new SqlConnection(cs);
-
-            string query = "INSERT INTO ShoppingCart(ProductID, ProductName, ProductImageURL, ProductStorage, ProductColor, Price, Quantity, TotalPrice) VALUES (@ProductID, @ProductName, @ProductImageURL, @ProductStorage, @ProductColor, @Price, @Quantity, @TotalPrice)";
-
-            SqlCommand cmd = new SqlCommand(query, con);
-
-            //cmd.Parameters.AddWithValue("@MemberID", memberId);
-            cmd.Parameters.AddWithValue("@ProductID", item.ProductId);
-            cmd.Parameters.AddWithValue("@ProductName", item.ProductName);
-            cmd.Parameters.AddWithValue("@ProductImageURL", item.ProductImageURL);
-            cmd.Parameters.AddWithValue("@ProductStorage", item.ProductStorage);
-            cmd.Parameters.AddWithValue("@ProductColor", item.ProductColor);
-            cmd.Parameters.AddWithValue("@Price", item.Price);
-            cmd.Parameters.AddWithValue("@Quantity", item.Quantity);
-            cmd.Parameters.AddWithValue("@TotalPrice", item.TotalPrice);
-            con.Open();
-            cmd.ExecuteNonQuery();
+            // 将 cartId 存储在查询字符串中
+            Response.Redirect($"Checkout.aspx?cartId={cartId}");
         }
 
     }
-
-public class CartItem
- {
-     public int ProductId { get; set; }
-     public string ProductName { get; set; }
-     public string ProductImageURL { get; set; }
-     public string ProductStorage { get; set; }
-     public string ProductColor { get; set; }
-     public decimal Price { get; set; }
-     public int Quantity { get; set; }
-     public decimal TotalPrice => Price * Quantity;
- }
 }

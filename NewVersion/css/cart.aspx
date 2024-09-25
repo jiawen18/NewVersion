@@ -2,6 +2,19 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
             <asp:SqlDataSource ID="dsProduct" runat="server" ConnectionString="<%$ ConnectionStrings:productConnectionString %>" ProviderName="<%$ ConnectionStrings:productConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Product]"></asp:SqlDataSource>
 
+    <style>
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .quantity-amount {
+            text-align: center;
+            width: 40px;
+        }
+    </style>
+
 <!-- Start Hero Section -->
 <div class="hero">
 	<div class="container">
@@ -46,10 +59,9 @@
                  </thead>
 
                  <tbody style="max-height:400px; overflow-y:auto;">  <!-- tbody can scroll -->
-                         <asp:Repeater ID="rptProduct" runat="server" OnItemCommand="rptProduct_ItemCommand" >
+                         <asp:Repeater ID="rptProduct" runat="server"  >
                              <ItemTemplate>
                                 <tr>
-                                <div class="product-item">
                                     <td class="select-item">
                                         <asp:CheckBox ID="chkSelectItem" runat="server" CssClass="select-checkbox" OnClick="toggleTrashIcon()" />
                                     </td>
@@ -62,20 +74,20 @@
                                     </td>
                                     <td class="productPrice" id="productPrice"><%# Eval("Price", "{0:F2}") %></td>
                                     
-                                    <td class="quantity-container" rowspan="3">
+                                    <td class="quantity-container">
                                          <div class="quantity-controls">
-                                             <asp:Button class="btn btn-outline-black decrease" ID="btnDecrease" runat="server" Text="-" />
+                                             <asp:Button class="btn btn-outline-black decrease" ID="btnDecrease" runat="server" Text="-" CommandArgument='<%# Eval("CartItemID") + ","  + Eval("ProductID") %>' OnClick="btnDecrease_Click"/>
         
-                                             <asp:TextBox class="form-control text-center quantity-amount" ID="txtQuantity" runat="server" value="1" style="max-width: 120px; max-height:30px;"></asp:TextBox>
+                                             <asp:TextBox class="form-control text-center quantity-amount" ID="txtQuantity" runat="server" Text='<%# Eval("Quantity") %>' style="max-width: 120px; max-height:30px;"></asp:TextBox>
         
-                                             <asp:Button class="btn btn-outline-black increase" ID="btnIncrease" runat="server" Text="+" />
+                                             <asp:Button class="btn btn-outline-black increase" ID="btnIncrease" runat="server" Text="+" CommandArgument='<%# Eval("CartItemID") + ","  + Eval("ProductID") %>' OnClick="btnIncrease_Click"/>
                                         </div>
                                     </td>
                                     
                                     <td>
                                     <asp:Label ID="lblTotalPrice" runat="server"><%# Eval("TotalPrice","{0:F2}") %></asp:Label>
                                     </td>
-                                </div>
+
                                 </tr>
                              </ItemTemplate>
                          </asp:Repeater>
@@ -112,7 +124,7 @@
                      <span class="text-black">Subtotal</span>
                    </div>
                    <div class="col-md-6 text-right">
-                       <asp:Label class="text-black" ID="lblSubtotal" runat="server" Text="RM 1999.90"></asp:Label>
+                       <asp:Label class="text-black" ID="lblSubtotal" runat="server" Text=""></asp:Label>
                      
                    </div>
                  </div>
@@ -121,7 +133,7 @@
                      <span class="text-black">Total</span>
                    </div>
                    <div class="col-md-6 text-right">
-                     <asp:Label class="text-black" ID="lblTotal" runat="server" Text="RM 1999.90"></asp:Label>
+                     <asp:Label class="text-black" ID="lblTotal" runat="server" Text=""></asp:Label>
                    </div>
                  </div>
    
@@ -135,6 +147,7 @@
            </div>
          </div>
 
+    
     <script type="text/javascript">
 
         //show or hide Trash icon
