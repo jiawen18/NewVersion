@@ -27,9 +27,9 @@
                                 <span class="fw-mediumbold">New</span>
                                 <span class="fw-light">Row </span>
                             </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                            <asp:Button ID="Button2" runat="server" CssClass="close" 
+                                OnClientClick="return cancelFunction();" data-bs-dismiss="modal" />
+                            <span aria-hidden="true" style="cursor: pointer;" onclick="cancelFunction(); $('#addRowModal').modal('hide');">&times;</span>
                         </div>
                         <div class="modal-body">
                             <p class="small">
@@ -48,24 +48,28 @@
                                             <div class="form-group form-group-default">
                                                 <label for="txtProductName">Product Name:</label>
                                                 <asp:TextBox ID="txtProductName" runat="server" class="form-control" placeholder="Enter product name" />
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorProductName" runat="server" ErrorMessage="Please enter a product name." Display="Dynamic" CssClass="error" ControlToValidate="txtProductName" />
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
                                             <div class="form-group form-group-default">
                                                 <label for="txtProductImageURL">Product Image URL:</label>
                                                 <asp:TextBox ID="txtProductImageURL" runat="server" class="form-control" placeholder="Enter image URL" />
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please enter an image URL." Display="Dynamic" CssClass="error" ControlToValidate="txtProductImageURL" />
                                             </div>
                                         </div>
                                         <div class="col-sm-6 pe-0">
                                             <div class="form-group form-group-default">
                                                 <label for="txtPrice">Price:</label>
                                                 <asp:TextBox ID="txtPrice" runat="server" class="form-control" placeholder="Enter price" />
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Please enter a price." Display="Dynamic" CssClass="error" ControlToValidate="txtPrice" />
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group form-group-default">
                                                 <label for="txtQuantity">Quantity:</label>
                                                 <asp:TextBox ID="txtQuantity" runat="server" class="form-control" placeholder="Enter quantity" />
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Please enter a quantity." Display="Dynamic" CssClass="error" ControlToValidate="txtQuantity" />
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
@@ -97,30 +101,30 @@
                                 <span class="fw-mediumbold">Edit</span>
                                 <span class="fw-light">Product </span>
                             </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                           <asp:Button ID="Button3" runat="server" CssClass="close" 
+                            OnClientClick="return cancelFunction();" data-bs-dismiss="modal" />
+                        <span aria-hidden="true" style="cursor: pointer;" onclick="cancelFunction(); $('#addRowModal').modal('hide');">&times;</span>
                         </div>
                         <div class="modal-body">
                             <div class="form-group form-group-default">
-                                <label for="txtProductName">Product Name:</label>
-                                <asp:TextBox ID="TextBox1" runat="server" class="form-control" placeholder="Enter product name" />
+                                <label for="txtProductName1">Product Name:</label>
+                                <asp:TextBox ID="txtProductName1" runat="server" class="form-control" placeholder="Enter product name" />
                             </div>
                             <div class="form-group form-group-default">
-                                <label for="txtProductImageURL">Product Image URL:</label>
-                                <asp:TextBox ID="TextBox2" runat="server" class="form-control" placeholder="Enter image URL" />
+                                <label for="txtProductImageURL1">Product Image URL:</label>
+                                <asp:TextBox ID="txtProductImageURL1" runat="server" class="form-control" placeholder="Enter image URL" />
                             </div>
                             <div class="form-group form-group-default">
-                                <label for="txtPrice">Price:</label>
-                                <asp:TextBox ID="TextBox3" runat="server" class="form-control" placeholder="Enter price" />
+                                <label for="txtPrice1">Price:</label>
+                                <asp:TextBox ID="txtPrice1" runat="server" class="form-control" placeholder="Enter price" />
                             </div>
                             <div class="form-group form-group-default">
-                                <label for="txtQuantity">Quantity:</label>
-                                <asp:TextBox ID="TextBox4" runat="server" class="form-control" placeholder="Enter quantity" />
+                                <label for="txtQuantity1">Quantity:</label>
+                                <asp:TextBox ID="txtQuantity1" runat="server" class="form-control" placeholder="Enter quantity" />
                             </div>
                             <div class="form-group form-group-default">
-                                <label for="chkIsVisible">Is Visible:</label>
-                                <asp:CheckBox ID="CheckBox1" runat="server" />
+                                <label for="chkIsVisible1">Is Visible:</label>
+                                <asp:CheckBox ID="chkIsVisible1" runat="server" />
                             </div>
                         </div>
                         <div class="modal-footer border-0">
@@ -187,8 +191,8 @@
     }
 
     function cancelFunction() {
-        alert('Cancel button clicked.');
-        return false;
+        var myModal = new bootstrap.Modal(document.getElementById('addRowModal'));
+        myModal.hide();
     }
 
     function openEditModal(productID, productName, price, quantity, imageURL) {

@@ -43,7 +43,6 @@
             <img src='<%# Eval("ProductImageURL") %>' class="img-fluid product-thumbnail" alt='<%# Eval("ProductName") %>' />
             <h3 class="product-title"><%# Eval("ProductName") %></h3>
             <strong class="product-price">RM <%# Eval("Price", "{0:F2}") %></strong>
-            <del class="product-old-price">RM <%# Eval("OldPrice", "{0:F2}") %></del>
 
             <div class="product-ratings">
                 <div class="star-rating">
@@ -84,7 +83,6 @@
             <img src='<%# Eval("ProductImageURL") %>' class="img-fluid product-thumbnail" alt='<%# Eval("ProductName") %>' />
             <h3 class="product-title"><%# Eval("ProductName") %></h3>
             <strong class="product-price">RM <%# Eval("Price", "{0:F2}") %></strong>
-            <del class="product-old-price">RM <%# Eval("OldPrice", "{0:F2}") %></del>
 
             <div class="product-ratings">
                 <div class="star-rating">
@@ -127,7 +125,6 @@
             <img src='<%# Eval("ProductImageURL") %>' class="img-fluid product-thumbnail" alt='<%# Eval("ProductName") %>' />
             <h3 class="product-title"><%# Eval("ProductName") %></h3>
             <strong class="product-price">RM <%# Eval("Price", "{0:F2}") %></strong>
-            <del class="product-old-price">RM <%# Eval("OldPrice", "{0:F2}") %></del>
 
             <div class="product-ratings">
                 <div class="star-rating">
