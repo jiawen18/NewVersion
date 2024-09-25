@@ -37,9 +37,15 @@ namespace NewVersion
                 authCookie.Value = FormsAuthentication.Encrypt(newTicket);
                 ctx.Response.Cookies.Add(authCookie);
 
-                // Redirect user to the appropriate URL
-                string redirectUrl = FormsAuthentication.GetRedirectUrl(username, rememberMe);
-                ctx.Response.Redirect(redirectUrl);
+                // Redirect user to the appropriate URL             
+                if (role == "Admin")
+                {
+                    ctx.Response.Redirect("~/admin/dashboard.aspx");  // Redirect to the admin dashboard
+                }
+                else
+                {
+                    ctx.Response.Redirect("~/css/Home.aspx");  // Redirect to the member's home page
+                }
             }
             catch (ThreadAbortException)
             {

@@ -330,7 +330,7 @@
                                 <li class="nav-item topbar-icon dropdown hidden-caret">
                                     <a
                                         class="nav-link"
-                                        data-bs-toggle="dropdown"
+                                        data-toggle="dropdown"
                                         href="#"
                                         aria-expanded="false">
                                         <i class="fas fa-layer-group"></i>
@@ -404,7 +404,7 @@
                                 <li class="nav-item topbar-user dropdown hidden-caret">
                                     <a
                                         class="dropdown-toggle profile-pic"
-                                        data-bs-toggle="dropdown"
+                                        data-toggle="dropdown"
                                         href="#"
                                         aria-expanded="false">
                                         <div class="avatar-sm">
@@ -413,13 +413,16 @@
                                                 alt="..."
                                                 class="avatar-img rounded-circle" />
                                         </div>
-                                        <span class="profile-username">
-                                            <span class="op-7">Hi,</span>
-                                            <span class="fw-bold">Hizrian</span>
-                                        </span>
+                                        <span class="profile-username">                                 
+                                            <asp:LoginName ID="login_adm_username"
+                                                           runat="server"  
+                                                           FormatString="Hello, {0}!"/>                                                           
+                                          </span>
+                                    
                                     </a>
+                                    <div class="dropdown-user-scroll scrollbar-outer">
                                     <ul class="dropdown-menu dropdown-user animated fadeIn">
-                                        <div class="dropdown-user-scroll scrollbar-outer">
+                                        
                                             <li>
                                                 <div class="user-box">
                                                     <div class="avatar-lg">
@@ -430,24 +433,19 @@
                                                     </div>
                                                     <div class="u-text">
                                                         <h4>Hizrian</h4>
-                                                        <p class="text-muted">hello@example.com</p>
-                                                        <%--<a
-                                                            href="AdminProfile.aspx"
-                                                            class="btn btn-xs btn-secondary btn-sm">View Profile</a>--%>
+                                                        <p class="text-muted">hello@example.com</p>                                              
                                                     </div>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="dropdown-divider"></div>                                         
-                                                <%--<a class="dropdown-item" href="#">My Balance</a>
-                                                <a class="dropdown-item" href="#">Inbox</a>
-                                                <div class="dropdown-divider"></div>--%>
+                                              
                                                 <a class="dropdown-item" href="AdminProfile.aspx">Account Settings</a>
-                                                <%--<div class="dropdown-divider"></div>--%>
+                                              
                                                 <a class="dropdown-item" href="../css/Home.aspx">Logout</a>
-                                            </li>
-                                        </div>
+                                            </li>   
                                     </ul>
+                                  </div>
                                 </li>
                             </ul>
                         </div>

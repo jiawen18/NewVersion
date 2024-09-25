@@ -68,9 +68,14 @@
                             </div>
 
                             <div class="form-group">
-                                <asp:Label ID="lbl_adm_name" runat="server" Text="Name" class="form-label"></asp:Label>
-                                <asp:TextBox ID="txt_adm_name" runat="server" class="form-control mb-1" value="Hizrian"></asp:TextBox>                  
-                            </div>
+                                 <asp:Label ID="lbl_adm_position" runat="server" Text="Position" class="form-label"></asp:Label>
+                                 <asp:TextBox ID="txt_adm_position" runat="server" class="form-control mb-1" ></asp:TextBox>                            
+                             </div>   
+                        
+                             <div class="form-group">
+                                 <asp:Label ID="lbl_adm_office" runat="server" Text="Office" class="form-label"></asp:Label>
+                                 <asp:TextBox ID="txt_adm_office" runat="server" class="form-control mb-1"></asp:TextBox>                            
+                             </div>   
 
                             <div class="form-group">
                                 <asp:Label ID="lbl_adm_email" runat="server" Text="Email" class="form-label"></asp:Label>
@@ -79,7 +84,7 @@
                             
                              <div class="form-group">
                                 <asp:Label ID="lbl_adm_role" runat="server" Text="Role" class="form-label"></asp:Label>
-                                <asp:TextBox ID="txt_adm_role" runat="server" class="form-control mb-1" value="Administrator" disabled="disabled"></asp:TextBox>                                
+                                <asp:TextBox ID="txt_adm_role" runat="server" class="form-control mb-1" disabled="disabled"></asp:TextBox>                                
                             </div>   
                         </div>
                     </div>
@@ -111,20 +116,10 @@
                            
                             <div class="form-group">
                                 <asp:Label ID="lbl_adm_birthday" runat="server" Text="Birthday" class="form-label"></asp:Label>
-                                <asp:TextBox ID="txt_adm_birthday" runat="server" value="May 3, 1995" class="form-control"></asp:TextBox>                            
+                                <asp:TextBox ID="txt_adm_birthday" runat="server"  class="form-control"></asp:TextBox>                            
                             </div>
 
-                            <div class="form-group">
-                                <asp:Label ID="lbl_adm_country" runat="server" Text="Country" class="form-label"></asp:Label>
-                                <asp:DropDownList ID="dll_adm_country" runat="server" class="custom-select">
-                                     <asp:ListItem Value="USA">United States</asp:ListItem>
-                                     <asp:ListItem Value="CND">Canada</asp:ListItem>
-                                     <asp:ListItem Value="UK">United Kingdom</asp:ListItem>
-                                     <asp:ListItem Value="GM">Germany</asp:ListItem>
-                                     <asp:ListItem Value="FR">France</asp:ListItem>
-                                     <asp:ListItem Value="MLS">Malaysia</asp:ListItem>
-                                </asp:DropDownList>                               
-                            </div>
+                  
                         </div>
 
                         <hr class="border-light m-0">
@@ -133,7 +128,7 @@
 
                             <div class="form-group">
                                 <asp:Label ID="lbl_adm_phone" runat="server" Text="Phone" class="form-label"></asp:Label>
-                                <asp:TextBox ID="txt_adm_phonr" runat="server" value="+0 (123) 456 7891" class="form-control"></asp:TextBox>                          
+                                <asp:TextBox ID="txt_adm_phone" runat="server"  class="form-control"></asp:TextBox>                          
                             </div>
                      
                         </div>
@@ -144,7 +139,7 @@
         </div>
     </div>
     <div class="text-right mt-3">
-        <asp:Button ID="btn_acc_svChanges" runat="server" Text="Save Changes" class="btn btn-primary" />
+        <asp:Button ID="btn_acc_svChanges" runat="server" Text="Save Changes" class="btn btn-primary" OnClick="btn_acc_svChanges_Click" />
         <asp:Button ID="btn_acc_cancel" runat="server" Text="Cancel" class="btn btn-danger" OnClick="btn_acc_cancel_Click"   />       
     </div>
  </div>

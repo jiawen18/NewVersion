@@ -62,8 +62,6 @@
                         {
                             // Log the user in (Admin)
                             Security.LoginUser(AdminUser.Username, AdminUser.Role, rememberMe);
-                            HttpContext.Current.ApplicationInstance.CompleteRequest();
-                            Response.Redirect("AboutUs.aspx");
                         }
                         else
                         {
@@ -80,7 +78,7 @@
                         {
                             // Log the user in (Member)
                             Security.LoginUser(MemberUser.Username, MemberUser.Role, rememberMe);
-                            Response.Redirect("AboutUs.aspx");
+                    
                         }
                         else
                         {

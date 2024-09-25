@@ -7,8 +7,8 @@
       <Diagram DiagramId="7384506c29b94de387168adc2c7bf247" Name="Diagram1">
         <EntityTypeShape EntityType="UserModel.MemberUser" Width="1.5" PointX="3.125" PointY="0.875" />
         <EntityTypeShape EntityType="UserModel.SuperAminUser" Width="1.5" PointX="5.25" PointY="0.875" />
-        <EntityTypeShape EntityType="UserModel.AdminUser" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="UserModel.Supplier" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="UserModel.AdminUser" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

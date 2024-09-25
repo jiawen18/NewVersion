@@ -16,6 +16,8 @@
           <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Position" Type="nvarchar" MaxLength="50" />
           <Property Name="Office" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOB" Type="nvarchar" MaxLength="15" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
           <Property Name="CreatedAt" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="MemberUser">
@@ -63,8 +65,8 @@
         <EntityContainer Name="userEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="MemberUsers" EntityType="UserModel.MemberUser" />
           <EntitySet Name="SuperAminUsers" EntityType="UserModel.SuperAminUser" />
-          <EntitySet Name="AdminUsers" EntityType="UserModel.AdminUser" />
           <EntitySet Name="Suppliers" EntityType="UserModel.Supplier" />
+          <EntitySet Name="AdminUsers" EntityType="UserModel.AdminUser" />
         </EntityContainer>
         <EntityType Name="MemberUser">
           <Key>
@@ -88,6 +90,16 @@
           <Property Name="Role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="7" />
         </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="supplierID" />
+          </Key>
+          <Property Name="supplierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="supplierBranch" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="supplierEmail" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="supplierPhone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="supplierAddress" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="AdminUser">
           <Key>
             <PropertyRef Name="AdminID" />
@@ -99,17 +111,9 @@
           <Property Name="Role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Office" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="7" />
-        </EntityType>
-        <EntityType Name="Supplier">
-          <Key>
-            <PropertyRef Name="supplierID" />
-          </Key>
-          <Property Name="supplierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="supplierBranch" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="supplierEmail" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="supplierPhone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="supplierAddress" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -141,20 +145,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AdminUsers">
-            <EntityTypeMapping TypeName="UserModel.AdminUser">
-              <MappingFragment StoreEntitySet="AdminUser">
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="Office" ColumnName="Office" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="Role" ColumnName="Role" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Suppliers">
             <EntityTypeMapping TypeName="UserModel.Supplier">
               <MappingFragment StoreEntitySet="Supplier">
@@ -163,6 +153,22 @@
                 <ScalarProperty Name="supplierEmail" ColumnName="supplierEmail" />
                 <ScalarProperty Name="supplierBranch" ColumnName="supplierBranch" />
                 <ScalarProperty Name="supplierID" ColumnName="supplierID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminUsers">
+            <EntityTypeMapping TypeName="UserModel.AdminUser">
+              <MappingFragment StoreEntitySet="AdminUser">
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Office" ColumnName="Office" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

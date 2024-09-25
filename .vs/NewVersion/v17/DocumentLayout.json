@@ -1,25 +1,45 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\",
+  "WorkspaceRootPath": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\chong\\documents\\github\\newversion\\newversion\\admin\\webform2.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\kelvi\\onedrive\\documents\\github\\newversion\\newversion\\css\\login.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\login.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\kelvi\\onedrive\\documents\\github\\newversion\\newversion\\admin\\adminprofile.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\adminprofile.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\kelvi\\onedrive\\documents\\github\\newversion\\newversion\\css\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\kelvi\\onedrive\\documents\\github\\newversion\\newversion\\security.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\security.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\kelvi\\onedrive\\documents\\github\\newversion\\newversion\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\kelvi\\onedrive\\documents\\github\\newversion\\newversion\\admin\\adminprofile.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\adminprofile.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\kelvi\\onedrive\\documents\\github\\newversion\\newversion\\admin\\webform2.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\webform2.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\newversion\\admin\\webform2.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\newversion\\admin\\webform2.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\webform2.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\chong\\documents\\github\\newversion\\newversion\\models\\usermodel.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\models\\usermodel.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\chong\\documents\\github\\newversion\\newversion\\admin\\productlist.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\newversion\\admin\\productlist.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\productlist.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\chong\\documents\\github\\newversion\\newversion\\admin\\productlist.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\newversion\\admin\\productlist.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\productlist.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
   ],
@@ -30,8 +50,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 8,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
@@ -41,12 +73,94 @@
               "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Security.cs",
+              "DocumentMoniker": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\Security.cs",
+              "RelativeDocumentMoniker": "NewVersion\\Security.cs",
+              "ToolTip": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\Security.cs",
+              "RelativeToolTip": "NewVersion\\Security.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAQwCwAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-25T09:06:24.934Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "startup.cs",
+              "DocumentMoniker": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\startup.cs",
+              "RelativeDocumentMoniker": "NewVersion\\startup.cs",
+              "ToolTip": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\startup.cs",
+              "RelativeToolTip": "NewVersion\\startup.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-25T09:06:24.365Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "login.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\css\\login.aspx.cs",
+              "RelativeDocumentMoniker": "NewVersion\\css\\login.aspx.cs",
+              "ToolTip": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\css\\login.aspx.cs",
+              "RelativeToolTip": "NewVersion\\css\\login.aspx.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAAYwEQAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-25T09:06:07.222Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AdminProfile.aspx",
+              "DocumentMoniker": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\admin\\AdminProfile.aspx",
+              "RelativeDocumentMoniker": "NewVersion\\admin\\AdminProfile.aspx",
+              "ToolTip": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\admin\\AdminProfile.aspx",
+              "RelativeToolTip": "NewVersion\\admin\\AdminProfile.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-25T08:57:59.781Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AdminProfile.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\admin\\AdminProfile.aspx.cs",
+              "RelativeDocumentMoniker": "NewVersion\\admin\\AdminProfile.aspx.cs",
+              "ToolTip": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\admin\\AdminProfile.aspx.cs",
+              "RelativeToolTip": "NewVersion\\admin\\AdminProfile.aspx.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAYwCYAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-25T08:39:30.622Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "login.aspx",
+              "DocumentMoniker": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\css\\login.aspx",
+              "RelativeDocumentMoniker": "NewVersion\\css\\login.aspx",
+              "ToolTip": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\css\\login.aspx",
+              "RelativeToolTip": "NewVersion\\css\\login.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-25T08:39:21.88Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "productList.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\productList.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\admin\\productList.aspx.cs",
               "RelativeDocumentMoniker": "NewVersion\\admin\\productList.aspx.cs",
-              "ToolTip": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\productList.aspx.cs",
+              "ToolTip": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\admin\\productList.aspx.cs",
               "RelativeToolTip": "NewVersion\\admin\\productList.aspx.cs",
               "ViewState": "AgIAAAIBAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -55,11 +169,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "productList.aspx",
-              "DocumentMoniker": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\productList.aspx",
+              "DocumentMoniker": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\admin\\productList.aspx",
               "RelativeDocumentMoniker": "NewVersion\\admin\\productList.aspx",
-              "ToolTip": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\productList.aspx",
+              "ToolTip": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\admin\\productList.aspx",
               "RelativeToolTip": "NewVersion\\admin\\productList.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
@@ -68,11 +182,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "WebForm2.aspx",
-              "DocumentMoniker": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\WebForm2.aspx",
+              "DocumentMoniker": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\admin\\WebForm2.aspx",
               "RelativeDocumentMoniker": "NewVersion\\admin\\WebForm2.aspx",
-              "ToolTip": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\WebForm2.aspx",
+              "ToolTip": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\admin\\WebForm2.aspx",
               "RelativeToolTip": "NewVersion\\admin\\WebForm2.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
@@ -81,28 +195,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "WebForm2.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\WebForm2.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\admin\\WebForm2.aspx.cs",
               "RelativeDocumentMoniker": "NewVersion\\admin\\WebForm2.aspx.cs",
-              "ToolTip": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\WebForm2.aspx.cs",
+              "ToolTip": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\admin\\WebForm2.aspx.cs",
               "RelativeToolTip": "NewVersion\\admin\\WebForm2.aspx.cs",
               "ViewState": "AgIAAHYAAAAAAAAAAAAswIoAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-25T06:46:11.109Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserModel.edmx [Diagram1]",
-              "DocumentMoniker": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\Models\\UserModel.edmx",
-              "RelativeDocumentMoniker": "NewVersion\\Models\\UserModel.edmx",
-              "ToolTip": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\Models\\UserModel.edmx [Diagram1]",
-              "RelativeToolTip": "NewVersion\\Models\\UserModel.edmx [Diagram1]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
-              "WhenOpened": "2024-09-25T07:15:14.253Z",
-              "EditorCaption": " [Diagram1]"
             }
           ]
         }
