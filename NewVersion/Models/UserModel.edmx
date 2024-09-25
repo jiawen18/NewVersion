@@ -115,6 +115,7 @@
           <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <Association Name="FK_Order_ToRefund">
           <End Role="Order" Type="Self.Order" Multiplicity="1" />
@@ -322,6 +323,7 @@
           <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -441,6 +443,7 @@
           <EntitySetMapping Name="Supports">
             <EntityTypeMapping TypeName="UserModel.Support">
               <MappingFragment StoreEntitySet="Support">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="Email" ColumnName="Email" />

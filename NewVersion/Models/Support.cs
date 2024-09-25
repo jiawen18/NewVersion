@@ -20,5 +20,6 @@ namespace NewVersion.Models
         public string Email { get; set; }
         public string Message { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
+        public string Status { get; set; }
     }
 }
