@@ -1,5 +1,18 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="Review.aspx.cs" Inherits="NewVersion.css.Review" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+<asp:SqlDataSource 
+    ID="SqlDataSource1" 
+    runat="server" 
+    ConnectionString="<%$ ConnectionStrings:productConnectionString %>"
+    ProviderName="System.Data.SqlClient"
+    SelectCommand="SELECT ReviewID, ReviewDate, ReviewRating, ReviewImage, ReviewDescription, ProductID 
+                   FROM Review WHERE ProductID = @ProductID">
+    <SelectParameters>
+        <asp:Parameter Name="ProductID" Type="Int32" />
+    </SelectParameters>
+</asp:SqlDataSource>
+
 <!-- Start Hero Section -->
 <div class="hero">
 	<div class="container">
@@ -18,14 +31,19 @@
 <!-- End Hero Section -->
 
 	<div class="review-container">
-        <!-- Product Details -->
+       <!-- Product Details -->
         <div class="prod-details">
             <div class="prod-image">
-                <asp:Image ID="Image1" runat="server" src="images/z-flip_blue.jpg"  alt="Product Image"/>
+                <asp:Image ID="Image1" runat="server" alt="Product Image" />
             </div>
             <div class="prod-info">
-                <h3 class="prod-name">Z-flip 2024</h3>
-                <p class="prod-details">Model: 258GB, Color: Navy Blue</p>
+                <h3 class="prod-name">
+                    <asp:Label ID="lblProdName" runat="server" CssClass="prod-name"></asp:Label>
+                </h3>
+                <p class="prod-details">
+                    <asp:Label ID="lblProdDetails" runat="server" CssClass="prod-details"></asp:Label>
+                </p>
+                <asp:HiddenField ID="HiddenFieldProductID" runat="server" />
             </div>
         </div>
 
@@ -33,12 +51,13 @@
         <div class="rating-section">
             <h3>Product Quality</h3>
             <div class="rating-stars">
-                <i class="fa fa-star" data-value="1"></i>
-                <i class="fa fa-star" data-value="2"></i>
-                <i class="fa fa-star" data-value="3"></i>
-                <i class="fa fa-star" data-value="4"></i>
-                <i class="fa fa-star" data-value="5"></i>
-            </div>
+                <i class="fa fa-star" data-value="1" onclick="setRating(1)"></i>
+                <i class="fa fa-star" data-value="2" onclick="setRating(2)"></i>
+                <i class="fa fa-star" data-value="3" onclick="setRating(3)"></i>
+                <i class="fa fa-star" data-value="4" onclick="setRating(4)"></i>
+                <i class="fa fa-star" data-value="5" onclick="setRating(5)"></i>
+            <asp:HiddenField ID="HiddenFieldRating" runat="server" />
+        </div>
         </div>
 
         <br />
@@ -46,7 +65,8 @@
 
     <!-- Media Uploads -->
     <div class="media-upload">
-        <input type="file" id="FileUploadMedia" name="FileUploadMedia" class="file-upload-input" accept="image/*,video/*" onchange="previewMedia(event)" multiple />
+        <input type="file" id="FileUploadMedia" name="FileUploadMedia" class="file-upload-input" accept="image/*,video/*" 
+            onchange="previewMedia(event)" multiple />
         <label for="FileUploadMedia" class="upload-btn">
             <asp:Image ID="Image2" runat="server" src="images/camera.png" alt="Upload Icon" class="upload-icon" />
             <span class="upload-text">Add Photo / Video</span>
@@ -183,12 +203,12 @@
         <!-- Description -->
         <div class="description-section">
             <h3>Description</h3>
-            <textarea rows="5" placeholder="Write your review here..."></textarea>
+            <asp:TextBox ID="txtReviewDescription" runat="server" TextMode="MultiLine" Rows="5" CssClass="review-textbox" placeholder="Write your review here..."></asp:TextBox>
         </div>
 
         <!-- Submit Button -->
         <div class="submit-section"> 
-            <asp:Button ID="btnReview" runat="server" class="submit-btn" Text="Submit Review" OnClick="btnReview_Click" OnClientClick="return false;" />
+            <asp:Button ID="btnReview" runat="server" class="submit-btn" Text="Submit Review" OnClick="btnReview_Click" />
         </div>
     </div>
 
@@ -224,6 +244,17 @@
             });
         });
     });
+
+    var ratingValue = 0;
+
+    function setRating(value) {
+        ratingValue = value;
+        document.getElementById('<%= HiddenFieldRating.ClientID %>').value = value;
+        var stars = document.querySelectorAll('.rating-stars .fa');
+        stars.forEach((star, index) => {
+            star.classList.toggle('selected', index < value);
+        });
+    }
 </script>
    
 
