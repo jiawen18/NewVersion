@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -67,14 +68,32 @@ namespace NewVersion.admin
             string newEmail = txt_adm_email.Text;
             string newBirthday = txt_adm_birthday.Text;
             string newPhone = txt_adm_phone.Text;
+            string profilePicturePath = "";
 
             // Get password fields for password update
             string currentPassword = txt_adm_crPassword.Text;
             string newPassword = txt_adm_newPassword.Text;
             string repeatNewPassword = txt_adm_rpNewPassword.Text;
 
-            // Hash the current entered password for comparison
-            string hashedCurrentPassword = Security.HashPassword(currentPassword);
+          
+            // Handle file upload
+            if (fileUpload.HasFile)
+            {
+                // Define the path to save the uploaded file
+                string uploadFolderPath = Server.MapPath("~/ProfileImages/");
+                if (!Directory.Exists(uploadFolderPath))
+                {
+                    Directory.CreateDirectory(uploadFolderPath);
+                }
+
+                string fileExtension = Path.GetExtension(fileUpload.FileName);
+                string fileName = "Profile_" + username + fileExtension;
+                profilePicturePath = fileName;
+
+                // Save the file
+                string filePath = Path.Combine(uploadFolderPath, fileName);
+                fileUpload.SaveAs(filePath);
+            }
 
             // Connect to the database and update the admin's details
             string connString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
@@ -82,32 +101,43 @@ namespace NewVersion.admin
             {
                 conn.Open();
 
-                // check if the current password matches
-                string checkPasswordQuery = "SELECT PasswordHash FROM AdminUser WHERE Username = @Username";
-                using (SqlCommand checkPasswordCmd = new SqlCommand(checkPasswordQuery, conn))
+                // Only check passwords if the user is trying to change it
+                if (!string.IsNullOrEmpty(currentPassword) || !string.IsNullOrEmpty(newPassword) || !string.IsNullOrEmpty(repeatNewPassword))
                 {
-                    checkPasswordCmd.Parameters.AddWithValue("@Username", username);
-                    string storedPassword = (string)checkPasswordCmd.ExecuteScalar();
-
-          
-
-                    // Check if the current password is correct
-                    if (storedPassword != hashedCurrentPassword)
+                    // Ensure all password fields are provided
+                    if (string.IsNullOrEmpty(currentPassword) || string.IsNullOrEmpty(newPassword) || string.IsNullOrEmpty(repeatNewPassword))
                     {
-                        // If the current password does not match, stop the process
-                        Response.Write("<script>alert('Current password is incorrect.');</script>");
+                        LoadAdminDetails(); // Reload the admin details before returning
+                        Response.Write("<script>alert('Please provide all password fields to change the password.');</script>");
                         return;
-                        
                     }
-                }
 
-                // Check if new password and repeat password match
-                if (!string.IsNullOrEmpty(newPassword) && newPassword != repeatNewPassword)
-                {
-                    // If new passwords don't match, stop the process
-                    Response.Write("<script>alert('New password and repeated new password do not match.');</script>");
-                    return;
-                   
+                    // Hash the current entered password for comparison
+                    string hashedCurrentPassword = Security.HashPassword(currentPassword);
+
+                    // Check if the current password matches
+                    string checkPasswordQuery = "SELECT PasswordHash FROM AdminUser WHERE Username = @Username";
+                    using (SqlCommand checkPasswordCmd = new SqlCommand(checkPasswordQuery, conn))
+                    {
+                        checkPasswordCmd.Parameters.AddWithValue("@Username", username);
+                        string storedPassword = (string)checkPasswordCmd.ExecuteScalar();
+
+                        // Check if the current password is correct
+                        if (storedPassword != hashedCurrentPassword)
+                        {
+                            LoadAdminDetails(); // Reload the admin details before returning
+                            Response.Write("<script>alert('Current password is incorrect.');</script>");
+                            return;
+                        }
+                    }
+
+                    // Check if new password and repeat password match
+                    if (newPassword != repeatNewPassword)
+                    {
+                        LoadAdminDetails(); // Reload the admin details before returning
+                        Response.Write("<script>alert('New password and repeated new password do not match.');</script>");                  
+                        return;
+                    }
                 }
 
                 // Proceed to update user details, including the password if provided
@@ -123,6 +153,11 @@ namespace NewVersion.admin
                 if (!string.IsNullOrEmpty(newPassword))
                 {
                     query += ", PasswordHash = @NewPassword";
+                }
+
+                if (!string.IsNullOrEmpty(profilePicturePath))
+                {
+                    query += ", ProfilePicture = @ProfilePicture";
                 }
 
                 query += " WHERE Username = @OriginalUsername";
@@ -146,9 +181,20 @@ namespace NewVersion.admin
                         cmd.Parameters.AddWithValue("@NewPassword", hashedNewPassword);
                     }
 
+                    if (!string.IsNullOrEmpty(profilePicturePath))
+                    {
+                        cmd.Parameters.AddWithValue("@ProfilePicture", profilePicturePath);
+                    }
+
                     cmd.ExecuteNonQuery();
                     // Notify user of successful update
                     Response.Write("<script>alert('Profile updated successfully.');</script>");
+
+                    // Clear password fields
+                    txt_adm_crPassword.Text = "";
+                    txt_adm_newPassword.Text = "";
+                    txt_adm_rpNewPassword.Text = "";
+
                     // Reload the admin details to show updated values
                     LoadAdminDetails();
 
