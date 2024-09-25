@@ -126,7 +126,7 @@
     <Content Include="admin\orderList.aspx" />
     <Content Include="admin\productList.aspx" />
     <Content Include="admin\productPages.aspx" />
-    <Content Include="admin\returnsAndRefunds.aspx" />
+    <Content Include="admin\refunds.aspx" />
     <Content Include="admin\reviews.aspx" />
     <Content Include="admin\sales.aspx" />
     <Content Include="admin\shippingServices.aspx" />
@@ -856,12 +856,12 @@
     <Compile Include="admin\productPages.aspx.designer.cs">
       <DependentUpon>productPages.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\returnsAndRefunds.aspx.cs">
-      <DependentUpon>returnsAndRefunds.aspx</DependentUpon>
+    <Compile Include="admin\refunds.aspx.cs">
+      <DependentUpon>refunds.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\returnsAndRefunds.aspx.designer.cs">
-      <DependentUpon>returnsAndRefunds.aspx</DependentUpon>
+    <Compile Include="admin\refunds.aspx.designer.cs">
+      <DependentUpon>refunds.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\reviews.aspx.cs">
       <DependentUpon>reviews.aspx</DependentUpon>
@@ -1139,7 +1139,13 @@
     <Compile Include="Login.Master.designer.cs">
       <DependentUpon>Login.Master</DependentUpon>
     </Compile>
+    <Compile Include="Models\Address.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AdminUser.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CheckOut.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Inventory.cs">
@@ -1163,7 +1169,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelTest.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Product.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Refund.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Review.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShoppingCart.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SuperAminUser.cs">
@@ -1174,6 +1192,9 @@
     </Compile>
     <Compile Include="Models\Table.cs">
       <DependentUpon>ModelTest.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Transaction.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserModel.Context.cs">
       <AutoGen>True</AutoGen>

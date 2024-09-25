@@ -33,7 +33,7 @@
 <br />
 <!-- Start Section Title -->
 <div class="section-title-container">
-    <h2>Galaxy Z flip Series</h2>
+    <h2>Galaxy A55 | A35 5G Series</h2>
 </div>
 <!-- End Section Title -->
 
@@ -84,7 +84,7 @@
 <!-- Start Products Row -->
 <div class="products-row row">
     <!-- Dynamic product listing using Repeater -->
-    <asp:Repeater ID="Repeater1" runat="server">
+    <asp:Repeater ID="rptProducts2" runat="server">
     <ItemTemplate>
         <div class="col-12 col-md-4 col-lg-3 mb-5 grey-container">
             <img src='<%# Eval("ProductImageURL") %>' class="img-fluid product-thumbnail" alt='<%# Eval("ProductName") %>' />
@@ -122,14 +122,14 @@
 <br />
 <!-- Start Section Title -->
 <div class="section-title-container">
-    <h2>Galaxy A55 | A35 5G Series</h2>
+        <h2>Galaxy Z flip Series</h2>
 </div>
 <!-- End Section Title -->
 
 <!-- Start Products Row -->
 <div class="products-row row">
     <!-- Dynamic product listing using Repeater -->
-    <asp:Repeater ID="Repeater3" runat="server">
+    <asp:Repeater ID="rptProducts3" runat="server">
     <ItemTemplate>
         <div class="col-12 col-md-4 col-lg-3 mb-5 grey-container">
             <img src='<%# Eval("ProductImageURL") %>' class="img-fluid product-thumbnail" alt='<%# Eval("ProductName") %>' />

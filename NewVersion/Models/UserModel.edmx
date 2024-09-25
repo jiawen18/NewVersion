@@ -5,6 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="UserModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Name="AddressID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="200" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
         <EntityType Name="AdminUser">
           <Key>
             <PropertyRef Name="AdminID" />
@@ -20,6 +32,21 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="15" />
           <Property Name="ProfilePicture" Type="nvarchar" MaxLength="225" />
           <Property Name="CreatedAt" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CheckOut">
+          <Key>
+            <PropertyRef Name="CheckOutID" />
+          </Key>
+          <Property Name="CheckOutID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CartID" Type="int" Nullable="false" />
+          <Property Name="DeliveryFree" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TotalPrice" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="CheckOutStatus" Type="bit" Nullable="false" />
+          <Property Name="ProductDetails" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="SubTotal" Type="decimal" Precision="8" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Inventory">
           <Key>
@@ -41,6 +68,17 @@
           <Property Name="Role" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="CreatedAt" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="PaymentStatus" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DeliveryStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OrderDetails" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ProductID" />
@@ -48,10 +86,50 @@
           <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductImageURL" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="ProductName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProductCategory" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ProductColor" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ProductType" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ProductDescription" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="IsVisible" Type="bit" Nullable="false" />
-          <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Refund">
+          <Key>
+            <PropertyRef Name="RefundID" />
+          </Key>
+          <Property Name="RefundID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="RefundRequestDate" Type="datetime" Nullable="false" />
+          <Property Name="RefundClosureDate" Type="datetime" />
+          <Property Name="RefundStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="ReviewID" />
+          </Key>
+          <Property Name="ReviewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReviewDate" Type="datetime" Nullable="false" />
+          <Property Name="ReviewRating" Type="int" Nullable="false" />
+          <Property Name="ReviewImage" Type="varchar" MaxLength="255" />
+          <Property Name="ReviewDescription" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ShoppingCart">
+          <Key>
+            <PropertyRef Name="CartID" />
+          </Key>
+          <Property Name="CartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberID" Type="int" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="varchar(max)" Nullable="false" />
+          <Property Name="ProductImageURL" Type="varchar(max)" Nullable="false" />
+          <Property Name="ProductStorage" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ProductColor" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="TotalPrice" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="CreateAt" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="SuperAminUser">
           <Key>
@@ -74,13 +152,158 @@
           <Property Name="supplierPhone" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="supplierAddress" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="OrderID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="InvoiceID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="InvoiceDate" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Review__ProductI__3C89F72A">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CheckOut_ToCart">
+          <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="1" />
+          <End Role="CheckOut" Type="Self.CheckOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShoppingCart">
+              <PropertyRef Name="CartID" />
+            </Principal>
+            <Dependent Role="CheckOut">
+              <PropertyRef Name="CartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_ToRefund">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Refund" Type="Self.Refund" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Refund">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ToOrder">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShoppingCart_ToMember">
+          <End Role="MemberUser" Type="Self.MemberUser" Multiplicity="0..1" />
+          <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberUser">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="ShoppingCart">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShoppingCart_ToProduct">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ShoppingCart">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_ToOrder">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_ToProduct">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="UserModelStoreContainer">
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdminUser" EntityType="Self.AdminUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CheckOut" EntityType="Self.CheckOut" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MemberUser" EntityType="Self.MemberUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Refund" EntityType="Self.Refund" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShoppingCart" EntityType="Self.ShoppingCart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SuperAminUser" EntityType="Self.SuperAminUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transaction" EntityType="Self.Transaction" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Review__ProductI__3C89F72A" Association="Self.FK__Review__ProductI__3C89F72A">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CheckOut_ToCart" Association="Self.FK_CheckOut_ToCart">
+            <End Role="ShoppingCart" EntitySet="ShoppingCart" />
+            <End Role="CheckOut" EntitySet="CheckOut" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_ToRefund" Association="Self.FK_Order_ToRefund">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Refund" EntitySet="Refund" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ToOrder" Association="Self.FK_Product_ToOrder">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShoppingCart_ToMember" Association="Self.FK_ShoppingCart_ToMember">
+            <End Role="MemberUser" EntitySet="MemberUser" />
+            <End Role="ShoppingCart" EntitySet="ShoppingCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShoppingCart_ToProduct" Association="Self.FK_ShoppingCart_ToProduct">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ShoppingCart" EntitySet="ShoppingCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_ToOrder" Association="Self.FK_Transaction_ToOrder">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Transaction" EntitySet="Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_ToProduct" Association="Self.FK_Transaction_ToProduct">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Transaction" EntitySet="Transaction" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -93,6 +316,45 @@
           <EntitySet Name="AdminUsers" EntityType="UserModel.AdminUser" />
           <EntitySet Name="Inventories" EntityType="UserModel.Inventory" />
           <EntitySet Name="Products" EntityType="UserModel.Product" />
+          <EntitySet Name="Addresses" EntityType="UserModel.Address" />
+          <EntitySet Name="CheckOuts" EntityType="UserModel.CheckOut" />
+          <EntitySet Name="Orders" EntityType="UserModel.Order" />
+          <EntitySet Name="Refunds" EntityType="UserModel.Refund" />
+          <EntitySet Name="Reviews" EntityType="UserModel.Review" />
+          <EntitySet Name="ShoppingCarts" EntityType="UserModel.ShoppingCart" />
+          <EntitySet Name="Transactions" EntityType="UserModel.Transaction" />
+          <AssociationSet Name="FK_CheckOut_ToCart" Association="UserModel.FK_CheckOut_ToCart">
+            <End Role="ShoppingCart" EntitySet="ShoppingCarts" />
+            <End Role="CheckOut" EntitySet="CheckOuts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShoppingCart_ToMember" Association="UserModel.FK_ShoppingCart_ToMember">
+            <End Role="MemberUser" EntitySet="MemberUsers" />
+            <End Role="ShoppingCart" EntitySet="ShoppingCarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_ToRefund" Association="UserModel.FK_Order_ToRefund">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="Refund" EntitySet="Refunds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ToOrder" Association="UserModel.FK_Product_ToOrder">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_ToOrder" Association="UserModel.FK_Transaction_ToOrder">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Review__ProductI__1387E197" Association="UserModel.FK__Review__ProductI__1387E197">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShoppingCart_ToProduct" Association="UserModel.FK_ShoppingCart_ToProduct">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ShoppingCart" EntitySet="ShoppingCarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_ToProduct" Association="UserModel.FK_Transaction_ToProduct">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="MemberUser">
           <Key>
@@ -104,6 +366,7 @@
           <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Role" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="ShoppingCarts" Relationship="UserModel.FK_ShoppingCart_ToMember" FromRole="MemberUser" ToRole="ShoppingCart" />
         </EntityType>
         <EntityType Name="SuperAminUser">
           <Key>
@@ -162,7 +425,207 @@
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="IsVisible" Type="Boolean" Nullable="false" />
           <Property Name="TotalPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="Orders" Relationship="UserModel.FK_Product_ToOrder" FromRole="Product" ToRole="Order" />
+          <NavigationProperty Name="Reviews" Relationship="UserModel.FK__Review__ProductI__1387E197" FromRole="Product" ToRole="Review" />
+          <NavigationProperty Name="ShoppingCarts" Relationship="UserModel.FK_ShoppingCart_ToProduct" FromRole="Product" ToRole="ShoppingCart" />
+          <NavigationProperty Name="Transactions" Relationship="UserModel.FK_Transaction_ToProduct" FromRole="Product" ToRole="Transaction" />
+          <Property Name="ProductCategory" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ProductColor" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ProductType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ProductDescription" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Name="AddressID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="Address1" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CheckOut">
+          <Key>
+            <PropertyRef Name="CheckOutID" />
+          </Key>
+          <Property Name="CheckOutID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CartID" Type="Int32" Nullable="false" />
+          <Property Name="DeliveryFree" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TotalPrice" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="CheckOutStatus" Type="Boolean" Nullable="false" />
+          <Property Name="ProductDetails" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="SubTotal" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <NavigationProperty Name="ShoppingCart" Relationship="UserModel.FK_CheckOut_ToCart" FromRole="CheckOut" ToRole="ShoppingCart" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PaymentStatus" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DeliveryStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrderDetails" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Refunds" Relationship="UserModel.FK_Order_ToRefund" FromRole="Order" ToRole="Refund" />
+          <NavigationProperty Name="Product" Relationship="UserModel.FK_Product_ToOrder" FromRole="Order" ToRole="Product" />
+          <NavigationProperty Name="Transactions" Relationship="UserModel.FK_Transaction_ToOrder" FromRole="Order" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="Refund">
+          <Key>
+            <PropertyRef Name="RefundID" />
+          </Key>
+          <Property Name="RefundID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RefundRequestDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RefundClosureDate" Type="DateTime" Precision="3" />
+          <Property Name="RefundStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Order" Relationship="UserModel.FK_Order_ToRefund" FromRole="Refund" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="ReviewID" />
+          </Key>
+          <Property Name="ReviewID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReviewDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReviewRating" Type="Int32" Nullable="false" />
+          <Property Name="ReviewImage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ReviewDescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="UserModel.FK__Review__ProductI__1387E197" FromRole="Review" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ShoppingCart">
+          <Key>
+            <PropertyRef Name="CartID" />
+          </Key>
+          <Property Name="CartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberID" Type="Int32" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ProductImageURL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ProductStorage" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductColor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="TotalPrice" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="CreateAt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CheckOuts" Relationship="UserModel.FK_CheckOut_ToCart" FromRole="ShoppingCart" ToRole="CheckOut" />
+          <NavigationProperty Name="MemberUser" Relationship="UserModel.FK_ShoppingCart_ToMember" FromRole="ShoppingCart" ToRole="MemberUser" />
+          <NavigationProperty Name="Product" Relationship="UserModel.FK_ShoppingCart_ToProduct" FromRole="ShoppingCart" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="OrderID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="InvoiceID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceDate" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Order" Relationship="UserModel.FK_Transaction_ToOrder" FromRole="Transaction" ToRole="Order" />
+          <NavigationProperty Name="Product" Relationship="UserModel.FK_Transaction_ToProduct" FromRole="Transaction" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_CheckOut_ToCart">
+          <End Type="UserModel.ShoppingCart" Role="ShoppingCart" Multiplicity="1" />
+          <End Type="UserModel.CheckOut" Role="CheckOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShoppingCart">
+              <PropertyRef Name="CartID" />
+            </Principal>
+            <Dependent Role="CheckOut">
+              <PropertyRef Name="CartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShoppingCart_ToMember">
+          <End Type="UserModel.MemberUser" Role="MemberUser" Multiplicity="0..1" />
+          <End Type="UserModel.ShoppingCart" Role="ShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberUser">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="ShoppingCart">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_ToRefund">
+          <End Type="UserModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="UserModel.Refund" Role="Refund" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Refund">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ToOrder">
+          <End Type="UserModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="UserModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_ToOrder">
+          <End Type="UserModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="UserModel.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Review__ProductI__1387E197">
+          <End Type="UserModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="UserModel.Review" Role="Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShoppingCart_ToProduct">
+          <End Type="UserModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="UserModel.ShoppingCart" Role="ShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ShoppingCart">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_ToProduct">
+          <End Type="UserModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="UserModel.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -234,13 +697,108 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="UserModel.Product">
               <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="ProductType" ColumnName="ProductType" />
+                <ScalarProperty Name="ProductColor" ColumnName="ProductColor" />
+                <ScalarProperty Name="ProductCategory" ColumnName="ProductCategory" />
                 <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="ProductImageURL" ColumnName="ProductImageURL" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="UserModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CheckOuts">
+            <EntityTypeMapping TypeName="UserModel.CheckOut">
+              <MappingFragment StoreEntitySet="CheckOut">
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="ProductDetails" ColumnName="ProductDetails" />
+                <ScalarProperty Name="CheckOutStatus" ColumnName="CheckOutStatus" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="DeliveryFree" ColumnName="DeliveryFree" />
+                <ScalarProperty Name="CartID" ColumnName="CartID" />
+                <ScalarProperty Name="CheckOutID" ColumnName="CheckOutID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="UserModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="OrderDetails" ColumnName="OrderDetails" />
+                <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Refunds">
+            <EntityTypeMapping TypeName="UserModel.Refund">
+              <MappingFragment StoreEntitySet="Refund">
+                <ScalarProperty Name="RefundStatus" ColumnName="RefundStatus" />
+                <ScalarProperty Name="RefundClosureDate" ColumnName="RefundClosureDate" />
+                <ScalarProperty Name="RefundRequestDate" ColumnName="RefundRequestDate" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="RefundID" ColumnName="RefundID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reviews">
+            <EntityTypeMapping TypeName="UserModel.Review">
+              <MappingFragment StoreEntitySet="Review">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ReviewDescription" ColumnName="ReviewDescription" />
+                <ScalarProperty Name="ReviewImage" ColumnName="ReviewImage" />
+                <ScalarProperty Name="ReviewRating" ColumnName="ReviewRating" />
+                <ScalarProperty Name="ReviewDate" ColumnName="ReviewDate" />
+                <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShoppingCarts">
+            <EntityTypeMapping TypeName="UserModel.ShoppingCart">
+              <MappingFragment StoreEntitySet="ShoppingCart">
+                <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ProductColor" ColumnName="ProductColor" />
+                <ScalarProperty Name="ProductStorage" ColumnName="ProductStorage" />
+                <ScalarProperty Name="ProductImageURL" ColumnName="ProductImageURL" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="CartID" ColumnName="CartID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="UserModel.Transaction">
+              <MappingFragment StoreEntitySet="Transaction">
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
