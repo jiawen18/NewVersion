@@ -69,6 +69,15 @@ namespace NewVersion.css
         protected global::System.Web.UI.WebControls.HiddenField HiddenFieldRating;
 
         /// <summary>
+        /// FileUploadMedia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload FileUploadMedia;
+
+        /// <summary>
         /// Image2 control.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,15 @@ namespace NewVersion.css
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image Image2;
+
+        /// <summary>
+        /// HiddenFieldImagePath control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenFieldImagePath;
 
         /// <summary>
         /// uploadedImage control.
