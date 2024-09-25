@@ -59,12 +59,12 @@
 
                             <div class="form-group">
                             <asp:Label ID="lbl_adm_id" runat="server" Text="Admin ID" class="form-label"></asp:Label>
-                            <asp:TextBox ID="txt_adm_id" runat="server" class="form-control mb-1" value="009283838" disabled="disabled"></asp:TextBox>                            
+                            <asp:TextBox ID="txt_adm_id" runat="server" class="form-control mb-1" disabled="disabled"></asp:TextBox>                            
                             </div>
 
                             <div class="form-group">
                                 <asp:Label ID="lbl_adm_username" runat="server" Text="Username" class="form-label"></asp:Label>
-                                <asp:TextBox ID="txt_adm_username" runat="server" class="form-control mb-1" value="Hizrian"></asp:TextBox>                            
+                                <asp:TextBox ID="txt_adm_username" runat="server" class="form-control mb-1"></asp:TextBox>                            
                             </div>
 
                             <div class="form-group">
@@ -79,7 +79,7 @@
 
                             <div class="form-group">
                                 <asp:Label ID="lbl_adm_email" runat="server" Text="Email" class="form-label"></asp:Label>
-                                <asp:TextBox ID="txt_adm_email" runat="server" class="form-control mb-1" value="hello@example.com"></asp:TextBox>                                
+                                <asp:TextBox ID="txt_adm_email" runat="server" class="form-control mb-1" ></asp:TextBox>                                
                             </div>     
                             
                              <div class="form-group">
@@ -100,12 +100,14 @@
 
                             <div class="form-group"> 
                                 <asp:Label ID="lbl_adm_newPassword" runat="server" Text="New Password" class="form-label"></asp:Label>
-                                <asp:TextBox ID="txt_adm_newPassword" runat="server" type="password" class="form-control"></asp:TextBox>                                        
+                                <asp:TextBox ID="txt_adm_newPassword" runat="server" type="password" class="form-control"></asp:TextBox>                      
+                                <p style="font-size:12px;font-weight:lighter">*Password must contains at least eight characters, including at least one number,one uppercase letter and at least one special characters.</p>
                             </div>
 
                             <div class="form-group">
                                 <asp:Label ID="lbl_adm_rpNewPassword" runat="server" Text="Repeat New Password" class="form-label"></asp:Label>
-                                <asp:TextBox ID="txt_adm_rpNewPassword" runat="server" type="password" class="form-control"></asp:TextBox>                                  
+                                <asp:TextBox ID="txt_adm_rpNewPassword" runat="server" type="password" class="form-control"></asp:TextBox>  
+                              
                             </div>
                         </div>
                     </div>
