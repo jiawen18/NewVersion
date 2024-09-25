@@ -592,6 +592,7 @@
     <Content Include="css\images\couch.png" />
     <Content Include="css\images\coupon-icon.png" />
     <Content Include="css\images\cross.svg" />
+    <Content Include="css\images\default.jpg" />
     <Content Include="css\images\delete.png" />
     <Content Include="css\images\dots-green.svg" />
     <Content Include="css\images\dots-light.svg" />

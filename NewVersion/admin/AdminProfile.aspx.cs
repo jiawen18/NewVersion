@@ -26,37 +26,46 @@ namespace NewVersion.admin
         // Load the currently logged-in admin's details
         private void LoadAdminDetails()
         {
-            // Get the currently logged-in admin's username 
-            string username = HttpContext.Current.User.Identity.Name;
-
-            // Connect to the database and retrieve the admin details
+            // Load admin details from the database
             string connString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
-                string query = "SELECT AdminID, Username, Position, Office, Email, DOB, Phone, Role FROM AdminUser WHERE Username = @Username";
+                string query = "SELECT AdminID, Username, Position, Office, Email, DOB, Phone, Role, ProfilePicture FROM AdminUser WHERE Username = @Username";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Username", username);
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    if (reader.Read())
+                    cmd.Parameters.AddWithValue("@Username", HttpContext.Current.User.Identity.Name);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        // Populate the form fields with the admin's details
-                        txt_adm_id.Text = reader["AdminID"].ToString();
-                        txt_adm_username.Text = reader["Username"].ToString();
-                        txt_adm_position.Text = reader["Position"].ToString();
-                        txt_adm_office.Text = reader["Office"].ToString();
-                        txt_adm_email.Text = reader["Email"].ToString();
-                        txt_adm_birthday.Text = reader["DOB"].ToString();
-                        txt_adm_phone.Text = reader["Phone"].ToString();
-                        txt_adm_role.Text = reader["Role"].ToString() ;
+                        if (reader.Read())
+                        {
+                            // Set the values to the textboxes
+                            txt_adm_id.Text = reader["AdminID"].ToString();
+                            txt_adm_username.Text = reader["Username"].ToString();
+                            txt_adm_position.Text = reader["Position"].ToString();
+                            txt_adm_office.Text = reader["Office"].ToString();
+                            txt_adm_email.Text = reader["Email"].ToString();
+                            txt_adm_birthday.Text = reader["DOB"].ToString();
+                            txt_adm_phone.Text = reader["Phone"].ToString();
+                            txt_adm_role.Text = reader["Role"].ToString();
+                           
+
+                            // Display the current profile picture
+                            string profilePicturePath = reader["ProfilePicture"].ToString();
+                            if (!string.IsNullOrEmpty(profilePicturePath))
+                            {
+                                imgProfile.ImageUrl = profilePicturePath;
+                            }
+                            else
+                            {
+                                imgProfile.ImageUrl = "../css/images/default.jpg"; // Use a default picture if no picture exists
+                            }
+                        }
                     }
                 }
             }
         }
 
-        // Save the updated admin details
         protected void btn_acc_svChanges_Click(object sender, EventArgs e)
         {
             string username = HttpContext.Current.User.Identity.Name;
@@ -68,19 +77,20 @@ namespace NewVersion.admin
             string newEmail = txt_adm_email.Text;
             string newBirthday = txt_adm_birthday.Text;
             string newPhone = txt_adm_phone.Text;
-            string profilePicturePath = "";
+            string profilePicturePath = imgProfile.ImageUrl;  // Keep the current profile picture by default
 
             // Get password fields for password update
             string currentPassword = txt_adm_crPassword.Text;
             string newPassword = txt_adm_newPassword.Text;
             string repeatNewPassword = txt_adm_rpNewPassword.Text;
 
-          
-            // Handle file upload
+            // Handle file upload for profile picture
             if (fileUpload.HasFile)
             {
                 // Define the path to save the uploaded file
-                string uploadFolderPath = Server.MapPath("~/ProfileImages/");
+                string uploadFolderPath = Server.MapPath("../css/images/");
+
+                // Create directory if it doesn't exist
                 if (!Directory.Exists(uploadFolderPath))
                 {
                     Directory.CreateDirectory(uploadFolderPath);
@@ -88,11 +98,14 @@ namespace NewVersion.admin
 
                 string fileExtension = Path.GetExtension(fileUpload.FileName);
                 string fileName = "Profile_" + username + fileExtension;
-                profilePicturePath = fileName;
+                profilePicturePath = "../css/images/" + fileName;
 
                 // Save the file
                 string filePath = Path.Combine(uploadFolderPath, fileName);
                 fileUpload.SaveAs(filePath);
+
+                // Update the ImageUrl of imgProfile to show the new uploaded picture
+                imgProfile.ImageUrl = profilePicturePath;
             }
 
             // Connect to the database and update the admin's details
@@ -104,50 +117,45 @@ namespace NewVersion.admin
                 // Only check passwords if the user is trying to change it
                 if (!string.IsNullOrEmpty(currentPassword) || !string.IsNullOrEmpty(newPassword) || !string.IsNullOrEmpty(repeatNewPassword))
                 {
-                    // Ensure all password fields are provided
                     if (string.IsNullOrEmpty(currentPassword) || string.IsNullOrEmpty(newPassword) || string.IsNullOrEmpty(repeatNewPassword))
                     {
-                        LoadAdminDetails(); // Reload the admin details before returning
+                        LoadAdminDetails();
                         Response.Write("<script>alert('Please provide all password fields to change the password.');</script>");
                         return;
                     }
 
-                    // Hash the current entered password for comparison
                     string hashedCurrentPassword = Security.HashPassword(currentPassword);
 
-                    // Check if the current password matches
                     string checkPasswordQuery = "SELECT PasswordHash FROM AdminUser WHERE Username = @Username";
                     using (SqlCommand checkPasswordCmd = new SqlCommand(checkPasswordQuery, conn))
                     {
                         checkPasswordCmd.Parameters.AddWithValue("@Username", username);
                         string storedPassword = (string)checkPasswordCmd.ExecuteScalar();
 
-                        // Check if the current password is correct
                         if (storedPassword != hashedCurrentPassword)
                         {
-                            LoadAdminDetails(); // Reload the admin details before returning
+                            LoadAdminDetails();
                             Response.Write("<script>alert('Current password is incorrect.');</script>");
                             return;
                         }
                     }
 
-                    // Check if new password and repeat password match
                     if (newPassword != repeatNewPassword)
                     {
-                        LoadAdminDetails(); // Reload the admin details before returning
-                        Response.Write("<script>alert('New password and repeated new password do not match.');</script>");                  
+                        LoadAdminDetails();
+                        Response.Write("<script>alert('New password and repeated new password do not match.');</script>");
                         return;
                     }
                 }
 
-                // Proceed to update user details, including the password if provided
+                // Update user details, including the password if provided
                 string query = @"UPDATE AdminUser SET 
-                                Username = @Username,
-                                Position = @Position,
-                                Office = @Office,
-                                Email = @Email,
-                                DOB = @Birthday,
-                                Phone = @Phone";
+                         Username = @Username,
+                         Position = @Position,
+                         Office = @Office,
+                         Email = @Email,
+                         DOB = @Birthday,
+                         Phone = @Phone";
 
                 // If the user entered a new password, hash it and include it in the update
                 if (!string.IsNullOrEmpty(newPassword))
@@ -155,14 +163,13 @@ namespace NewVersion.admin
                     query += ", PasswordHash = @NewPassword";
                 }
 
+                // If a new profile picture was uploaded, include it in the update
                 if (!string.IsNullOrEmpty(profilePicturePath))
                 {
                     query += ", ProfilePicture = @ProfilePicture";
                 }
 
                 query += " WHERE Username = @OriginalUsername";
-
-
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -187,6 +194,7 @@ namespace NewVersion.admin
                     }
 
                     cmd.ExecuteNonQuery();
+
                     // Notify user of successful update
                     Response.Write("<script>alert('Profile updated successfully.');</script>");
 
@@ -197,15 +205,11 @@ namespace NewVersion.admin
 
                     // Reload the admin details to show updated values
                     LoadAdminDetails();
-
                 }
-
-                
             }
-
-            
         }
 
+     
         protected void btn_acc_cancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("dashboard.aspx");
