@@ -13,7 +13,14 @@ namespace NewVersion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            AdminBreadcrumbDataSource.Provider = SiteMap.Providers["AdminSiteMapProvider"];
+            if (!IsPostBack)
+            {
+                // Set the SiteMapProvider
+                AdminBreadcrumbDataSource.Provider = SiteMap.Providers["AdminSiteMapProvider"];
+
+                // Load the user details
+                LoadUserDetails();
+            }
         }
 
         // Method to get the profile picture URL for the current user
@@ -40,6 +47,34 @@ namespace NewVersion
                 }
             }
             return profilePictureUrl; // Return the URL
+        }
+
+        // Method to load the current user's details (username and email)
+        private void LoadUserDetails()
+        {
+            string username = HttpContext.Current.User.Identity.Name;
+
+            // Connect to the database and retrieve the username and email
+            string connString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                conn.Open();
+                string query = "SELECT Username, Email FROM AdminUser WHERE Username = @Username";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Username", username);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Populate the textboxes with the username and email
+                            lbl_user_name.Text = reader["Username"].ToString();
+                            lbl_user_email.Text = reader["Email"].ToString();
+                        }
+                    }
+                }
+            }
         }
     }
 }
