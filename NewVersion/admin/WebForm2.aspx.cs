@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Configuration;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -136,29 +138,75 @@ namespace NewVersion.admin
         }
 
 
-        protected void RemoveSupplierButton_Click(object sender, CommandEventArgs e)
+        protected void RemoveSupplierButton_Click(object sender, EventArgs e)
         {
-            if (e.CommandName == "Delete")
-            {
-                int supplierId = Convert.ToInt32(e.CommandArgument);
+            Button btn = (Button)sender; // Cast sender to Button
+            int supplierId = Convert.ToInt32(btn.CommandArgument); // Get CommandArgument which contains supplierID
 
+            using (var context = new userEntities())
+            {
+                // Find the supplier by ID
+                var supplierToRemove = context.Suppliers.Find(supplierId);
+                if (supplierToRemove != null)
+                {
+                    context.Suppliers.Remove(supplierToRemove);
+                    context.SaveChanges();
+                }
+            }
+
+            // Rebind the GridView to reflect the changes
+            BindGrid();
+            FeedbackLabel.Text = "Supplier removed successfully!";
+            FeedbackLabel.CssClass = "text-success";
+        }
+
+        protected void UpdateRowButton_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
                 using (var context = new userEntities())
                 {
-                    // Find the supplier by ID
-                    var supplierToRemove = context.Suppliers.Find(supplierId);
-                    if (supplierToRemove != null)
+                    int supplierID;
+                    if (int.TryParse(HiddenSupplierID.Value, out supplierID) && supplierID > 0)
                     {
-                        context.Suppliers.Remove(supplierToRemove);
-                        context.SaveChanges();
+                        var supplier = context.Suppliers.Find(supplierID);
+                        if (supplier != null)
+                        {
+                            supplier.supplierBranch = addBranch.Text;
+                            supplier.supplierEmail = addEmail.Text;
+                            supplier.supplierPhone = addPhone.Text;
+                            supplier.supplierAddress = addAddress.Text;
+
+                            context.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        FeedbackLabel.Text = "Invalid Supplier ID.";
+                        FeedbackLabel.CssClass = "text-danger";
+                        return;
                     }
                 }
 
-                // Rebind the GridView to reflect the changes
-                BindGrid();
-                FeedbackLabel.Text = "Supplier removed successfully!";
+                // Reset fields and state after update
+                ResetModalState();
+
+                FeedbackLabel.Text = "Supplier updated successfully!";
                 FeedbackLabel.CssClass = "text-success";
             }
         }
 
+        private void ResetModalState()
+        {
+            addBranch.Text = string.Empty;
+            addEmail.Text = string.Empty;
+            addPhone.Text = string.Empty;
+            addAddress.Text = string.Empty;
+            HiddenSupplierID.Value = string.Empty;
+
+            // Optionally, you can close the modal here if needed
+            ScriptManager.RegisterStartupScript(this, GetType(), "closeModal", "$('#addRowModal').modal('hide');", true);
+            BindGrid(); // Refresh the grid to show the updated data
+        }
     }
 }

@@ -117,9 +117,11 @@
     <Content Include="admin\AdminProfile.aspx" />
     <Content Include="admin\customerList.aspx" />
     <Content Include="admin\dashboard.aspx" />
+    <Content Include="admin\edit.aspx" />
     <Content Include="admin\inventoryList.aspx" />
     <Content Include="admin\newAdmin.aspx" />
     <Content Include="admin\newCustomer.aspx" />
+    <Content Include="admin\newSupplier.aspx" />
     <Content Include="admin\orderList.aspx" />
     <Content Include="admin\productList.aspx" />
     <Content Include="admin\productPages.aspx" />
@@ -789,6 +791,13 @@
     <Compile Include="admin\dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\edit.aspx.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\edit.aspx.designer.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\inventoryList.aspx.cs">
       <DependentUpon>inventoryList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -809,6 +818,13 @@
     </Compile>
     <Compile Include="admin\newCustomer.aspx.designer.cs">
       <DependentUpon>newCustomer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\newSupplier.aspx.cs">
+      <DependentUpon>newSupplier.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\newSupplier.aspx.designer.cs">
+      <DependentUpon>newSupplier.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\orderList.aspx.cs">
       <DependentUpon>orderList.aspx</DependentUpon>
