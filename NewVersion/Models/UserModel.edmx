@@ -17,7 +17,7 @@
           <Property Name="Position" Type="nvarchar" MaxLength="50" />
           <Property Name="Office" Type="nvarchar" MaxLength="50" />
           <Property Name="DOB" Type="nvarchar" MaxLength="15" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="15" />
           <Property Name="CreatedAt" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="Inventory">
@@ -137,7 +137,7 @@
           <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Office" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DOB" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="7" />
         </EntityType>
         <EntityType Name="Inventory">
