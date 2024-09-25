@@ -25,7 +25,41 @@ namespace NewVersion.css
             {
                 LoadSessionValues();
                 LoadCartItems();
+                //LoadCartItems();
             }
+        }
+
+        private int GetCurrentCartID()
+        {
+            int cartId = -1;
+
+            SqlConnection con = new SqlConnection(cs);
+
+            string query = "SELECT CartID FROM ShoppingCart";
+
+            SqlCommand cmd = new SqlCommand(query, con);
+
+            try
+            {
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read()) // if read
+                {
+                    cartId = reader.GetInt32(0); // get first cartId
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Response.Write($"<script>alert('Error: {ex.Message}');</script>");
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return cartId;
         }
 
         private void LoadSessionValues()
@@ -96,67 +130,80 @@ namespace NewVersion.css
 
         private void LoadCartItems()
         {
-            List<CartItem> cart = Session["CartProducts"] as List<CartItem>;
-
-            if (cart != null && cart.Count > 0)
+            using (SqlConnection con = new SqlConnection(cs))
             {
+                int cartId = GetCurrentCartID();
+
+                string query = "SELECT * FROM CartItems WHERE CartID = @CartID";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@CartID", cartId);
+
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
                 decimal cartSubtotal = 0m;
 
-                foreach (var cartItem in cart)
+                while (reader.Read())
                 {
                     TableRow row = new TableRow();
 
+                    // 假设你有以下字段
+                    string productName = reader["ProductName"].ToString();
+                    decimal price = Convert.ToDecimal(reader["Price"]);
+                    int quantity = Convert.ToInt32(reader["Quantity"]);
+
                     TableCell cell1 = new TableCell();
-                    cell1.Controls.Add(new Label { Text = cartItem.ProductName });
+                    cell1.Controls.Add(new Label { Text = productName });
                     cell1.Controls.Add(new Label { Text = "<strong class='mx-2'>x</strong>" });
-                    cell1.Controls.Add(new Literal { Text = cartItem.Quantity.ToString() });
+                    cell1.Controls.Add(new Literal { Text = quantity.ToString() });
                     row.Cells.Add(cell1);
 
                     TableCell cell2 = new TableCell();
-                    cell2.Controls.Add(new Label { Text = "RM" + cartItem.Price.ToString("F2") });
+                    cell2.Controls.Add(new Label { Text = "RM " + price.ToString("F2") });
                     row.Cells.Add(cell2);
 
                     phCartItems.Controls.Add(row);
 
-                    decimal itemPrice = cartItem.Price * cartItem.Quantity;
-
-                    cartSubtotal += itemPrice;
+                    // 计算小计
+                    cartSubtotal += price * quantity;
                 }
 
                 lblCartSubTotal.Text = "RM " + cartSubtotal.ToString("F2");
                 string subTotal = lblCartSubTotal.Text;
 
-                decimal deliveryFeeInitial = 5.90m; 
+                decimal deliveryFeeInitial = 5.90m;
                 lblDeliveryFee.Text = "RM " + deliveryFeeInitial.ToString("F2");
                 string deliveryFee = lblDeliveryFee.Text;
 
                 lblAmount.Text = "RM " + (cartSubtotal + deliveryFeeInitial).ToString("F2");
-                string amount = lblAmount.Text;
+                string totalPrice = lblAmount.Text;
 
-                StoreCartItems(cart, deliveryFee, subTotal,amount);
+                // 将数据存储到 Checkout 表中
+                StoreCartItems(cartId,subTotal, deliveryFee, totalPrice,productName);
             }
         }
 
-        private void StoreCartItems(List<CartItem> cart, string deliveryFee, string subTotal,string amount)
+        private void StoreCartItems(int cartId,string subTotal, string deliveryFee, string totalPrice,string productName)
         {
             using (SqlConnection con = new SqlConnection(cs))
             {
                 con.Open();
 
-                foreach (var cartItem in cart)
-                {
-                    string query = "INSERT INTO CheckOut (SubTotal, DeliveryFee, TotalPrice) VALUES (@SubTotal, @DeliveryFee, @TotalPrice)";
-                    using (SqlCommand cmd = new SqlCommand(query, con))
-                    { 
-                        cmd.Parameters.AddWithValue("@Subtotal", subTotal);
-                        cmd.Parameters.AddWithValue("@DeliveryFee", deliveryFee); 
-                        cmd.Parameters.AddWithValue("@Total", amount); 
+                // 这里的 INSERT 语句需要与你的 Checkout 表的字段匹配
+                string query = "INSERT INTO CheckOut (CartID,SubTotal, DeliveryFee, TotalPrice,ProductName) VALUES (@CartID,@SubTotal, @DeliveryFee, @TotalPrice,@ProductName)";
 
-                        cmd.ExecuteNonQuery(); 
-                    }
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@CartID", cartId);
+                    cmd.Parameters.AddWithValue("@SubTotal", subTotal);
+                    cmd.Parameters.AddWithValue("@DeliveryFee", deliveryFee);
+                    cmd.Parameters.AddWithValue("@TotalPrice", totalPrice);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
+
 
         protected void btnPay_Click1(object sender, EventArgs e)
         {
