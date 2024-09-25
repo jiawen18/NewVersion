@@ -1143,6 +1143,9 @@
     <Compile Include="Models\Supplier.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Support.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Table.cs">
       <DependentUpon>ModelTest.tt</DependentUpon>
     </Compile>
