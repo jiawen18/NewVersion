@@ -264,11 +264,6 @@
                                                 <span class="sub-item">New Admin</span>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="newCustomer.aspx">
-                                                <span class="sub-item">New Customer</span>
-                                            </a>
-                                        </li>
                                     </ul>
                                 </div>
                             </li>

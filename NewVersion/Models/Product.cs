@@ -18,7 +18,6 @@ namespace NewVersion.Models
         public Product()
         {
             this.Orders = new HashSet<Order>();
-            this.Reviews = new HashSet<Review>();
             this.ShoppingCarts = new HashSet<ShoppingCart>();
             this.Transactions = new HashSet<Transaction>();
         }
@@ -29,15 +28,10 @@ namespace NewVersion.Models
         public decimal Price { get; set; }
         public int Quantity { get; set; }
         public bool IsVisible { get; set; }
-        public string ProductCategory { get; set; }
-        public string ProductColor { get; set; }
-        public string ProductType { get; set; }
-        public string ProductDescription { get; set; }
+        public decimal TotalPrice { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Review> Reviews { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

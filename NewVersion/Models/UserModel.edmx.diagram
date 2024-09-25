@@ -14,19 +14,17 @@
         <EntityTypeShape EntityType="UserModel.Address" Width="1.5" PointX="0.75" PointY="7.75" />
         <EntityTypeShape EntityType="UserModel.CheckOut" Width="1.5" PointX="10.25" PointY="2.875" />
         <EntityTypeShape EntityType="UserModel.Order" Width="1.5" PointX="8" PointY="11" />
-        <EntityTypeShape EntityType="UserModel.Refund" Width="1.5" PointX="10.25" PointY="14.375" />
-        <EntityTypeShape EntityType="UserModel.Review" Width="1.5" PointX="8" PointY="7.875" />
         <EntityTypeShape EntityType="UserModel.ShoppingCart" Width="1.5" PointX="8" PointY="2.5" />
         <EntityTypeShape EntityType="UserModel.Transaction" Width="1.5" PointX="10.25" PointY="8" />
         <AssociationConnector Association="UserModel.FK_CheckOut_ToCart" />
         <AssociationConnector Association="UserModel.FK_ShoppingCart_ToMember" />
-        <AssociationConnector Association="UserModel.FK_Order_ToRefund" />
         <AssociationConnector Association="UserModel.FK_Product_ToOrder" />
         <AssociationConnector Association="UserModel.FK_Transaction_ToOrder" />
-        <AssociationConnector Association="UserModel.FK__Review__ProductI__1387E197" />
         <AssociationConnector Association="UserModel.FK_ShoppingCart_ToProduct" />
         <AssociationConnector Association="UserModel.FK_Transaction_ToProduct" />
         <EntityTypeShape EntityType="UserModel.Shipper" Width="1.5" PointX="3.375" PointY="9.75" />
+        <EntityTypeShape EntityType="UserModel.Refund" Width="1.5" PointX="10.25" PointY="11.25" />
+        <AssociationConnector Association="UserModel.FK_Order_ToRefund" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -34,10 +34,9 @@ namespace NewVersion.Models
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<CheckOut> CheckOuts { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<Refund> Refunds { get; set; }
-        public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<Shipper> Shippers { get; set; }
+        public virtual DbSet<Refund> Refunds { get; set; }
     }
 }

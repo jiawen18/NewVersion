@@ -1186,9 +1186,6 @@
     <Compile Include="Models\Refund.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Review.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Shipper.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
