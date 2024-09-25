@@ -1,17 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="Review.aspx.cs" Inherits="NewVersion.css.Review" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-<asp:SqlDataSource 
-    ID="SqlDataSource1" 
-    runat="server" 
-    ConnectionString="<%$ ConnectionStrings:productConnectionString %>"
-    ProviderName="System.Data.SqlClient"
-    SelectCommand="SELECT ReviewID, ReviewDate, ReviewRating, ReviewImage, ReviewDescription, ProductID 
-                   FROM Review WHERE ProductID = @ProductID">
-    <SelectParameters>
-        <asp:Parameter Name="ProductID" Type="Int32" />
-    </SelectParameters>
-</asp:SqlDataSource>
+    <asp:SqlDataSource
+        ID="SqlDataSource1"
+        runat="server"
+        ConnectionString="<%$ ConnectionStrings:productConnectionString %>"
+        SelectCommand="SELECT * FROM [Review]"></asp:SqlDataSource>
 
 <!-- Start Hero Section -->
 <div class="hero">
