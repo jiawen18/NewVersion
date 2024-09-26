@@ -74,7 +74,7 @@
                         <div id="tab2" class="tab-pane active">
                             <div class="products-slick" data-nav="#slick-nav-1" style="display: flex; flex-wrap: wrap; justify-content: space-between;">
                                 <div class="row" style="display: flex; flex-wrap: wrap; width: 100%;">
-                                    <asp:Repeater ID="productRepeater" runat="server" DataSourceID="SqlDataSource1">
+                                    <asp:Repeater ID="productRepeater" runat="server" >
                                         <ItemTemplate>
                                             <div class="col-md-4" style="flex: 1 1 30%; box-sizing: border-box; margin-bottom: 20px;">
                                                 <div class="product" style="height: 100%;">
