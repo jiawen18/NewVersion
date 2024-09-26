@@ -2,155 +2,74 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
 
+    <script type="text/javascript">
+        function confirmMarkAsRead() {
+            return confirm("Are you sure you want to mark this message as read?");
+        }
+
+        function openMailClient(email, firstName) {
+            var subject = encodeURIComponent("Reply to your support request");
+            var body = encodeURIComponent("Dear " + firstName + ",\n\n");
+            var mailtoLink = "mailto:" + email + "?subject=" + subject + "&body=" + body;
+
+            window.open(mailtoLink);
+
+            return false;
+        }
+
+    </script>
+
     <div class="card">
-        <%--<div class="card-header">
-            <div class="d-flex align-items-center">
-                <h4 class="card-title">Add Row</h4>
-                <asp:LinkButton
-                    ID="AddRowButton"
-                    runat="server"
-                    CssClass="btn btn-black btn-border btn-round ms-auto"
-                    OnClientClick="return false;"
-                    data-bs-toggle="modal"
-                    data-bs-target="#addRowModal">
-                <i class="fa fa-plus" style="padding-right: 8px;"></i>
-                Add Row
-                </asp:LinkButton>
-
+        <div class="card-header d-flex justify-content-between align-items-start">
+            <div>
+                <h4 class="card-title mb-0">Support Messages</h4>
+                <asp:Label ID="FeedbackLabel" runat="server" CssClass="text-success mb-3"></asp:Label>
             </div>
-        </div>--%>
+        </div>
         <div class="card-body">
-            <!-- Modal -->
-            <div
-                class="modal fade"
-                id="addRowModal"
-                tabindex="-1"
-                role="dialog"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header border-0">
-                            <h5 class="modal-title">
-                                <span class="fw-mediumbold">New</span>
-                                <span class="fw-light">Row </span>
-                            </h5>
-                            <asp:LinkButton
-                                ID="CloseModalButton"
-                                runat="server"
-                                CssClass="close"
-                                OnClientClick="$('#addRowModal').modal('hide'); return false;"
-                                aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </asp:LinkButton>
-                        </div>
-                        <div class="modal-body">
-                            <p class="small">
-                                Create a new row using this form, make sure you fill them all
-                            </p>
-                            <div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="form-group form-group-default">
-                                            <label>Name</label>
-                                            <input
-                                                id="addName"
-                                                type="text"
-                                                class="form-control"
-                                                placeholder="fill name" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 pe-0">
-                                        <div class="form-group form-group-default">
-                                            <label>Position</label>
-                                            <input
-                                                id="addPosition"
-                                                type="text"
-                                                class="form-control"
-                                                placeholder="fill position" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group form-group-default">
-                                            <label>Office</label>
-                                            <input
-                                                id="addOffice"
-                                                type="text"
-                                                class="form-control"
-                                                placeholder="fill office" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer border-0">
-                            <asp:Button
-                                ID="Button1"
-                                runat="server"
-                                CssClass="btn btn-primary"
-                                Text="Add"
-                                OnClick="AddRowButton_Click" />
-                            <!-- Server-side event handler -->
-                            <asp:LinkButton
-                                ID="LinkButton1"
-                                runat="server"
-                                CssClass="btn btn-black btn-border"
-                                OnClientClick="$('#addRowModal').modal('hide'); return false;">
-                            Close
-                            </asp:LinkButton>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="table-responsive">
-                <asp:Repeater ID="Repeater1" runat="server">
-                    <HeaderTemplate>
-                        <table class="display table table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th colspan="2" style="width: 10%; text-align: center;">Actions</th>
-                                </tr>
-                            </thead>
-                    </HeaderTemplate>
-                    <ItemTemplate>
-                        <tr>
-                            <td><%# Eval("Name") %></td>
-                            <td><%# Eval("Price") %></td>
-                            <td><%# Eval("Quantity") %></td>
-                            <td style="display: flex;">
-                                <asp:LinkButton
-                                    ID="CopyItemButton"
+                <asp:GridView
+                    ID="GridView1"
+                    runat="server"
+                    AutoGenerateColumns="False"
+                    AllowSorting="True"
+                    AllowPaging="True"
+                    PageSize="7"
+                    CssClass="display table table-striped table-hover"
+                    DataKeyNames="SupportID"
+                    OnSorting="GridView1_Sorting"
+                    OnPageIndexChanging="GridView1_PageIndexChanging"
+                    OnRowDataBound="GridView1_RowDataBound">
+                    <Columns>
+                        <asp:BoundField DataField="SupportID" HeaderText="Support ID" SortExpression="SupportID" Visible="false" HeaderStyle-ForeColor="Black" />
+                        <asp:BoundField DataField="FirstName" HeaderText="First Name" SortExpression="FirstName" HeaderStyle-ForeColor="Black" />
+                        <asp:BoundField DataField="LastName" HeaderText="Last Name" SortExpression="LastName" HeaderStyle-ForeColor="Black" />
+                        <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" HeaderStyle-ForeColor="Black" />
+                        <asp:BoundField DataField="Message" HeaderText="Message" SortExpression="Message" HeaderStyle-ForeColor="Black" />
+                        <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" HeaderStyle-ForeColor="Black" />
+                        <asp:TemplateField HeaderText="Actions">
+                            <ItemTemplate>
+                                <asp:Button
+                                    ID="MarkAsReadButton"
                                     runat="server"
-                                    CssClass="btn btn-link btn-primary"
-                                    data-bs-toggle="tooltip"
-                                    title="Reply"
-                                    data-original-title="Copy Item"
-                                    OnClick="CopyItemButton_Click">
-                                <i class="fa fa-reply"></i>
-                                </asp:LinkButton>
-                                <asp:LinkButton
-                                    ID="EditTaskButton"
+                                    CssClass="btn btn-link"
+                                    OnClientClick="return confirmMarkAsRead();"
+                                    CommandArgument='<%# Eval("SupportID") %>'
+                                    Text="Mark as Read"
+                                    OnClick="MarkAsReadButton_Click" />
+                                <asp:Button
+                                    ID="ReplyButton"
                                     runat="server"
-                                    CssClass="btn btn-link btn-success"
-                                    data-bs-toggle="tooltip"
-                                    title="Read"
-                                    data-original-title="Edit Task"
-                                    OnClick="EditTaskButton_Click">
-                                <i class="fa fa-check"></i>
-                                </asp:LinkButton>
-                            </td>
-                        </tr>
-                    </ItemTemplate>
-                    <FooterTemplate>
-                        </table>
-                    </FooterTemplate>
-                </asp:Repeater>
+                                    CssClass="btn btn-link"
+                                    CommandArgument='<%# Eval("SupportID") %>'
+                                    Text="Reply"
+                                    OnClick="ReplyButton_Click"
+                                    OnClientClick='<%# "openMailClient(\"" + Eval("Email") + "\", \"" + Eval("FirstName") + "\")" %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
             </div>
         </div>
     </div>
-
 </asp:Content>
