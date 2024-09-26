@@ -15,59 +15,40 @@
                                 <th style="width: 10%">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                          <tbody>
+                   <!-- Repeater control to bind admin data -->
+                    <asp:Repeater ID="RepeaterAdminList" runat="server">
+                        <ItemTemplate>
                             <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
+                                <td><%# Eval("Username") %></td>
+                                <td>
+                                    <asp:Label ID="lblPosition" runat="server" Text='<%# Eval("Position") %>'></asp:Label>
+                                    <asp:TextBox ID="txtPosition" runat="server" Text='<%# Eval("Position") %>' CssClass="form-control" Visible="false"></asp:TextBox>
+                                </td>
+                                <td>
+                                    <asp:Label ID="lblOffice" runat="server" Text='<%# Eval("Office") %>'></asp:Label>
+                                    <asp:TextBox ID="txtOffice" runat="server" Text='<%# Eval("Office") %>' CssClass="form-control" Visible="false"></asp:TextBox>
+                                </td>
                                 <td>
                                     <div class="form-button-action">
-                                        <button
-                                            type="button"
-                                            data-bs-toggle="tooltip"
-                                            title=""
-                                            class="btn btn-link btn-primary btn-lg"
-                                            data-original-title="Edit Task">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
+                                        <!-- Edit button -->
+                                        <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="btn btn-link btn-primary btn-lg"
+                                            CommandName="EditAdmin" CommandArgument='<%# Eval("Username") %>' OnClick="EditAdmin_Click" />
+
+                                        <!-- Save button, initially hidden -->
+                                        <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-link btn-success btn-lg"
+                                            CommandName="SaveAdmin" CommandArgument='<%# Eval("Username") %>' OnClick="SaveAdmin_Click" Visible="false" />
+
+                                        <!-- Delete button with confirmation -->
+                                        <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn btn-link btn-danger btn-lg"
+                                            CommandName="DeleteAdmin" CommandArgument='<%# Eval("Username") %>' OnClick="DeleteAdmin_Click"
+                                            OnClientClick="return confirm('Are you sure you want to delete this admin?');" />
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>
-                                    <div class="form-button-action">
-                                        <button
-                                            type="button"
-                                            data-bs-toggle="tooltip"
-                                            title=""
-                                            class="btn btn-link btn-primary btn-lg"
-                                            data-original-title="Edit Task">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>Junior Technical Author</td>
-                                <td>San Francisco</td>
-                                <td>
-                                    <div class="form-button-action">
-                                        <button
-                                            type="button"
-                                            data-bs-toggle="tooltip"
-                                            title=""
-                                            class="btn btn-link btn-primary btn-lg"
-                                            data-original-title="Edit Task">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </tbody>
                     </table>
                 </div>
             </div>

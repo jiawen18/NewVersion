@@ -1,72 +1,163 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Data;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using NewVersion.Models;
 
 namespace NewVersion.admin
 {
     public partial class support : System.Web.UI.Page
     {
-        string cs = Global.CS;
+        private userEntities db = new userEntities();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                BindRepeater();
+                BindGrid();
             }
         }
 
-        private void BindRepeater()
+        private void BindGrid(string sortExpression = null, string statusFilter = null)
         {
-            // Define your connection string (make sure to include your own database details)
-            //string connStr = ConfigurationManager.ConnectionStrings["YourConnectionStringName"].ConnectionString;
-
-            // SQL query to fetch data
-            string query = "SELECT Name, Price, Quantity FROM Product";
-
-            // Initialize the connection
-            using (SqlConnection conn = new SqlConnection(cs))
+            using (var context = new userEntities())
             {
-                // Create a command
-                SqlCommand cmd = new SqlCommand(query, conn);
+                var supportRequests = context.Supports.AsQueryable();
 
-                // Open the connection
-                conn.Open();
+                if (!string.IsNullOrEmpty(statusFilter))
+                {
+                    supportRequests = supportRequests.Where(s => s.Status == statusFilter);
+                }
 
-                // Execute the command and read data
-                DataSet ds = new DataSet();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
+                if (!string.IsNullOrEmpty(sortExpression))
+                {
+                    switch (sortExpression)
+                    {
+                        case "FirstName":
+                            supportRequests = supportRequests.OrderBy(s => s.FirstName);
+                            break;
+                        case "LastName":
+                            supportRequests = supportRequests.OrderBy(s => s.LastName);
+                            break;
+                        case "Email":
+                            supportRequests = supportRequests.OrderBy(s => s.Email);
+                            break;
+                        case "Status":
+                            supportRequests = supportRequests.OrderBy(s => s.Status);
+                            break;
+                        case "CreatedAt":
+                            supportRequests = supportRequests.OrderBy(s => s.CreatedAt);
+                            break;
+                    }
+                }
 
-                // Bind the reader to the Repeater
-                Repeater1.DataSource = ds;
-                Repeater1.DataBind();
-
-                // Close the connection
-                conn.Close();
+                GridView1.DataSource = supportRequests.ToList();
+                GridView1.DataBind();
             }
         }
 
-        protected void AddRowButton_Click(object sender, EventArgs e)
+        protected void StatusFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string script = "alert('Add button clicked!');";
-            ClientScript.RegisterStartupScript(this.GetType(), "AlertScript", script, true);
-        }
-        protected void CopyItemButton_Click(object sender, EventArgs e)
-        {
-            string script = "alert('Button clicked!');";
-            ClientScript.RegisterStartupScript(this.GetType(), "AlertScript", script, true);
+            string selectedStatus = statusFilter.SelectedValue;
+            BindGrid(null, selectedStatus);
         }
 
-        protected void EditTaskButton_Click(object sender, EventArgs e)
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            string script = "alert('Button clicked!');";
-            ClientScript.RegisterStartupScript(this.GetType(), "AlertScript", script, true);
+            GridView1.PageIndex = e.NewPageIndex;
+            BindGrid(null, statusFilter.SelectedValue);
         }
 
+        protected void GridView1_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            string sortExpression = e.SortExpression;
+            BindGrid(sortExpression, statusFilter.SelectedValue);
+        }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string status = DataBinder.Eval(e.Row.DataItem, "Status").ToString();
+
+                Button markAsReadButton = (Button)e.Row.FindControl("MarkAsReadButton");
+                Button replyButton = (Button)e.Row.FindControl("ReplyButton");
+
+                if (status == "Seen" || status == "Replied")
+                {
+                    markAsReadButton.Enabled = false;
+                    replyButton.Enabled = false;
+                }
+            }
+        }
+
+        protected void MarkAsReadButton_Click(object sender, EventArgs e)
+        {
+            Button markAsReadButton = sender as Button;
+            if (markAsReadButton != null)
+            {
+                int supportID = Convert.ToInt32(markAsReadButton.CommandArgument);
+
+                using (var context = new userEntities())
+                {
+                    var supportRequest = context.Supports.Find(supportID);
+                    if (supportRequest != null)
+                    {
+                        supportRequest.Status = "Seen";
+                        context.SaveChanges();
+                    }
+                }
+
+                BindGrid(null, statusFilter.SelectedValue);
+                FeedbackLabel.Text = "Support request marked as seen.";
+                FeedbackLabel.CssClass = "text-info";
+            }
+        }
+
+        protected void ReplyButton_Click(object sender, EventArgs e)
+        {
+            Button replyButton = sender as Button;
+            if (replyButton != null)
+            {
+                int supportID = Convert.ToInt32(replyButton.CommandArgument);
+
+                using (var context = new userEntities())
+                {
+                    var supportRequest = context.Supports.Find(supportID);
+                    if (supportRequest != null)
+                    {
+                        supportRequest.Status = "Replied";
+                        context.SaveChanges();
+                    }
+                }
+
+                BindGrid(null, statusFilter.SelectedValue);
+                FeedbackLabel.Text = "Support request marked as replied.";
+                FeedbackLabel.CssClass = "text-info";
+            }
+        }
+
+        protected void RemoveSpamButton_Click(object sender, EventArgs e)
+        {
+            Button removeSpamButton = sender as Button;
+            if (removeSpamButton != null)
+            {
+                int supportID = Convert.ToInt32(removeSpamButton.CommandArgument);
+
+                using (var context = new userEntities())
+                {
+                    var supportRequest = context.Supports.Find(supportID);
+                    if (supportRequest != null)
+                    {
+                        context.Supports.Remove(supportRequest);
+                        context.SaveChanges();
+                    }
+                }
+
+                BindGrid(null, statusFilter.SelectedValue);
+                FeedbackLabel.Text = "Support request removed.";
+                FeedbackLabel.CssClass = "text-info";
+            }
+        }
     }
 }

@@ -6,11 +6,7 @@
     runat="server" 
     ConnectionString="<%$ ConnectionStrings:productConnectionString %>"
     ProviderName="System.Data.SqlClient"
-    SelectCommand="SELECT P.ProductID, P.ProductName, P.ProductImageURL, P.Price, P.Quantity, P.IsVisible, 
-                          R.ReviewID, R.ReviewDate, R.ReviewRating, R.ReviewDescription
-                   FROM Product P
-                   LEFT JOIN Review R ON P.ProductID = R.ProductID
-                   WHERE P.IsVisible = 1">
+    SelectCommand="SELECT ProductID, ProductName, ProductImageURL, Price, Quantity, IsVisible FROM Product">
 </asp:SqlDataSource>
 
     <!-- Start Hero Section -->
@@ -41,26 +37,23 @@
 <!-- Start Products Row -->
 <div class="products-row row">
     <!-- Dynamic product listing using Repeater -->
-    <asp:Repeater ID="rptProducts" runat="server" >
+    <asp:Repeater ID="rptProducts" runat="server">
     <ItemTemplate>
         <div class="col-12 col-md-4 col-lg-3 mb-5 grey-container">
             <img src='<%# Eval("ProductImageURL") %>' class="img-fluid product-thumbnail" alt='<%# Eval("ProductName") %>' />
             <h3 class="product-title"><%# Eval("ProductName") %></h3>
             <strong class="product-price">RM <%# Eval("Price", "{0:F2}") %></strong>
 
-            <!-- Review Section -->
-            <asp:Repeater ID="rptReviews" runat="server">
-            <ItemTemplate>
-                <div class="review-section">
-                    <h5>Review by Customer</h5>
-                    <p><%# Eval("ReviewDescription") %></p>
-                    <strong>Rating: <%# Eval("ReviewRating") %> / 5</strong>
-                    <br />
-                    <em>Reviewed on: <%# Eval("ReviewDate", "{0:dd MMM yyyy}") %></em>
+            <div class="product-ratings">
+                <div class="star-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
                 </div>
-            </ItemTemplate>
-            </asp:Repeater>
-            <!-- End Review Section -->
+                <span class="rating-text">4.5 (245)</span>
+            </div>
 
             <div class="buyNow">
                 <asp:Button ID="btnBuyNow" runat="server" Text="Buy Now" CssClass="buyNow-btn" CommandArgument='<%# Eval("ProductID") %>' OnClick="btnBuyNow_Click" />
@@ -84,26 +77,23 @@
 <!-- Start Products Row -->
 <div class="products-row row">
     <!-- Dynamic product listing using Repeater -->
-    <asp:Repeater ID="rptProducts2" runat="server">
+    <asp:Repeater ID="Repeater1" runat="server">
     <ItemTemplate>
         <div class="col-12 col-md-4 col-lg-3 mb-5 grey-container">
             <img src='<%# Eval("ProductImageURL") %>' class="img-fluid product-thumbnail" alt='<%# Eval("ProductName") %>' />
             <h3 class="product-title"><%# Eval("ProductName") %></h3>
             <strong class="product-price">RM <%# Eval("Price", "{0:F2}") %></strong>
 
-           <!-- Review Section -->
-            <asp:Repeater ID="rptReviews" runat="server">
-            <ItemTemplate>
-                <div class="review-section">
-                    <h5>Review by Customer</h5>
-                    <p><%# Eval("ReviewDescription") %></p>
-                    <strong>Rating: <%# Eval("ReviewRating") %> / 5</strong>
-                    <br />
-                    <em>Reviewed on: <%# Eval("ReviewDate", "{0:dd MMM yyyy}") %></em>
+            <div class="product-ratings">
+                <div class="star-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
                 </div>
-            </ItemTemplate>
-            </asp:Repeater>
-            <!-- End Review Section -->
+                <span class="rating-text">4.5 (245)</span>
+            </div>
 
             <div class="buyNow">
                 <asp:Button ID="btnBuyNow" runat="server" Text="Buy Now" CssClass="buyNow-btn" CommandArgument='<%# Eval("ProductID") %>' OnClick="btnBuyNow_Click" />
@@ -122,33 +112,30 @@
 <br />
 <!-- Start Section Title -->
 <div class="section-title-container">
-        <h2>Galaxy Z flip Series</h2>
+    <h2>Galaxy Z flip Series</h2>
 </div>
 <!-- End Section Title -->
 
 <!-- Start Products Row -->
 <div class="products-row row">
     <!-- Dynamic product listing using Repeater -->
-    <asp:Repeater ID="rptProducts3" runat="server">
+    <asp:Repeater ID="Repeater3" runat="server">
     <ItemTemplate>
         <div class="col-12 col-md-4 col-lg-3 mb-5 grey-container">
             <img src='<%# Eval("ProductImageURL") %>' class="img-fluid product-thumbnail" alt='<%# Eval("ProductName") %>' />
             <h3 class="product-title"><%# Eval("ProductName") %></h3>
             <strong class="product-price">RM <%# Eval("Price", "{0:F2}") %></strong>
 
-            <!-- Review Section -->
-            <asp:Repeater ID="rptReviews" runat="server">
-            <ItemTemplate>
-                <div class="review-section">
-                    <h5>Review by Customer</h5>
-                    <p><%# Eval("ReviewDescription") %></p>
-                    <strong>Rating: <%# Eval("ReviewRating") %> / 5</strong>
-                    <br />
-                    <em>Reviewed on: <%# Eval("ReviewDate", "{0:dd MMM yyyy}") %></em>
+            <div class="product-ratings">
+                <div class="star-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
                 </div>
-            </ItemTemplate>
-            </asp:Repeater>
-            <!-- End Review Section -->
+                <span class="rating-text">4.5 (245)</span>
+            </div>
 
             <div class="buyNow">
                 <asp:Button ID="btnBuyNow" runat="server" Text="Buy Now" CssClass="buyNow-btn" CommandArgument='<%# Eval("ProductID") %>' OnClick="btnBuyNow_Click" />

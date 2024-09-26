@@ -115,7 +115,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\AdminProfile.aspx" />
-    <Content Include="admin\customerList.aspx" />
     <Content Include="admin\dashboard.aspx" />
     <Content Include="admin\edit.aspx" />
     <Content Include="admin\inventory.aspx" />
@@ -125,7 +124,6 @@
     <Content Include="admin\newSupplier.aspx" />
     <Content Include="admin\orderList.aspx" />
     <Content Include="admin\productList.aspx" />
-    <Content Include="admin\productPages.aspx" />
     <Content Include="admin\refunds.aspx" />
     <Content Include="admin\reviews.aspx" />
     <Content Include="admin\sales.aspx" />
@@ -569,7 +567,6 @@
     <Content Include="css\images\couch.png" />
     <Content Include="css\images\coupon-icon.png" />
     <Content Include="css\images\cross.svg" />
-    <Content Include="admin\assets\img\default.jpg" />
     <Content Include="css\images\delete.png" />
     <Content Include="css\images\dots-green.svg" />
     <Content Include="css\images\dots-light.svg" />
@@ -712,16 +709,6 @@
     <Content Include="css\ThankYou.aspx" />
     <Content Include="css\UserProfile.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Models\ModelTest.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelTest.Context.cs</LastGenOutput>
-      <DependentUpon>ModelTest.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\ModelTest.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelTest.edmx</DependentUpon>
-      <LastGenOutput>ModelTest.cs</LastGenOutput>
-    </Content>
     <Content Include="Models\UserModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>UserModel.edmx</DependentUpon>
@@ -755,13 +742,6 @@
     </Compile>
     <Compile Include="admin\AdminProfile.aspx.designer.cs">
       <DependentUpon>AdminProfile.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\customerList.aspx.cs">
-      <DependentUpon>customerList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\customerList.aspx.designer.cs">
-      <DependentUpon>customerList.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\dashboard.aspx.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
@@ -825,13 +805,6 @@
     </Compile>
     <Compile Include="admin\productList.aspx.designer.cs">
       <DependentUpon>productList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\productPages.aspx.cs">
-      <DependentUpon>productPages.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\productPages.aspx.designer.cs">
-      <DependentUpon>productPages.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\refunds.aspx.cs">
       <DependentUpon>refunds.aspx</DependentUpon>
@@ -1102,13 +1075,7 @@
     <Compile Include="Login.Master.designer.cs">
       <DependentUpon>Login.Master</DependentUpon>
     </Compile>
-    <Compile Include="Models\Address.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\AdminUser.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CheckOut.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Inventory.cs">
@@ -1116,21 +1083,6 @@
     </Compile>
     <Compile Include="Models\MemberUser.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelTest.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelTest.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelTest.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelTest.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelTest.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelTest.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Order.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
@@ -1144,19 +1096,13 @@
     <Compile Include="Models\Shipper.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ShoppingCart.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\SuperAminUser.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Supplier.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Table.cs">
-      <DependentUpon>ModelTest.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Transaction.cs">
+    <Compile Include="Models\Support.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserModel.Context.cs">
@@ -1183,7 +1129,6 @@
       <DependentUpon>Home.Master</DependentUpon>
     </Compile>
     <Compile Include="Security.cs" />
-    <Compile Include="SimpleImage.cs" />
     <Compile Include="startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1223,13 +1168,6 @@
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="Admin.Master" />
-    <EntityDeploy Include="Models\ModelTest.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelTest.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ModelTest.edmx.diagram">
-      <DependentUpon>ModelTest.edmx</DependentUpon>
-    </Content>
     <Content Include="Admin.sitemap" />
     <EntityDeploy Include="Models\UserModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

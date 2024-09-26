@@ -45,7 +45,7 @@ namespace NewVersion.css
 
             try
             {
-                string query1 = "SELECT InvoiceNumber,InvoiceDate FROM [Transaction] WHERE OrderID = @OrderID";
+                string query1 = "SELECT InvoiceNumber,InvoiceDate FROM Transaction WHERE OrderID = @OrderID";
 
                 SqlCommand cmd1 = new SqlCommand(query1, con1);
 
@@ -154,7 +154,6 @@ namespace NewVersion.css
             Response.Redirect("Delivery.aspx");
         }
 
-
         // yujing edited this for refund
         protected void btnCancel_Click(object sender, EventArgs e)
         {
@@ -171,7 +170,7 @@ namespace NewVersion.css
                         OrderID = orderID.ToString(),
                         RefundRequestDate = DateTime.Now,
                         RefundStatus = "Pending",
-                        
+
                     };
 
                     context.Refunds.Add(refundRequest);
@@ -184,7 +183,6 @@ namespace NewVersion.css
                 Response.Redirect("cancelled.aspx");
             }
         }
-
     }
 
     public partial class Order

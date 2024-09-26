@@ -17,8 +17,6 @@ namespace NewVersion.css
     {
         //step 2: retrieve CS from Global.asax
         string cs = Global.CS;
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -34,14 +32,24 @@ namespace NewVersion.css
 
             int rating = Convert.ToInt32(HiddenFieldRating.Value); ;
             int productId = Convert.ToInt32(HiddenFieldProductID.Value);
+
+            
+            if (!int.TryParse(HiddenFieldRating.Value, out rating) ||
+                !int.TryParse(HiddenFieldProductID.Value, out productId))
+            {
+                
+                Response.Write("Invalid rating or product ID. Please try again.");
+                return; 
+            }
             string description = txtReviewDescription.Text;
-            string imagePath = ""; 
+            string imagePath = "";
+
             DateTime reviewDate = DateTime.Now;
 
             if (FileUploadMedia.HasFile)
             {
                 string fileName = Path.GetFileName(FileUploadMedia.PostedFile.FileName);
-                string uploadPath = Server.MapPath("~/Uploads/"); 
+                string uploadPath = Server.MapPath("~/Uploads/");
                 string fullPath = Path.Combine(uploadPath, fileName);
 
                 // Save the file to the server
@@ -50,8 +58,8 @@ namespace NewVersion.css
                 Response.Write($"File saved to: {fullPath}<br/>");
 
                 // Set the image path to save in the database
-                imagePath = "~/Uploads/" + fileName; // Store relative path
-                HiddenFieldImagePath.Value = imagePath; // Store in hidden field if needed
+                imagePath = "~/Uploads/" + fileName; 
+                HiddenFieldImagePath.Value = imagePath; 
             }
 
             else
@@ -85,6 +93,7 @@ namespace NewVersion.css
             Response.Redirect("Home.aspx");
 
         }
+
 
         private void LoadProductDetails(int productId)
         {

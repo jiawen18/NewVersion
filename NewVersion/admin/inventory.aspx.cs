@@ -15,6 +15,7 @@ namespace NewVersion.admin
             if (!IsPostBack)
             {
                 BindGrid();
+                BindSuppliers();
             }
         }
 
@@ -25,6 +26,18 @@ namespace NewVersion.admin
                 var inventoryItems = context.Inventories.ToList();
                 GridView1.DataSource = inventoryItems;
                 GridView1.DataBind();
+            }
+        }
+
+        private void BindSuppliers()
+        {
+            using (var context = new userEntities())
+            {
+                var suppliers = context.Suppliers.ToList();
+                addInventorySupplier.DataSource = suppliers;
+                addInventorySupplier.DataTextField = "supplierBranch";
+                addInventorySupplier.DataValueField = "supplierBranch";
+                addInventorySupplier.DataBind();
             }
         }
 
@@ -56,30 +69,6 @@ namespace NewVersion.admin
 
                 GridView1.DataSource = inventoryItems;
                 GridView1.DataBind();
-            }
-        }
-
-        protected void EditTaskButton_Click(object sender, EventArgs e)
-        {
-            Button editButton = sender as Button;
-            if (editButton != null)
-            {
-                int inventoryID = Convert.ToInt32(editButton.CommandArgument);
-
-                using (var context = new userEntities())
-                {
-                    var inventoryItem = context.Inventories.Find(inventoryID);
-                    if (inventoryItem != null)
-                    {
-                        addInventoryName.Text = inventoryItem.inventoryName;
-                        addInventorySupplier.Text = inventoryItem.inventorySupplier;
-                        addInventoryQuantity.Text = inventoryItem.inventoryQuantity.ToString();
-
-                        HiddenInventoryID.Value = inventoryID.ToString();
-
-                        ScriptManager.RegisterStartupScript(this, GetType(), "showModal", "$('#addRowModal').modal('show');", true);
-                    }
-                }
             }
         }
 
@@ -115,11 +104,29 @@ namespace NewVersion.admin
                         var inventoryItem = context.Inventories.Find(inventoryID);
                         if (inventoryItem != null)
                         {
-                            inventoryItem.inventoryName = addInventoryName.Text;
-                            inventoryItem.inventorySupplier = addInventorySupplier.Text;
-                            inventoryItem.inventoryQuantity = int.Parse(addInventoryQuantity.Text);
 
-                            context.SaveChanges();
+                            int initialQuantity = inventoryItem.inventoryQuantity;
+
+                            inventoryItem.inventorySupplier = addInventorySupplier.SelectedValue;
+
+
+                            int adjustment;
+                            if (int.TryParse(adjustInventoryQuantity.Text, out adjustment))
+                            {
+                                inventoryItem.inventoryQuantity += adjustment;
+                                context.SaveChanges();
+
+                                FeedbackLabel.Text = $"Inventory item updated successfully!<br />" +
+                                                     $"Initial Quantity: {initialQuantity} | " +
+                                                     $"Adjustment: {adjustment} ({(adjustment >= 0 ? "Added" : "Subtracted")}) | " +
+                                                     $"Final Quantity: {inventoryItem.inventoryQuantity}";
+                                FeedbackLabel.CssClass = "text-success";
+                            }
+                            else
+                            {
+                                FeedbackLabel.Text = "Invalid adjustment quantity.";
+                                FeedbackLabel.CssClass = "text-danger";
+                            }
                         }
                     }
                     else
@@ -131,17 +138,16 @@ namespace NewVersion.admin
                 }
 
                 ResetModalState();
-
-                FeedbackLabel.Text = "Inventory item updated successfully!";
-                FeedbackLabel.CssClass = "text-success";
             }
         }
+
 
         private void ResetModalState()
         {
             addInventoryName.Text = string.Empty;
-            addInventorySupplier.Text = string.Empty;
-            addInventoryQuantity.Text = string.Empty;
+            addInventorySupplier.SelectedIndex = -1;
+            currentInventoryQuantity.Text = string.Empty;
+            adjustInventoryQuantity.Text = string.Empty;
             HiddenInventoryID.Value = string.Empty;
 
             ScriptManager.RegisterStartupScript(this, GetType(), "closeModal", "$('#addRowModal').modal('hide');", true);

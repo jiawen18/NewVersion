@@ -33,21 +33,21 @@ namespace NewVersion.css
         protected global::System.Web.UI.WebControls.Repeater rptProducts;
 
         /// <summary>
-        /// rptProducts2 control.
+        /// Repeater1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProducts2;
+        protected global::System.Web.UI.WebControls.Repeater Repeater1;
 
         /// <summary>
-        /// rptProducts3 control.
+        /// Repeater3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProducts3;
+        protected global::System.Web.UI.WebControls.Repeater Repeater3;
     }
 }

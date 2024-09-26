@@ -17,7 +17,6 @@ namespace NewVersion.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Order()
         {
-            this.Transactions = new HashSet<Transaction>();
             this.Refunds = new HashSet<Refund>();
         }
     
@@ -28,10 +27,8 @@ namespace NewVersion.Models
         public string DeliveryStatus { get; set; }
         public string OrderDetails { get; set; }
     
-        public virtual Product Product { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Transaction> Transactions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Refund> Refunds { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

@@ -12,11 +12,14 @@ namespace NewVersion.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Table
+    public partial class Support
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Position { get; set; }
-        public string Office { get; set; }
+        public int SupportID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Message { get; set; }
+        public Nullable<System.DateTime> CreatedAt { get; set; }
+        public string Status { get; set; }
     }
 }

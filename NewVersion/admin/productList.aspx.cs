@@ -32,64 +32,69 @@ namespace NewVersion.admin
 
         protected void btnAddProduct_Click(object sender, EventArgs e)
         {
-                string productName = txtProductName.Text;
-                string productImageURL = txtProductImageURL.Text;
-                decimal price = decimal.Parse(txtPrice.Text);
-                int quantity = int.Parse(txtQuantity.Text);
-                bool isVisible = chkIsVisible.Checked;
+            string productName = txtProductName.Text;
+            string productImageURL = txtProductImageURL.Text;
+            decimal price = decimal.Parse(txtPrice.Text);
+            int quantity = int.Parse(txtQuantity.Text);
+            bool isVisible = chkIsVisible.Checked;
 
-                string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
 
-                string query = @"INSERT INTO Product (ProductImageURL, ProductName, Price, Quantity, IsVisible) 
+            string query = @"INSERT INTO Product (ProductImageURL, ProductName, Price, Quantity, IsVisible) 
                      VALUES (@ProductImageURL, @ProductName, @Price, @Quantity, @IsVisible)";
 
-                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString))
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, con))
                 {
-                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    // Supply input/data into parameters
+                    cmd.Parameters.AddWithValue("@ProductImageURL", productImageURL);
+                    cmd.Parameters.AddWithValue("@ProductName", productName);
+                    cmd.Parameters.AddWithValue("@Price", price);
+                    cmd.Parameters.AddWithValue("@Quantity", quantity);
+                    cmd.Parameters.AddWithValue("@IsVisible", isVisible);
+
+                    con.Open(); 
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected > 0)
                     {
-                        // Supply input/data into parameters
-                        cmd.Parameters.AddWithValue("@ProductImageURL", productImageURL);
-                        cmd.Parameters.AddWithValue("@ProductName", productName);
-                        cmd.Parameters.AddWithValue("@Price", price);
-                        cmd.Parameters.AddWithValue("@Quantity", quantity);
-                        cmd.Parameters.AddWithValue("@IsVisible", isVisible);
+                        lblMessage.Text = "Product added successfully.";
+                        lblMessage.CssClass = "text-success";
 
-                        con.Open();
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        if (rowsAffected > 0)
-                        {
-                            lblMessage.Text = "Product added successfully.";
-                            lblMessage.CssClass = "text-success";
-
-                            // Rebind the product data to the UI to show the newly added product
-                            BindProductTable();
+                        // Rebind the product data to the UI to show the newly added product
+                        BindProductTable();
 
                         Response.Redirect("productList.cs");
-                        }
-                        else
-                        {
-                            lblMessage.Text = "Product addition failed.";
-                            lblMessage.CssClass = "text-danger";
-                        }
-
                     }
+                    else
+                    {
+                        lblMessage.Text = "Product addition failed.";
+                        lblMessage.CssClass = "text-danger";
+                    }
+
                 }
-        }
+            }
+    }
 
         private void BindProductTable()
         {
+            // Define connection string (assumed stored in Web.config)
             string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
 
+            // SQL query to fetch product data
             string query = "SELECT ProductID, ProductName, ProductImageURL, Price, Quantity FROM Product WHERE IsVisible = 1";
 
+            // Connect to the database
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     conn.Open();
 
+                    // Create a DataTable to hold the data
                     DataTable dt = new DataTable();
-                    
+
+                    // Fill the DataTable with the result of the query
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dt);
@@ -109,7 +114,6 @@ namespace NewVersion.admin
                 string productId = e.CommandArgument.ToString();
                 LoadProductDetails(productId);
                 ShowEditModal(); 
-
             }
 
             if (e.CommandName == "DeleteProduct")
@@ -133,7 +137,7 @@ namespace NewVersion.admin
                     {
                         if (reader.Read())
                         {
-                            txtProductID.Value = productId; 
+                            txtProductID.Value = productId;
                             txtProductName.Text = reader["ProductName"].ToString();
                             txtProductImageURL.Text = reader["ProductImageURL"].ToString();
                             txtPrice.Text = reader["Price"].ToString();
@@ -152,57 +156,58 @@ namespace NewVersion.admin
 
         protected void btnUpdateProduct_Click(object sender, EventArgs e)
         {
-                // Retrieve user input
-                string productId = txtProductID.Value;
-                string productName = txtProductName.Text;
-                string productImageUrl = txtProductImageURL.Text;
-                decimal price = decimal.Parse(txtPrice.Text);
-                int quantity = int.Parse(txtQuantity.Text);
+            // Retrieve user input
+            string productId = txtProductID.Value;
+            string productName = txtProductName.Text;
+            string productImageUrl = txtProductImageURL.Text;
+            decimal price = decimal.Parse(txtPrice.Text);
+            int quantity = int.Parse(txtQuantity.Text);
 
 
-                bool isVisible = chkIsVisible.Checked;
+            bool isVisible = chkIsVisible.Checked;
 
-                // Update the product in the database
-                string sql = @"UPDATE Product SET ProductName = @ProductName, ProductImageURL = @ProductImageURL, 
+            // Update the product in the database
+            string sql = @"UPDATE Product SET ProductName = @ProductName, ProductImageURL = @ProductImageURL, 
                        Price = @Price, Quantity = @Quantity, IsVisible = @IsVisible WHERE ProductID = @ProductID";
 
-                using (SqlConnection con = new SqlConnection(cs))
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
-                    using (SqlCommand cmd = new SqlCommand(sql, con))
-                    {
-                        // Supply input/data into parameters
-                        cmd.Parameters.AddWithValue("@ProductName", productName);
-                        cmd.Parameters.AddWithValue("@ProductImageURL", productImageUrl);
-                        cmd.Parameters.AddWithValue("@Price", price);
-                        cmd.Parameters.AddWithValue("@Quantity", quantity);
-                        cmd.Parameters.AddWithValue("@IsVisible", isVisible);
-                        cmd.Parameters.AddWithValue("@ProductID", productId);
+                    // Supply input/data into parameters
+                    cmd.Parameters.AddWithValue("@ProductName", productName);
+                    cmd.Parameters.AddWithValue("@ProductImageURL", productImageUrl);
+                    cmd.Parameters.AddWithValue("@Price", price);
+                    cmd.Parameters.AddWithValue("@Quantity", quantity);
+                    cmd.Parameters.AddWithValue("@IsVisible", isVisible);
+                    cmd.Parameters.AddWithValue("@ProductID", productId);
 
-                        try
+                    try
+                    {
+                        con.Open();
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        if (rowsAffected > 0)
                         {
-                            con.Open();
-                            int rowsAffected = cmd.ExecuteNonQuery();
-                            if (rowsAffected > 0)
-                            {
-                                lblMessage.Text = "Product updated successfully.";
-                                lblMessage.CssClass = "text-success";
-                            }
-                            else
-                            {
-                                lblMessage.Text = "Product update failed. Product ID not found.";
-                                lblMessage.CssClass = "text-danger";
-                            }
+                            lblMessage.Text = "Product updated successfully.";
+                            lblMessage.CssClass = "text-success";
                         }
-                        catch (Exception ex)
+                        else
                         {
-                            lblMessage.Text = "Error: " + ex.Message;
+                            lblMessage.Text = "Product update failed. Product ID not found.";
                             lblMessage.CssClass = "text-danger";
                         }
                     }
+                    catch (Exception ex)
+                    {
+                        lblMessage.Text = "Error: " + ex.Message;
+                        lblMessage.CssClass = "text-danger";
+                    }
                 }
+            }
 
-                BindProductTable();
+            BindProductTable();
         }
+
 
         private void ClearFields()
         {
@@ -213,6 +218,7 @@ namespace NewVersion.admin
             txtQuantity.Text = string.Empty;
             chkIsVisible.Checked = false;
         }
+
 
         private void LoadProducts()
         {
@@ -244,5 +250,4 @@ namespace NewVersion.admin
             }
         }
     }
-
 }

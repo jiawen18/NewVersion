@@ -129,9 +129,12 @@ namespace NewVersion.admin
                     }
                 }
 
+                //logic to update at customer's side here
+
                 BindGrid();
                 FeedbackLabel.Text = "Refund request approved successfully!";
                 FeedbackLabel.CssClass = "text-success";
+
             }
         }
 
@@ -154,9 +157,12 @@ namespace NewVersion.admin
                     }
                 }
 
+                //logic to update at customer's side here
+
                 BindGrid();
                 FeedbackLabel.Text = "Refund request rejected!";
                 FeedbackLabel.CssClass = "text-danger";
+
             }
         }
     }
