@@ -160,17 +160,17 @@ namespace NewVersion.css
             Button cancelButton = sender as Button;
             if (cancelButton != null)
             {
-                int orderID = Convert.ToInt32(cancelButton.CommandArgument);
+
+                string orderID = cancelButton.CommandArgument;
 
                 using (var context = new userEntities())
                 {
 
                     var refundRequest = new Refund
                     {
-                        OrderID = orderID.ToString(),
+                        OrderID = orderID,
                         RefundRequestDate = DateTime.Now,
                         RefundStatus = "Pending",
-
                     };
 
                     context.Refunds.Add(refundRequest);
@@ -183,6 +183,7 @@ namespace NewVersion.css
                 Response.Redirect("cancelled.aspx");
             }
         }
+
     }
 
     /*public partial class Order
