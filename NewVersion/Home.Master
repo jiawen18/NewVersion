@@ -4,6 +4,16 @@
 
 <html>
 <head runat="server">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-15TNZ8316E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-15TNZ8316E');
+    </script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Untree.co">
@@ -71,9 +81,9 @@
                                 <img src="images/user.png" alt="User" />
                             </a>
                             <ul class="level2 scrollbar-dynamic" style="box-shadow: none; padding: 0px;" id="dropdown-user">
-                                <li><a class="nav-link" style="text-align:left;" href="login.aspx">Login</a></li>
-                                <li><a class="nav-link" style="text-align:left;" href="signup.aspx">Signup</a></li>
-                                <li><a class="nav-link" style="text-align:left;" href="UserProfile.aspx">Profile</a></li>
+                                <li><a class="nav-link" style="text-align: left;" href="login.aspx">Login</a></li>
+                                <li><a class="nav-link" style="text-align: left;" href="signup.aspx">Signup</a></li>
+                                <li><a class="nav-link" style="text-align: left;" href="UserProfile.aspx">Profile</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -83,7 +93,7 @@
                     </ul>
                 </div>
             </div>
-           
+
 
 
 
@@ -173,7 +183,8 @@
                     <div class="row pt-4">
                         <div class="col-lg-6">
                             <p class="mb-2 text-center text-lg-start">
-                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> HanSumg. All Rights Reserved
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                                HanSumg. All Rights Reserved
                             </p>
                         </div>
 
