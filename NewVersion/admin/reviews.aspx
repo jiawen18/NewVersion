@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="reviews.aspx.cs" Inherits="NewVersion.admin.reviews" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server" />
     <asp:SqlDataSource
     ID="SqlDataSource1"
     runat="server"
@@ -26,38 +25,33 @@
                             </tr>
                         </thead>
                          <tbody>
-                             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                                <ContentTemplate>
-                                 <asp:Repeater ID="ReviewRepeater" runat="server" OnItemCommand="ReviewRepeater_ItemCommand">
-                                    <ItemTemplate>
-                                        <tr>
-                                            <td><%# Eval("ReviewID") %></td>
-                                            <td><%# Eval("ReviewDate", "{0:yyyy-MM-dd}") %></td>
-                                            <td><%# Eval("ReviewRating") %></td>
-                                            <td>
-                                                <img src='<%# Eval("ReviewImage") %>' alt="Review Image" style="width:50px;height:50px;" />
-                                            </td>
-                                            <td><%# Eval("ReviewDescription") %></td>
-                                            <td>
-                                                <div class="form-button-action">
-                                                    <asp:LinkButton runat="server" CssClass="btn btn-link btn-danger" 
-                                                        CommandName="DeleteReview" 
-                                                        CommandArgument='<%# Eval("ReviewID") %>' 
-                                                        ToolTip="Remove" >
-                                                        <i class="fa fa-times"></i>
-                                                    </asp:LinkButton>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </ItemTemplate>
-                                </asp:Repeater>
-                            </ContentTemplate>
-                        </asp:UpdatePanel>
+                            <asp:Repeater ID="ReviewRepeater" runat="server"  DataSourceID="SqlDataSource1">
+                                <ItemTemplate>
+                                    <tr>
+                                        <td><%# Eval("ReviewID") %></td>
+                                        <td><%# Eval("ReviewDate", "{0:yyyy-MM-dd}") %></td>
+                                        <td><%# Eval("ReviewRating") %></td>
+                                        <td>
+                                            <img src='<%# Eval("ReviewImage") %>' alt="Review Image" style="width:50px;height:50px;" />
+                                        </td>
+                                        <td><%# Eval("ReviewDescription") %></td>
+                                        <td>
+                                            <div class="form-button-action">
+                                                <asp:LinkButton runat="server" CssClass="btn btn-link btn-danger" 
+                                                    CommandName="DeleteReview" 
+                                                    CommandArgument='<%# Eval("ReviewID") %>' 
+                                                    ToolTip="Remove" >
+                                                    <i class="fa fa-times"></i>
+                                                </asp:LinkButton>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-
 </asp:Content>
