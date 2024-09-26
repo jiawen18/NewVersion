@@ -437,7 +437,7 @@
 
                                                 <a class="dropdown-item" href="AdminProfile.aspx">Account Settings</a>
 
-                                                <a class="dropdown-item" href="../css/Home.aspx">Logout</a>
+                                                <a class="dropdown-item" href="../css/login.aspx" onserverclick="LogoutUser()">Logout</a>
                                             </li>
                                         </ul>
                                     </div>

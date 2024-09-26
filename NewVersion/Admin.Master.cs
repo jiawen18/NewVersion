@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace NewVersion
 {
@@ -21,16 +19,13 @@ namespace NewVersion
                 // Load the user details
                 LoadUserDetails();
 
-          
-               
-             if (!IsUserSuperAdmin())
-             {
-                 // Hide sections only meant for superadmin
-                 superAdminSection1.Visible = false;
-                 superAdminSection2.Visible = false;
-                 superAdminUpdateSection.Visible = false;
-             }
-                
+                if (!IsUserSuperAdmin())
+                {
+                    // Hide sections only meant for superadmin
+                    superAdminSection1.Visible = false;
+                    superAdminSection2.Visible = false;
+                    superAdminUpdateSection.Visible = false;
+                }
             }
         }
 
@@ -45,15 +40,26 @@ namespace NewVersion
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
-                string query = "SELECT ProfilePicture FROM AdminUser WHERE Username = @Username";
+
+                // Check in both AdminUser and SuperAdminUser tables
+                string query = @"
+                    SELECT ProfilePicture 
+                    FROM AdminUser 
+                    WHERE Username = @Username
+                    UNION ALL
+                    SELECT ProfilePicture 
+                    FROM SuperAdminUser 
+                    WHERE Username = @Username";
+
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@Username", username);
-                    object result = cmd.ExecuteScalar();
-
-                    if (result != null)
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        profilePictureUrl = "assets/img/" + result.ToString(); // Append the profile picture filename
+                        if (reader.Read())
+                        {
+                            profilePictureUrl = "assets/img/" + reader["ProfilePicture"].ToString(); // Append the profile picture filename
+                        }
                     }
                 }
             }
@@ -71,42 +77,38 @@ namespace NewVersion
             {
                 conn.Open();
 
-                // Check in the AdminUser table first
-                string queryAdmin = "SELECT Username, Email FROM AdminUser WHERE Username = @Username";
-                using (SqlCommand cmdAdmin = new SqlCommand(queryAdmin, conn))
-                {
-                    cmdAdmin.Parameters.AddWithValue("@Username", username);
+                // Check in both AdminUser and SuperAdminUser tables
+                string query = @"
+                    SELECT 'Admin' AS UserType, Username, Email 
+                    FROM AdminUser 
+                    WHERE Username = @Username
+                    UNION ALL
+                    SELECT 'SuperAdmin' AS UserType, Username, Email 
+                    FROM SuperAdminUser 
+                    WHERE Username = @Username";
 
-                    using (SqlDataReader readerAdmin = cmdAdmin.ExecuteReader())
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Username", username);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (readerAdmin.Read())
+                        if (reader.Read())
                         {
-                           
-                            lbl_user_name.Text = readerAdmin["Username"].ToString();
-                            lbl_user_email.Text = readerAdmin["Email"].ToString();
-                            return; // Exit the method since user details are found
-                        }
-                    }
-                }
+                            lbl_user_name.Text = reader["Username"].ToString();
+                            lbl_user_email.Text = reader["Email"].ToString();
 
-                // If not found in AdminUser, check in the SuperAdmin table
-                string querySuperAdmin = "SELECT Username, Email FROM SuperAdminUser WHERE Username = @Username";
-                using (SqlCommand cmdSuperAdmin = new SqlCommand(querySuperAdmin, conn))
-                {
-                    cmdSuperAdmin.Parameters.AddWithValue("@Username", username);
-                    using (SqlDataReader readerSuperAdmin = cmdSuperAdmin.ExecuteReader())
-                    {
-                        if (readerSuperAdmin.Read())
-                        {                           
-                            lbl_user_name.Text = readerSuperAdmin["Username"].ToString();
-                            lbl_user_email.Text = readerSuperAdmin["Email"].ToString();
+                            // Optional: Check if the user is SuperAdmin for additional logic
+                            if (reader["UserType"].ToString() == "SuperAdmin")
+                            {
+                                // Additional logic if needed for superadmin
+                            }
                         }
                     }
                 }
             }
-
-
         }
+
         // Method to check if the user is a superadmin
         protected bool IsUserSuperAdmin()
         {
@@ -125,14 +127,19 @@ namespace NewVersion
                     cmdSuperAdmin.Parameters.AddWithValue("@Username", currentUser);
 
                     int count = (int)cmdSuperAdmin.ExecuteScalar();
-                    if (count > 0)
-                    {
-                        isSuperAdmin = true; // If the user exists in SuperAdmin table, treat them as superadmin
-                    }
+                    isSuperAdmin = count > 0; // If the user exists in SuperAdmin table, treat them as superadmin
                 }
             }
 
             return isSuperAdmin;
+        }
+
+        protected void LogoutUser()
+        {
+            // Clear authentication cookie
+            FormsAuthentication.SignOut();
+            // Redirect to login page or home
+            Response.Redirect("login.aspx");
         }
     }
 }

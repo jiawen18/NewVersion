@@ -71,9 +71,13 @@
                                 <img src="images/user.png" alt="User" />
                             </a>
                             <ul class="level2 scrollbar-dynamic" style="box-shadow: none; padding: 0px;" id="dropdown-user">
-                                <li><a class="nav-link" style="text-align:left;" href="login.aspx">Login</a></li>
-                                <li><a class="nav-link" style="text-align:left;" href="signup.aspx">Signup</a></li>
-                                <li><a class="nav-link" style="text-align:left;" href="UserProfile.aspx">Profile</a></li>
+                                  <% if (!HttpContext.Current.User.Identity.IsAuthenticated) { %>
+                                      <li><a class="nav-link" style="text-align:left;" href="login.aspx">Login</a></li>
+                                      <li><a class="nav-link" style="text-align:left;" href="signup.aspx">Signup</a></li>
+                                  <% } else { %>
+                                      <li><a class="nav-link" style="text-align:left;" runat="server" onserverclick ="LogoutUser">Logout</a></li>
+                                      <li><a class="nav-link" style="text-align:left;" href="UserProfile.aspx">Profile</a></li>
+                                  <% } %>
                             </ul>
                         </li>
                         <li class="nav-item">

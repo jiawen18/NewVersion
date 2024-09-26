@@ -10,8 +10,8 @@ namespace NewVersion.admin
     public partial class AdminProfile : System.Web.UI.Page
     {
         // Flag to track if the user is in AdminUser or SuperAdminUser
-        private string userTable = "AdminUser"; // Default table is AdminUser
-        private string idColumn = "AdminID"; // Default ID column
+        private string userTable = "SuperAdminUser";
+        private string idColumn = "SuperAdminID";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,10 +40,11 @@ namespace NewVersion.admin
                     {
                         if (reader.Read())
                         {
+                            // Admin user found, switch to AdminUser table and set correct ID column
                             userTable = "AdminUser";
-                            idColumn = "AdminID"; // Set the ID column for AdminUser
-                            SetAdminDetails(reader);
-                            return; // Exit if user is found in AdminUser
+                            idColumn = "AdminID";
+                            SetAdminDetails(reader);  // Set the details for admin user
+                            return;  // Exit after setting details for Admin
                         }
                     }
                 }
@@ -57,9 +58,12 @@ namespace NewVersion.admin
                     {
                         if (reader.Read())
                         {
+                            // SuperAdmin user found, switch to SuperAdminUser table and set correct ID column
                             userTable = "SuperAdminUser";
-                            idColumn = "SuperAdminID"; // Set the ID column for SuperAdminUser
-                            SetAdminDetails(reader);
+                            idColumn = "SuperAdminID";
+                            SetAdminDetails(reader);  // Set the details for super admin user
+
+                          
                         }
                     }
                 }
@@ -69,6 +73,7 @@ namespace NewVersion.admin
         // Helper method to set admin details to the textboxes
         private void SetAdminDetails(SqlDataReader reader)
         {
+         
             // Use the dynamically determined ID column
             txt_adm_id.Text = reader[idColumn].ToString();
             txt_adm_username.Text = reader["Username"].ToString();
@@ -84,7 +89,8 @@ namespace NewVersion.admin
         }
 
         protected void btn_acc_svChanges_Click(object sender, EventArgs e)
-        {
+        {           
+        
             string username = HttpContext.Current.User.Identity.Name;
             string newUsername = txt_adm_username.Text;
             string newPosition = txt_adm_position.Text;
@@ -116,6 +122,7 @@ namespace NewVersion.admin
             {
                 conn.Open();
 
+                // Password validation and hashing logic (if necessary)
                 if (!string.IsNullOrEmpty(currentPassword) || !string.IsNullOrEmpty(newPassword) || !string.IsNullOrEmpty(repeatNewPassword))
                 {
                     if (string.IsNullOrEmpty(currentPassword) || string.IsNullOrEmpty(newPassword) || string.IsNullOrEmpty(repeatNewPassword))
@@ -147,17 +154,26 @@ namespace NewVersion.admin
                         return;
                     }
                 }
+                // Update query with dynamic table name and column names
+                string query = $"UPDATE {userTable} SET " +
+                              "Username = @Username, " +
+                              "Position = @Position, " +
+                              "Office = @Office, " +
+                              "Email = @Email, " +
+                              "DOB = @Birthday, " +
+                              "Phone = @Phone";
 
-                string query = $@"UPDATE {userTable} SET 
-                         Username = @Username,
-                         Position = @Position,
-                         Office = @Office,
-                         Email = @Email,
-                         DOB = @Birthday,
-                         Phone = @Phone";
+                // Include additional fields if they're not null or empty
+                if (!string.IsNullOrEmpty(newPassword))
+                {
+                    query += ", PasswordHash = @NewPassword";
+                }
 
-                if (!string.IsNullOrEmpty(newPassword)) query += ", PasswordHash = @NewPassword";
-                if (!string.IsNullOrEmpty(profilePictureFilename)) query += ", ProfilePicture = @ProfilePicture";
+                if (!string.IsNullOrEmpty(profilePictureFilename))
+                {
+                    query += ", ProfilePicture = @ProfilePicture";
+                }
+
                 query += " WHERE Username = @OriginalUsername";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -182,15 +198,19 @@ namespace NewVersion.admin
                     }
 
                     cmd.ExecuteNonQuery();
-
-                    Response.Write("<script>alert('Profile updated successfully.');</script>");
-                    txt_adm_crPassword.Text = "";
-                    txt_adm_newPassword.Text = "";
-                    txt_adm_rpNewPassword.Text = "";
-                    LoadAdminDetails();
+                 
                 }
+
+                Response.Write("<script>alert('Profile updated successfully.');</script>");
+                txt_adm_crPassword.Text = "";
+                txt_adm_newPassword.Text = "";
+                txt_adm_rpNewPassword.Text = "";
+                LoadAdminDetails();
+
+
             }
         }
+    
 
         protected void btn_acc_cancel_Click(object sender, EventArgs e)
         {
