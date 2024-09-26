@@ -59,7 +59,7 @@ namespace NewVersion.admin
             {
                 using (var context = new userEntities())
                 {
-                    // Create a new supplier
+
                     var supplier = new Supplier
                     {
                         supplierBranch = addBranch.Text,
@@ -68,18 +68,14 @@ namespace NewVersion.admin
                         supplierAddress = addAddress.Text
                     };
 
-                    // Add the new supplier to the database
                     context.Suppliers.Add(supplier);
                     context.SaveChanges();
 
-                    // Store the newly added supplier in the session list
                     AddedSuppliers.Add(supplier);
 
-                    // Only show the newly added supplier in the GridView
                     GridView1.DataSource = new List<Supplier> { supplier };
                     GridView1.DataBind();
 
-                    // Clear the input fields
                     addBranch.Text = string.Empty;
                     addEmail.Text = string.Empty;
                     addPhone.Text = string.Empty;

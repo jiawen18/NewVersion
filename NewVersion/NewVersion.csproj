@@ -551,6 +551,7 @@
     <Content Include="css\fonts\slick.svg" />
     <Content Include="css\forgotpw.aspx" />
     <Content Include="css\Home.aspx" />
+    <Content Include="css\Home2.aspx" />
     <Content Include="css\images\AI_image.png" />
     <Content Include="css\images\arrow.png" />
     <Content Include="css\images\award.png" />
@@ -980,6 +981,13 @@
     </Compile>
     <Compile Include="css\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="css\Home2.aspx.cs">
+      <DependentUpon>Home2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="css\Home2.aspx.designer.cs">
+      <DependentUpon>Home2.aspx</DependentUpon>
     </Compile>
     <Compile Include="css\login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
