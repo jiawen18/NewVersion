@@ -1,5 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="ProductDetails.aspx.cs" Inherits="NewVersion.css.ProductDetails" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+<asp:SqlDataSource
+    ID="SqlDataSource1"
+    runat="server"
+    ConnectionString="<%$ ConnectionStrings:productConnectionString %>"
+    SelectCommand="SELECT r.ReviewID, r.ReviewDate, r.ReviewRating, r.ReviewImage, r.ReviewDescription, p.ProductName, p.Price, p.ProductImageURL 
+                   FROM Review r
+                   INNER JOIN Product p ON r.ProductID = p.ProductID">
+</asp:SqlDataSource>
     <!-- Start Hero Section -->
 <div class="hero">
 	<div class="container">
@@ -16,6 +25,7 @@
 	</div>
 </div>
 <!-- End Hero Section -->
+
 
 
 
@@ -203,6 +213,8 @@
 </div>
 
 
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -224,34 +236,27 @@
 
 <script type="text/javascript">
     function selectStorage(button) {
-        // Prevent default button action
         event.preventDefault();
 
-        // Remove 'selected' class from all storage buttons
         var storageButtons = document.querySelectorAll('.storage-button');
         storageButtons.forEach(function (btn) {
             btn.classList.remove('selected');
         });
 
-        // Add 'selected' class to the clicked storage button
         button.classList.add('selected');
 
-        // Show the color selection container
         document.querySelector('.color-container').style.display = 'block';
-        return false; // Prevent further action
+        return false;
     }
 
     function selectColor(button) {
-        // Prevent default button action
         event.preventDefault();
 
-        // Remove 'selected' class from all color buttons
         var colorButtons = document.querySelectorAll('.color-button');
         colorButtons.forEach(function (btn) {
             btn.classList.remove('selected');
         });
 
-        // Add 'selected' class to the clicked color button
         button.classList.add('selected');
         return false; // Prevent further action
     }
@@ -259,7 +264,7 @@
 
 <script>
     function toggleRatings(event) {
-        event.preventDefault(); // Prevent the default action of the button
+        event.preventDefault(); 
 
         var moreRatings = document.querySelectorAll('.more-ratings');
         moreRatings.forEach(function (rating) {

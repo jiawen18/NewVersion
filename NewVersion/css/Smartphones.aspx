@@ -29,7 +29,7 @@
 <br />
 <!-- Start Section Title -->
 <div class="section-title-container">
-    <h2>Galaxy Z flip Series</h2>
+    <h2>Galaxy A55 | A35 5G Series</h2>
 </div>
 <!-- End Section Title -->
 
@@ -112,7 +112,7 @@
 <br />
 <!-- Start Section Title -->
 <div class="section-title-container">
-    <h2>Galaxy A55 | A35 5G Series</h2>
+    <h2>Galaxy Z flip Series</h2>
 </div>
 <!-- End Section Title -->
 

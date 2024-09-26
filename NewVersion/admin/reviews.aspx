@@ -40,8 +40,7 @@
                                                 <asp:LinkButton runat="server" CssClass="btn btn-link btn-danger" 
                                                     CommandName="DeleteReview" 
                                                     CommandArgument='<%# Eval("ReviewID") %>' 
-                                                    ToolTip="Remove" 
-                                                    OnClientClick="return confirm('Are you sure you want to delete this review?');">
+                                                    ToolTip="Remove" >
                                                     <i class="fa fa-times"></i>
                                                 </asp:LinkButton>
                                             </div>

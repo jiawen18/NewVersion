@@ -5,7 +5,7 @@
         ID="SqlDataSource1"
         runat="server"
         ConnectionString="<%$ ConnectionStrings:productConnectionString %>"
-        SelectCommand="SELECT * FROM [Review]"></asp:SqlDataSource>
+        SelectCommand="SELECT * FROM Review"></asp:SqlDataSource>
 
 <!-- Start Hero Section -->
 <div class="hero">

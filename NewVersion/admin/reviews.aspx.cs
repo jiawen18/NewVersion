@@ -68,7 +68,6 @@ namespace NewVersion.admin
                     cmd.ExecuteNonQuery();
                 }
             }
-            BindReviewRepeater();
         }
     }
 }
