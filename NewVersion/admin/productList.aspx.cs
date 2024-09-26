@@ -64,7 +64,7 @@ namespace NewVersion.admin
                         // Rebind the product data to the UI to show the newly added product
                         BindProductTable();
 
-                        Response.Redirect("productList.cs");
+                        Response.Redirect("productList.aspx");
                     }
                     else
                     {
