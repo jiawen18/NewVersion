@@ -30,6 +30,15 @@
                 <h4 class="card-title mb-0">Support Messages</h4>
                 <asp:Label ID="FeedbackLabel" runat="server" CssClass="text-success mb-3"></asp:Label>
             </div>
+            <div class="form-group mb-0 ml-auto">
+                <asp:Label ID="lblStatusFilter" runat="server" Text="Filter by Status:" AssociatedControlID="statusFilter"></asp:Label>
+                <asp:DropDownList ID="statusFilter" runat="server" AutoPostBack="true" OnSelectedIndexChanged="StatusFilter_SelectedIndexChanged">
+                    <asp:ListItem Text="All" Value="" />
+                    <asp:ListItem Text="Pending" Value="Pending" />
+                    <asp:ListItem Text="Seen" Value="Seen" />
+                    <asp:ListItem Text="Replied" Value="Replied" />
+                </asp:DropDownList>
+            </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">

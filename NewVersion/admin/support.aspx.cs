@@ -18,11 +18,16 @@ namespace NewVersion.admin
             }
         }
 
-        private void BindGrid(string sortExpression = null)
+        private void BindGrid(string sortExpression = null, string statusFilter = null)
         {
             using (var context = new userEntities())
             {
                 var supportRequests = context.Supports.AsQueryable();
+
+                if (!string.IsNullOrEmpty(statusFilter))
+                {
+                    supportRequests = supportRequests.Where(s => s.Status == statusFilter);
+                }
 
                 if (!string.IsNullOrEmpty(sortExpression))
                 {
@@ -51,16 +56,22 @@ namespace NewVersion.admin
             }
         }
 
+        protected void StatusFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedStatus = statusFilter.SelectedValue;
+            BindGrid(null, selectedStatus);
+        }
+
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView1.PageIndex = e.NewPageIndex;
-            BindGrid();
+            BindGrid(null, statusFilter.SelectedValue);
         }
 
         protected void GridView1_Sorting(object sender, GridViewSortEventArgs e)
         {
             string sortExpression = e.SortExpression;
-            BindGrid(sortExpression);
+            BindGrid(sortExpression, statusFilter.SelectedValue);
         }
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -97,7 +108,7 @@ namespace NewVersion.admin
                     }
                 }
 
-                BindGrid();
+                BindGrid(null, statusFilter.SelectedValue);
                 FeedbackLabel.Text = "Support request marked as seen.";
                 FeedbackLabel.CssClass = "text-info";
             }
@@ -120,7 +131,7 @@ namespace NewVersion.admin
                     }
                 }
 
-                BindGrid();
+                BindGrid(null, statusFilter.SelectedValue);
                 FeedbackLabel.Text = "Support request marked as replied.";
                 FeedbackLabel.CssClass = "text-info";
             }
@@ -143,12 +154,10 @@ namespace NewVersion.admin
                     }
                 }
 
-                BindGrid();
+                BindGrid(null, statusFilter.SelectedValue);
                 FeedbackLabel.Text = "Support request removed.";
                 FeedbackLabel.CssClass = "text-info";
             }
         }
-
-
     }
 }

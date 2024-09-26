@@ -125,7 +125,6 @@
     <Content Include="admin\newSupplier.aspx" />
     <Content Include="admin\orderList.aspx" />
     <Content Include="admin\productList.aspx" />
-    <Content Include="admin\productPages.aspx" />
     <Content Include="admin\refunds.aspx" />
     <Content Include="admin\reviews.aspx" />
     <Content Include="admin\sales.aspx" />
@@ -824,13 +823,6 @@
     </Compile>
     <Compile Include="admin\productList.aspx.designer.cs">
       <DependentUpon>productList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\productPages.aspx.cs">
-      <DependentUpon>productPages.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\productPages.aspx.designer.cs">
-      <DependentUpon>productPages.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\refunds.aspx.cs">
       <DependentUpon>refunds.aspx</DependentUpon>
