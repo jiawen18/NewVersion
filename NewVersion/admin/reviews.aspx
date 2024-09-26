@@ -26,7 +26,10 @@
                             </tr>
                         </thead>
                          <tbody>
+
                              <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+
+                            
                                 <ContentTemplate>
                                  <asp:Repeater ID="ReviewRepeater" runat="server" OnItemCommand="ReviewRepeater_ItemCommand">
                                     <ItemTemplate>

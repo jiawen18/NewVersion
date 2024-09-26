@@ -6,7 +6,8 @@
     runat="server" 
     ConnectionString="<%$ ConnectionStrings:productConnectionString %>"
     ProviderName="System.Data.SqlClient"
-    SelectCommand="SELECT ProductID, ProductName, ProductImageURL, Price, Quantity, IsVisible FROM Product">
+    SelectCommand="SELECT ProductID, ProductName, ProductImageURL, Price, Quantity, 
+    ProductStorage, ProductColor, IsVisible FROM Product">
 </asp:SqlDataSource>
 
 <div class="col-md-12">

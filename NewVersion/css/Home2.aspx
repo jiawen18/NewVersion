@@ -1,6 +1,29 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="Home2.aspx.cs" Inherits="NewVersion.css.Home2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+	<asp:SqlDataSource 
+        ID="SqlDataSource1" 
+        runat="server" 
+        ConnectionString="<%$ ConnectionStrings:productConnectionString %>"
+        ProviderName="System.Data.SqlClient"
+        SelectCommand="
+            SELECT 
+                p.ProductID, 
+                p.ProductName, 
+                p.ProductImageURL, 
+                p.Price, 
+                AVG(r.ReviewRating) AS AverageRating 
+            FROM 
+                Product p 
+            LEFT JOIN 
+                Review r ON p.ProductID = r.ProductID 
+            GROUP BY 
+                p.ProductID, 
+                p.ProductName, 
+                p.ProductImageURL, 
+                p.Price">
+    </asp:SqlDataSource>
+
         <!-- Start advertisement "hero" Section -->
     <div class="hero">
         <div class="container">
@@ -40,415 +63,55 @@
 						<div class="section-nav">
 							<ul class="section-tab-nav tab-nav">
 								<li><a data-toggle="tab" href="#tab2">Smartphones</a></li>
-								<li><a data-toggle="tab" href="#tab3">Tablets</a></li>
-								<li><a data-toggle="tab" href="#tab4">Accessories</a></li>
 							</ul>
 						</div>
 					</div>
 				</div>
 				<!-- /section title -->
 
-				<!-- Products tab & slick -->
-				<div class="col-md-12">
-					<div class="row">
-						<div class="products-tabs">
-							<!-- tab -->
-							<div id="tab2" class="tab-pane active">
-								<div class="products-slick" data-nav="#slick-nav-1">
-									<!-- product -->
-									<div class="product">
-										<div class="product-img">
-											<div class="product-label">
-												<span class="sale">-30%</span>
-												<span class="new">NEW</span>
-											</div>
-											<img src="images/zflips.jpg" alt="image" style="width: 350px; height: 300px;"></div>
-										<div class="product-body">
-											<h3 class="product-name"><a href="#">Galaxy Z flip 3</a></h3>
-											<h4 class="product-price">RM 895.95 </h4>
-                                            <h4 class="product-price"><del class="product-old-price">RM 1200.89</del></h4>
-											<div class="product-rating">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-											</div>
-
-
-										</div>
-										<!-- Add-to-cart section -->
-										<div class="add-to-cart">
-											<!-- Hidden field to store product ID or other data -->
-											<asp:HiddenField ID="hfProductId" runat="server" Value="1" />
-
-											<!-- Button to trigger an action (e.g., add to cart) -->
-											<asp:Button ID="btnBuyNow" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
-										</div>
-									</div>
-									<!-- /product -->
-
-									<!-- product -->
-									<div class="product">
-										<div class="product-img">
-											<img src="images/galaxyA55.jpg" alt="image" style="width: 350px; height: 300px;">
-											<div class="product-label">
-												<span class="new">NEW</span>
-											</div>
-										</div>
-										<div class="product-body">
-											<h3 class="product-name"><a href="#">Galaxy A55 5G</a></h3>
-											<h4 class="product-price">RM1999.90 </h4>
-											<h4 class="product-price"><del class="product-old-price">RM 2550.79</del></h4>
-											<div class="product-rating">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-											</div>
-
-										</div>
-										<div class="add-to-cart">
-											<!-- Hidden field to store product ID or other data -->
-											<asp:HiddenField ID="HiddenField5" runat="server" Value="1" />
-
-											<!-- Button to trigger an action (e.g., add to cart) -->
-											<asp:Button ID="Button1" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
-										</div>
-									</div>
-									<!-- /product -->
-
-									<!-- product -->
-									<div class="product">
-										<div class="product-img">
-											<img src="images/galaxyS23Ultra.jpg" alt="image" style="width: 350px; height: 300px;">
-											<div class="product-label">
-												<span class="sale">-20%</span>
-											</div>
-										</div>
-										<div class="product-body">
-											<h3 class="product-name"><a href="#">Galaxy S23 Ultra</a></h3>
-											<h4 class="product-price">RM 5299.00 </h4>
-											<h4 class="product-price"><del class="product-old-price">RM 5700.89</del></h4>
-											<div class="product-rating">
-												<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-											</div>
-
-										</div>
-										<div class="add-to-cart">
-											<!-- Hidden field to store product ID or other data -->
-											<asp:HiddenField ID="HiddenField2" runat="server" Value="1" />
-
-											<!-- Button to trigger an action (e.g., add to cart) -->
-											<asp:Button ID="Button2" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
-										</div>
-									</div>
-									<!-- /product -->
-
-									<!-- product -->
-									<div class="product">
-										<div class="product-img">
-											<img src="images/galaxyS21Ultra.jpg" alt="image" style="width: 350px; height: 300px;">
-										</div>
-										<div class="product-body">
-											<h3 class="product-name"><a href="#">Galaxy S21 Ultra 5G</a></h3>
-											<h4 class="product-price">RM 3400.95</h4>
-											<h4 class="product-price"><del class="product-old-price">RM 3790.79</del></h4>
-											<div class="product-rating">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-											</div>
-
-										</div>
-										<div class="add-to-cart">
-											<!-- Hidden field to store product ID or other data -->
-											<asp:HiddenField ID="HiddenField3" runat="server" Value="1" />
-
-											<!-- Button to trigger an action (e.g., add to cart) -->
-											<asp:Button ID="Button3" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
-										</div>
-									</div>
-									<!-- /product -->
-
-									<!-- product -->
-									<div class="product">
-										<div class="product-img">
-											<img src="images/galaxyNote20.jpg" alt="image" style="width: 350px; height: 300px;">
-										</div>
-										<div class="product-body">
-											<h3 class="product-name"><a href="#">Galaxy Note 20 5G</a></h3>
-											<h4 class="product-price">RM 2250.98</h4>
-											<h4 class="product-price"><del class="product-old-price">RM 2509.87</del></h4>
-											<div class="product-rating">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star-o"></i>
-											</div>
-
-										</div>
-										<div class="add-to-cart">
-											<!-- Hidden field to store product ID or other data -->
-											<asp:HiddenField ID="HiddenField4" runat="server" Value="1" />
-
-											<!-- Button to trigger an action (e.g., add to cart) -->
-											<asp:Button ID="Button4" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
-										</div>
-									</div>
-									<!-- /product -->
-								</div>
-							</div>
-							<!-- /tab -->
-
-							<!-- tab -->
-							<div id="tab3" class="tab-pane fade">
-								<div class="products-slick" data-nav="#slick-nav-1">
-								<!-- product -->
-									<div class="product">
-										<div class="product-img">
-											<img src="images/tab_S9.jpg" alt="image" style="width: 350px; height: 300px;">
-											<div class="product-label">
-												<span class="sale">-30%</span>
-												<span class="new">NEW</span>
-											</div>
-										</div>
-										<div class="product-body">
-											<h3 class="product-name"><a href="#"> Samsung Galaxy Tab S9 FE (Wi-Fi)</a></h3>
-											<h4 class="product-price">RM 2099.98 </h4>
-                                            <h4 class="product-price"><del class="product-old-price">RM 2309.78</del></h4>
-											<div class="product-rating">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-											</div>
-
-										</div>
-										<div class="add-to-cart">
-											<!-- Hidden field to store product ID or other data -->
-											<asp:HiddenField ID="HiddenField8" runat="server" Value="1" />
-
-											<!-- Button to trigger an action (e.g., add to cart) -->
-											<asp:Button ID="Button5" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
-										</div>
-									</div>
-									<!-- /product -->
-
-									<!-- product -->
-									<div class="product">
-										<div class="product-img">
-											<img src="images/samsung_tab9.jpg" alt="image" style="width: 350px; height: 300px;">
-													<div class="product-label">
-														<span class="sale">-30%</span>
-													</div>
-										</div>
-										<div class="product-body">
-													<h3 class="product-name"><a href="#">Galaxy Tab A9</a></h3>
-													<h4 class="product-price">RM 699.00 </h4>
-													<h4 class="product-price"><del class="product-old-price">RM 812.89</del></h4>
-													<div class="product-rating">
-										</div>
-
-										</div>
-										<div class="add-to-cart">
-											<!-- Hidden field to store product ID or other data -->
-											<asp:HiddenField ID="HiddenField6" runat="server" Value="1" />
-
-											<!-- Button to trigger an action (e.g., add to cart) -->
-											<asp:Button ID="Button6" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
-										</div>
-									</div>
-									<!-- /product -->
-
-									<!-- product -->
-									<div class="product">
-										<div class="product-img">
-											<img src="images/tab_S9plus.jpg" alt="image" style="width: 350px; height: 300px;">
-											<div class="product-label">
-												<span class="new">NEW</span>
-											</div>
-										</div>
-										<div class="product-body">
-											<h3 class="product-name"><a href="#"></a>Galaxy Tab S9 FE+></h3>
-											<h4 class="product-price">RM3399.00 </h4>
-											<h4 class="product-price"><del class="product-old-price">RM 3500.98</del></h4>
-											<div class="product-rating">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-											</div>
-
-										</div>
-										<div class="add-to-cart">
-											<!-- Hidden field to store product ID or other data -->
-											<asp:HiddenField ID="HiddenField7" runat="server" Value="1" />
-
-											<!-- Button to trigger an action (e.g., add to cart) -->
-											<asp:Button ID="Button7" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
-										</div>
-									</div>
-									<!-- /product -->
-
-								</div>
-							</div>
-							<!-- /tab -->
-
-
-							<!-- tab -->
-							<div id="tab4" class="tab-pane fade">
-								<div class="products-slick" data-nav="#slick-nav-1">
-							<!-- product -->
-							<div class="product">
-								<div class="product-img">
-									<img src="images/Samsung_Galaxy_Buds_Pro.jpg" alt="image" style="width: 350px; height: 300px;">
-									<div class="product-label">
-										<span class="sale">-30%</span>
-										<span class="new">NEW</span>
-									</div>
-								</div>
-								<div class="product-body">
-									<h3 class="product-name"><a href="#">Samsung Galaxy Buds Pro </a></h3>
-									<h4 class="product-price">RM 799.95 </h4>
-									<h4 class="product-price"><del class="product-old-price">RM 1050.89</del></h4>
-									<div class="product-rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</div>
-
-								</div>
-										<div class="add-to-cart">
-											<!-- Hidden field to store product ID or other data -->
-											<asp:HiddenField ID="HiddenField9" runat="server" Value="1" />
-
-											<!-- Button to trigger an action (e.g., add to cart) -->
-											<asp:Button ID="Button8" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
-										</div>
-							</div>
-							<!-- /product -->
-
-							<!-- product -->
-							<div class="product">
-								<div class="product-img">
-									<img src="images/Samsung_Galaxy_Buds_Live.jpg" alt="image" style="width: 350px; height: 300px;">
-									<div class="product-label">
-										<span class="new">NEW</span>
-									</div>
-								</div>
-								<div class="product-body">
-									<h3 class="product-name"><a href="#">Samsung Galaxy Buds Live</a></h3>
-									<h4 class="product-price">RM269.90 </h4>
-									<h4 class="product-price"><del class="product-old-price">RM 279.79</del></h4>
-									<div class="product-rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</div>
-
-								</div>
-										<div class="add-to-cart">
-											<!-- Hidden field to store product ID or other data -->
-											<asp:HiddenField ID="HiddenField10" runat="server" Value="1" />
-
-											<!-- Button to trigger an action (e.g., add to cart) -->
-											<asp:Button ID="Button9" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
-										</div>
-							</div>
-							<!-- /product -->
-
-							<!-- product -->
-							<div class="product">
-								<div class="product-img">
-									<img src="images/Samsung_Galaxy_Watch_5.jpg" alt="image" style="width: 350px; height: 300px;">
-									<div class="product-label">
-										<span class="sale">-30%</span>
-									</div>
-								</div>
-								<div class="product-body">
-									<h3 class="product-name"><a href="#">Samsung Galaxy Watch 5</a></h3>
-									<h4 class="product-price">RM 1299.00 </h4>
-									<h4 class="product-price"><del class="product-old-price">RM 1500.89</del></h4>
-									<div class="product-rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</div>
-
-								</div>
-										<div class="add-to-cart">
-											<!-- Hidden field to store product ID or other data -->
-											<asp:HiddenField ID="HiddenField11" runat="server" Value="1" />
-
-											<!-- Button to trigger an action (e.g., add to cart) -->
-											<asp:Button ID="Button10" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
-										</div>
-							</div>
-							<!-- /product -->
-
-							<!-- product -->
-							<div class="product">
-								<div class="product-img">
-									<img src="images/GalaxyS24Case.jpg" alt="image" style="width: 350px; height: 300px;">
-								</div>
-								<div class="product-body">
-									<h3 class="product-name"><a href="#">Galaxy S24+ Case</a></h3>
-									<h4 class="product-price">RM 189.95</h4>
-									<h4 class="product-price"><del class="product-old-price">RM 220.79</del></h4>
-									<div class="product-rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</div>
-
-								</div>
-										<div class="add-to-cart">
-											<!-- Hidden field to store product ID or other data -->
-											<asp:HiddenField ID="HiddenField12" runat="server" Value="1" />
-
-											<!-- Button to trigger an action (e.g., add to cart) -->
-											<asp:Button ID="Button11" runat="server" CssClass="add-to-cart-btn" Text="Buy Now" OnClick="btnBuyNow_Click" />
-										</div>
-							</div>
-							<!-- /product -->
-
-							</div>
-						</div>
-					<!-- /tab -->
-							<div id="slick-nav-2" class="products-slick-nav">
-
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- /Products tab & slick -->
-			</div>
-			<!-- /row -->
-		</div>
-	</div>
-	<!-- /container -->
-	<!-- /SECTION -->
-
-	
+                <div class="row">
+                    <div class="products-tabs">
+                        <div id="tab2" class="tab-pane active">
+                            <div class="products-slick" data-nav="#slick-nav-1" style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                                <div class="row" style="display: flex; flex-wrap: wrap; width: 100%;">
+                                    <asp:Repeater ID="productRepeater" runat="server" DataSourceID="SqlDataSource1">
+                                        <ItemTemplate>
+                                            <div class="col-md-4" style="flex: 1 1 30%; box-sizing: border-box; margin-bottom: 20px;">
+                                                <div class="product" style="height: 100%;">
+                                                    <div class="product-img">
+                                                        <img src='<%# Eval("ProductImageURL") %>' alt="image" style="width: 100%; height: 200px; object-fit: cover;">
+                                                        <div class="product-label">
+                                                            <span class="sale">-30%</span>
+                                                            <span class="new">NEW</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-body" style="flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                                                        <h3 class="product-name"><%# Eval("ProductName") %></h3>
+                                                        <h4 class="product-price">RM <%# Eval("Price") %></h4>
+                                                        <div class="product-rating">
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="add-to-cart" style="margin-top: auto;">
+                                                        <asp:HiddenField ID="hfProductId" runat="server" Value='<%# Eval("ProductID") %>' />
+                                                        <asp:Button ID="btnBuyNow" runat="server" CssClass="add-to-cart-btn" 
+                                                            Text="Buy Now" CommandArgument='<%# Eval("ProductID") %>' 
+                                                            OnClick="btnBuyNow_Click" 
+                                                            style="background-color: darkred; color: white; border: none; padding: 10px 20px; cursor: pointer;" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>				
 
 	<!-- HOT DEAL SECTION -->
 	<div id="hot-deal" class="section">
@@ -589,100 +252,110 @@
 <!-- Start Testimonial Slider -->
 <div class="testimonial-section">
     <div class="container">
-<div class="row">
-    <div class="col-lg-7 mx-auto text-center">
-        <h2 class="section-title">Featured Reviews</h2>
-    </div>
-</div>
-
-<div class="row justify-content-center">
-    <div class="col-lg-12">
-        <div class="testimonial-slider-wrap text-center">
-
-            <div id="testimonial-nav">
-                <span class="prev" data-controls="prev"><span class="fa fa-chevron-left"></span></span>
-                <span class="next" data-controls="next"><span class="fa fa-chevron-right"></span></span>
+        <div class="row">
+            <div class="col-lg-7 mx-auto text-center">
+                <h2 class="section-title">Featured Reviews</h2>
             </div>
+        </div>
 
-            <div class="testimonial-slider">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="testimonial-slider-wrap text-center">
 
-                <div class="item">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8 mx-auto">
+                    <div class="testimonial-slider">
 
-                            <div class="testimonial-block text-center">
-                                <blockquote class="mb-5">
-                                    <p>&ldquo;I recently bought the latest smartphone from this store, and it’s exceeded all my expectations. The camera quality is incredible, and the battery life is fantastic. I couldn’t be happier with my purchase!&rdquo;</p>
-                                </blockquote>
+                        <div class="item">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8 mx-auto">
 
-                                <div class="author-info">
-                                    <div class="author-pic">
-                                        <img src="images/person-1.png" alt="Maria Jones" class="image">
+                                    <div class="testimonial-block text-center">
+                                        <blockquote class="mb-5">
+                                            <p>&ldquo;I recently bought the latest smartphone from this store, and it’s exceeded all my expectations. The camera quality is incredible, and the battery life is fantastic. I couldn’t be happier with my purchase!&rdquo;</p>
+                                        </blockquote>
+
+                                        <div class="author-info">
+                                            <h3 class="font-weight-bold">Maria Jones</h3>
+                                            <span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
+                                        </div>
                                     </div>
-                                    <h3 class="font-weight-bold">Maria Jones</h3>
-                                    <span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
+
                                 </div>
                             </div>
-
                         </div>
-                    </div>
-                </div>
-                <!-- END item -->
+                        <!-- END item -->
 
-                <div class="item">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8 mx-auto">
+                        <div class="item">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8 mx-auto">
 
-                            <div class="testimonial-block text-center">
-                                <blockquote class="mb-5">
-                                    <p>&ldquo;This tablet has been a game-changer for me. Whether it’s for reading, watching videos, or browsing the web, it handles everything with ease. I’m very pleased with my purchase.&rdquo;</p>
-                                </blockquote>
+                                    <div class="testimonial-block text-center">
+                                        <blockquote class="mb-5">
+                                            <p>&ldquo;This tablet has been a game-changer for me. Whether it’s for reading, watching videos, or browsing the web, it handles everything with ease. I’m very pleased with my purchase.&rdquo;</p>
+                                        </blockquote>
 
-                                <div class="author-info">
-                                    <div class="author-pic">
-                                        <img src="images/person-1.png" alt="Maria Jones" class="image">
+                                        <div class="author-info">
+                                            <h3 class="font-weight-bold">John Doe</h3>
+                                            <span class="position d-block mb-3">CTO, ABC Ltd.</span>
+                                        </div>
                                     </div>
-                                    <h3 class="font-weight-bold">Maria Jones</h3>
-                                    <span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
+
                                 </div>
                             </div>
-
                         </div>
-                    </div>
-                </div>
-                <!-- END item -->
+                        <!-- END item -->
 
-                <div class="item">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8 mx-auto">
+                        <div class="item">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8 mx-auto">
 
-                            <div class="testimonial-block text-center">
-                                <blockquote class="mb-5">
-                                    <p>&ldquo;I’m very happy with the accessories I purchased. The charging cables and protective cases are high-quality and work great. The customer service was excellent, and shipping was fast.&rdquo;</p>
-                                </blockquote>
+                                    <div class="testimonial-block text-center">
+                                        <blockquote class="mb-5">
+                                            <p>&ldquo;I’m very happy with the accessories I purchased. The charging cables and protective cases are high-quality and work great. The customer service was excellent, and shipping was fast.&rdquo;</p>
+                                        </blockquote>
 
-                                <div class="author-info">
-                                    <div class="author-pic">
-                                        <img src="images/person-1.png" alt="Maria Jones" class="image">
+                                        <div class="author-info">
+                                            <h3 class="font-weight-bold">Linda Smith</h3>
+                                            <span class="position d-block mb-3">Manager, DEF Corp.</span>
+                                        </div>
                                     </div>
-                                    <h3 class="font-weight-bold">Maria Jones</h3>
-                                    <span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
+
                                 </div>
                             </div>
-
                         </div>
-                    </div>
-                </div>
-                <!-- END item -->
+                        <!-- END item -->
 
+                    </div>
+                    <!-- END testimonial-slider -->
+
+                </div>
             </div>
-
         </div>
     </div>
 </div>
-    </div>
-</div>
 <!-- End Testimonial Slider -->
+
+<!-- Include Slick CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Include Slick JS -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.testimonial-slider').slick({
+            dots: true,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            prevArrow: '<span class="prev" data-controls="prev"><span class="fa fa-chevron-left"></span></span>',
+            nextArrow: '<span class="next" data-controls="next"><span class="fa fa-chevron-right"></span></span>',
+        });
+    });
+</script>
 
 
 
@@ -690,7 +363,7 @@
 
 <script>
     // Set the date and time we're counting down to
-    var countDownDate = new Date("Sept 15, 2024 23:59:59").getTime();
+    var countDownDate = new Date("Oct 15, 2024 23:59:59").getTime();
 
     // Update the countdown every 1 second
     var countdownFunction = setInterval(function () {

@@ -90,7 +90,7 @@ namespace NewVersion.css
 
             txtReviewDescription.Text = string.Empty;
 
-            Response.Redirect("Home.aspx");
+            Response.Redirect("Home2.aspx");
 
         }
 

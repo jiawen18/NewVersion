@@ -59,13 +59,13 @@
                 
                         <div class="card" style="border-radius: 10px;">
                             <div class="card-header px-4 py-5">
-                                <h5 class="text-muted mb-0">Hamsung。</h5>
+                                <h5 class="text-muted mb-0">Hamsung</h5>
                             </div>
 
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center mb-4">
                                     <p class="lead fw-normal mb-0" style="color: #a8729a;">Order</p>
-                                    <p class="small text-muted mb-0">Order ID : ORDER123456</p>
+                                    <p class="small text-muted mb-0">Order ID : order_P1feldPpEXpb3E</p>
                                 </div>
 
                                 <div class="border">
@@ -95,7 +95,7 @@
                                         <div class="row d-flex align-items-center">
 
                                             <div class="trackAndReview">
-                                                <asp:Button class="text-muted mb-0 small" ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
+                                                <asp:Button class="text-muted mb-0 small" ID="btnCancel" runat="server" Text="Cancel" CommandArgument='order_P1feldPpEXpb3E' OnClick="btnCancel_Click" />
                                                 &nbsp&nbsp&nbsp&nbsp
                                                 <asp:Button class="text-muted mb-0 small" ID="btnTrack" runat="server" Text="Track Order"  OnClick="btnTrack_Click" />
                                             </div>
