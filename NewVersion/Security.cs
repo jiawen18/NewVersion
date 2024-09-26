@@ -47,10 +47,7 @@ namespace NewVersion
                     ctx.Response.Redirect("~/css/AboutUs.aspx");  // Redirect to the member's home page
                 }
             }
-            catch (ThreadAbortException)
-            {
-                // Ignore ThreadAbortException, this is expected during Response.Redirect
-            }
+
             catch (Exception ex)
             {
                 // Handle other exceptions (e.g., logging)

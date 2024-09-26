@@ -45,17 +45,17 @@
             {
                 if (Page.IsValid)
                 {
-                    string emailorusername = txt_email.Text;
-                    string password = txt_password.Text;
+                    string emailorusername = txt_email.Text.Trim();
+                    string password = txt_password.Text.Trim();
                     bool rememberMe = ckb_remember.Checked;
-
-                    // Check if email or username exists in the database
-                    // Check if email or username exists in the admin or member database
+                
+                    // Check if email or username exists in the admin or member or super admin database
                     var AdminUser = ue.AdminUsers.SingleOrDefault(a => a.Email ==  emailorusername || a.Username ==  emailorusername);
                     var MemberUser = ue.MemberUsers.SingleOrDefault(m => m.Email ==  emailorusername || m.Username ==  emailorusername);
+                    var SuperAdminUser = ue.SuperAdminUsers.SingleOrDefault(s => s.Email ==  emailorusername || s.Username ==  emailorusername);
 
-                    // Handle login for admin users
-                    if (AdminUser != null)
+                // Handle login for admin users
+                if (AdminUser != null)
                     {
                         string inputPasswordHash = Security.HashPassword(password);
                         if (AdminUser.PasswordHash == inputPasswordHash)
@@ -86,9 +86,28 @@
                             cvNotMatched.IsValid = false;
                         }
                     }
-                    // No user found in either Admins or Members table
-                    else
-                    {               
+
+                    // Handle login for super admin users
+                    else if (SuperAdminUser!= null)
+                    {
+                        string inputPasswordHash = Security.HashPassword(password);
+                        if (SuperAdminUser.PasswordHash == inputPasswordHash)
+                        {
+                            // Log the user in (Member)
+                            Security.LoginUser(SuperAdminUser.Username, SuperAdminUser.Role, rememberMe);
+
+                        }
+                        else
+                        {
+
+                            cvNotMatched.IsValid = false;
+                        }
+                    }
+
+
+                // No user found in either Admins or Members table
+                else
+                {               
                         cvNotMatched.IsValid = false;
                     }
 

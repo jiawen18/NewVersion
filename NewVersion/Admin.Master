@@ -263,7 +263,7 @@
                                </li>
 
                               <li class="nav-item" id="superAdminSection2" runat="server">
-                                 <a href="newAdmin.aspx">                                     
+                                 <a href="newSuperAdmin.aspx">                                     
                                      <span class="sub-item">New Super Admin</span>
                                  </a>
                              </li>
@@ -425,10 +425,7 @@
                                         <ul class="dropdown-menu dropdown-user animated fadeIn">
 
                                             <li>
-                                                <div class="user-box">
-                                                    <div class="avatar-lg">
-                                                          <img src='<%= GetProfilePictureUrl() %>' alt="User Profile" class="avatar-img rounded" />
-                                                    </div>
+                                                <div class="user-box">                                                
                                                     <div class="u-text">
                                                          <asp:Label ID="lbl_user_name" runat="server" Text=""></asp:Label>
                                                         <asp:Label ID="lbl_user_email" runat="server" Text=""  class="text-muted"></asp:Label>   
