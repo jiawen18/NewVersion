@@ -35,8 +35,8 @@
 
 			<!-- Analytics Section -->
 			<siteMapNode title="Analytics">
-				<siteMapNode url="admin/sales.aspx"				title="Sales" />
-				<siteMapNode url="admin/userStatistics.aspx"	title="User Statistics" />
+				<siteMapNode url="admin/sales.aspx" />
+				<siteMapNode url="admin/userStatistics.aspx" />
 			</siteMapNode>
 
 			<!-- Administrator Section -->
