@@ -126,7 +126,6 @@
     <Content Include="admin\newSupplier.aspx" />
     <Content Include="admin\orderList.aspx" />
     <Content Include="admin\productList.aspx" />
-    <Content Include="admin\productPages.aspx" />
     <Content Include="admin\refunds.aspx" />
     <Content Include="admin\reviews.aspx" />
     <Content Include="admin\sales.aspx" />
@@ -593,7 +592,6 @@
     <Content Include="css\images\couch.png" />
     <Content Include="css\images\coupon-icon.png" />
     <Content Include="css\images\cross.svg" />
-    <Content Include="admin\assets\img\default.jpg" />
     <Content Include="css\images\delete.png" />
     <Content Include="css\images\dots-green.svg" />
     <Content Include="css\images\dots-light.svg" />
@@ -856,13 +854,6 @@
     </Compile>
     <Compile Include="admin\productList.aspx.designer.cs">
       <DependentUpon>productList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\productPages.aspx.cs">
-      <DependentUpon>productPages.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\productPages.aspx.designer.cs">
-      <DependentUpon>productPages.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\refunds.aspx.cs">
       <DependentUpon>refunds.aspx</DependentUpon>
@@ -1147,13 +1138,7 @@
     <Compile Include="Login.Master.designer.cs">
       <DependentUpon>Login.Master</DependentUpon>
     </Compile>
-    <Compile Include="Models\Address.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\AdminUser.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CheckOut.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Inventory.cs">
@@ -1189,20 +1174,17 @@
     <Compile Include="Models\Shipper.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ShoppingCart.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\SuperAminUser.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Supplier.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Support.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Table.cs">
       <DependentUpon>ModelTest.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Transaction.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -1228,7 +1210,6 @@
       <DependentUpon>Home.Master</DependentUpon>
     </Compile>
     <Compile Include="Security.cs" />
-    <Compile Include="SimpleImage.cs" />
     <Compile Include="startup.cs" />
   </ItemGroup>
   <ItemGroup>

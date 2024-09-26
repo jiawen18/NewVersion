@@ -12,14 +12,14 @@ namespace NewVersion.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Address
+    public partial class Support
     {
-        public int AddressID { get; set; }
-        public int MemberID { get; set; }
-        public string Address1 { get; set; }
-        public string Address2 { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string PostalCode { get; set; }
+        public int SupportID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Message { get; set; }
+        public Nullable<System.DateTime> CreatedAt { get; set; }
+        public string Status { get; set; }
     }
 }

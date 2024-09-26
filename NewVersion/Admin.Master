@@ -121,11 +121,6 @@
                                                 <span class="sub-item">Product List</span>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="productPages.aspx">
-                                                <span class="sub-item">Product Pages</span>
-                                            </a>
-                                        </li>
                                     </ul>
                                 </div>
                             </li>

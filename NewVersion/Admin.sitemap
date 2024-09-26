@@ -16,7 +16,7 @@
 			<siteMapNode title="Orders">
 				<siteMapNode url="admin/orderList.aspx"			title="Order List" />
 				<siteMapNode url="admin/shippingServices.aspx"	title="Shipping Services" />
-				<siteMapNode url="admin/refunds.aspx"/>
+				<siteMapNode url="admin/returnsAndRefunds.aspx" title="Returns and Refunds" />
 				<siteMapNode url="admin/transactions.aspx"		title="Transactions" />
 			</siteMapNode>
 
@@ -30,7 +30,7 @@
 			<siteMapNode url="" title="Customers">
 				<siteMapNode url="admin/customerList.aspx"		title="Customer List" />
 				<siteMapNode url="admin/reviews.aspx"			title="Reviews" />
-				<siteMapNode url="admin/support.aspx"			title="Support" />
+				<siteMapNode url="admin/support.aspx"/>
 			</siteMapNode>
 
 			<!-- Analytics Section -->

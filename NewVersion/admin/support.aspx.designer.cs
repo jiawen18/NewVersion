@@ -15,39 +15,39 @@ namespace NewVersion.admin
     {
 
         /// <summary>
-        /// CloseModalButton control.
+        /// FeedbackLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton CloseModalButton;
+        protected global::System.Web.UI.WebControls.Label FeedbackLabel;
 
         /// <summary>
-        /// Button1 control.
+        /// lblStatusFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Label lblStatusFilter;
 
         /// <summary>
-        /// LinkButton1 control.
+        /// statusFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.WebControls.DropDownList statusFilter;
 
         /// <summary>
-        /// Repeater1 control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater1;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
     }
 }

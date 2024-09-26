@@ -14,20 +14,11 @@ namespace NewVersion.Models
     
     public partial class MemberUser
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MemberUser()
-        {
-            this.ShoppingCarts = new HashSet<ShoppingCart>();
-        }
-    
         public int MemberID { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
         public string PasswordHash { get; set; }
         public string Role { get; set; }
         public System.DateTime CreatedAt { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
     }
 }

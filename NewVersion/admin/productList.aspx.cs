@@ -55,22 +55,9 @@ namespace NewVersion.admin
                         cmd.Parameters.AddWithValue("@IsVisible", isVisible);
 
                         con.Open();
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        if (rowsAffected > 0)
-                        {
-                            lblMessage.Text = "Product added successfully.";
-                            lblMessage.CssClass = "text-success";
-
-                            // Rebind the product data to the UI to show the newly added product
-                            BindProductTable();
-
-                        Response.Redirect("productList.cs");
-                        }
-                        else
-                        {
-                            lblMessage.Text = "Product addition failed.";
-                            lblMessage.CssClass = "text-danger";
-                        }
+                        cmd.ExecuteNonQuery();
+                        lblMessage.Text = "Product added successfully.";
+                        lblMessage.CssClass = "text-success";
 
                     }
                 }
@@ -78,18 +65,23 @@ namespace NewVersion.admin
 
         private void BindProductTable()
         {
+            // Define connection string (assumed stored in Web.config)
             string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
 
+            // SQL query to fetch product data
             string query = "SELECT ProductID, ProductName, ProductImageURL, Price, Quantity FROM Product WHERE IsVisible = 1";
 
+            // Connect to the database
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     conn.Open();
 
+                    // Create a DataTable to hold the data
                     DataTable dt = new DataTable();
-                    
+
+                    // Fill the DataTable with the result of the query
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dt);
@@ -108,15 +100,14 @@ namespace NewVersion.admin
             {
                 string productId = e.CommandArgument.ToString();
                 LoadProductDetails(productId);
-                ShowEditModal(); 
-
+                ShowEditModal(); // Call a method to show the modal
             }
 
             if (e.CommandName == "DeleteProduct")
             {
                 string productId = e.CommandArgument.ToString();
                 DeleteProduct(productId);
-                BindProductTable(); 
+                BindProductTable(); // Rebind the products after deletion
             }
         }
 
@@ -152,6 +143,8 @@ namespace NewVersion.admin
 
         protected void btnUpdateProduct_Click(object sender, EventArgs e)
         {
+            if (!Page.IsValid)
+            {
                 // Retrieve user input
                 string productId = txtProductID.Value;
                 string productName = txtProductName.Text;
@@ -202,6 +195,10 @@ namespace NewVersion.admin
                 }
 
                 BindProductTable();
+
+                ClearFields();
+                CloseEditModal();
+            }
         }
 
         private void ClearFields()
@@ -212,6 +209,11 @@ namespace NewVersion.admin
             txtPrice.Text = string.Empty;
             txtQuantity.Text = string.Empty;
             chkIsVisible.Checked = false;
+        }
+
+        private void CloseEditModal()
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "closeEditModal", "$('#addRowModal').modal('hide');", true);
         }
 
         private void LoadProducts()
@@ -245,4 +247,105 @@ namespace NewVersion.admin
         }
     }
 
+    public class ProductRepository
+    {
+        private string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
+
+        public void AddProduct(string productImageURL, string productName, decimal price, int quantity, bool isVisible)
+        {
+            string query = @"INSERT INTO Product (ProductImageURL, ProductName, Price, Quantity, IsVisible) 
+                             VALUES (@ProductImageURL, @ProductName, @Price, @Quantity, @IsVisible)";
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@ProductImageURL", productImageURL);
+                    cmd.Parameters.AddWithValue("@ProductName", productName);
+                    cmd.Parameters.AddWithValue("@Price", price);
+                    cmd.Parameters.AddWithValue("@Quantity", quantity);
+                    cmd.Parameters.AddWithValue("@IsVisible", isVisible);
+
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public DataTable GetVisibleProducts()
+        {
+            string query = "SELECT ProductID, ProductName, ProductImageURL, Price, Quantity FROM Product WHERE IsVisible = 1";
+            DataTable dt = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    conn.Open();
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            return dt;
+        }
+
+        public void UpdateProduct(string productId, string productName, string productImageURL, decimal price, int quantity, bool isVisible)
+        {
+            string sql = @"UPDATE Product SET ProductName = @ProductName, ProductImageURL = @ProductImageURL, 
+                           Price = @Price, Quantity = @Quantity, IsVisible = @IsVisible WHERE ProductID = @ProductID";
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@ProductID", productId);
+                    cmd.Parameters.AddWithValue("@ProductName", productName);
+                    cmd.Parameters.AddWithValue("@ProductImageURL", productImageURL);
+                    cmd.Parameters.AddWithValue("@Price", price);
+                    cmd.Parameters.AddWithValue("@Quantity", quantity);
+                    cmd.Parameters.AddWithValue("@IsVisible", isVisible);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void DeleteProduct(string productId)
+        {
+            string sql = "DELETE FROM Product WHERE ProductID = @ProductID";
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@ProductID", productId);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public DataRow GetProductById(string productId)
+        {
+            string sql = "SELECT ProductName, ProductImageURL, Price, Quantity, IsVisible FROM Product WHERE ProductID = @ProductID";
+            DataTable dt = new DataTable();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@ProductID", productId);
+                    con.Open();
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+        }
+    }
 }
