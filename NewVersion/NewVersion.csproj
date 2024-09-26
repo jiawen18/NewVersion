@@ -115,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\AdminProfile.aspx" />
+    <Content Include="admin\assets\img\default.jpg" />
     <Content Include="admin\dashboard.aspx" />
     <Content Include="admin\edit.aspx" />
     <Content Include="admin\inventory.aspx" />

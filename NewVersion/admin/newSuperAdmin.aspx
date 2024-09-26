@@ -47,7 +47,7 @@
                                            <asp:Label ID="lbl_sp_adm_username" runat="server" Text="Username" class="form-label"></asp:Label>
                                            <asp:TextBox ID="txt_sp_adm_username" runat="server" class="form-control"></asp:TextBox>
                                         </div>
-                                         <asp:RequiredFieldValidator ID="rqvld_username" runat="server" ControlToValidate="txt_adm_username" ErrorMessage="*Please Enter Username" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                         <asp:RequiredFieldValidator ID="rqvld_username" runat="server" ControlToValidate="txt_sp_adm_username" ErrorMessage="*Please Enter Username" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                                     </div>
 
 

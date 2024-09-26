@@ -17,7 +17,7 @@ namespace NewVersion.admin
 
         }
 
-        protected void btn_add_admin_Click(object sender, EventArgs e)
+        protected void btn_add_sp_admin_Click(object sender, EventArgs e)
         {
             // Ensure all the required data is valid
             if (Page.IsValid)
