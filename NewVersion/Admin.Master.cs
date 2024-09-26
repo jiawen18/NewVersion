@@ -20,6 +20,16 @@ namespace NewVersion
 
                 // Load the user details
                 LoadUserDetails();
+
+          
+               
+             if (!IsUserSuperAdmin())
+             {
+                 // Hide sections only meant for superadmin
+                 superAdminSection.Visible = false;
+                 superAdminUpdateSection.Visible = false;
+             }
+                
             }
         }
 
@@ -27,7 +37,7 @@ namespace NewVersion
         protected string GetProfilePictureUrl()
         {
             string username = HttpContext.Current.User.Identity.Name;
-            string profilePictureUrl = "~/admin/assets/img/default.jpg"; // Default image path
+            string profilePictureUrl = "assets/img/default.jpg"; // Default image path
 
             // Connect to the database and retrieve the profile picture URL
             string connString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
@@ -59,22 +69,69 @@ namespace NewVersion
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
-                string query = "SELECT Username, Email FROM AdminUser WHERE Username = @Username";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@Username", username);
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                // Check in the AdminUser table first
+                string queryAdmin = "SELECT Username, Email FROM AdminUser WHERE Username = @Username";
+                using (SqlCommand cmdAdmin = new SqlCommand(queryAdmin, conn))
+                {
+                    cmdAdmin.Parameters.AddWithValue("@Username", username);
+
+                    using (SqlDataReader readerAdmin = cmdAdmin.ExecuteReader())
                     {
-                        if (reader.Read())
+                        if (readerAdmin.Read())
                         {
-                            // Populate the textboxes with the username and email
-                            //lbl_user_name.Text = reader["Username"].ToString();
-                            //lbl_user_email.Text = reader["Email"].ToString();
+                           
+                            lbl_user_name.Text = readerAdmin["Username"].ToString();
+                            lbl_user_email.Text = readerAdmin["Email"].ToString();
+                            return; // Exit the method since user details are found
+                        }
+                    }
+                }
+
+                // If not found in AdminUser, check in the SuperAdmin table
+                string querySuperAdmin = "SELECT Username, Email FROM SuperAdminUser WHERE Username = @Username";
+                using (SqlCommand cmdSuperAdmin = new SqlCommand(querySuperAdmin, conn))
+                {
+                    cmdSuperAdmin.Parameters.AddWithValue("@Username", username);
+                    using (SqlDataReader readerSuperAdmin = cmdSuperAdmin.ExecuteReader())
+                    {
+                        if (readerSuperAdmin.Read())
+                        {                           
+                            lbl_user_name.Text = readerSuperAdmin["Username"].ToString();
+                            lbl_user_email.Text = readerSuperAdmin["Email"].ToString();
                         }
                     }
                 }
             }
+
+
+        }
+        // Method to check if the user is a superadmin
+        protected bool IsUserSuperAdmin()
+        {
+            string currentUser = HttpContext.Current.User.Identity.Name; // Get the currently logged-in user's username
+            string connString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
+            bool isSuperAdmin = false;
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                conn.Open();
+
+                // Query to check if the user exists in the SuperAdmin table
+                string querySuperAdmin = "SELECT COUNT(1) FROM SuperAdminUser WHERE Username = @Username";
+                using (SqlCommand cmdSuperAdmin = new SqlCommand(querySuperAdmin, conn))
+                {
+                    cmdSuperAdmin.Parameters.AddWithValue("@Username", currentUser);
+
+                    int count = (int)cmdSuperAdmin.ExecuteScalar();
+                    if (count > 0)
+                    {
+                        isSuperAdmin = true; // If the user exists in SuperAdmin table, treat them as superadmin
+                    }
+                }
+            }
+
+            return isSuperAdmin;
         }
     }
 }

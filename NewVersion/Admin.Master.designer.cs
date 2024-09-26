@@ -51,6 +51,24 @@ namespace NewVersion
         protected global::System.Web.UI.WebControls.LinkButton TopbarTogglerButton;
 
         /// <summary>
+        /// superAdminSection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl superAdminSection;
+
+        /// <summary>
+        /// superAdminUpdateSection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl superAdminUpdateSection;
+
+        /// <summary>
         /// login_adm_username control.
         /// </summary>
         /// <remarks>
@@ -58,6 +76,24 @@ namespace NewVersion
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LoginName login_adm_username;
+
+        /// <summary>
+        /// lbl_user_name control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_user_name;
+
+        /// <summary>
+        /// lbl_user_email control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_user_email;
 
         /// <summary>
         /// AdminBreadcrumbDataSource control.

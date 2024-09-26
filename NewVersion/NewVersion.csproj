@@ -115,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\AdminProfile.aspx" />
+    <Content Include="admin\assets\img\default.jpg" />
     <Content Include="admin\customerList.aspx" />
     <Content Include="admin\dashboard.aspx" />
     <Content Include="admin\edit.aspx" />
@@ -1210,6 +1211,7 @@
       <DependentUpon>Home.Master</DependentUpon>
     </Compile>
     <Compile Include="Security.cs" />
+    <Compile Include="SimpleImage.cs" />
     <Compile Include="startup.cs" />
   </ItemGroup>
   <ItemGroup>

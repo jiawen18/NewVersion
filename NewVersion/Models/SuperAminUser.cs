@@ -20,5 +20,10 @@ namespace NewVersion.Models
         public string PasswordHash { get; set; }
         public string Role { get; set; }
         public System.DateTime CreatedAt { get; set; }
+        public string Position { get; set; }
+        public string Office { get; set; }
+        public string DOB { get; set; }
+        public string Phone { get; set; }
+        public string ProfilePicture { get; set; }
     }
 }

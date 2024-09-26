@@ -254,32 +254,25 @@
                                                 <span class="sub-item">New Supplier</span>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="newAdmin.aspx">
-                                                <span class="sub-item">New Admin</span>
-                                            </a>
-                                        </li>
-                                    </ul>
+
+                                <!-- Superadmin-only section -->
+                               <li class="nav-item" id="superAdminSection" runat="server">
+                                   <a href="newAdmin.aspx">
+                                       <i class="fas fa-user-plus"></i>
+                                       <p>New Admin</p>
+                                   </a>
+                               </li>
+                                   </ul>
                                 </div>
                             </li>
-                            <%--<li class="nav-item">
-                                <a href="read.aspx">
-                                    <i class="fas fa-user-check"></i>
-                                    <p>Read</p>
-                                </a>
-                            </li>--%>
-                            <li class="nav-item">
-                                <a href="update.aspx">
-                                    <i class="fas fa-user-cog"></i>
-                                    <p>Update</p>
-                                </a>
-                            </li>
-                            <%--<li class="nav-item">
-                                <a href="delete.aspx">
-                                    <i class="fas fa-user-minus"></i>
-                                    <p>Delete</p>
-                                </a>
-                            </li>--%>
+
+                          <li class="nav-item" id="superAdminUpdateSection" runat="server">
+                                   <a href="update.aspx">
+                                       <i class="fas fa-user-cog"></i>
+                                       <p>Update</p>
+                                   </a>
+                               </li>
+                         
                         </ul>
                     </div>
                 </div>
@@ -428,14 +421,11 @@
                                             <li>
                                                 <div class="user-box">
                                                     <div class="avatar-lg">
-                                                        <img
-                                                            src="assets/img/profile.jpg"
-                                                            alt="image profile"
-                                                            class="avatar-img rounded" />
+                                                          <img src='<%= GetProfilePictureUrl() %>' alt="User Profile" class="avatar-img rounded" />
                                                     </div>
                                                     <div class="u-text">
-                                                        <h4>Hizrian</h4>
-                                                        <p class="text-muted">hello@example.com</p>
+                                                         <asp:Label ID="lbl_user_name" runat="server" Text=""></asp:Label>
+                                                        <asp:Label ID="lbl_user_email" runat="server" Text=""  class="text-muted"></asp:Label>   
                                                     </div>
                                                 </div>
                                             </li>
