@@ -134,13 +134,15 @@ namespace NewVersion
 
             return isSuperAdmin;
         }
-
-        protected void LogoutUser()
+        protected void LogoutUser(object sender, EventArgs e)
         {
-            // Clear authentication cookie
-            FormsAuthentication.SignOut();
-            // Redirect to login page or home
+
+            // Log out of FormsAuthentication
+            System.Web.Security.FormsAuthentication.SignOut();
+
+            // Redirect to login page
             Response.Redirect("login.aspx");
         }
+
     }
 }

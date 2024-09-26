@@ -36,7 +36,7 @@ namespace NewVersion.css
                     txt_email.Text = profile.Email;
 
                     /* Redirect User to home page after successfully login */
-                    Response.Redirect("Home.aspx");
+                    Response.Redirect("Home2.aspx");
                 }
             }
 
