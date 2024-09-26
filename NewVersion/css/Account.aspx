@@ -8,13 +8,18 @@
 
          function previewImage(input) {
              if (input.files && input.files[0]) {
+                 var file = input.files[0];
+                 if (!file.type.startsWith('image/')) {
+                     alert('Please upload an image file.');
+                     return;
+                 }
                  var reader = new FileReader();
                  reader.onload = function (e) {
                      document.getElementById('<%= imgProfile.ClientID %>').src = e.target.result;
-                 };
-                 reader.readAsDataURL(input.files[0]);
-             }
-         }
+                };
+                reader.readAsDataURL(file);
+            }
+        }
      </script>
 
 
