@@ -73,7 +73,7 @@
 
             <div class="quantity-container"> <asp:Label ID="lblQuantity" runat="server" Text="1"></asp:Label></div>
 
-            <asp:HiddenField ID="hiddenProductId" runat="server" Value="1" />
+            <asp:HiddenField ID="hiddenProductId" runat="server" Value="1" /> 
 
             <!-- Add to Cart Button -->
             <div class="AddToCart">
@@ -281,7 +281,6 @@
         }
     }
 </script>
-
 
 
 </asp:Content>

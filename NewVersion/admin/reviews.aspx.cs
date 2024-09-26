@@ -26,10 +26,10 @@ namespace NewVersion.admin
         {
             if (e.CommandName == "DeleteReview")
             {
-                string reviewId = e.CommandArgument.ToString();
+                string reviewId = e.CommandArgument.ToString(); 
                 DeleteReview(reviewId);
 
-                BindReviewRepeater();
+                BindReviewRepeater(); 
             }
         }
 
@@ -46,8 +46,8 @@ namespace NewVersion.admin
                     {
                         conn.Open();
                         DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        ReviewRepeater.DataSource = dt;
+                        da.Fill(dt); 
+                        ReviewRepeater.DataSource = dt; 
                         ReviewRepeater.DataBind();
                     }
                 }

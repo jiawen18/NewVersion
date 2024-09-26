@@ -102,10 +102,9 @@
                         class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>OrderID</th>
-                                <th>Order Details</th>
-                                <th>Payment Status</th>
-                                <th>Delievery Status</th>
+                                <th>Name</th>
+                                <th>Position</th>
+                                <th>Office</th>
                                 <th style="width: 10%">Action</th>
                             </tr>
                         </thead>
