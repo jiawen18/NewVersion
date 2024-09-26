@@ -35,7 +35,7 @@ namespace NewVersion.admin
             {
                 BindGrid();
             }
-        }
+        
 
             if (!IsPostBack)
             {

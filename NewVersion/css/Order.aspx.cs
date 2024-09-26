@@ -19,18 +19,18 @@ namespace NewVersion.css
         protected void Page_Load(object sender, EventArgs e)
         {
             // Retrieve order data from the database or Session
-            List<Order> orders = GetOrdersFromSessionOrDatabase();
+            //List<Order> orders = GetOrdersFromSessionOrDatabase();
 
-            // If there are orders, bind them to the Repeater control
-            if (orders != null && orders.Count > 0)
+            /* If there are orders, bind them to the Repeater control
+            //if (orders != null && orders.Count > 0)
             {
                 rptOrders.DataSource = orders;
                 rptOrders.DataBind();
-            }
+            }*/
         }
 
         // Simulate retrieving order data from the database or Session
-        private List<Order> GetOrdersFromSessionOrDatabase()
+       /* private List<Order> GetOrdersFromSessionOrDatabase()
         {
             // Assume you have stored the order information in Session
             List<Order> orders = new List<Order>();
@@ -146,7 +146,7 @@ namespace NewVersion.css
             List<Order> orders = Session["Orders"] as List<Order> ?? new List<Order>();
             orders.Add(order);
             Session["Orders"] = orders;
-        }
+        }*/
 
 
         protected void btnTrack_Click(object sender, EventArgs e)
@@ -185,7 +185,7 @@ namespace NewVersion.css
         }
     }
 
-    public partial class Order
+    /*public partial class Order
     {
         public int OrderID { get; set; }
         public string InvoiceNumber { get; set; }
@@ -199,7 +199,7 @@ namespace NewVersion.css
         public string TotalPrice { get; set; }
         public string DeliveryFee { get; set; }
         public string TotalPaid { get; set; }
-    }
+    }*/
 }
 
 
