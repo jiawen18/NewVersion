@@ -17,7 +17,7 @@ namespace NewVersion.admin
         {
             if (!IsPostBack)
             {
-                BindReviewRepeater(); 
+                BindReviewRepeater();
             }
 
         }
@@ -26,44 +26,49 @@ namespace NewVersion.admin
         {
             if (e.CommandName == "DeleteReview")
             {
-                string reviewId = e.CommandArgument.ToString(); // Get the review ID from the command argument
+                string reviewId = e.CommandArgument.ToString(); 
+                DeleteReview(reviewId);
 
-                string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
-                string sql = "DELETE FROM Review WHERE ReviewID = @ReviewID";
-
-                using (SqlConnection con = new SqlConnection(connectionString))
-                {
-                    using (SqlCommand cmd = new SqlCommand(sql, con))
-                    {
-                        cmd.Parameters.AddWithValue("@ReviewID", reviewId);
-                        con.Open();
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-
-                // Rebind the repeater to reflect changes
-                BindReviewRepeater();
+                BindReviewRepeater(); 
             }
         }
 
         private void BindReviewRepeater()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
-            string sql = "SELECT * FROM [Review]"; 
+            string sql = "SELECT ReviewID, ProductID, ReviewDate, ReviewRating, ReviewImage, ReviewDescription FROM Review";
 
-            using (SqlConnection con = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand(sql, con))
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
+                        conn.Open();
                         DataTable dt = new DataTable();
                         da.Fill(dt); 
                         ReviewRepeater.DataSource = dt; 
-                        ReviewRepeater.DataBind(); 
+                        ReviewRepeater.DataBind();
                     }
                 }
             }
+        }
+
+        private void DeleteReview(string reviewId)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
+            string sql = "DELETE FROM Review WHERE ReviewID = @ReviewID";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ReviewID", reviewId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            BindReviewRepeater();
         }
     }
 }

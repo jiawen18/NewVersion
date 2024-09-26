@@ -5,7 +5,7 @@
     ID="SqlDataSource1"
     runat="server"
     ConnectionString="<%$ ConnectionStrings:productConnectionString %>"
-    SelectCommand="SELECT * FROM [Review]">
+    SelectCommand="SELECT ReviewID, ReviewDate, ReviewRating, ReviewImage, ReviewDescription FROM Review">
     </asp:SqlDataSource>
 
     <div class="col-md-12">
@@ -25,14 +25,14 @@
                             </tr>
                         </thead>
                          <tbody>
-                            <asp:Repeater ID="ReviewRepeater" runat="server">
+                            <asp:Repeater ID="ReviewRepeater" runat="server"  DataSourceID="SqlDataSource1">
                                 <ItemTemplate>
                                     <tr>
                                         <td><%# Eval("ReviewID") %></td>
                                         <td><%# Eval("ReviewDate", "{0:yyyy-MM-dd}") %></td>
                                         <td><%# Eval("ReviewRating") %></td>
                                         <td>
-                                            <img src='<%# Eval("ReviewImageURL") %>' alt="Review Image" style="width:50px;height:50px;" />
+                                            <img src='<%# Eval("ReviewImage") %>' alt="Review Image" style="width:50px;height:50px;" />
                                         </td>
                                         <td><%# Eval("ReviewDescription") %></td>
                                         <td>

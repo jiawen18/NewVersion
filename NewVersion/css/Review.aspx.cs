@@ -32,8 +32,18 @@ namespace NewVersion.css
 
             int rating = Convert.ToInt32(HiddenFieldRating.Value); ;
             int productId = Convert.ToInt32(HiddenFieldProductID.Value);
+
+            
+            if (!int.TryParse(HiddenFieldRating.Value, out rating) ||
+                !int.TryParse(HiddenFieldProductID.Value, out productId))
+            {
+                
+                Response.Write("Invalid rating or product ID. Please try again.");
+                return; 
+            }
             string description = txtReviewDescription.Text;
             string imagePath = "";
+
             DateTime reviewDate = DateTime.Now;
 
             if (FileUploadMedia.HasFile)
@@ -48,8 +58,8 @@ namespace NewVersion.css
                 Response.Write($"File saved to: {fullPath}<br/>");
 
                 // Set the image path to save in the database
-                imagePath = "~/Uploads/" + fileName; // Store relative path
-                HiddenFieldImagePath.Value = imagePath; // Store in hidden field if needed
+                imagePath = "~/Uploads/" + fileName; 
+                HiddenFieldImagePath.Value = imagePath; 
             }
 
             else
