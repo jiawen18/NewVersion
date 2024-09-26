@@ -59,7 +59,7 @@
                                          </div> 
                                             <asp:RequiredFieldValidator ID="rqvld_email" runat="server" ControlToValidate="txt_sp_adm_email" Display="Dynamic" ErrorMessage="*Please Enter Email Address" ForeColor="Red"></asp:RequiredFieldValidator>
                                             <asp:RegularExpressionValidator ID="revld_email" runat="server" ControlToValidate="txt_sp_adm_email" Display="Dynamic" ErrorMessage="*Invalid Email Addrerss" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
-                                            <asp:CustomValidator ID="cvExisted" runat="server" ControlToValidate="txt_adm_email" Display="Dynamic" ErrorMessage="CustomValidator" ForeColor="Red">*Email Address Already Exist</asp:CustomValidator>
+                                            <asp:CustomValidator ID="cvExisted" runat="server" ControlToValidate="txt_sp_adm_email" Display="Dynamic" ErrorMessage="CustomValidator" ForeColor="Red">*Email Address Already Exist</asp:CustomValidator>
                                     </div>
 
                                     

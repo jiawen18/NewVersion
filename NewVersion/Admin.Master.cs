@@ -61,6 +61,11 @@ namespace NewVersion
                         {
                             profilePictureUrl = "assets/img/" + reader["ProfilePicture"].ToString(); // Append the profile picture filename
                         }
+
+                        else
+                        {
+                            profilePictureUrl = "assets/img/default.jpg"; // Default image path
+                        }
                     }
                 }
             }
@@ -141,7 +146,7 @@ namespace NewVersion
             System.Web.Security.FormsAuthentication.SignOut();
 
             // Redirect to login page
-            Response.Redirect("login.aspx");
+            Response.Redirect("../css/Home2.aspx");
         }
 
     }
