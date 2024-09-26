@@ -54,7 +54,7 @@ namespace NewVersion.admin
                     cmd.Parameters.AddWithValue("@Quantity", quantity);
                     cmd.Parameters.AddWithValue("@IsVisible", isVisible);
 
-                    con.Open();
+                    con.Open(); 
                     int rowsAffected = cmd.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
@@ -64,6 +64,7 @@ namespace NewVersion.admin
                         // Rebind the product data to the UI to show the newly added product
                         BindProductTable();
 
+                        Response.Redirect("productList.cs");
                     }
                     else
                     {
@@ -73,15 +74,17 @@ namespace NewVersion.admin
 
                 }
             }
-
-        }
+    }
 
         private void BindProductTable()
         {
+            // Define connection string (assumed stored in Web.config)
             string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
 
+            // SQL query to fetch product data
             string query = "SELECT ProductID, ProductName, ProductImageURL, Price, Quantity FROM Product WHERE IsVisible = 1";
 
+            // Connect to the database
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -91,6 +94,7 @@ namespace NewVersion.admin
                     // Create a DataTable to hold the data
                     DataTable dt = new DataTable();
 
+                    // Fill the DataTable with the result of the query
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         da.Fill(dt);
@@ -101,7 +105,6 @@ namespace NewVersion.admin
                     ProductRepeater.DataBind();
                 }
             }
-
         }
 
         protected void ProductRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
@@ -154,7 +157,7 @@ namespace NewVersion.admin
         protected void btnUpdateProduct_Click(object sender, EventArgs e)
         {
             // Retrieve user input
-            int productId = int.Parse(txtProductID.Value);
+            string productId = txtProductID.Value;
             string productName = txtProductName.Text;
             string productImageUrl = txtProductImageURL.Text;
             decimal price = decimal.Parse(txtPrice.Text);
