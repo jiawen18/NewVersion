@@ -9,13 +9,18 @@
 
         function openMailClient(email, firstName) {
             var subject = encodeURIComponent("Reply to your support request");
-            var body = encodeURIComponent("Dear " + firstName + ",\n\n");
+            var body = encodeURIComponent(
+                "Dear " + firstName + ",\n\n" +
+                "Thank you for reaching out to us at Hansumg.\n\n" +
+                "We appreciate your patience as we address your request."
+            );
             var mailtoLink = "mailto:" + email + "?subject=" + subject + "&body=" + body;
 
             window.open(mailtoLink);
 
             return false;
         }
+
 
     </script>
 
@@ -45,8 +50,17 @@
                         <asp:BoundField DataField="FirstName" HeaderText="First Name" SortExpression="FirstName" HeaderStyle-ForeColor="Black" />
                         <asp:BoundField DataField="LastName" HeaderText="Last Name" SortExpression="LastName" HeaderStyle-ForeColor="Black" />
                         <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" HeaderStyle-ForeColor="Black" />
-                        <asp:BoundField DataField="Message" HeaderText="Message" SortExpression="Message" HeaderStyle-ForeColor="Black" />
+
+                        <asp:TemplateField HeaderText="Message">
+                            <ItemTemplate>
+                                <div style="max-width: 200px; word-wrap: break-word;">
+                                    <%# Eval("Message") %>
+                                </div>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
                         <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" HeaderStyle-ForeColor="Black" />
+
                         <asp:TemplateField HeaderText="Actions">
                             <ItemTemplate>
                                 <asp:Button
@@ -65,10 +79,20 @@
                                     Text="Reply"
                                     OnClick="ReplyButton_Click"
                                     OnClientClick='<%# "openMailClient(\"" + Eval("Email") + "\", \"" + Eval("FirstName") + "\")" %>' />
+                                <asp:Button
+                                    ID="RemoveSpamButton"
+                                    runat="server"
+                                    CssClass="btn btn-link btn-danger"
+                                    CommandArgument='<%# Eval("SupportID") %>'
+                                    Text="Remove Spam"
+                                    OnClick="RemoveSpamButton_Click"
+                                    OnClientClick="return confirm('Are you sure you want to remove this support request as spam?');" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
+
+
             </div>
         </div>
     </div>

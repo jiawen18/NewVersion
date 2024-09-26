@@ -83,23 +83,36 @@
                                 <div class="form-group">
                                     <label class="text-black" for="fname">First name</label>
                                     <asp:TextBox ID="txtFirstName" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvFirstName" runat="server" ControlToValidate="txtFirstName" ErrorMessage="First name is required." CssClass="text-danger" Display="Dynamic" />
+                                    <asp:RegularExpressionValidator ID="revFirstName" runat="server" ControlToValidate="txtFirstName" ErrorMessage="First name is too long." CssClass="text-danger" Display="Dynamic"
+                                        ValidationExpression="^.{1,50}$" />
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label class="text-black" for="lname">Last name</label>
                                     <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:RegularExpressionValidator ID="revLastName" runat="server" ControlToValidate="txtLastName" ErrorMessage="Last name is too long." CssClass="text-danger" Display="Dynamic"
+                                        ValidationExpression="^.{1,50}$" />
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="text-black" for="email">Email address</label>
                             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email is required." CssClass="text-danger" Display="Dynamic" />
+                            <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="Invalid email format." CssClass="text-danger" Display="Dynamic"
+                                ValidationExpression="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" />
+                            <asp:RegularExpressionValidator ID="revEmailLength" runat="server" ControlToValidate="txtEmail" ErrorMessage="Invalid email." CssClass="text-danger" Display="Dynamic"
+                                ValidationExpression="^.{1,100}$" />
                         </div>
 
                         <div class="form-group mb-5">
                             <label class="text-black" for="message">Message</label>
                             <asp:TextBox ID="txtMessage" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="5"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvMessage" runat="server" ControlToValidate="txtMessage" ErrorMessage="Message is required." CssClass="text-danger" Display="Dynamic" />
+                            <asp:RegularExpressionValidator ID="revMessageLength" runat="server" ControlToValidate="txtMessage" ErrorMessage="Message is too long." CssClass="text-danger" Display="Dynamic"
+                                ValidationExpression="^(.|\s){1,1000}$" />
                         </div>
 
                         <asp:Button ID="btnSendMessage" runat="server" Text="Send Message" CssClass="btn btn-primary-hover-outline" OnClick="btnSendMessage_Click" />

@@ -121,10 +121,34 @@ namespace NewVersion.admin
                 }
 
                 BindGrid();
-                FeedbackLabel.Text = "Reply sent, and support request marked as replied.";
+                FeedbackLabel.Text = "Support request marked as replied.";
                 FeedbackLabel.CssClass = "text-info";
             }
         }
+
+        protected void RemoveSpamButton_Click(object sender, EventArgs e)
+        {
+            Button removeSpamButton = sender as Button;
+            if (removeSpamButton != null)
+            {
+                int supportID = Convert.ToInt32(removeSpamButton.CommandArgument);
+
+                using (var context = new userEntities())
+                {
+                    var supportRequest = context.Supports.Find(supportID);
+                    if (supportRequest != null)
+                    {
+                        context.Supports.Remove(supportRequest);
+                        context.SaveChanges();
+                    }
+                }
+
+                BindGrid();
+                FeedbackLabel.Text = "Support request removed.";
+                FeedbackLabel.CssClass = "text-info";
+            }
+        }
+
 
     }
 }
