@@ -42,58 +42,40 @@ namespace NewVersion.admin
         protected global::System.Web.UI.WebControls.TextBox addInventoryName;
 
         /// <summary>
-        /// NameValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator NameValidator;
-
-        /// <summary>
-        /// RequiredFieldValidatorName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorName;
-
-        /// <summary>
         /// addInventorySupplier control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox addInventorySupplier;
+        protected global::System.Web.UI.WebControls.DropDownList addInventorySupplier;
 
         /// <summary>
-        /// SupplierValidator control.
+        /// currentInventoryQuantity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator SupplierValidator;
+        protected global::System.Web.UI.WebControls.TextBox currentInventoryQuantity;
 
         /// <summary>
-        /// RequiredFieldValidatorSupplier control.
+        /// adjustInventoryQuantity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorSupplier;
+        protected global::System.Web.UI.WebControls.TextBox adjustInventoryQuantity;
 
         /// <summary>
-        /// addInventoryQuantity control.
+        /// RequiredQuantityValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox addInventoryQuantity;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredQuantityValidator;
 
         /// <summary>
         /// QuantityValidator control.
@@ -103,15 +85,6 @@ namespace NewVersion.admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator QuantityValidator;
-
-        /// <summary>
-        /// RequiredFieldValidatorQuantity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorQuantity;
 
         /// <summary>
         /// Button1 control.

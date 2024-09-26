@@ -115,12 +115,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\AdminProfile.aspx" />
-    <Content Include="admin\customerList.aspx" />
     <Content Include="admin\dashboard.aspx" />
     <Content Include="admin\edit.aspx" />
     <Content Include="admin\inventory.aspx" />
     <Content Include="admin\newAdmin.aspx" />
-    <Content Include="admin\newCustomer.aspx" />
     <Content Include="admin\newInventory.aspx" />
     <Content Include="admin\newShipper.aspx" />
     <Content Include="admin\newSupplier.aspx" />
@@ -745,13 +743,6 @@
     <Compile Include="admin\AdminProfile.aspx.designer.cs">
       <DependentUpon>AdminProfile.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\customerList.aspx.cs">
-      <DependentUpon>customerList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\customerList.aspx.designer.cs">
-      <DependentUpon>customerList.aspx</DependentUpon>
-    </Compile>
     <Compile Include="admin\dashboard.aspx.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -779,13 +770,6 @@
     </Compile>
     <Compile Include="admin\newAdmin.aspx.designer.cs">
       <DependentUpon>newAdmin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\newCustomer.aspx.cs">
-      <DependentUpon>newCustomer.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\newCustomer.aspx.designer.cs">
-      <DependentUpon>newCustomer.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\newInventory.aspx.cs">
       <DependentUpon>newInventory.aspx</DependentUpon>

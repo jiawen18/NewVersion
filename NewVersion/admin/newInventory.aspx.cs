@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -18,6 +17,7 @@ namespace NewVersion.admin
             {
                 BindSuppliers();
                 BindProducts();
+                BindGrid();
             }
         }
 
@@ -58,23 +58,40 @@ namespace NewVersion.admin
             {
                 using (var context = new userEntities())
                 {
-                    // Create a new inventory item
+                    string selectedProduct = addInventoryName.SelectedValue;
+                    string selectedSupplier = addInventorySupplier.SelectedValue;
+                    int quantity;
+
+                    if (!int.TryParse(addInventoryQuantity.Text, out quantity) || quantity <= 0)
+                    {
+                        FeedbackLabel.Text = "Please enter a valid positive number for quantity.";
+                        FeedbackLabel.CssClass = "text-danger";
+                        return;
+                    }
+
+                    var existingInventory = context.Inventories
+                        .FirstOrDefault(i => i.inventoryName == addInventoryName.SelectedItem.Text &&
+                                             i.inventorySupplier == addInventorySupplier.SelectedItem.Text);
+
+                    if (existingInventory != null)
+                    {
+                        FeedbackLabel.Text = "This combination of product and supplier already exists in the inventory.";
+                        FeedbackLabel.CssClass = "text-danger";
+                        return;
+                    }
+
                     var inventory = new Inventory
                     {
-                        inventoryName = addInventoryName.SelectedItem.Text, // Get product name
-                        inventorySupplier = addInventorySupplier.SelectedItem.Text, // Get supplier branch
-                        inventoryQuantity = int.Parse(addInventoryQuantity.Text)
+                        inventoryName = addInventoryName.SelectedItem.Text,
+                        inventorySupplier = addInventorySupplier.SelectedItem.Text,
+                        inventoryQuantity = quantity
                     };
 
-                    // Add the new inventory item to the database
                     context.Inventories.Add(inventory);
                     context.SaveChanges();
 
-                    // Only show the newly added inventory item in the GridView
-                    GridView1.DataSource = new List<Inventory> { inventory };
-                    GridView1.DataBind();
+                    BindGrid();
 
-                    // Clear the input fields
                     addInventoryName.SelectedIndex = -1;
                     addInventorySupplier.SelectedIndex = -1;
                     addInventoryQuantity.Text = string.Empty;

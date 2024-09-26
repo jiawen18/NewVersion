@@ -9,9 +9,10 @@
 
         function populateModal(name, supplier, quantity, inventoryID) {
             document.getElementById('<%= addInventoryName.ClientID %>').value = name;
-            document.getElementById('<%= addInventorySupplier.ClientID %>').value = supplier;
-            document.getElementById('<%= addInventoryQuantity.ClientID %>').value = quantity;
+            document.getElementById('<%= currentInventoryQuantity.ClientID %>').value = quantity;
             document.getElementById('<%= HiddenInventoryID.ClientID %>').value = inventoryID;
+
+            $('#<%= addInventorySupplier.ClientID %>').val(supplier);
 
             $('#addRowModal').modal('show');
         }
@@ -45,64 +46,41 @@
                                     <div class="col-sm-12">
                                         <div class="form-group form-group-default">
                                             <label>Name</label>
-                                            <asp:TextBox ID="addInventoryName" runat="server" CssClass="form-control" placeholder="fill item name" />
-                                            <asp:RegularExpressionValidator
-                                                ID="NameValidator"
-                                                runat="server"
-                                                ControlToValidate="addInventoryName"
-                                                ErrorMessage="Name cannot exceed 100 characters"
-                                                ValidationExpression="^.{0,100}$"
-                                                CssClass="text-danger"
-                                                Display="Dynamic" />
-                                            <asp:RequiredFieldValidator
-                                                ID="RequiredFieldValidatorName"
-                                                runat="server"
-                                                ControlToValidate="addInventoryName"
-                                                ErrorMessage="Name is required"
-                                                CssClass="text-danger"
-                                                Display="Dynamic" />
+                                            <asp:TextBox ID="addInventoryName" runat="server" CssClass="form-control" placeholder="Item name" ReadOnly="true" />
                                         </div>
                                     </div>
                                     <div class="col-md-6 pe-0">
                                         <div class="form-group form-group-default">
                                             <label>Supplier</label>
-                                            <asp:TextBox ID="addInventorySupplier" runat="server" CssClass="form-control" placeholder="fill supplier name" />
-                                            <asp:RegularExpressionValidator
-                                                ID="SupplierValidator"
-                                                runat="server"
-                                                ControlToValidate="addInventorySupplier"
-                                                ErrorMessage="Supplier cannot exceed 100 characters"
-                                                ValidationExpression="^.{0,100}$"
-                                                CssClass="text-danger"
-                                                Display="Dynamic" />
-                                            <asp:RequiredFieldValidator
-                                                ID="RequiredFieldValidatorSupplier"
-                                                runat="server"
-                                                ControlToValidate="addInventorySupplier"
-                                                ErrorMessage="Supplier is required"
-                                                CssClass="text-danger"
-                                                Display="Dynamic" />
+                                            <asp:DropDownList ID="addInventorySupplier" runat="server" CssClass="form-control"></asp:DropDownList>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group form-group-default">
-                                            <label>Quantity</label>
-                                            <asp:TextBox ID="addInventoryQuantity" runat="server" CssClass="form-control" placeholder="fill quantity" />
+                                            <label>Current Quantity</label>
+                                            <asp:TextBox ID="currentInventoryQuantity" runat="server" CssClass="form-control" ReadOnly="true" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-group-default">
+                                            <label>Add/Subtract Quantity</label>
+                                            <asp:TextBox ID="adjustInventoryQuantity" runat="server" CssClass="form-control" placeholder="Enter adjustment (+/-)" />
+                                            <asp:RequiredFieldValidator
+                                                ID="RequiredQuantityValidator"
+                                                runat="server"
+                                                ControlToValidate="adjustInventoryQuantity"
+                                                ErrorMessage="Adjustment is required. Hint: Input 0 to remain quantity."
+                                                CssClass="text-danger"
+                                                Display="Dynamic" />
                                             <asp:RegularExpressionValidator
                                                 ID="QuantityValidator"
                                                 runat="server"
-                                                ControlToValidate="addInventoryQuantity"
-                                                ErrorMessage="Quantity must be a positive number"
-                                                ValidationExpression="^\d+$"
+                                                ControlToValidate="adjustInventoryQuantity"
+                                                ErrorMessage="Adjustment must be a number (positive or negative)"
+                                                ValidationExpression="^-?\d+$"
                                                 CssClass="text-danger"
                                                 Display="Dynamic" />
-                                            <asp:RequiredFieldValidator
-                                                ID="RequiredFieldValidatorQuantity"
-                                                runat="server"
-                                                ControlToValidate="addInventoryQuantity"
-                                                ErrorMessage="Quantity is required"
-                                                CssClass="text-danger"
-                                                Display="Dynamic" />
+
                                         </div>
                                     </div>
                                 </div>
