@@ -31,18 +31,19 @@ namespace NewVersion.admin
         protected void Page_Load(object sender, EventArgs e)
         {
 
+
             if (!IsPostBack)
             {
                 BindGrid();
             }
         
 
+
             if (!IsPostBack)
             {
 
             }
         }
-
 
         private void BindGrid()
         {
@@ -79,6 +80,7 @@ namespace NewVersion.admin
                     context.SaveChanges();
 
                     AddedShippers.Add(shipper);
+
 
                     GridView1.DataSource = new List<Shipper> { shipper };
                     GridView1.DataBind();

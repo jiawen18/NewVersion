@@ -2,7 +2,10 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 86cf3bc8bcf3431942c093f919979914f331d4a2
     <div class="card">
         <div class="card-header">
             <div class="d-flex align-items-center">
@@ -152,6 +155,9 @@
         </div>
     </div>
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 86cf3bc8bcf3431942c093f919979914f331d4a2
 </asp:Content>
 
