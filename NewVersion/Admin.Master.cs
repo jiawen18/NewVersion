@@ -38,12 +38,12 @@ namespace NewVersion
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@Username", username);
-                    object result = cmd.ExecuteScalar();
+                   // object result = cmd.ExecuteScalar();
 
-                    if (result != null)
-                    {
-                        profilePictureUrl = "assets/img/" + result.ToString(); // Append the profile picture filename
-                    }
+                    //if (result != null)
+                    //{
+                    //    profilePictureUrl = "assets/img/" + result.ToString(); // Append the profile picture filename
+                    //}
                 }
             }
             return profilePictureUrl; // Return the URL

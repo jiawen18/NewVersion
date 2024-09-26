@@ -35,6 +35,5 @@ namespace NewVersion.Models
         public virtual DbSet<Refund> Refunds { get; set; }
         public virtual DbSet<Shipper> Shippers { get; set; }
         public virtual DbSet<Support> Supports { get; set; }
-        public object Reviews { get; internal set; }
     }
 }
