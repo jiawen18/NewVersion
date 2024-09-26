@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="productList.aspx.cs" Inherits="NewVersion.admin.productList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
+<asp:ScriptManager ID="ScriptManager1" runat="server" />
 <asp:SqlDataSource 
     ID="SqlDataSource1" 
     runat="server" 
@@ -147,6 +148,9 @@
                         </tr>
                     </thead>
                     <tbody id="productTableBody">
+
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                            <ContentTemplate>
                         <%-- Dynamically generated rows go here --%>
                         <asp:Repeater ID="ProductRepeater" runat="server" OnItemCommand="ProductRepeater_ItemCommand">
                             <ItemTemplate>
@@ -176,6 +180,8 @@
                                 </tr>
                             </ItemTemplate>
                         </asp:Repeater>
+                            </ContentTemplate>
+                    </asp:UpdatePanel>
                     </tbody>
                 </table>
             </div> 
