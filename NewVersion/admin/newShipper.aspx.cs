@@ -11,6 +11,14 @@ namespace NewVersion.admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+<<<<<<< Updated upstream
+=======
+            if (!IsPostBack)
+            {
+
+            }
+        }
+>>>>>>> Stashed changes
 
         }
     }

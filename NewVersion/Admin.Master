@@ -266,7 +266,7 @@
                             <li class="nav-item">
                                 <a href="update.aspx">
                                     <i class="fas fa-user-cog"></i>
-                                    <p>Update</p>
+                                    <p>Update Admins</p>
                                 </a>
                             </li>
                             <%--<li class="nav-item">
