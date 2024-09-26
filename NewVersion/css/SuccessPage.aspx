@@ -29,6 +29,7 @@
                 <th>Amount</th>
                 <td><asp:Label ID="lblAmount" runat="server"></asp:Label></td>
             </tr>
+            
         </table>
 
         <div>

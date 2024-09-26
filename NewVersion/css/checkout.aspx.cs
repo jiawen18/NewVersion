@@ -143,29 +143,52 @@ namespace NewVersion.css
 
                 decimal cartSubtotal = 0m;
 
+                // Lists to store product details
+                List<string> productNames = new List<string>();
+                List<string> prices = new List<string>();
+                List<int> quantities = new List<int>();
+                List<string> storages = new List<string>();
+                List<string> colors = new List<string>();
+
                 while (reader.Read())
                 {
                     TableRow row = new TableRow();
 
-                    // 假设你有以下字段
+                    // Assuming you have the following fields
                     string productName = reader["ProductName"].ToString();
-                    decimal price = Convert.ToDecimal(reader["Price"]);
+                    string price = reader["Price"].ToString();
                     int quantity = Convert.ToInt32(reader["Quantity"]);
+                    string storage = reader["ProductStorage"].ToString(); // Fetch storage
+                    string color = reader["ProductColor"].ToString();
+
+                    // Add product details to lists
+                    productNames.Add(productName);
+                    prices.Add(price);
+                    quantities.Add(quantity);
+                    storages.Add(storage); // Store storage details
+                    colors.Add(color);
 
                     TableCell cell1 = new TableCell();
                     cell1.Controls.Add(new Label { Text = productName });
                     cell1.Controls.Add(new Label { Text = "<strong class='mx-2'>x</strong>" });
                     cell1.Controls.Add(new Literal { Text = quantity.ToString() });
+                    cell1.Controls.Add(new Literal { Text = "<br />" });
+
+                    Label lblDetails = new Label();
+                    lblDetails.Text = "Storage: " + storage + "</br>Color: " + color;
+                    lblDetails.Attributes.Add("style", "color: #888;"); // Set lighter color
+                    cell1.Controls.Add(lblDetails);
                     row.Cells.Add(cell1);
 
                     TableCell cell2 = new TableCell();
-                    cell2.Controls.Add(new Label { Text = "RM " + price.ToString("F2") });
+                    cell2.Controls.Add(new Label { Text = "RM " + price});
                     row.Cells.Add(cell2);
+
 
                     phCartItems.Controls.Add(row);
 
-                    // 计算小计
-                    cartSubtotal += price * quantity;
+                    // Calculate subtotal
+                    cartSubtotal += Convert.ToDecimal(price) * quantity;
                 }
 
                 lblCartSubTotal.Text = "RM " + cartSubtotal.ToString("F2");
@@ -178,31 +201,74 @@ namespace NewVersion.css
                 lblAmount.Text = "RM " + (cartSubtotal + deliveryFeeInitial).ToString("F2");
                 string totalPrice = lblAmount.Text;
 
-                // 将数据存储到 Checkout 表中
-                StoreCartItems(cartId,subTotal, deliveryFee, totalPrice,productName);
+                // Store cart items including product names, prices, quantities, storages, and colors
+                StoreCartItems(cartId, subTotal, deliveryFee, totalPrice, productNames, prices, quantities, storages, colors);
             }
         }
 
-        private void StoreCartItems(int cartId,string subTotal, string deliveryFee, string totalPrice,string productName)
+        private void StoreCartItems(int cartId, string subTotal, string deliveryFee, string totalPrice, List<string> productNames, List<string> prices, List<int> quantities,List<string> storages,List<string> colors)
         {
             using (SqlConnection con = new SqlConnection(cs))
             {
                 con.Open();
 
-                // 这里的 INSERT 语句需要与你的 Checkout 表的字段匹配
-                string query = "INSERT INTO CheckOut (CartID,SubTotal, DeliveryFee, TotalPrice,ProductName) VALUES (@CartID,@SubTotal, @DeliveryFee, @TotalPrice,@ProductName)";
-
-                using (SqlCommand cmd = new SqlCommand(query, con))
+                foreach (var productName in productNames.Select((value, index) => new { value, index }))
                 {
-                    cmd.Parameters.AddWithValue("@CartID", cartId);
-                    cmd.Parameters.AddWithValue("@SubTotal", subTotal);
-                    cmd.Parameters.AddWithValue("@DeliveryFee", deliveryFee);
-                    cmd.Parameters.AddWithValue("@TotalPrice", totalPrice);
+                    string productDetails = "Storage: " + storages[productName.index] + "Color: " + colors[productName.index];
 
-                    cmd.ExecuteNonQuery();
+                    // Update the INSERT statement to include ProductName, Price, and Quantity
+                    string query = "INSERT INTO CheckOut (CartID, SubTotal, DeliveryFee, TotalPrice, ProductName, Price, Quantity,ProductDetails) VALUES (@CartID, @SubTotal, @DeliveryFee, @TotalPrice, @ProductName, @Price, @Quantity,@ProductDetails)";
+
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@CartID", cartId);
+                        cmd.Parameters.AddWithValue("@SubTotal", subTotal);
+                        cmd.Parameters.AddWithValue("@DeliveryFee", deliveryFee);
+                        cmd.Parameters.AddWithValue("@TotalPrice", totalPrice);
+                        cmd.Parameters.AddWithValue("@ProductName", productNames[productName.index]); // Get product name
+                        cmd.Parameters.AddWithValue("@Price", prices[productName.index]); // Get price
+                        cmd.Parameters.AddWithValue("@Quantity", quantities[productName.index]); // Get quantity
+                        cmd.Parameters.AddWithValue("@ProductDetails", productDetails);
+                        
+
+                        cmd.ExecuteNonQuery();
+                    }
                 }
             }
         }
+        private List<int> GetProductIDs(int cartId)
+        {
+            List<int> productIds = new List<int>(); // List to store multiple ProductIDs
+            string query = "SELECT ProductID FROM CartItems WHERE CartID = @CartID";
+
+            using (SqlConnection con = new SqlConnection(cs)) // 'cs' is your connection string
+            {
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@CartID", cartId);
+
+                try
+                {
+                    con.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read()) // Loop through all rows
+                    {
+                        int productId = Convert.ToInt32(reader["ProductID"]); // Get ProductID
+                        productIds.Add(productId); // Add to the list
+                    }
+
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    // Log or handle the exception
+                    Response.Write($"<script>alert('Error: {ex.Message}');</script>");
+                }
+            }
+
+            return productIds; // Return the list of ProductIDs
+        }
+
 
 
         protected void btnPay_Click1(object sender, EventArgs e)
@@ -225,6 +291,13 @@ namespace NewVersion.css
             decimal Amount = GetAmountFromLabel(lblAmount.Text);
 
             Session["Amount"] = Amount; // store to session
+
+            // Store the CartID and ProductIDs to session
+            int cartId = GetCurrentCartID();
+            Session["CartID"] = cartId;
+
+            List<int> productIds = GetProductIDs(cartId); // Assuming GetProductIDs returns a list of ProductID based on CartID
+            Session["ProductIDs"] = productIds; // Store the list of ProductIDs in session
 
             string description = "Razorpay Payment Gateway";
             string imageLogo = "";
