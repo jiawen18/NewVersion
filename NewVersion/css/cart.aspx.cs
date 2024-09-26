@@ -19,7 +19,7 @@ namespace NewVersion.css
 
         /* private void LogInUser(int memberId)
          {
-             // 将 MemberID 存储在 Session 中
+             
              HttpContext.Current.Session["MemberID"] = memberId;
          }*/
 
@@ -68,9 +68,9 @@ namespace NewVersion.css
                 }
                 else
                 {
-                    // 可能显示一个消息或做其他处理
+                    
                     rptProduct.DataSource = null;
-                    rptProduct.DataBind(); // 绑定空数据以清除旧数据
+                    rptProduct.DataBind(); 
                 }
             }
         }
@@ -112,19 +112,19 @@ namespace NewVersion.css
         {
             Button btn = (Button)sender;
 
-            string[] arguments = btn.CommandArgument.Split(','); // 拆分字符串
+            string[] arguments = btn.CommandArgument.Split(','); 
             string ciId = arguments[0]; // CartItemID
             string pId = arguments[1];
 
             int cartItemId = Convert.ToInt32(arguments[0]);
             int productID = Convert.ToInt32(arguments[1]);
 
-            // 获取当前购物车的数量
+           
             int currentQuantity = GetCurrentQuantity(cartItemId,productID);
 
             if (currentQuantity > 1)
             {
-                // 如果数量大于 1，正常减少数量
+                
                 UpdateCartQuantity(cartItemId, -1, productID);
                 LoadCartItems();
             }
@@ -140,15 +140,15 @@ namespace NewVersion.css
         {
             Button btn = (Button)sender;
 
-            string[] arguments = btn.CommandArgument.Split(','); // 拆分字符串
+            string[] arguments = btn.CommandArgument.Split(','); 
             string ciId = arguments[0]; // CartItemID
             string pId = arguments[1];
 
             int cartItemId = Convert.ToInt32(arguments[0]);
             int productID = Convert.ToInt32(arguments[1]);
 
-            // 增加产品数量的逻辑
-            UpdateCartQuantity(cartItemId, 1,productID); // 假设你有一个方法来处理数量更新
+            
+            UpdateCartQuantity(cartItemId, 1,productID); 
         }
 
         private int GetCurrentQuantity(int cartItemId, int productID)
@@ -182,13 +182,7 @@ namespace NewVersion.css
                 cmd.Parameters.AddWithValue("@ProductID", productID);
 
                 con.Open();
-                int rowsAffected = cmd.ExecuteNonQuery(); // 返回受影响的行数
-
-                if (rowsAffected == 0)
-                {
-                    // 如果没有行被删除，可能是因为条件不匹配
-                    Response.Write("<script>alert('没有找到匹配的项，删除失败。');</script>");
-                }
+                cmd.ExecuteNonQuery(); 
 
                 con.Close();
             }
@@ -312,9 +306,9 @@ namespace NewVersion.css
         
         protected void btnCheckOut_Click(object sender, EventArgs e)
         {
-            int cartId = GetCurrentCartID(); // 获取当前购物车 ID
+            int cartId = GetCurrentCartID(); 
 
-            // 将 cartId 存储在查询字符串中
+           
             Response.Redirect($"Checkout.aspx?cartId={cartId}");
         }
 

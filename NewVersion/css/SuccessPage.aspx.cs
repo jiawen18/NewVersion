@@ -19,11 +19,11 @@ namespace NewVersion.css
         {
             if (!IsPostBack)
             {
-                string paymentStatus = "成功"; // 根据实际情况设置
-                string deliveryStatus = "待发货"; // 根据实际情况设置
-                string orderDetails = "订单详细信息";
+                string paymentStatus = "Paid"; 
+                string deliveryStatus = "Completed";
+                string orderDetails = "Z-Flip 128GB | Blue";
 
-                // 从查询字符串中获取数据
+                
                 string orderID = Request.QueryString["orderId"];
                 lblOrderId.Text = orderID;
 
@@ -37,29 +37,29 @@ namespace NewVersion.css
                 if (Session["CartID"] != null)
                 {
                     int cartId = (int)Session["CartID"];
-                    Response.Write($"当前 CartID: {cartId}<br/>");
+                   
 
-                    // 获取产品 ID
+                    
                     List<int> productIds = GetProductIDsByCartId(cartId);
                     if (productIds.Count == 0)
                     {
-                        Response.Write("未找到产品 ID，请检查购物车内容。<br/>");
+                        ;
                     }
                     else
                     {
-                        Response.Write($"找到产品 ID: {string.Join(", ", productIds)}<br/>");
+                        
                         InsertOrder(orderID, paymentStatus, deliveryStatus, orderDetails, productIds, transactionID, invoiceId, date);
                     }
                 }
                 else
                 {
-                    Response.Write("购物车 ID 不存在。<br/>");
+                    
                 }
 
                 if (Session["Amount"] != null)
                 {
-                    decimal amount = (decimal)Session["Amount"]; // 从会话中读取金额
-                    lblAmount.Text = "RM " + amount.ToString("F2"); // 显示金额
+                    decimal amount = (decimal)Session["Amount"]; 
+                    lblAmount.Text = "RM " + amount.ToString("F2");
                 }
             }
         }
@@ -98,13 +98,7 @@ namespace NewVersion.css
                 {
                     try
                     {
-                        Response.Write($"订单 ID: {orderID}<br/>");
-                        Response.Write($"交易 ID: {transactionID}<br/>");
-                        Response.Write($"发票号: {invoiceId}<br/>");
-                        Response.Write($"发票日期: {date}<br/>");
-
-
-                        // 插入订单
+                        
                         string orderQuery = "INSERT INTO [Order] (OrderID, PaymentStatus, DeliveryStatus, OrderDetails) VALUES (@OrderID, @PaymentStatus, @DeliveryStatus, @OrderDetails)";
 
                         using (SqlCommand cmd = new SqlCommand(orderQuery, con, transaction))
@@ -116,15 +110,15 @@ namespace NewVersion.css
                             cmd.ExecuteNonQuery();
                         }
 
-                        // 确保 productIds 列表不为空
+                        
                         if (productIds != null && productIds.Count > 0)
                         {
-                            // 保存交易细节
+                           
                             string transactionQuery = "INSERT INTO [Transaction] (ProductID, OrderID, TransactionID, InvoiceID, InvoiceDate) VALUES (@ProductID, @OrderID, @TransactionID, @InvoiceID, @InvoiceDate)";
 
                             foreach (int productId in productIds)
                             {
-                                if (productId > 0) // 确保产品 ID 有效
+                                if (productId > 0) 
                                 {
                                     using (SqlCommand cmd = new SqlCommand(transactionQuery, con, transaction))
                                     {
@@ -134,33 +128,33 @@ namespace NewVersion.css
                                         cmd.Parameters.AddWithValue("@InvoiceID", invoiceId);
                                         cmd.Parameters.AddWithValue("@InvoiceDate", date);
                                         cmd.ExecuteNonQuery();
-                                        Response.Write($"成功插入产品 ID: {productId}<br/>");
+                                       
                                     }
                                 }
                                 else
                                 {
-                                    // 记录无效的产品 ID
-                                    Response.Write($"无效的产品 ID: {productId}<br/>");
+                                    
+                                   
                                 }
                             }
                         }
                         else
                         {
-                            Response.Write("产品 ID 列表为空，无法保存交易细节。<br/>");
+                           
                         }
 
                         transaction.Commit();
-                        Response.Write("所有交易细节已成功插入。<br/>");
+                        
                     }
                     catch (SqlException sqlEx)
                     {
                         transaction.Rollback();
-                        Response.Write($"插入过程中发生 SQL 错误: {sqlEx.Message}<br/>");
+                        
                     }
                     catch (Exception ex)
                     {
                         transaction.Rollback();
-                        Response.Write($"插入过程中发生错误: {ex.Message}<br/>");
+                        
                     }
                 }
 

@@ -3,32 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\asus\\documents\\github\\newversion\\newversion\\admin\\newsupplier.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\newsupplier.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\asus\\documents\\github\\newversion\\newversion\\admin\\transactions.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\transactions.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\asus\\documents\\github\\newversion\\newversion\\admin\\newsupplier.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\newsupplier.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\asus\\documents\\github\\newversion\\newversion\\admin\\newshipper.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\newshipper.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\asus\\documents\\github\\newversion\\newversion\\admin\\suppliers.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\suppliers.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\newversion\\admin\\inventory.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\inventory.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\newversion\\admin\\dashboard.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\dashboard.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\newversion\\admin\\adminprofile.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\adminprofile.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\asus\\documents\\github\\newversion\\newversion\\admin\\orderlist.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\orderlist.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,94 +34,45 @@
             },
             {
               "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
               "Name": "ST:1:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "newSupplier.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\newSupplier.aspx.cs",
-              "RelativeDocumentMoniker": "NewVersion\\admin\\newSupplier.aspx.cs",
-              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\newSupplier.aspx.cs",
-              "RelativeToolTip": "NewVersion\\admin\\newSupplier.aspx.cs",
-              "ViewState": "AgIAAGgAAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-26T07:31:51.323Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "newSupplier.aspx",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\newSupplier.aspx",
-              "RelativeDocumentMoniker": "NewVersion\\admin\\newSupplier.aspx",
-              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\newSupplier.aspx",
-              "RelativeToolTip": "NewVersion\\admin\\newSupplier.aspx",
+              "Title": "transactions.aspx",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\transactions.aspx",
+              "RelativeDocumentMoniker": "NewVersion\\admin\\transactions.aspx",
+              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\transactions.aspx",
+              "RelativeToolTip": "NewVersion\\admin\\transactions.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-09-26T07:31:44.292Z",
+              "WhenOpened": "2024-09-26T12:50:24.593Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "newShipper.aspx",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\newShipper.aspx",
-              "RelativeDocumentMoniker": "NewVersion\\admin\\newShipper.aspx",
-              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\newShipper.aspx",
-              "RelativeToolTip": "NewVersion\\admin\\newShipper.aspx",
+              "DocumentIndex": 1,
+              "Title": "orderList.aspx",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\orderList.aspx",
+              "RelativeDocumentMoniker": "NewVersion\\admin\\orderList.aspx",
+              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\orderList.aspx",
+              "RelativeToolTip": "NewVersion\\admin\\orderList.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-09-26T07:31:39.563Z",
+              "WhenOpened": "2024-09-26T12:49:58.015Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "suppliers.aspx",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\suppliers.aspx",
-              "RelativeDocumentMoniker": "NewVersion\\admin\\suppliers.aspx",
-              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\suppliers.aspx",
-              "RelativeToolTip": "NewVersion\\admin\\suppliers.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-09-25T16:15:19.953Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "inventory.aspx",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\inventory.aspx",
-              "RelativeDocumentMoniker": "NewVersion\\admin\\inventory.aspx",
-              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\inventory.aspx",
-              "RelativeToolTip": "NewVersion\\admin\\inventory.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-09-25T16:14:21.711Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "dashboard.aspx",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\dashboard.aspx",
-              "RelativeDocumentMoniker": "NewVersion\\admin\\dashboard.aspx",
-              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\dashboard.aspx",
-              "RelativeToolTip": "NewVersion\\admin\\dashboard.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-09-25T15:53:58.448Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AdminProfile.aspx",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\AdminProfile.aspx",
-              "RelativeDocumentMoniker": "NewVersion\\admin\\AdminProfile.aspx",
-              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\AdminProfile.aspx",
-              "RelativeToolTip": "NewVersion\\admin\\AdminProfile.aspx",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-09-25T15:53:10.642Z"
             }
           ]
         }

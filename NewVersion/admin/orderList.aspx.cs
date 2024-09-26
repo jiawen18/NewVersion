@@ -21,19 +21,28 @@ namespace NewVersion.admin
 
         private void BindOrderData()
         {
-            
+            string query = "SELECT OrderID, OrderDetails, PaymentStatus, DeliveryStatus,OrderDate FROM [Order]";
+
             using (SqlConnection conn = new SqlConnection(cs))
             {
-                string query = "SELECT OrderID, OrderDetails, PaymentStatus, DeliveryStatus FROM [Order]";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    conn.Open();
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
+                    // Create a DataTable to hold the data
+                    DataTable dt = new DataTable();
 
-                OrderRepeater.DataSource = dt;
-                OrderRepeater.DataBind();
+                    // Fill the DataTable with the result of the query
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+
+                    OrderRepeater.DataSource = dt;
+                    OrderRepeater.DataBind();
+                }
             }
         }
-    }
+
+}
 }

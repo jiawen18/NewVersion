@@ -3,20 +3,20 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style>
     .no-underline {
-        text-decoration: none; /* 去掉下划线 */
-        color: inherit; /* 保持字体颜色 */
+        text-decoration: none; 
+        color: inherit; 
     }
     .no-underline:hover {
-        text-decoration: none; /* 保证鼠标悬停时仍然没有下划线 */
+        text-decoration: none; 
     }
 
     h2 {
-    z-index: 10; /* 确保它在动态生成的订单内容之上 */
+    z-index: 10; 
     position: relative;
     }
 
     .card-details {
-        z-index: 1; /* 保证它不会挡住 To Ship */
+        z-index: 1;
     }
     </style>
 
