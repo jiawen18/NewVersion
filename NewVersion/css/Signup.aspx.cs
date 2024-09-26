@@ -25,10 +25,10 @@ namespace NewVersion.css
                 string hashedPassword = Security.HashPassword(password);
 
                 // Ensure that only Member accounts are created
-                string role = "Super Admin";
+                string role = "Member";
 
                 // Check if the user already exists in the Member table
-                SuperAdminUser existingMember = ue.SuperAdminUsers.SingleOrDefault(x => x.Username == username && x.Email == email);
+                MemberUser existingMember = ue.MemberUsers.SingleOrDefault(x => x.Username == username && x.Email == email);
                 if (existingMember != null)
                 {
                     // Show error message if the user already exists
@@ -37,7 +37,7 @@ namespace NewVersion.css
                 }
 
                 // Create a new Member account
-                SuperAdminUser newMember = new SuperAdminUser
+                MemberUser newMember = new MemberUser
                 {
                     Username = username,
                     Email = email,
@@ -46,7 +46,7 @@ namespace NewVersion.css
                 };
 
                 // Add new member to the database
-                ue.SuperAdminUsers.Add(newMember);
+                ue.MemberUsers.Add(newMember);
 
                 try
                 {

@@ -520,7 +520,6 @@
       <DependentUpon>product.mdf</DependentUpon>
     </Content>
     <Content Include="css\AboutUs.aspx" />
-    <Content Include="css\Accessories.aspx" />
     <Content Include="css\Account.aspx" />
     <Content Include="css\Blog.aspx" />
     <Content Include="css\cancelled.aspx" />
@@ -551,7 +550,6 @@
     <Content Include="css\FailurePage.aspx" />
     <Content Include="css\fonts\slick.svg" />
     <Content Include="css\forgotpw.aspx" />
-    <Content Include="css\Home.aspx" />
     <Content Include="css\Home2.aspx" />
     <Content Include="css\images\AI_image.png" />
     <Content Include="css\images\arrow.png" />
@@ -691,7 +689,6 @@
     <Content Include="css\Signup.aspx" />
     <Content Include="css\Smartphones.aspx" />
     <Content Include="css\SuccessPage.aspx" />
-    <Content Include="css\Tablets.aspx" />
     <Content Include="css\ThankYou.aspx" />
     <Content Include="css\UserProfile.aspx" />
     <Content Include="Global.asax" />
@@ -869,13 +866,6 @@
     <Compile Include="css\AboutUs.aspx.designer.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
     </Compile>
-    <Compile Include="css\Accessories.aspx.cs">
-      <DependentUpon>Accessories.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="css\Accessories.aspx.designer.cs">
-      <DependentUpon>Accessories.aspx</DependentUpon>
-    </Compile>
     <Compile Include="css\Account.aspx.cs">
       <DependentUpon>Account.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -960,13 +950,6 @@
     <Compile Include="css\forgotpw.aspx.designer.cs">
       <DependentUpon>forgotpw.aspx</DependentUpon>
     </Compile>
-    <Compile Include="css\Home.aspx.cs">
-      <DependentUpon>Home.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="css\Home.aspx.designer.cs">
-      <DependentUpon>Home.aspx</DependentUpon>
-    </Compile>
     <Compile Include="css\Home2.aspx.cs">
       <DependentUpon>Home2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1036,13 +1019,6 @@
     </Compile>
     <Compile Include="css\SuccessPage.aspx.designer.cs">
       <DependentUpon>SuccessPage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="css\Tablets.aspx.cs">
-      <DependentUpon>Tablets.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="css\Tablets.aspx.designer.cs">
-      <DependentUpon>Tablets.aspx</DependentUpon>
     </Compile>
     <Compile Include="css\ThankYou.aspx.cs">
       <DependentUpon>ThankYou.aspx</DependentUpon>
