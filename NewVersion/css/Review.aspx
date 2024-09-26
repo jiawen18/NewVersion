@@ -55,19 +55,18 @@
         </div>
 
         <br />
-            <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red" Visible="false" />
+
 
     <!-- Media Uploads -->
     <div class="media-upload">
-       <asp:FileUpload ID="FileUploadMedia" runat="server" CssClass="file-upload-input" accept="image/*,video/*" 
+         <asp:FileUpload ID="FileUploadMedia" runat="server" CssClass="file-upload-input" accept="image/*,video/*" 
         onchange="previewMedia(event)" multiple />
         <label for="FileUploadMedia" class="upload-btn">
             <asp:Image ID="Image2" runat="server" src="images/camera.png" alt="Upload Icon" class="upload-icon" />
             <span class="upload-text">Add Photo / Video</span>
         </label>
     </div>
-
-     <asp:HiddenField ID="HiddenFieldImagePath" runat="server" />    
+        <asp:HiddenField ID="HiddenFieldImagePath" runat="server" />
 
 
     <!-- Media Container -->
