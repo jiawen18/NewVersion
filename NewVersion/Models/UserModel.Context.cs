@@ -35,5 +35,10 @@ namespace NewVersion.Models
         public virtual DbSet<Shipper> Shippers { get; set; }
         public virtual DbSet<Support> Supports { get; set; }
         public virtual DbSet<SuperAdminUser> SuperAdminUsers { get; set; }
+        public virtual DbSet<CartItem> CartItems { get; set; }
+        public virtual DbSet<CheckOut> CheckOuts { get; set; }
+        public virtual DbSet<Review> Reviews { get; set; }
+        public virtual DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public virtual DbSet<Transaction> Transactions { get; set; }
     }
 }
