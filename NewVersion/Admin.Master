@@ -185,11 +185,6 @@
                                 <div class="collapse" id="customers">
                                     <ul class="nav nav-collapse">
                                         <li>
-                                            <a href="customerList.aspx">
-                                                <span class="sub-item">Customer List</span>
-                                            </a>
-                                        </li>
-                                        <li>
                                             <a href="reviews.aspx">
                                                 <span class="sub-item">Reviews</span>
                                             </a>
