@@ -98,7 +98,7 @@
                         <ul class="nav nav-secondary">
                             <li class="nav-item active">
                                 <a href="dashboard.aspx">
-                                    <i class="fas fa-home"></i>
+                                    <i class="fas fa-chart-line"></i>
                                     <span class="sub-item">Dashboard</span>
                                 </a>
                             </li>
@@ -197,7 +197,7 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li class="nav-item">
+                            <%--<li class="nav-item">
                                 <a data-bs-toggle="collapse" href="#analytics">
                                     <i class="fas fa-chart-line"></i>
                                     <p>Analytics</p>
@@ -217,7 +217,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </li>
+                            </li>--%>
                         </ul>
                         <ul class="nav nav-secondary">
                             <li class="nav-section">
