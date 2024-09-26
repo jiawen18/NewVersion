@@ -256,12 +256,18 @@
                                         </li>
 
                                 <!-- Superadmin-only section -->
-                               <li class="nav-item" id="superAdminSection" runat="server">
-                                   <a href="newAdmin.aspx">
-                                       <i class="fas fa-user-plus"></i>
-                                       <p>New Admin</p>
+                               <li class="nav-item" id="superAdminSection1" runat="server">
+                                   <a href="newAdmin.aspx">                                     
+                                       <span class="sub-item">New Admin</span>
                                    </a>
                                </li>
+
+                              <li class="nav-item" id="superAdminSection2" runat="server">
+                                 <a href="newAdmin.aspx">                                     
+                                     <span class="sub-item">New Super Admin</span>
+                                 </a>
+                             </li>
+                              
                                    </ul>
                                 </div>
                             </li>

@@ -51,13 +51,22 @@ namespace NewVersion
         protected global::System.Web.UI.WebControls.LinkButton TopbarTogglerButton;
 
         /// <summary>
-        /// superAdminSection control.
+        /// superAdminSection1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl superAdminSection;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl superAdminSection1;
+
+        /// <summary>
+        /// superAdminSection2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl superAdminSection2;
 
         /// <summary>
         /// superAdminUpdateSection control.

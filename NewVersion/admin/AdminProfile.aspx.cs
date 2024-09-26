@@ -1,126 +1,121 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace NewVersion.admin
 {
     public partial class AdminProfile : System.Web.UI.Page
     {
+        // Flag to track if the user is in AdminUser or SuperAdminUser
+        private string userTable = "AdminUser"; // Default table is AdminUser
+        private string idColumn = "AdminID"; // Default ID column
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                // Populate the textboxes only on the first load, not on postbacks
+                // Load admin details on first load
                 LoadAdminDetails();
             }
         }
 
-        // Load the currently logged-in admin's details
         private void LoadAdminDetails()
         {
-            // Load admin details from the database
+            string username = HttpContext.Current.User.Identity.Name;
             string connString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
+
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
+
+                // Check if user exists in AdminUser
                 string query = "SELECT AdminID, Username, Position, Office, Email, DOB, Phone, Role, ProfilePicture FROM AdminUser WHERE Username = @Username";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Username", HttpContext.Current.User.Identity.Name);
+                    cmd.Parameters.AddWithValue("@Username", username);
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            // Set the values to the textboxes
-                            txt_adm_id.Text = reader["AdminID"].ToString();
-                            txt_adm_username.Text = reader["Username"].ToString();
-                            txt_adm_position.Text = reader["Position"].ToString();
-                            txt_adm_office.Text = reader["Office"].ToString();
-                            txt_adm_email.Text = reader["Email"].ToString();
-                            txt_adm_birthday.Text = reader["DOB"].ToString();
-                            txt_adm_phone.Text = reader["Phone"].ToString();
-                            txt_adm_role.Text = reader["Role"].ToString();
+                            userTable = "AdminUser";
+                            idColumn = "AdminID"; // Set the ID column for AdminUser
+                            SetAdminDetails(reader);
+                            return; // Exit if user is found in AdminUser
+                        }
+                    }
+                }
 
-                            // Display the current profile picture
-                            string profilePictureFilename = reader["ProfilePicture"].ToString();
-                            if (!string.IsNullOrEmpty(profilePictureFilename))
-                            {
-                                imgProfile.ImageUrl = "assets/img/" + profilePictureFilename;
-                            }
-                            else
-                            {
-                                imgProfile.ImageUrl = "assets/img/default.jpg"; // Use a default picture if no picture exists
-                            }
+                // Check if user exists in SuperAdminUser
+                query = "SELECT SuperAdminID, Username, Position, Office, Email, DOB, Phone, Role, ProfilePicture FROM SuperAdminUser WHERE Username = @Username";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Username", username);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            userTable = "SuperAdminUser";
+                            idColumn = "SuperAdminID"; // Set the ID column for SuperAdminUser
+                            SetAdminDetails(reader);
                         }
                     }
                 }
             }
         }
 
+        // Helper method to set admin details to the textboxes
+        private void SetAdminDetails(SqlDataReader reader)
+        {
+            // Use the dynamically determined ID column
+            txt_adm_id.Text = reader[idColumn].ToString();
+            txt_adm_username.Text = reader["Username"].ToString();
+            txt_adm_position.Text = reader["Position"].ToString();
+            txt_adm_office.Text = reader["Office"].ToString();
+            txt_adm_email.Text = reader["Email"].ToString();
+            txt_adm_birthday.Text = reader["DOB"].ToString();
+            txt_adm_phone.Text = reader["Phone"].ToString();
+            txt_adm_role.Text = reader["Role"].ToString();
+
+            string profilePictureFilename = reader["ProfilePicture"].ToString();
+            imgProfile.ImageUrl = !string.IsNullOrEmpty(profilePictureFilename) ? "assets/img/" + profilePictureFilename : "assets/img/default.jpg";
+        }
+
         protected void btn_acc_svChanges_Click(object sender, EventArgs e)
         {
             string username = HttpContext.Current.User.Identity.Name;
-
-            // Get the new values from the textboxes
             string newUsername = txt_adm_username.Text;
             string newPosition = txt_adm_position.Text;
             string newOffice = txt_adm_office.Text;
             string newEmail = txt_adm_email.Text;
             string newBirthday = txt_adm_birthday.Text;
             string newPhone = txt_adm_phone.Text;
-            string profilePictureFilename = null; // Will store just the filename
+            string profilePictureFilename = null;
 
-            // Get password fields for password update
             string currentPassword = txt_adm_crPassword.Text;
             string newPassword = txt_adm_newPassword.Text;
             string repeatNewPassword = txt_adm_rpNewPassword.Text;
 
-            // Handle file upload for profile picture
             if (fileUpload.HasFile)
             {
-                // Define the path to save the uploaded file
                 string uploadFolderPath = Server.MapPath("~/admin/assets/img/");
+                if (!Directory.Exists(uploadFolderPath)) Directory.CreateDirectory(uploadFolderPath);
 
-                // Create directory if it doesn't exist
-                if (!Directory.Exists(uploadFolderPath))
-                {
-                    Directory.CreateDirectory(uploadFolderPath);
-                }
-
-                // Generate a new unique filename using GUID
-                string filename = Guid.NewGuid().ToString("N") + ".jpg"; // Save as .jpg
-
-                // Create a SimpleImage instance with the uploaded file
+                string filename = Guid.NewGuid().ToString("N") + ".jpg";
                 SimpleImage img = new SimpleImage(fileUpload.PostedFile.InputStream);
-
-                // Process the image: convert to square and resize
                 img.Square();
-
-
-                // Save the processed image to the defined path
-                string filePath = Path.Combine(uploadFolderPath, filename);
-                img.SaveAs(filePath);
-
-                // Update the profile picture filename (only the filename is saved to the database)
+                img.SaveAs(Path.Combine(uploadFolderPath, filename));
                 profilePictureFilename = filename;
-
-                // Update the ImageUrl of imgProfile to show the new uploaded picture
                 imgProfile.ImageUrl = "assets/img/" + filename;
             }
 
-            // Connect to the database and update the admin's details
             string connString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
 
-                // Only check passwords if the user is trying to change it
                 if (!string.IsNullOrEmpty(currentPassword) || !string.IsNullOrEmpty(newPassword) || !string.IsNullOrEmpty(repeatNewPassword))
                 {
                     if (string.IsNullOrEmpty(currentPassword) || string.IsNullOrEmpty(newPassword) || string.IsNullOrEmpty(repeatNewPassword))
@@ -131,8 +126,7 @@ namespace NewVersion.admin
                     }
 
                     string hashedCurrentPassword = Security.HashPassword(currentPassword);
-
-                    string checkPasswordQuery = "SELECT PasswordHash FROM AdminUser WHERE Username = @Username";
+                    string checkPasswordQuery = $"SELECT PasswordHash FROM {userTable} WHERE Username = @Username";
                     using (SqlCommand checkPasswordCmd = new SqlCommand(checkPasswordQuery, conn))
                     {
                         checkPasswordCmd.Parameters.AddWithValue("@Username", username);
@@ -154,8 +148,7 @@ namespace NewVersion.admin
                     }
                 }
 
-                // Update user details, including the password if provided
-                string query = @"UPDATE AdminUser SET 
+                string query = $@"UPDATE {userTable} SET 
                          Username = @Username,
                          Position = @Position,
                          Office = @Office,
@@ -163,54 +156,37 @@ namespace NewVersion.admin
                          DOB = @Birthday,
                          Phone = @Phone";
 
-                // If the user entered a new password, hash it and include it in the update
-                if (!string.IsNullOrEmpty(newPassword))
-                {
-                    query += ", PasswordHash = @NewPassword";
-                }
-
-                // If a new profile picture was uploaded, include it in the update
-                if (fileUpload.HasFile)
-                {
-                    query += ", ProfilePicture = @ProfilePicture";
-                }
-
+                if (!string.IsNullOrEmpty(newPassword)) query += ", PasswordHash = @NewPassword";
+                if (!string.IsNullOrEmpty(profilePictureFilename)) query += ", ProfilePicture = @ProfilePicture";
                 query += " WHERE Username = @OriginalUsername";
 
-              using (SqlCommand cmd = new SqlCommand(query, conn))
-        {
-            cmd.Parameters.AddWithValue("@Username", newUsername);
-            cmd.Parameters.AddWithValue("@Position", newPosition);
-            cmd.Parameters.AddWithValue("@Office", newOffice);
-            cmd.Parameters.AddWithValue("@Email", newEmail);
-            cmd.Parameters.AddWithValue("@Birthday", newBirthday);
-            cmd.Parameters.AddWithValue("@Phone", newPhone);
-            cmd.Parameters.AddWithValue("@OriginalUsername", username);
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Username", newUsername);
+                    cmd.Parameters.AddWithValue("@Position", newPosition);
+                    cmd.Parameters.AddWithValue("@Office", newOffice);
+                    cmd.Parameters.AddWithValue("@Email", newEmail);
+                    cmd.Parameters.AddWithValue("@Birthday", newBirthday);
+                    cmd.Parameters.AddWithValue("@Phone", newPhone);
+                    cmd.Parameters.AddWithValue("@OriginalUsername", username);
 
-            // Only add the hashed new password parameter if it's not empty
-            if (!string.IsNullOrEmpty(newPassword))
-            {
-                string hashedNewPassword = Security.HashPassword(newPassword);
-                cmd.Parameters.AddWithValue("@NewPassword", hashedNewPassword);
-            }
+                    if (!string.IsNullOrEmpty(newPassword))
+                    {
+                        string hashedNewPassword = Security.HashPassword(newPassword);
+                        cmd.Parameters.AddWithValue("@NewPassword", hashedNewPassword);
+                    }
 
-            // Only add the profile picture parameter if it's not empty
-            if (!string.IsNullOrEmpty(profilePictureFilename))
-            {
-                cmd.Parameters.AddWithValue("@ProfilePicture", profilePictureFilename);
-            }
+                    if (!string.IsNullOrEmpty(profilePictureFilename))
+                    {
+                        cmd.Parameters.AddWithValue("@ProfilePicture", profilePictureFilename);
+                    }
 
                     cmd.ExecuteNonQuery();
 
-                    // Notify user of successful update
                     Response.Write("<script>alert('Profile updated successfully.');</script>");
-
-                    // Clear password fields
                     txt_adm_crPassword.Text = "";
                     txt_adm_newPassword.Text = "";
                     txt_adm_rpNewPassword.Text = "";
-
-                    // Reload the admin details to show updated values
                     LoadAdminDetails();
                 }
             }

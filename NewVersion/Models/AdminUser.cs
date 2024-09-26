@@ -23,7 +23,7 @@ namespace NewVersion.Models
         public string Office { get; set; }
         public string DOB { get; set; }
         public string Phone { get; set; }
-        public System.DateTime CreatedAt { get; set; }
+        public System.DateTime CreatedAt { get; set; } = System.DateTime.Now;
         public string ProfilePicture { get; set; }
     }
 }

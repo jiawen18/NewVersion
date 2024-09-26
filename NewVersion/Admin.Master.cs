@@ -26,7 +26,8 @@ namespace NewVersion
              if (!IsUserSuperAdmin())
              {
                  // Hide sections only meant for superadmin
-                 superAdminSection.Visible = false;
+                 superAdminSection1.Visible = false;
+                 superAdminSection2.Visible = false;
                  superAdminUpdateSection.Visible = false;
              }
                 

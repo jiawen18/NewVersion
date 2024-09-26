@@ -84,7 +84,7 @@
           <Property Name="shipperPhone" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="shipperAddress" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
-        <EntityType Name="SuperAminUser">
+        <EntityType Name="SuperAdminUser">
           <Key>
             <PropertyRef Name="SuperAdminID" />
           </Key>
@@ -154,7 +154,7 @@
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Refund" EntityType="Self.Refund" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shipper" EntityType="Self.Shipper" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SuperAminUser" EntityType="Self.SuperAminUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SuperAdminUser" EntityType="Self.SuperAdminUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Support" EntityType="Self.Support" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Order_ToRefund" Association="Self.FK_Order_ToRefund">
@@ -172,7 +172,6 @@
       <Schema Namespace="UserModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="userEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="MemberUsers" EntityType="UserModel.MemberUser" />
-          <EntitySet Name="SuperAminUsers" EntityType="UserModel.SuperAminUser" />
           <EntitySet Name="Suppliers" EntityType="UserModel.Supplier" />
           <EntitySet Name="AdminUsers" EntityType="UserModel.AdminUser" />
           <EntitySet Name="Inventories" EntityType="UserModel.Inventory" />
@@ -189,6 +188,7 @@
             <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
           <EntitySet Name="Supports" EntityType="UserModel.Support" />
+          <EntitySet Name="SuperAdminUsers" EntityType="UserModel.SuperAdminUser" />
         </EntityContainer>
         <EntityType Name="MemberUser">
           <Key>
@@ -200,22 +200,6 @@
           <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Role" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="7" />
-        </EntityType>
-        <EntityType Name="SuperAminUser">
-          <Key>
-            <PropertyRef Name="SuperAdminID" />
-          </Key>
-          <Property Name="SuperAdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Office" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DOB" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="ProfilePicture" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Supplier">
           <Key>
@@ -335,6 +319,22 @@
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="SuperAdminUser">
+          <Key>
+            <PropertyRef Name="SuperAdminID" />
+          </Key>
+          <Property Name="SuperAdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Office" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ProfilePicture" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -350,23 +350,6 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SuperAminUsers">
-            <EntityTypeMapping TypeName="UserModel.SuperAminUser">
-              <MappingFragment StoreEntitySet="SuperAminUser">
-                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="DOB" ColumnName="DOB" />
-                <ScalarProperty Name="Office" ColumnName="Office" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="Role" ColumnName="Role" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="SuperAdminID" ColumnName="SuperAdminID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -465,6 +448,23 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="SupportID" ColumnName="SupportID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SuperAdminUsers">
+            <EntityTypeMapping TypeName="UserModel.SuperAdminUser">
+              <MappingFragment StoreEntitySet="SuperAdminUser">
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Office" ColumnName="Office" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="SuperAdminID" ColumnName="SuperAdminID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

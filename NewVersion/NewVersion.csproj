@@ -124,6 +124,7 @@
     <Content Include="admin\newCustomer.aspx" />
     <Content Include="admin\newInventory.aspx" />
     <Content Include="admin\newShipper.aspx" />
+    <Content Include="admin\newSuperAdmin.aspx" />
     <Content Include="admin\newSupplier.aspx" />
     <Content Include="admin\orderList.aspx" />
     <Content Include="admin\productList.aspx" />
@@ -835,6 +836,13 @@
     <Compile Include="admin\newShipper.aspx.designer.cs">
       <DependentUpon>newShipper.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\newSuperAdmin.aspx.cs">
+      <DependentUpon>newSuperAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\newSuperAdmin.aspx.designer.cs">
+      <DependentUpon>newSuperAdmin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\newSupplier.aspx.cs">
       <DependentUpon>newSupplier.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1175,7 +1183,7 @@
     <Compile Include="Models\Shipper.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SuperAminUser.cs">
+    <Compile Include="Models\SuperAdminUser.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Supplier.cs">

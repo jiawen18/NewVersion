@@ -38,7 +38,7 @@ namespace NewVersion
                 ctx.Response.Cookies.Add(authCookie);
 
                 // Redirect user to the appropriate URL             
-                if (role == "Admin")
+                if (role == "Admin" || role == "Super Admin")
                 {
                     ctx.Response.Redirect("~/admin/dashboard.aspx");  // Redirect to the admin dashboard
                 }
