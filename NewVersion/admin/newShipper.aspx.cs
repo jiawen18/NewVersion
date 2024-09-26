@@ -30,11 +30,19 @@ namespace NewVersion.admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
                 BindGrid();
             }
         }
+
+            if (!IsPostBack)
+            {
+
+            }
+        }
+
 
         private void BindGrid()
         {

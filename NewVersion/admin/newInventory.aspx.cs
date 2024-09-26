@@ -17,7 +17,6 @@ namespace NewVersion.admin
             {
                 BindSuppliers();
                 BindProducts();
-                BindGrid();
             }
         }
 
