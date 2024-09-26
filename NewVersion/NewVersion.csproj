@@ -121,6 +121,7 @@
     <Content Include="admin\newAdmin.aspx" />
     <Content Include="admin\newInventory.aspx" />
     <Content Include="admin\newShipper.aspx" />
+    <Content Include="admin\newSuperAdmin.aspx" />
     <Content Include="admin\newSupplier.aspx" />
     <Content Include="admin\orderList.aspx" />
     <Content Include="admin\productList.aspx" />
@@ -546,7 +547,6 @@
     <Content Include="css\css\tiny-slider.css" />
     <Content Include="css\Delivery.aspx" />
     <Content Include="css\css\UserProfile.css" />
-    <Content Include="css\facebooklogin.aspx" />
     <Content Include="css\FailurePage.aspx" />
     <Content Include="css\fonts\slick.svg" />
     <Content Include="css\forgotpw.aspx" />
@@ -770,6 +770,13 @@
     <Compile Include="admin\newShipper.aspx.designer.cs">
       <DependentUpon>newShipper.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\newSuperAdmin.aspx.cs">
+      <DependentUpon>newSuperAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\newSuperAdmin.aspx.designer.cs">
+      <DependentUpon>newSuperAdmin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\newSupplier.aspx.cs">
       <DependentUpon>newSupplier.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -938,13 +945,6 @@
     <Compile Include="css\Delivery.aspx.designer.cs">
       <DependentUpon>Delivery.aspx</DependentUpon>
     </Compile>
-    <Compile Include="css\facebooklogin.aspx.cs">
-      <DependentUpon>facebooklogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="css\facebooklogin.aspx.designer.cs">
-      <DependentUpon>facebooklogin.aspx</DependentUpon>
-    </Compile>
     <Compile Include="css\FailurePage.aspx.cs">
       <DependentUpon>FailurePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1088,7 +1088,7 @@
     <Compile Include="Models\Shipper.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SuperAminUser.cs">
+    <Compile Include="Models\SuperAdminUser.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Supplier.cs">
@@ -1121,6 +1121,7 @@
       <DependentUpon>Home.Master</DependentUpon>
     </Compile>
     <Compile Include="Security.cs" />
+    <Compile Include="SimpleImage.cs" />
     <Compile Include="startup.cs" />
   </ItemGroup>
   <ItemGroup>
