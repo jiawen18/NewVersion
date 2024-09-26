@@ -129,15 +129,7 @@ namespace NewVersion.css
             public string Email { get; set; }
             public string Verified_Email { get; set; }
         }
-        protected void login_facebook_Click(object sender, EventArgs e)
-        {
-
-            var properties = new AuthenticationProperties
-            {
-                RedirectUri = "/css/Home.aspx"
-            };
-            HttpContext.Current.GetOwinContext().Authentication.Challenge(properties, "Facebook");
-        }
+      
 
     }
 }

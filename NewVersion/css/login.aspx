@@ -52,9 +52,6 @@
             <i class="fab fa-google me-2"></i>Continue with Google
           </asp:LinkButton>
     
-          <asp:LinkButton ID="login_facebook" runat="server" CausesValidation="false" class="btn btn-primary btn-lg btn-block" style="background-color: #5D5D5D; border:2px solid #5D5D5D; border-radius:50px" OnClick="login_facebook_Click">        
-            <i class="fab fa-facebook me-2"></i>Continue with Facebook
-          </asp:LinkButton>
           </div>
       </div>
     </div>
