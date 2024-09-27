@@ -12,9 +12,6 @@ namespace NewVersion.css
 {
     public partial class Order : System.Web.UI.Page
     {
-        String cs1 = Global.CS;
-        String cs2 = Global.CS;
-        String cs3 = Global.CS;
 
         protected void Page_Load(object sender, EventArgs e)
         {
