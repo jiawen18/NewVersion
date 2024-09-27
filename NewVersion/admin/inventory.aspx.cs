@@ -124,19 +124,26 @@ namespace NewVersion.admin
                         {
                             int initialQuantity = productItem.Quantity;
 
-                            int selectedSupplierId = Convert.ToInt32(addInventorySupplier.SelectedValue);
-                            productItem.SupplierID = selectedSupplierId;
+                            if (!string.IsNullOrEmpty(addInventorySupplier.SelectedValue) && int.TryParse(addInventorySupplier.SelectedValue, out int selectedSupplierId))
+                            {
+                                productItem.SupplierID = selectedSupplierId;
+                            }
+                            else
+                            {
+                                productItem.SupplierID = null;
+                            }
 
                             int adjustment;
                             if (int.TryParse(adjustInventoryQuantity.Text, out adjustment))
                             {
-                                productItem.Quantity += adjustment;
+                                productItem.Quantity = initialQuantity + adjustment < 0 ? 0 : initialQuantity + adjustment;
+
                                 context.SaveChanges();
 
                                 FeedbackLabel.Text = $"Product updated successfully!<br />" +
-                                                     $"Initial Quantity: {initialQuantity}, " +
-                                                     $"Adjustment: {adjustment} ({(adjustment >= 0 ? "Added" : "Subtracted")}), " +
-                                                     $"Final Quantity: {productItem.Quantity}";
+                                                     $"Initial quantity: {initialQuantity}, " +
+                                                     $"{(adjustment >= 0 ? "added" : "subtracted")}: {Math.Abs(adjustment)}, " +
+                                                     $"final quantity: {productItem.Quantity}";
                                 FeedbackLabel.CssClass = "text-success";
                             }
                             else
@@ -169,25 +176,5 @@ namespace NewVersion.admin
             ScriptManager.RegisterStartupScript(this, GetType(), "closeModal", "$('#addRowModal').modal('hide');", true);
             BindGrid();
         }
-        protected void ValidateQuantity(object source, ServerValidateEventArgs args)
-        {
-            int currentQuantity;
-            int adjustment;
-
-            bool isCurrentQuantityValid = int.TryParse(currentInventoryQuantity.Text, out currentQuantity);
-            bool isAdjustmentValid = int.TryParse(adjustInventoryQuantity.Text, out adjustment);
-
-            if (!isCurrentQuantityValid || !isAdjustmentValid)
-            {
-                args.IsValid = false;
-                FeedbackLabel.Text = "Quantity cannot be less than zero.";
-                FeedbackLabel.CssClass = "text-danger";
-                return;
-            }
-
-            args.IsValid = (currentQuantity + adjustment) >= 0;
-        }
-
-
     }
 }

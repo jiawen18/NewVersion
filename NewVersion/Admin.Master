@@ -98,7 +98,7 @@
                         <ul class="nav nav-secondary">
                             <li class="nav-item active">
                                 <a href="dashboard.aspx">
-                                    <i class="fas fa-chart-line"></i>
+                                    <i class="fas fa-home"></i>
                                     <span class="sub-item">Dashboard</span>
                                 </a>
                             </li>

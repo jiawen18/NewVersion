@@ -97,6 +97,12 @@ namespace NewVersion.admin
 
             using (var context = new userEntities())
             {
+                var productsWithSupplier = context.Products.Where(p => p.SupplierID == supplierId).ToList();
+                foreach (var product in productsWithSupplier)
+                {
+                    product.SupplierID = null;
+                }
+                context.SaveChanges();
 
                 var supplierToRemove = context.Suppliers.Find(supplierId);
                 if (supplierToRemove != null)
@@ -110,6 +116,7 @@ namespace NewVersion.admin
             FeedbackLabel.Text = "Supplier removed successfully!";
             FeedbackLabel.CssClass = "text-success";
         }
+
 
         protected void UpdateRowButton_Click(object sender, EventArgs e)
         {
