@@ -17,17 +17,17 @@
                         </thead>
                           <tbody>
                    <!-- Repeater control to bind admin data -->
-                    <asp:Repeater ID="RepeaterAdminList" runat="server">
+                    <asp:Repeater ID="RepeaterCustomerList" runat="server">
                         <ItemTemplate>
                             <tr>
                                 <td><%# Eval("Username") %></td>
                                 <td>
-                                    <asp:Label ID="lblPosition" runat="server" Text='<%# Eval("Position") %>'></asp:Label>
-                                    <asp:TextBox ID="txtPosition" runat="server" Text='<%# Eval("Position") %>' CssClass="form-control" Visible="false"></asp:TextBox>
+                                    <asp:Label ID="lbl_ID" runat="server" Text='<%# Eval("MemberID") %>'></asp:Label>
+                                    <asp:TextBox ID="txt_ID" runat="server" Text='<%# Eval("MemberID") %>' CssClass="form-control" Visible="false"></asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:Label ID="lblOffice" runat="server" Text='<%# Eval("Office") %>'></asp:Label>
-                                    <asp:TextBox ID="txtOffice" runat="server" Text='<%# Eval("Office") %>' CssClass="form-control" Visible="false"></asp:TextBox>
+                                    <asp:Label ID="lbl_Email" runat="server" Text='<%# Eval("Email") %>'></asp:Label>
+                                    <asp:TextBox ID="txt_Email" runat="server" Text='<%# Eval("Email") %>' CssClass="form-control" Visible="false"></asp:TextBox>
                                 </td>
                                 <td>
                                     <div class="form-button-action">

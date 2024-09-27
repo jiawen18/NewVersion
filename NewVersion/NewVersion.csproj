@@ -116,6 +116,7 @@
   <ItemGroup>
     <Content Include="admin\AdminProfile.aspx" />
     <Content Include="admin\assets\img\default.jpg" />
+    <Content Include="admin\customerlist.aspx" />
     <Content Include="admin\dashboard.aspx" />
     <Content Include="admin\edit.aspx" />
     <Content Include="admin\inventory.aspx" />
@@ -725,6 +726,13 @@
     </Compile>
     <Compile Include="admin\AdminProfile.aspx.designer.cs">
       <DependentUpon>AdminProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\customerlist.aspx.cs">
+      <DependentUpon>customerlist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\customerlist.aspx.designer.cs">
+      <DependentUpon>customerlist.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\dashboard.aspx.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
