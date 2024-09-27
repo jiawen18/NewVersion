@@ -12,30 +12,23 @@ namespace NewVersion.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Product
+    public partial class ShoppingCart
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Product()
+        public ShoppingCart()
         {
-            this.Orders = new HashSet<Order>();
             this.CartItems = new HashSet<CartItem>();
-            this.Reviews = new HashSet<Review>();
+            this.CheckOuts = new HashSet<CheckOut>();
         }
     
-        public int ProductID { get; set; }
-        public string ProductImageURL { get; set; }
-        public string ProductName { get; set; }
-        public decimal Price { get; set; }
-        public int Quantity { get; set; }
-        public bool IsVisible { get; set; }
-        public string ProductStorage { get; set; }
-        public string ProductColor { get; set; }
+        public int CartID { get; set; }
+        public decimal SubTotal { get; set; }
+        public decimal CartTotal { get; set; }
+        public System.DateTime CreateAt { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CartItem> CartItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<CheckOut> CheckOuts { get; set; }
     }
 }

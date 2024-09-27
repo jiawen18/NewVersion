@@ -86,7 +86,7 @@ namespace NewVersion.css
 
         protected void btnContinue_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Home.aspx");
+            Response.Redirect("Home2.aspx");
         }
 
         private void InsertOrder(string orderID, string paymentStatus, string deliveryStatus, string orderDetails, List<int> productIds, string transactionID, string invoiceId, string date)

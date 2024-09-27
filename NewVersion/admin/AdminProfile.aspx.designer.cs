@@ -33,6 +33,15 @@ namespace NewVersion.admin
         protected global::System.Web.UI.WebControls.FileUpload fileUpload;
 
         /// <summary>
+        /// fileUpload1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fileUpload1;
+
+        /// <summary>
         /// lbl_adm_id control.
         /// </summary>
         /// <remarks>
@@ -123,6 +132,15 @@ namespace NewVersion.admin
         protected global::System.Web.UI.WebControls.TextBox txt_adm_email;
 
         /// <summary>
+        /// revld_email control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revld_email;
+
+        /// <summary>
         /// lbl_adm_role control.
         /// </summary>
         /// <remarks>
@@ -175,6 +193,15 @@ namespace NewVersion.admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_adm_newPassword;
+
+        /// <summary>
+        /// revld_password control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revld_password;
 
         /// <summary>
         /// lbl_adm_rpNewPassword control.
