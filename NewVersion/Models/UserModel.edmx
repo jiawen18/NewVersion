@@ -51,15 +51,6 @@
           <Property Name="ProductDetails" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="SubTotal" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="Inventory">
-          <Key>
-            <PropertyRef Name="inventoryID" />
-          </Key>
-          <Property Name="inventoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="inventoryName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="inventorySupplier" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="inventoryQuantity" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="MemberUser">
           <Key>
             <PropertyRef Name="MemberID" />
@@ -284,7 +275,6 @@
           <EntitySet Name="AdminUser" EntityType="Self.AdminUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CartItems" EntityType="Self.CartItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CheckOut" EntityType="Self.CheckOut" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MemberUser" EntityType="Self.MemberUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
@@ -337,7 +327,6 @@
           <EntitySet Name="MemberUsers" EntityType="UserModel.MemberUser" />
           <EntitySet Name="Suppliers" EntityType="UserModel.Supplier" />
           <EntitySet Name="AdminUsers" EntityType="UserModel.AdminUser" />
-          <EntitySet Name="Inventories" EntityType="UserModel.Inventory" />
           <EntitySet Name="Products" EntityType="UserModel.Product" />
           <EntitySet Name="Orders" EntityType="UserModel.Order" />
           <EntitySet Name="Refunds" EntityType="UserModel.Refund" />
@@ -422,15 +411,6 @@
           <Property Name="DOB" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="ProfilePicture" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Inventory">
-          <Key>
-            <PropertyRef Name="inventoryID" />
-          </Key>
-          <Property Name="inventoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="inventoryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="inventorySupplier" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="inventoryQuantity" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -719,16 +699,6 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="AdminID" ColumnName="AdminID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Inventories">
-            <EntityTypeMapping TypeName="UserModel.Inventory">
-              <MappingFragment StoreEntitySet="Inventory">
-                <ScalarProperty Name="inventoryQuantity" ColumnName="inventoryQuantity" />
-                <ScalarProperty Name="inventorySupplier" ColumnName="inventorySupplier" />
-                <ScalarProperty Name="inventoryName" ColumnName="inventoryName" />
-                <ScalarProperty Name="inventoryID" ColumnName="inventoryID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

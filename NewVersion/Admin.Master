@@ -148,8 +148,8 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="shippers.aspx">
-                                                <span class="sub-item">Shipping Services</span>
+                                            <a href="transactions.aspx">
+                                                <span class="sub-item">Transactions</span>
                                             </a>
                                         </li>
                                         <li>
@@ -158,8 +158,8 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="transactions.aspx">
-                                                <span class="sub-item">Transactions</span>
+                                            <a href="shippers.aspx">
+                                                <span class="sub-item">Shipping Services</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -231,11 +231,6 @@
                                         <li>
                                             <a href="newShipper.aspx">
                                                 <span class="sub-item">New Shipper</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="newInventory.aspx">
-                                                <span class="sub-item">New Inventory</span>
                                             </a>
                                         </li>
                                         <li>
