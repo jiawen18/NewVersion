@@ -59,13 +59,19 @@ namespace NewVersion
                     {
                         if (reader.Read())
                         {
-                            profilePictureUrl = "assets/img/" + reader["ProfilePicture"].ToString(); // Append the profile picture filename
+                            string profilePictureFilename = reader["ProfilePicture"].ToString();
+                            if (!string.IsNullOrEmpty(profilePictureFilename))
+                            {
+                                profilePictureUrl = "assets/img/" + profilePictureFilename; // Append the profile picture filename
+
+                            }
+                            else
+                            {
+                                profilePictureUrl = "assets/img/default.jpg"; // Default image path
+                            }
                         }
 
-                        else
-                        {
-                            profilePictureUrl = "assets/img/default.jpg"; // Default image path
-                        }
+                       
                     }
                 }
             }
