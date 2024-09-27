@@ -3,8 +3,8 @@
 		<siteMapNode url="CSS/Home2.aspx" title="Home" />
 		<siteMapNode url="" title="Shop">
 			<siteMapNode url="CSS/Smartphones.aspx" title="Smartphones" />
-			<!--<siteMapNode url="CSS/Tablets.aspx" title="Tablets" />
-			<siteMapNode url="CSS/Accessories.aspx" title="Accessories" />-->
+			<siteMapNode url="CSS/Tablets.aspx" title="Tablets" />
+			<siteMapNode url="CSS/Accessories.aspx" title="Accessories" />
 		</siteMapNode>
 		<siteMapNode url="CSS/AboutUs.aspx" title="About Us" />
 		<siteMapNode url="CSS/Services.aspx" title="Services" />

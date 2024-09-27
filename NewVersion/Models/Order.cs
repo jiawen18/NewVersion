@@ -18,7 +18,6 @@ namespace NewVersion.Models
         public Order()
         {
             this.Refunds = new HashSet<Refund>();
-            this.Transactions = new HashSet<Transaction>();
         }
     
         public string OrderID { get; set; }
@@ -31,7 +30,5 @@ namespace NewVersion.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Refund> Refunds { get; set; }
         public virtual Product Product { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }

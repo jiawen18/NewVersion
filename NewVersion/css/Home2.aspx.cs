@@ -29,8 +29,8 @@ namespace NewVersion.css
 
         private void BindProductData()
         {
-           
-            using (SqlConnection connection = new SqlConnection(cs))
+            string connectionString = ConfigurationManager.ConnectionStrings["YourConnectionString"].ConnectionString;
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = @"
                     SELECT 

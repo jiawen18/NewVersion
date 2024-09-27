@@ -1,35 +1,6 @@
-﻿
-<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="Account.aspx.cs" Inherits="NewVersion.css.Account" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="Account.aspx.cs" Inherits="NewVersion.css.Account" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
-     <script type="text/javascript">
-         function triggerFileUpload() {
-             document.getElementById('<%= fileUpload.ClientID %>').click();
-         }
-
-         function previewImage(input) {
-             if (input.files && input.files[0]) {
-                 var file = input.files[0];
-                 if (!file.type.startsWith('image/')) {
-                     alert('Please upload an image file.');
-                     return;
-                 }
-                 var reader = new FileReader();
-                 reader.onload = function (e) {
-                     document.getElementById('<%= imgProfile.ClientID %>').src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-     </script>
-
-
- <style>
-    /* Hide the actual file input */
-    input[type="file"] {
-        display: none;
-    }
- </style>
         <div class="hero">
         <div class="container">
             <div class="row justify-content-between">
@@ -56,7 +27,7 @@
                         href="#account-change-password">Change password</a>
                     <a class="list-group-item list-group-item-action" data-toggle="list"
                         href="#account-info">Info</a>                                       
-                  
+                     <a class="list-group-item list-group-item-action" href="Home.aspx">Log Out</a>
                 </div>
             </div>
           
@@ -64,16 +35,13 @@
                 <div class="tab-content">
                     <div class="tab-pane fade active show" id="account-Account">
                         <div class="card-body media align-items-center">
-                              <asp:Image ID="imgProfile" runat="server"                      
-                                  Width="150px" Height="150px" 
-                                  Style="cursor:pointer;"
-                                 OnClick="triggerFileUpload();"/> 
-                               <asp:FileUpload ID="fileUpload" runat="server" OnChange="previewImage(this);" style="display:none;" />
-                                  <div class="media-body ml-4">
-                                <label class="btn btn-outline-primary" onclick="triggerFileUpload()">
+                            <img src="https://i.imgur.com/8RKXAIV.jpg"
+                                class="d-block ui-w-80">
+                            <div class="media-body ml-4">
+                                <label class="btn btn-outline-primary">
                                     Upload new photo
-                                </label>     
-                                <asp:FileUpload ID="fileUpload1" runat="server" OnChange="previewImage(this);" style="display:none;" />                                                    
+                                    <input type="file" class="account-settings-fileinput">
+                                </label>                                                     
                             </div>
                         </div>
                         <hr class="border-light m-0">
@@ -83,17 +51,22 @@
 
                              <div class="form-group">
                             <asp:Label ID="lbl_mb_id" runat="server" Text="Hansumg Account ID" class="form-label"></asp:Label>
-                            <asp:TextBox ID="txt_mb_id" runat="server" class="form-control mb-1"  disabled="disabled"></asp:TextBox>                            
+                            <asp:TextBox ID="txt_mb_id" runat="server" class="form-control mb-1" value = "92394732" disabled="disabled"></asp:TextBox>                            
                             </div>
                             
                             <div class="form-group">
                                 <asp:Label ID="lbl_acc_username" runat="server" Text="Username" class="form-label"></asp:Label>
-                                <asp:TextBox ID="txt_username" runat="server" class="form-control mb-1"></asp:TextBox>                            
+                                <asp:TextBox ID="txt_username" runat="server" class="form-control mb-1" value="shen"></asp:TextBox>                            
+                            </div>
+
+                            <div class="form-group">
+                                <asp:Label ID="lbl_acc_name" runat="server" Text="Name" class="form-label"></asp:Label>
+                                <asp:TextBox ID="txt_name" runat="server" class="form-control mb-1" value="Chong Khai Shen"></asp:TextBox>                  
                             </div>
 
                             <div class="form-group">
                                 <asp:Label ID="lbl_acc_email" runat="server" Text="Email" class="form-label"></asp:Label>
-                                <asp:TextBox ID="txt_acc_email" runat="server" class="form-control mb-1"></asp:TextBox>                                
+                                <asp:TextBox ID="txt_acc_email" runat="server" class="form-control mb-1" value="kelvinchong0457@gmail.com"></asp:TextBox>                                
                             </div>                           
                         </div>
                     </div>
@@ -125,9 +98,20 @@
                            
                             <div class="form-group">
                                 <asp:Label ID="lbl_acc_birthday" runat="server" Text="Birthday" class="form-label"></asp:Label>
-                                <asp:TextBox ID="txt_acc_birthday" runat="server" class="form-control"></asp:TextBox>                            
+                                <asp:TextBox ID="txt_acc_birthday" runat="server" value="May 3, 1995" class="form-control"></asp:TextBox>                            
                             </div>
-                         
+
+                            <div class="form-group">
+                                <asp:Label ID="lbl_acc_country" runat="server" Text="Country" class="form-label"></asp:Label>
+                                <asp:DropDownList ID="dll_acc_country" runat="server" class="custom-select">
+                                     <asp:ListItem Value="USA">United States</asp:ListItem>
+                                     <asp:ListItem Value="CND">Canada</asp:ListItem>
+                                     <asp:ListItem Value="UK">United Kingdom</asp:ListItem>
+                                     <asp:ListItem Value="GM">Germany</asp:ListItem>
+                                     <asp:ListItem Value="FR">France</asp:ListItem>
+                                     <asp:ListItem Value="MLs">Malaysia</asp:ListItem>
+                                </asp:DropDownList>                               
+                            </div>
                         </div>
 
                         <hr class="border-light m-0">
@@ -136,7 +120,7 @@
 
                             <div class="form-group">
                                 <asp:Label ID="lbl_acc_phone" runat="server" Text="Phone" class="form-label"></asp:Label>
-                                <asp:TextBox ID="txt_acc_phonr" runat="server" class="form-control"></asp:TextBox>                          
+                                <asp:TextBox ID="txt_acc_phonr" runat="server" value="+0 (123) 456 7891" class="form-control"></asp:TextBox>                          
                             </div>
                      
                         </div>

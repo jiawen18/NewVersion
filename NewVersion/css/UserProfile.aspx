@@ -1,5 +1,4 @@
-﻿
-<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="UserProfile.aspx.cs" Inherits="NewVersion.css.UserProfile" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="UserProfile.aspx.cs" Inherits="NewVersion.css.UserProfile" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="user-container">
@@ -8,15 +7,16 @@
         <!-- User Profile -->
         <div class="hero">
             <div class="wrapper-user" style="padding: 0px;">
-                <div style="display: flex; align-items:center">
+                <div style="display: flex;">
                     <div class="user_pic" style="padding: 0px;">
                         <div class="pro-img">
-                             <img src='<%= GetProfilePictureUrl() %>' alt="User Profile" class="avatar-img rounded-circle" />
+                            <img src="https://i.imgur.com/8RKXAIV.jpg" alt="user">
                         </div>
                     </div>
-                    <div class="user_details" style ="margin-left:10px">
-                        <h3> <asp:Label ID="lbl_user_name" runat="server" Text=""></asp:Label></h3>
-                        <p style="margin:0"><asp:Label ID="lbl_user_email" runat="server" Text=""></asp:Label></p>                                        
+                    <div class="user_details">
+                        <h3>Shen</h3>
+                        <p>Email: Kelvinchong0457@gmail.com</p>
+                        <a href="#" data-toggle="modal" data-target="#editModal">Edit Information ></a>
                     </div>
                 </div>         
             </div>
@@ -301,5 +301,32 @@
     <!-- /container -->
     <!-- /SECTION -->
 
-    
+       <!-- Edit Information Modal -->
+   <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+       <div class="modal-dialog" role="document">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title" id="editModalLabel">Edit Information</h5>
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+               </div>
+               <div class="modal-body">
+                   <asp:Panel ID="pnlEditForm" runat="server">
+                        <asp:Label ID="lbl_memberId" runat="server" Text="Hansumg Account ID"></asp:Label>
+                        <asp:TextBox ID="txt_memberId" runat="server" CssClass="form-control" value = "92394732" disabled="disabled"></asp:TextBox><br />
+                       <asp:Label ID="lbl_edit_name" runat="server" Text="Name"></asp:Label>
+                       <asp:TextBox ID="txt_edit_name" runat="server" CssClass="form-control" Value="Shen"></asp:TextBox><br />
+                       <asp:Label ID="lbl_edit_email" runat="server" Text="Email"></asp:Label>
+                       <asp:TextBox ID="txt_edit_email" runat="server" CssClass="form-control" value="kelvinchong0457@gmail.com"></asp:TextBox><br />
+                       <asp:HiddenField ID="hfEditID" runat="server" />
+                       <div class="modal-button">
+                       <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-primary"/>
+                       <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-primary"/>
+                       </div>
+                   </asp:Panel>
+               </div>
+           </div>
+       </div>
+   </div>
 </asp:Content>

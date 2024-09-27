@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -39,16 +38,19 @@ namespace NewVersion
                 ctx.Response.Cookies.Add(authCookie);
 
                 // Redirect user to the appropriate URL             
-                if (role == "Admin" || role == "Super Admin")
+                if (role == "Admin")
                 {
                     ctx.Response.Redirect("~/admin/dashboard.aspx");  // Redirect to the admin dashboard
                 }
                 else
                 {
-                    ctx.Response.Redirect("~/css/Home2.aspx");  // Redirect to the member's home page
+                    ctx.Response.Redirect("~/css/AboutUs.aspx");  // Redirect to the member's home page
                 }
             }
-
+            catch (ThreadAbortException)
+            {
+                // Ignore ThreadAbortException, this is expected during Response.Redirect
+            }
             catch (Exception ex)
             {
                 // Handle other exceptions (e.g., logging)

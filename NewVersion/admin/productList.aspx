@@ -49,28 +49,28 @@
                                             <div class="form-group form-group-default">
                                                 <label for="txtProductName">Product Name:</label>
                                                 <asp:TextBox ID="txtProductName" runat="server" class="form-control" placeholder="Enter product name" />
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorProductName" runat="server" ErrorMessage="Please enter a product name." Display="Dynamic" CssClass="text-danger" ControlToValidate="txtProductName" />
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorProductName" runat="server" ErrorMessage="Please enter a product name." Display="Dynamic" CssClass="error" ControlToValidate="txtProductName" />
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
                                             <div class="form-group form-group-default">
                                                 <label for="txtProductImageURL">Product Image URL:</label>
                                                 <asp:TextBox ID="txtProductImageURL" runat="server" class="form-control" placeholder="Enter image URL" />
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please enter an image URL." Display="Dynamic" CssClass="text-danger" ControlToValidate="txtProductImageURL" />
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please enter an image URL." Display="Dynamic" CssClass="error" ControlToValidate="txtProductImageURL" />
                                             </div>
                                         </div>
                                         <div class="col-sm-6 pe-0">
                                             <div class="form-group form-group-default">
                                                 <label for="txtPrice">Price:</label>
                                                 <asp:TextBox ID="txtPrice" runat="server" class="form-control" placeholder="Enter price" />
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Please enter a price." Display="Dynamic" CssClass="text-danger" ControlToValidate="txtPrice" />
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Please enter a price." Display="Dynamic" CssClass="error" ControlToValidate="txtPrice" />
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group form-group-default">
                                                 <label for="txtQuantity">Quantity:</label>
                                                 <asp:TextBox ID="txtQuantity" runat="server" class="form-control" placeholder="Enter quantity" />
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Please enter a quantity." Display="Dynamic" CssClass="text-danger" ControlToValidate="txtQuantity" />
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Please enter a quantity." Display="Dynamic" CssClass="error" ControlToValidate="txtQuantity" />
                                             </div>
                                         </div>
                                         <div class="col-sm-12">

@@ -1,10 +1,11 @@
-﻿
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Web;
-using System.Web.Security;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace NewVersion
 {
@@ -19,14 +20,6 @@ namespace NewVersion
 
                 // Load the user details
                 LoadUserDetails();
-
-                if (!IsUserSuperAdmin())
-                {
-                    // Hide sections only meant for superadmin
-                    superAdminSection1.Visible = false;
-                    superAdminSection2.Visible = false;
-                    superAdminUpdateSection.Visible = false;
-                }
             }
         }
 
@@ -34,39 +27,23 @@ namespace NewVersion
         protected string GetProfilePictureUrl()
         {
             string username = HttpContext.Current.User.Identity.Name;
-            string profilePictureUrl = "assets/img/default.jpg"; // Default image path
+            string profilePictureUrl = "~/admin/assets/img/default.jpg"; // Default image path
 
             // Connect to the database and retrieve the profile picture URL
             string connString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
-
-                // Check in both AdminUser and SuperAdminUser tables
-                string query = @"
-                    SELECT ProfilePicture 
-                    FROM AdminUser 
-                    WHERE Username = @Username
-                    UNION ALL
-                    SELECT ProfilePicture 
-                    FROM SuperAdminUser 
-                    WHERE Username = @Username";
-
+                string query = "SELECT ProfilePicture FROM AdminUser WHERE Username = @Username";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@Username", username);
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            profilePictureUrl = "assets/img/" + reader["ProfilePicture"].ToString(); // Append the profile picture filename
-                        }
+                   // object result = cmd.ExecuteScalar();
 
-                        else
-                        {
-                            profilePictureUrl = "assets/img/default.jpg"; // Default image path
-                        }
-                    }
+                    //if (result != null)
+                    //{
+                    //    profilePictureUrl = "assets/img/" + result.ToString(); // Append the profile picture filename
+                    //}
                 }
             }
             return profilePictureUrl; // Return the URL
@@ -82,17 +59,7 @@ namespace NewVersion
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
-
-                // Check in both AdminUser and SuperAdminUser tables
-                string query = @"
-                    SELECT 'Admin' AS UserType, Username, Email 
-                    FROM AdminUser 
-                    WHERE Username = @Username
-                    UNION ALL
-                    SELECT 'SuperAdmin' AS UserType, Username, Email 
-                    FROM SuperAdminUser 
-                    WHERE Username = @Username";
-
+                string query = "SELECT Username, Email FROM AdminUser WHERE Username = @Username";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@Username", username);
@@ -101,53 +68,13 @@ namespace NewVersion
                     {
                         if (reader.Read())
                         {
-                            lbl_user_name.Text = reader["Username"].ToString();
-                            lbl_user_email.Text = reader["Email"].ToString();
-
-                            // Optional: Check if the user is SuperAdmin for additional logic
-                            if (reader["UserType"].ToString() == "SuperAdmin")
-                            {
-                                // Additional logic if needed for superadmin
-                            }
+                            // Populate the textboxes with the username and email
+                            //lbl_user_name.Text = reader["Username"].ToString();
+                            //lbl_user_email.Text = reader["Email"].ToString();
                         }
                     }
                 }
             }
         }
-
-        // Method to check if the user is a superadmin
-        protected bool IsUserSuperAdmin()
-        {
-            string currentUser = HttpContext.Current.User.Identity.Name; // Get the currently logged-in user's username
-            string connString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
-            bool isSuperAdmin = false;
-
-            using (SqlConnection conn = new SqlConnection(connString))
-            {
-                conn.Open();
-
-                // Query to check if the user exists in the SuperAdmin table
-                string querySuperAdmin = "SELECT COUNT(1) FROM SuperAdminUser WHERE Username = @Username";
-                using (SqlCommand cmdSuperAdmin = new SqlCommand(querySuperAdmin, conn))
-                {
-                    cmdSuperAdmin.Parameters.AddWithValue("@Username", currentUser);
-
-                    int count = (int)cmdSuperAdmin.ExecuteScalar();
-                    isSuperAdmin = count > 0; // If the user exists in SuperAdmin table, treat them as superadmin
-                }
-            }
-
-            return isSuperAdmin;
-        }
-        protected void LogoutUser(object sender, EventArgs e)
-        {
-
-            // Log out of FormsAuthentication
-            System.Web.Security.FormsAuthentication.SignOut();
-
-            // Redirect to login page
-            Response.Redirect("../css/Home2.aspx");
-        }
-
     }
 }

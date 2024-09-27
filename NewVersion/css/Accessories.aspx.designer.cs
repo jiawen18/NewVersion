@@ -11,115 +11,115 @@ namespace NewVersion.css
 {
 
 
-    public partial class login
+    public partial class Accessories
     {
 
         /// <summary>
-        /// lbl_email control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_email;
+        protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
-        /// txt_email control.
+        /// Button2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_email;
+        protected global::System.Web.UI.WebControls.Button Button2;
 
         /// <summary>
-        /// rq_email control.
+        /// Button3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rq_email;
+        protected global::System.Web.UI.WebControls.Button Button3;
 
         /// <summary>
-        /// lbl_password control.
+        /// Button4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_password;
+        protected global::System.Web.UI.WebControls.Button Button4;
 
         /// <summary>
-        /// txt_password control.
+        /// Button5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_password;
+        protected global::System.Web.UI.WebControls.Button Button5;
 
         /// <summary>
-        /// rq_password control.
+        /// Button6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rq_password;
+        protected global::System.Web.UI.WebControls.Button Button6;
 
         /// <summary>
-        /// cvNotMatched control.
+        /// Button7 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cvNotMatched;
+        protected global::System.Web.UI.WebControls.Button Button7;
 
         /// <summary>
-        /// ckb_remember control.
+        /// Button8 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ckb_remember;
+        protected global::System.Web.UI.WebControls.Button Button8;
 
         /// <summary>
-        /// lbl_remember control.
+        /// Button9 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_remember;
+        protected global::System.Web.UI.WebControls.Button Button9;
 
         /// <summary>
-        /// btn_sigin control.
+        /// Button10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_sigin;
+        protected global::System.Web.UI.WebControls.Button Button10;
 
         /// <summary>
-        /// login_google control.
+        /// Button11 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton login_google;
+        protected global::System.Web.UI.WebControls.Button Button11;
 
         /// <summary>
-        /// login_facebook control.
+        /// Button12 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton login_facebook;
+        protected global::System.Web.UI.WebControls.Button Button12;
     }
 }
