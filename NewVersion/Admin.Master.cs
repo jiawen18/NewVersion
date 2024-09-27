@@ -146,7 +146,7 @@ namespace NewVersion
             System.Web.Security.FormsAuthentication.SignOut();
 
             // Redirect to login page
-            Response.Redirect("../css/Home2.aspx");
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Successfully Log Out!'); window.location='../css/Home2.aspx';", true);
         }
 
     }

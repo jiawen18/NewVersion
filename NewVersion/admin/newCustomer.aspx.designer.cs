@@ -7,137 +7,173 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NewVersion
+namespace NewVersion.admin
 {
 
 
-    public partial class Admin
+    public partial class newCustomer
     {
 
         /// <summary>
-        /// form1 control.
+        /// RepeaterCustomerList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Repeater RepeaterCustomerList;
 
         /// <summary>
-        /// ToggleSidebarButton control.
+        /// lbl_cus_username control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ToggleSidebarButton;
+        protected global::System.Web.UI.WebControls.Label lbl_cus_username;
 
         /// <summary>
-        /// SidenavTogglerButton control.
+        /// txt_cus_username control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton SidenavTogglerButton;
+        protected global::System.Web.UI.WebControls.TextBox txt_cus_username;
 
         /// <summary>
-        /// TopbarTogglerButton control.
+        /// rqvld_username control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton TopbarTogglerButton;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rqvld_username;
 
         /// <summary>
-        /// Li1 control.
+        /// lbl_cus_email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Li1;
+        protected global::System.Web.UI.WebControls.Label lbl_cus_email;
 
         /// <summary>
-        /// superAdminSection1 control.
+        /// txt_cus_email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl superAdminSection1;
+        protected global::System.Web.UI.WebControls.TextBox txt_cus_email;
 
         /// <summary>
-        /// superAdminSection2 control.
+        /// rqvld_email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl superAdminSection2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rqvld_email;
 
         /// <summary>
-        /// superAdminUpdateSection control.
+        /// revld_email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl superAdminUpdateSection;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revld_email;
 
         /// <summary>
-        /// login_adm_username control.
+        /// cvExisted control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LoginName login_adm_username;
+        protected global::System.Web.UI.WebControls.CustomValidator cvExisted;
 
         /// <summary>
-        /// lbl_user_name control.
+        /// lbl_cus_password control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_user_name;
+        protected global::System.Web.UI.WebControls.Label lbl_cus_password;
 
         /// <summary>
-        /// lbl_user_email control.
+        /// txt_cus_password control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_user_email;
+        protected global::System.Web.UI.WebControls.TextBox txt_cus_password;
 
         /// <summary>
-        /// AdminBreadcrumbDataSource control.
+        /// rqvld_password control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SiteMapDataSource AdminBreadcrumbDataSource;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rqvld_password;
 
         /// <summary>
-        /// AdminBreadcrumb control.
+        /// revld_password control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SiteMapPath AdminBreadcrumb;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revld_password;
 
         /// <summary>
-        /// main control.
+        /// lbl_cus_passwordconfirm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder main;
+        protected global::System.Web.UI.WebControls.Label lbl_cus_passwordconfirm;
+
+        /// <summary>
+        /// txt_cus_passwordconfirm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_cus_passwordconfirm;
+
+        /// <summary>
+        /// cpvld_password control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cpvld_password;
+
+        /// <summary>
+        /// rqcld_passwordconfirm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rqcld_passwordconfirm;
+
+        /// <summary>
+        /// btn_add_customer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_add_customer;
     }
 }

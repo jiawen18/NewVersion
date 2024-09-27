@@ -25,7 +25,6 @@
                     <th>Username</th>
                     <th>Position</th>
                     <th>Office</th>
-                    <th style="width: 10%">Action</th>
                 </tr>
             </thead>
               <tbody>
@@ -34,7 +33,7 @@
             <ItemTemplate>
                 <tr>                        
                     <td>
-                        <asp:Label ID="lbl_customerID" runat="server" Text='<%# Eval("SuperAdminID") %>'></asp:Label>
+                        <asp:Label ID="lbl_superAdminID" runat="server" Text='<%# Eval("SuperAdminID") %>'></asp:Label>
          
                     </td>
                     <td>
@@ -52,18 +51,6 @@
                     <td>
                         <asp:Label ID="lbl_office" runat="server" Text='<%# Eval("Office") %>'></asp:Label>
                         <asp:TextBox ID="txt_office" runat="server" Text='<%# Eval("Office") %>' CssClass="form-control" Visible="false"></asp:TextBox>
-                    </td>
-                    <td>
-                        <div class="form-button-action">
-                            <!-- Edit button -->
-                            <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="btn btn-link btn-primary btn-lg"
-                                CommandName="EditSuperAdmin" CommandArgument='<%# Eval("Username") %>' OnClick="EditSuperAdmin_Click" />
-
-                            <!-- Save button, initially hidden -->
-                            <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-link btn-success btn-lg"
-                                CommandName="SaveSuperAdmin" CommandArgument='<%# Eval("Username") %>' OnClick="SaveSuperAdmin_Click" Visible="false" />
-          
-                        </div>
                     </td>
                 </tr>
             </ItemTemplate>
