@@ -14,8 +14,8 @@
                              <img src='<%= GetProfilePictureUrl() %>' alt="User Profile" class="avatar-img rounded-circle" />
                         </div>
                     </div>
-                    <div class="user_details" style ="margin-left:10px">
-                        <h3> <asp:Label ID="lbl_user_name" runat="server" Text=""></asp:Label></h3>
+                    <div class="user_details" style ="margin-left:30px">
+                        <h3 style="margin:0"> <asp:Label ID="lbl_user_name" runat="server" Text=""></asp:Label></h3>
                         <p style="margin:0"><asp:Label ID="lbl_user_email" runat="server" Text=""></asp:Label></p>                                        
                     </div>
                 </div>         

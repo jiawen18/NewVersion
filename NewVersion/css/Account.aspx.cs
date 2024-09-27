@@ -34,7 +34,8 @@ namespace NewVersion.css
                     {
                         if (reader.Read())
                         {
-                            txt_mb_id.Text = reader["MemberID"].ToString();
+                            txt_mb_id.Text = reader["MemberID"].ToString(); // Display the Member ID
+                            txt_mb_id.ReadOnly = true; // Set the text box as read-only
                             txt_username.Text = reader["Username"].ToString();
                             txt_acc_email.Text = reader["Email"].ToString();
                             txt_acc_birthday.Text = reader["DOB"].ToString();
@@ -51,15 +52,13 @@ namespace NewVersion.css
         protected void btn_acc_svChanges_Click(object sender, EventArgs e)
         {
             string username = HttpContext.Current.User.Identity.Name;
-            string newUsername = txt_username.Text;
-            string newEmail = txt_acc_email.Text;
-            string newBirthday = txt_acc_birthday.Text;
-            string newPhone = txt_acc_phonr.Text;
-            string profilePictureFilename = null;
+            string memberId = txt_mb_id.Text; // Keep the Member ID
 
-            string currentPassword = txt_acc_crPassword.Text;
-            string newPassword = txt_acc_newPassword.Text;
-            string repeatNewPassword = txt_acc_rpNewPassword.Text;
+            string newUsername = txt_username.Text.Trim();
+            string newEmail = txt_acc_email.Text.Trim();
+            string newBirthday = txt_acc_birthday.Text.Trim();
+            string newPhone = txt_acc_phonr.Text.Trim();
+            string profilePictureFilename = null;
 
             // Handle file upload
             if (fileUpload.HasFile)
@@ -72,48 +71,13 @@ namespace NewVersion.css
                 img.Square();
                 img.SaveAs(Path.Combine(uploadFolderPath, filename));
                 profilePictureFilename = filename;
-                imgProfile.ImageUrl = "/admin/assets/img/" + filename;
+                imgProfile.ImageUrl = "~/admin/assets/img/" + filename; // Update the profile image
             }
 
             string connString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
-
-                // Password validation and hashing logic (if necessary)
-                if (!string.IsNullOrEmpty(currentPassword) || !string.IsNullOrEmpty(newPassword) || !string.IsNullOrEmpty(repeatNewPassword))
-                {
-                    if (string.IsNullOrEmpty(currentPassword) || string.IsNullOrEmpty(newPassword) || string.IsNullOrEmpty(repeatNewPassword))
-                    {
-                        Response.Write("<script>alert('Please provide all password fields to change the password.');</script>");
-                        LoadAccountDetails();
-                        return;
-                    }
-
-                    // Validate current password
-                    string hashedCurrentPassword = Security.HashPassword(currentPassword);
-                    string checkPasswordQuery = "SELECT PasswordHash FROM MemberUser WHERE Username = @Username";
-                    using (SqlCommand checkPasswordCmd = new SqlCommand(checkPasswordQuery, conn))
-                    {
-                        checkPasswordCmd.Parameters.AddWithValue("@Username", username);
-                        string storedPassword = (string)checkPasswordCmd.ExecuteScalar();
-
-                        if (storedPassword != hashedCurrentPassword)
-                        {
-                            LoadAccountDetails();
-                            Response.Write("<script>alert('Current password is incorrect.');</script>");
-                            return;
-                        }
-                    }
-
-                    // Ensure the new passwords match
-                    if (newPassword != repeatNewPassword)
-                    {
-                        LoadAccountDetails();
-                        Response.Write("<script>alert('New password and repeated password do not match.');</script>");
-                        return;
-                    }
-                }
 
                 // Construct the SQL query
                 string query = "UPDATE MemberUser SET " +
@@ -122,7 +86,7 @@ namespace NewVersion.css
                                "DOB = @Birthday, " +
                                "Phone = @Phone";
 
-                if (!string.IsNullOrEmpty(newPassword))
+                if (!string.IsNullOrEmpty(txt_acc_newPassword.Text))
                 {
                     query += ", PasswordHash = @NewPassword";
                 }
@@ -132,7 +96,7 @@ namespace NewVersion.css
                     query += ", ProfilePicture = @ProfilePicture";
                 }
 
-                query += " WHERE Username = @OriginalUsername";
+                query += " WHERE MemberID = @MemberID"; // Use MemberID for the WHERE clause
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -141,11 +105,11 @@ namespace NewVersion.css
                     cmd.Parameters.AddWithValue("@Email", newEmail);
                     cmd.Parameters.AddWithValue("@Birthday", newBirthday);
                     cmd.Parameters.AddWithValue("@Phone", newPhone);
-                    cmd.Parameters.AddWithValue("@OriginalUsername", username);
+                    cmd.Parameters.AddWithValue("@MemberID", memberId); // Use MemberID as a parameter
 
-                    if (!string.IsNullOrEmpty(newPassword))
+                    if (!string.IsNullOrEmpty(txt_acc_newPassword.Text))
                     {
-                        string hashedNewPassword = Security.HashPassword(newPassword);
+                        string hashedNewPassword = Security.HashPassword(txt_acc_newPassword.Text);
                         cmd.Parameters.AddWithValue("@NewPassword", hashedNewPassword);
                     }
 
@@ -155,10 +119,10 @@ namespace NewVersion.css
                     }
 
                     int rowsAffected = cmd.ExecuteNonQuery();
-
                     if (rowsAffected > 0)
                     {
-                        Response.Write("<script>alert('Profile updated successfully.');</script>");
+                        ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Profile updated successfully.'); window.location='UserProfile.aspx';", true);
+                        // Redirect to the dashboard or another page after successful creation
                     }
                     else
                     {
@@ -167,13 +131,13 @@ namespace NewVersion.css
                 }
             }
 
-            Response.Write("<script>alert('Profile updated successfully.');</script>");
             // Clear password fields after update
             txt_acc_crPassword.Text = "";
             txt_acc_newPassword.Text = "";
             txt_acc_rpNewPassword.Text = "";
-            LoadAccountDetails();
+            LoadAccountDetails(); // Reload the account details
         }
+
 
 
         protected void btn_acc_cancel_Click(object sender, EventArgs e)

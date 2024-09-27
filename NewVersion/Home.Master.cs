@@ -23,7 +23,7 @@ namespace NewVersion
             System.Web.Security.FormsAuthentication.SignOut();
 
             // Redirect to login page
-            Response.Redirect("login.aspx");
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Successfully Log Out!'); window.location='Home2.aspx';", true);
         }
     }
 }

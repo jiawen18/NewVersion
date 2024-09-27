@@ -121,55 +121,6 @@ namespace NewVersion
                 LoadCustomerData();
             }
 
-        protected void btn_add_customer_Click(object sender, EventArgs e)
-        {
-            // Ensure all the required data is valid
-            if (Page.IsValid)
-            {
-                // Retrieve form data
-                string username = txt_cus_username.Text.Trim();
-                string email = txt_cus_email.Text.Trim();
-                string password = txt_cus_password.Text.Trim();
-                string hashedPassword = Security.HashPassword(password);           
-
-
-                // Check if the username or email already exists in the database
-                var existingMember = ue.SuperAdminUsers.SingleOrDefault(a => a.Username == username || a.Email == email);
-                if (existingMember != null)
-                {
-                    // If an admin with the same username or email exists, show an error message
-                    cvExisted.IsValid = false;
-                    cvExisted.ErrorMessage = "Username or Email already exists!";
-                    return;
-                }
-
-                // Create a new AdminUser object
-                var newMemberUser = new MemberUser
-                {
-                    Username = username,
-                    Email = email,
-                    PasswordHash = hashedPassword, // Store the hashed password               
-                    Role = "Member" // Set the role to member   
-                };
-
-                // Add the new admin to the database
-                ue.MemberUsers.Add(newMemberUser);
-
-                try
-                {
-                    // Save changes to the database
-                    ue.SaveChanges();
-                    // Show a message box indicating success
-                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Customer account successfully created!'); window.location='customerlist.aspx';", true);
-                    // Redirect to the dashboard or another page after successful creation
-                }
-                catch (Exception ex)
-                {
-                    // Handle any errors that occur during the save process
-                    Console.WriteLine("Error: " + ex.Message);
-
-                }
-            }
-        }
+       
     }
     }

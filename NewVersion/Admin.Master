@@ -98,7 +98,7 @@
                         <ul class="nav nav-secondary">
                             <li class="nav-item active">
                                 <a href="dashboard.aspx">
-                                    <i class="fas fa-chart-line"></i>
+                                    <i class="fas fa-home"></i>
                                     <span class="sub-item">Dashboard</span>
                                 </a>
                             </li>
@@ -238,6 +238,11 @@
                                                 <span class="sub-item">New Supplier</span>
                                             </a>
                                         </li>
+                                        <li class="nav-item" id="Li1" runat="server">
+                                           <a href="newCustomer.aspx">
+                                               <span class="sub-item">New Customer</span>
+                                           </a>
+                                       </li>
                                         <!-- Superadmin-only section -->
                                         <li class="nav-item" id="superAdminSection1" runat="server">
                                             <a href="newAdmin.aspx">
@@ -256,18 +261,20 @@
                             </li>
 
                             <li class="nav-item" id="superAdminUpdateSection" runat="server">
-                                <a href="update.aspx">
+                                <a data-bs-toggle="collapse" href="#update">
                                     <i class="fas fa-user-cog"></i>
                                     <p>Update</p>
                                 </a>
+                                 <div class="collapse" id="update">
+                                   <ul class="nav nav-collapse">
+                                       <li>
+                                           <a href="update.aspx">
+                                               <span class="sub-item">Admin</span>
+                                           </a>
+                                       </li>
+                                       </ul>
+                                     </div>
                             </li>
-
-                            <%--<li class="nav-item">
-                                <a href="delete.aspx">
-                                    <i class="fas fa-user-minus"></i>
-                                    <p>Delete</p>
-                                </a>
-                            </li>--%>
                         </ul>
                     </div>
                 </div>

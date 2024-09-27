@@ -27,7 +27,7 @@ namespace NewVersion.admin
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
-                string query = "SELECT Username, Position, Office FROM AdminUser";
+                string query = "SELECT AdminID, Email, Username, Position, Office FROM AdminUser";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -43,13 +43,27 @@ namespace NewVersion.admin
             RepeaterItem item = (sender as Button).NamingContainer as RepeaterItem;
 
             // Toggle visibility of the TextBox and Label controls
+
+            Label lblEmail = item.FindControl("lblEmail") as Label;
+            TextBox txtEmail = item.FindControl("txtEmail ") as TextBox;
+
+            Label lblUsername = item.FindControl("lblUsername") as Label;
+            TextBox txtUsername = item.FindControl("txtUsername") as TextBox;
+
             Label lblPosition = item.FindControl("lblPosition") as Label;
             TextBox txtPosition = item.FindControl("txtPosition") as TextBox;
 
             Label lblOffice = item.FindControl("lblOffice") as Label;
             TextBox txtOffice = item.FindControl("txtOffice") as TextBox;
 
+
             // Hide labels and show TextBoxes for editing
+            lblEmail.Visible = false;
+            txtEmail.Visible = true;
+
+            lblUsername.Visible = false;
+            txtUsername.Visible = true;
+
             lblPosition.Visible = false;
             txtPosition.Visible = true;
 
@@ -71,9 +85,13 @@ namespace NewVersion.admin
             RepeaterItem item = (sender as Button).NamingContainer as RepeaterItem;
 
             // Get updated values from TextBoxes
+            TextBox txtEmail = item.FindControl("txtEmail") as TextBox;
+            TextBox txtUsername = item.FindControl("txtUsername") as TextBox;
             TextBox txtPosition = item.FindControl("txtPosition") as TextBox;
             TextBox txtOffice = item.FindControl("txtOffice") as TextBox;
 
+            string newEmail = txtEmail.Text;
+            string newUsername = txtUsername.Text;
             string newPosition = txtPosition.Text;
             string newOffice = txtOffice.Text;
 
@@ -81,16 +99,20 @@ namespace NewVersion.admin
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
-                string updateQuery = "UPDATE AdminUser SET Position = @Position, Office = @Office WHERE Username = @Username";
+                string updateQuery = "UPDATE AdminUser SET Username = @Username, Email = @Email , Office = @Office ,Office = @Office WHERE Username = @OriginalUsername";
                 using (SqlCommand cmd = new SqlCommand(updateQuery, conn))
                 {
+                    cmd.Parameters.AddWithValue("@Email", newEmail);
+                    cmd.Parameters.AddWithValue("@Username", newUsername);
                     cmd.Parameters.AddWithValue("@Position", newPosition);
-                    cmd.Parameters.AddWithValue("@Office", newOffice);
-                    cmd.Parameters.AddWithValue("@Username", username);
+                    cmd.Parameters.AddWithValue("@Office", newOffice); 
+                    cmd.Parameters.AddWithValue("@OriginalUsername", username);
+
                     cmd.ExecuteNonQuery();
                 }
             }
 
+            Response.Write("<script>alert('Infomation Edited successfully.');</script>");
             // Reload the admin data to reflect the changes
             LoadAdminData();
         }
@@ -112,6 +134,7 @@ namespace NewVersion.admin
                 }
             }
 
+            Response.Write("<script>alert('Account Deleted successfully.');</script>");
             // Reload the admin data to reflect the changes
             LoadAdminData();
         }

@@ -51,15 +51,6 @@ namespace NewVersion.admin
         protected global::System.Web.UI.WebControls.DropDownList addInventorySupplier;
 
         /// <summary>
-        /// RequiredFieldValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-
-        /// <summary>
         /// currentInventoryQuantity control.
         /// </summary>
         /// <remarks>
@@ -94,15 +85,6 @@ namespace NewVersion.admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator QuantityValidator;
-
-        /// <summary>
-        /// CustomQuantityValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator CustomQuantityValidator;
 
         /// <summary>
         /// Button1 control.

@@ -9,7 +9,9 @@
                         class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>Admin ID</th>
+                                <th>Email</th>
+                                <th>Username</th>
                                 <th>Position</th>
                                 <th>Office</th>
                                 <th style="width: 10%">Action</th>
@@ -20,14 +22,24 @@
                     <asp:Repeater ID="RepeaterAdminList" runat="server">
                         <ItemTemplate>
                             <tr>
-                                <td><%# Eval("Username") %></td>
                                 <td>
-                                    <asp:Label ID="lblPosition" runat="server" Text='<%# Eval("Position") %>'></asp:Label>
-                                    <asp:TextBox ID="txtPosition" runat="server" Text='<%# Eval("Position") %>' CssClass="form-control" Visible="false"></asp:TextBox>
+                                <asp:Label ID="lbl_adminID" runat="server" Text='<%# Eval("AdminID") %>'></asp:Label>
+                                 </td>
+                               <td>
+                                   <asp:Label ID="lbl_email" runat="server" Text='<%# Eval("Email") %>'></asp:Label>
+                                   <asp:TextBox ID="txt_email" runat="server" Text='<%# Eval("Email") %>' CssClass="form-control" Visible="false"></asp:TextBox>
+                                   </td>
+                                    <td>
+                                       <asp:Label ID="lbl_username" runat="server" Text='<%# Eval("Username") %>'></asp:Label>
+                                       <asp:TextBox ID="txt_username" runat="server" Text='<%# Eval("Username") %>' CssClass="form-control" Visible="false"></asp:TextBox>
+                                   </td>
+                                   <td>
+                                    <asp:Label ID="lbl_position" runat="server" Text='<%# Eval("Position") %>'></asp:Label>
+                                    <asp:TextBox ID="txt_position" runat="server" Text='<%# Eval("Position") %>' CssClass="form-control" Visible="false"></asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:Label ID="lblOffice" runat="server" Text='<%# Eval("Office") %>'></asp:Label>
-                                    <asp:TextBox ID="txtOffice" runat="server" Text='<%# Eval("Office") %>' CssClass="form-control" Visible="false"></asp:TextBox>
+                                    <asp:Label ID="lbl_office" runat="server" Text='<%# Eval("Office") %>'></asp:Label>
+                                    <asp:TextBox ID="txt_office" runat="server" Text='<%# Eval("Office") %>' CssClass="form-control" Visible="false"></asp:TextBox>
                                 </td>
                                 <td>
                                     <div class="form-button-action">

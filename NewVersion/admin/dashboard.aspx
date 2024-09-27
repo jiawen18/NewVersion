@@ -2,6 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
 
+    <asp:ScriptManager ID="ScriptManager1" runat="server" />
+
     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
         <div>
             <h3 class="fw-bold mb-3">Dashboard</h3>
@@ -97,7 +99,7 @@
                         <h4 class="card-title">User Insights</h4>
                     </div>
                     <p class="card-category">
-                        Data sourced from Google Analytics and represented using Google Looker Studio
+                        Data sourced from Google Analytics
                     </p>
                 </div>
                 <div class="card-body">
@@ -117,117 +119,34 @@
     </div>
 
     <div class="row">
-        <!-- admins section -->
+        <!-- pending refund section -->
         <div class="col-md-4">
             <div class="card card-round">
-                <div class="card-body">
+                <div class="card-header">
                     <div class="card-head-row card-tools-still-right">
-                        <div class="card-title">Hansumg Admins</div>
+                        <div class="card-title">Pending Refunds</div>
                     </div>
-                    <div class="card-list py-4">
-                        <div class="item-list">
-                            <div class="avatar">
-                                <img
-                                    src="assets/img/jm_denis.jpg"
-                                    alt="..."
-                                    class="avatar-img rounded-circle" />
+                </div>
+                <div class="card-body p-0">
+                    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                        <ContentTemplate>
+                            <div class="table-responsive">
+                                <asp:GridView ID="PendingRefundsGridView" runat="server" AutoGenerateColumns="False"
+                                    CssClass="table align-items-center mb-0" AllowPaging="True" PageSize="7" 
+                                    OnPageIndexChanging="PendingRefundsGridView_PageIndexChanging">
+                                    <Columns>
+                                        <asp:BoundField DataField="OrderID" HeaderText="Order ID" />
+                                        <asp:BoundField DataField="TotalAmount" HeaderText="Amount" />
+                                        <asp:TemplateField HeaderText="Time">
+                                            <ItemTemplate>
+                                                <%# GetTimeAgo(Convert.ToDateTime(Eval("RefundRequestDate"))) %>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
                             </div>
-                            <div class="info-user ms-3">
-                                <div class="username">Jimmy Denis</div>
-                                <div class="status">Graphic Designer</div>
-                            </div>
-                            <button class="btn btn-icon btn-link op-8 me-1">
-                                <i class="far fa-envelope"></i>
-                            </button>
-                            <button class="btn btn-icon btn-link btn-danger op-8">
-                                <i class="fas fa-ban"></i>
-                            </button>
-                        </div>
-                        <div class="item-list">
-                            <div class="avatar">
-                                <span
-                                    class="avatar-title rounded-circle border border-white">CF</span>
-                            </div>
-                            <div class="info-user ms-3">
-                                <div class="username">Chandra Felix</div>
-                                <div class="status">Sales Promotion</div>
-                            </div>
-                            <button class="btn btn-icon btn-link op-8 me-1">
-                                <i class="far fa-envelope"></i>
-                            </button>
-                            <button class="btn btn-icon btn-link btn-danger op-8">
-                                <i class="fas fa-ban"></i>
-                            </button>
-                        </div>
-                        <div class="item-list">
-                            <div class="avatar">
-                                <img
-                                    src="assets/img/talha.jpg"
-                                    alt="..."
-                                    class="avatar-img rounded-circle" />
-                            </div>
-                            <div class="info-user ms-3">
-                                <div class="username">Talha</div>
-                                <div class="status">Front End Designer</div>
-                            </div>
-                            <button class="btn btn-icon btn-link op-8 me-1">
-                                <i class="far fa-envelope"></i>
-                            </button>
-                            <button class="btn btn-icon btn-link btn-danger op-8">
-                                <i class="fas fa-ban"></i>
-                            </button>
-                        </div>
-                        <div class="item-list">
-                            <div class="avatar">
-                                <img
-                                    src="assets/img/chadengle.jpg"
-                                    alt="..."
-                                    class="avatar-img rounded-circle" />
-                            </div>
-                            <div class="info-user ms-3">
-                                <div class="username">Chad</div>
-                                <div class="status">CEO Zeleaf</div>
-                            </div>
-                            <button class="btn btn-icon btn-link op-8 me-1">
-                                <i class="far fa-envelope"></i>
-                            </button>
-                            <button class="btn btn-icon btn-link btn-danger op-8">
-                                <i class="fas fa-ban"></i>
-                            </button>
-                        </div>
-                        <div class="item-list">
-                            <div class="avatar">
-                                <span
-                                    class="avatar-title rounded-circle border border-white bg-primary">H</span>
-                            </div>
-                            <div class="info-user ms-3">
-                                <div class="username">Hizrian</div>
-                                <div class="status">Web Designer</div>
-                            </div>
-                            <button class="btn btn-icon btn-link op-8 me-1">
-                                <i class="far fa-envelope"></i>
-                            </button>
-                            <button class="btn btn-icon btn-link btn-danger op-8">
-                                <i class="fas fa-ban"></i>
-                            </button>
-                        </div>
-                        <div class="item-list">
-                            <div class="avatar">
-                                <span
-                                    class="avatar-title rounded-circle border border-white bg-secondary">F</span>
-                            </div>
-                            <div class="info-user ms-3">
-                                <div class="username">Farrah</div>
-                                <div class="status">Marketing</div>
-                            </div>
-                            <button class="btn btn-icon btn-link op-8 me-1">
-                                <i class="far fa-envelope"></i>
-                            </button>
-                            <button class="btn btn-icon btn-link btn-danger op-8">
-                                <i class="fas fa-ban"></i>
-                            </button>
-                        </div>
-                    </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
             </div>
         </div>
@@ -241,22 +160,28 @@
                     </div>
                 </div>
                 <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <asp:GridView ID="InventoryGridView" runat="server" AutoGenerateColumns="False" CssClass="table align-items-center mb-0">
-                            <Columns>
-                                <asp:BoundField DataField="ProductName" HeaderText="Product Name" />
-                                <asp:BoundField DataField="Supplier" HeaderText="Supplier" />
-                                <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
-                                <asp:TemplateField HeaderText="Status">
-                                    <ItemTemplate>
-                                        <span class='<%# Convert.ToString(Eval("Status")) == "Low" ? "badge badge-warning" : Convert.ToString(Eval("Status")) == "Out of Stock" ? "badge badge-danger" : Convert.ToString(Eval("Status")) == "Sufficient" ? "badge badge-success" : "badge badge-secondary" %>'>
-                                            <%# Convert.ToString(Eval("Status")) %>
-                                        </span>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                        </asp:GridView>
-                    </div>
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>
+                            <div class="table-responsive">
+                                <asp:GridView ID="InventoryGridView" runat="server" AutoGenerateColumns="False"
+                                    CssClass="table align-items-center mb-0" AllowPaging="True" PageSize="7"
+                                    OnPageIndexChanging="InventoryGridView_PageIndexChanging">
+                                    <Columns>
+                                        <asp:BoundField DataField="ProductName" HeaderText="Product Name" />
+                                        <asp:BoundField DataField="Supplier" HeaderText="Supplier" />
+                                        <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
+                                        <asp:TemplateField HeaderText="Status">
+                                            <ItemTemplate>
+                                                <span class='<%# Convert.ToString(Eval("Status")) == "Low" ? "badge badge-warning" : Convert.ToString(Eval("Status")) == "Out of Stock" ? "badge badge-danger" : Convert.ToString(Eval("Status")) == "Sufficient" ? "badge badge-success" : "badge badge-secondary" %>'>
+                                                    <%# Convert.ToString(Eval("Status")) %>
+                                                </span>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
             </div>
         </div>

@@ -52,7 +52,7 @@ namespace NewVersion.css
                 {
                     ue.SaveChanges();
                     // Redirect to login page after successful signup
-                    Response.Redirect("login.aspx");
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Account Successfully created!'); window.location='login.aspx';", true);
                 }
                 catch (DbUpdateException ex)
                 {

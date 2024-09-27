@@ -59,13 +59,19 @@ namespace NewVersion
                     {
                         if (reader.Read())
                         {
-                            profilePictureUrl = "assets/img/" + reader["ProfilePicture"].ToString(); // Append the profile picture filename
+                            string profilePictureFilename = reader["ProfilePicture"].ToString();
+                            if (!string.IsNullOrEmpty(profilePictureFilename))
+                            {
+                                profilePictureUrl = "assets/img/" + profilePictureFilename; // Append the profile picture filename
+
+                            }
+                            else
+                            {
+                                profilePictureUrl = "assets/img/default.jpg"; // Default image path
+                            }
                         }
 
-                        else
-                        {
-                            profilePictureUrl = "assets/img/default.jpg"; // Default image path
-                        }
+                       
                     }
                 }
             }
@@ -146,7 +152,7 @@ namespace NewVersion
             System.Web.Security.FormsAuthentication.SignOut();
 
             // Redirect to login page
-            Response.Redirect("../css/Home2.aspx");
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Successfully Log Out!'); window.location='../css/Home2.aspx';", true);
         }
 
     }

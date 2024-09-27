@@ -120,6 +120,7 @@
     <Content Include="admin\edit.aspx" />
     <Content Include="admin\inventory.aspx" />
     <Content Include="admin\newAdmin.aspx" />
+    <Content Include="admin\newCustomer.aspx" />
     <Content Include="admin\newShipper.aspx" />
     <Content Include="admin\newSuperAdmin.aspx" />
     <Content Include="admin\newSupplier.aspx" />
@@ -751,6 +752,13 @@
     </Compile>
     <Compile Include="admin\newAdmin.aspx.designer.cs">
       <DependentUpon>newAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\newCustomer.aspx.cs">
+      <DependentUpon>newCustomer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\newCustomer.aspx.designer.cs">
+      <DependentUpon>newCustomer.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\newShipper.aspx.cs">
       <DependentUpon>newShipper.aspx</DependentUpon>

@@ -1,28 +1,45 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\",
+  "WorkspaceRootPath": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\chong\\documents\\github\\newversion\\newversion\\admin\\inventory.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\inventory.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/C__USERS_KELVI_ONEDRIVE_DOCUMENTS_GITHUB_NEWVERSION_NEWVERSION_APP_DATA_PRODUCT.MDF/True/SqlTable/dbo.MemberUser.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\chong\\documents\\github\\newversion\\newversion\\admin\\inventory.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\inventory.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\kelvi\\onedrive\\documents\\github\\newversion\\newversion\\admin\\adminprofile.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\adminprofile.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/C__USERS_CHONG_DOCUMENTS_GITHUB_NEWVERSION_NEWVERSION_APP_DATA_PRODUCT.MDF/True/SqlTable/dbo.Supplier.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\kelvi\\onedrive\\documents\\github\\newversion\\newversion\\css\\account.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\account.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\chong\\documents\\github\\newversion\\newversion\\admin\\dashboard.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\dashboard.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\kelvi\\onedrive\\documents\\github\\newversion\\newversion\\css\\account.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\account.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/C__USERS_CHONG_DOCUMENTS_GITHUB_NEWVERSION_NEWVERSION_APP_DATA_PRODUCT.MDF/True/SqlTable/dbo.Product.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\kelvi\\onedrive\\documents\\github\\newversion\\newversion\\admin\\newcustomer.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\newcustomer.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\chong\\documents\\github\\newversion\\newversion\\admin\\dashboard.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\dashboard.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\kelvi\\onedrive\\documents\\github\\newversion\\newversion\\admin\\newcustomer.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\newcustomer.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\kelvi\\onedrive\\documents\\github\\newversion\\newversion\\css\\userprofile.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\userprofile.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\kelvi\\onedrive\\documents\\github\\newversion\\newversion\\css\\userprofile.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\userprofile.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\kelvi\\onedrive\\documents\\github\\newversion\\newversion\\admin\\adminprofile.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\adminprofile.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\kelvi\\onedrive\\documents\\github\\newversion\\newversion\\css\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
   ],
   "DocumentGroupContainers": [
@@ -32,15 +49,84 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 5,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AdminProfile.aspx",
+              "DocumentMoniker": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\admin\\AdminProfile.aspx",
+              "RelativeDocumentMoniker": "NewVersion\\admin\\AdminProfile.aspx",
+              "ToolTip": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\admin\\AdminProfile.aspx",
+              "RelativeToolTip": "NewVersion\\admin\\AdminProfile.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-27T18:09:03.586Z",
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Account.aspx",
+              "DocumentMoniker": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\css\\Account.aspx",
+              "RelativeDocumentMoniker": "NewVersion\\css\\Account.aspx",
+              "ToolTip": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\css\\Account.aspx",
+              "RelativeToolTip": "NewVersion\\css\\Account.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-27T18:10:28.301Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "newCustomer.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\admin\\newCustomer.aspx.cs",
+              "RelativeDocumentMoniker": "NewVersion\\admin\\newCustomer.aspx.cs",
+              "ToolTip": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\admin\\newCustomer.aspx.cs",
+              "RelativeToolTip": "NewVersion\\admin\\newCustomer.aspx.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAgwFIAAABaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-27T19:05:09.667Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "newCustomer.aspx",
+              "DocumentMoniker": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\admin\\newCustomer.aspx",
+              "RelativeDocumentMoniker": "NewVersion\\admin\\newCustomer.aspx",
+              "ToolTip": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\admin\\newCustomer.aspx",
+              "RelativeToolTip": "NewVersion\\admin\\newCustomer.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-27T19:05:08.156Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserProfile.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\css\\UserProfile.aspx.cs",
+              "RelativeDocumentMoniker": "NewVersion\\css\\UserProfile.aspx.cs",
+              "ToolTip": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\css\\UserProfile.aspx.cs",
+              "RelativeToolTip": "NewVersion\\css\\UserProfile.aspx.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAEkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-27T19:00:50.962Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "dbo.MemberUser [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/C__USERS_KELVI_ONEDRIVE_DOCUMENTS_GITHUB_NEWVERSION_NEWVERSION_APP_DATA_PRODUCT.MDF/True/SqlTable/dbo.MemberUser.sql",
+              "ToolTip": "dbo.MemberUser [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-09-27T18:49:11.518Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -56,78 +142,78 @@
             },
             {
               "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+            },
+            {
+              "$type": "Bookmark",
               "Name": "ST:1:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "inventory.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\inventory.aspx.cs",
-              "RelativeDocumentMoniker": "NewVersion\\admin\\inventory.aspx.cs",
-              "ToolTip": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\inventory.aspx.cs",
-              "RelativeToolTip": "NewVersion\\admin\\inventory.aspx.cs",
-              "ViewState": "AgIAAHIAAAAAAAAAAAAkwKsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-27T16:00:56.819Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "inventory.aspx",
-              "DocumentMoniker": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\inventory.aspx",
-              "RelativeDocumentMoniker": "NewVersion\\admin\\inventory.aspx",
-              "ToolTip": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\inventory.aspx",
-              "RelativeToolTip": "NewVersion\\admin\\inventory.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-09-27T15:58:46.878Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "dbo.Supplier [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/C__USERS_CHONG_DOCUMENTS_GITHUB_NEWVERSION_NEWVERSION_APP_DATA_PRODUCT.MDF/True/SqlTable/dbo.Supplier.sql",
-              "ToolTip": "dbo.Supplier [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-09-27T15:55:23.715Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "dbo.Product [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/C__USERS_CHONG_DOCUMENTS_GITHUB_NEWVERSION_NEWVERSION_APP_DATA_PRODUCT.MDF/True/SqlTable/dbo.Product.sql",
-              "ToolTip": "dbo.Product [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-09-27T15:55:13.676Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "dashboard.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\dashboard.aspx.cs",
-              "RelativeDocumentMoniker": "NewVersion\\admin\\dashboard.aspx.cs",
-              "ToolTip": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\dashboard.aspx.cs",
-              "RelativeToolTip": "NewVersion\\admin\\dashboard.aspx.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAowC4AAAAAAAAAAAAAAA==",
+              "Title": "Account.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\css\\Account.aspx.cs",
+              "RelativeDocumentMoniker": "NewVersion\\css\\Account.aspx.cs",
+              "ToolTip": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\css\\Account.aspx.cs",
+              "RelativeToolTip": "NewVersion\\css\\Account.aspx.cs",
+              "ViewState": "AgIAAG4AAAAAAAAAAAAIwH8AAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-27T15:53:13.243Z",
+              "WhenOpened": "2024-09-27T18:31:35.641Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "dashboard.aspx",
-              "DocumentMoniker": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\dashboard.aspx",
-              "RelativeDocumentMoniker": "NewVersion\\admin\\dashboard.aspx",
-              "ToolTip": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\dashboard.aspx",
-              "RelativeToolTip": "NewVersion\\admin\\dashboard.aspx",
+              "DocumentIndex": 8,
+              "Title": "AdminProfile.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\admin\\AdminProfile.aspx.cs",
+              "RelativeDocumentMoniker": "NewVersion\\admin\\AdminProfile.aspx.cs",
+              "ToolTip": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\admin\\AdminProfile.aspx.cs",
+              "RelativeToolTip": "NewVersion\\admin\\AdminProfile.aspx.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-27T18:31:32.862Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserProfile.aspx",
+              "DocumentMoniker": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\css\\UserProfile.aspx",
+              "RelativeDocumentMoniker": "NewVersion\\css\\UserProfile.aspx",
+              "ToolTip": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\css\\UserProfile.aspx",
+              "RelativeToolTip": "NewVersion\\css\\UserProfile.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-09-27T15:53:10.385Z",
+              "WhenOpened": "2024-09-27T17:55:31.113Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "login.aspx",
+              "DocumentMoniker": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\css\\login.aspx",
+              "RelativeDocumentMoniker": "NewVersion\\css\\login.aspx",
+              "ToolTip": "C:\\Users\\kelvi\\OneDrive\\Documents\\Github\\NewVersion\\NewVersion\\css\\login.aspx",
+              "RelativeToolTip": "NewVersion\\css\\login.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-27T17:55:40.302Z",
               "EditorCaption": ""
             }
           ]

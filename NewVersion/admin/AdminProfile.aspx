@@ -58,7 +58,7 @@
                          Upload new photo
                        </label>     
                         <asp:FileUpload ID="fileUpload1" runat="server" OnChange="previewImage(this);" style="display:none;" />
-          </div>
+                       </div>
                             
                         </div>
                         <hr class="border-light m-0">
