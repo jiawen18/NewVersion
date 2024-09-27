@@ -17,8 +17,8 @@
           <Property Name="Position" Type="nvarchar" MaxLength="50" />
           <Property Name="Office" Type="nvarchar" MaxLength="50" />
           <Property Name="DOB" Type="nvarchar" MaxLength="15" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="15" />
-          <Property Name="ProfilePicture" Type="nvarchar" MaxLength="225" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="ProfilePicture" Type="nvarchar" MaxLength="255" />
           <Property Name="CreatedAt" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="CartItems">
@@ -70,8 +70,8 @@
           <Property Name="PasswordHash" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Role" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="DOB" Type="nvarchar" MaxLength="15" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="15" />
-          <Property Name="ProfilePicture" Type="nvarchar" MaxLength="225" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="ProfilePicture" Type="nvarchar" MaxLength="255" />
           <Property Name="CreatedAt" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="Order">
@@ -97,6 +97,7 @@
           <Property Name="ProductStorage" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ProductColor" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="IsVisible" Type="bit" Nullable="false" />
+          <Property Name="SupplierID" Type="int" />
         </EntityType>
         <EntityType Name="Refund">
           <Key>
@@ -147,11 +148,9 @@
           <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="PasswordHash" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Position" Type="nvarchar" MaxLength="50" />
-          <Property Name="Office" Type="nvarchar" MaxLength="50" />
           <Property Name="DOB" Type="nvarchar" MaxLength="15" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="15" />
-          <Property Name="ProfilePicture" Type="nvarchar" MaxLength="225" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="ProfilePicture" Type="nvarchar" MaxLength="255" />
           <Property Name="CreatedAt" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="Supplier">
@@ -233,6 +232,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Product_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="supplierID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ShoppingCart_ToProduct">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="CartItems" Type="Self.CartItems" Multiplicity="*" />
@@ -301,6 +312,10 @@
             <End Role="Order" EntitySet="Order" />
             <End Role="Refund" EntitySet="Refund" />
           </AssociationSet>
+          <AssociationSet Name="FK_Product_Supplier" Association="Self.FK_Product_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
           <AssociationSet Name="FK_ShoppingCart_ToProduct" Association="Self.FK_ShoppingCart_ToProduct">
             <End Role="Product" EntitySet="Product" />
             <End Role="CartItems" EntitySet="CartItems" />
@@ -362,6 +377,10 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="Review" EntitySet="Reviews" />
           </AssociationSet>
+          <AssociationSet Name="FK_Product_Supplier" Association="UserModel.FK_Product_Supplier">
+            <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="MemberUser">
           <Key>
@@ -374,8 +393,8 @@
           <Property Name="Role" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="DOB" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="ProfilePicture" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ProfilePicture" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Supplier">
           <Key>
@@ -386,6 +405,7 @@
           <Property Name="supplierEmail" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="supplierPhone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="supplierAddress" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="UserModel.FK_Product_Supplier" FromRole="Supplier" ToRole="Product" />
         </EntityType>
         <EntityType Name="AdminUser">
           <Key>
@@ -400,8 +420,8 @@
           <Property Name="Office" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="DOB" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="ProfilePicture" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ProfilePicture" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Inventory">
           <Key>
@@ -427,6 +447,8 @@
           <Property Name="ProductColor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CartItems" Relationship="UserModel.FK_ShoppingCart_ToProduct" FromRole="Product" ToRole="CartItem" />
           <NavigationProperty Name="Reviews" Relationship="UserModel.FK__Review__ProductI__004002F9" FromRole="Product" ToRole="Review" />
+          <Property Name="SupplierID" Type="Int32" />
+          <NavigationProperty Name="Supplier" Relationship="UserModel.FK_Product_Supplier" FromRole="Product" ToRole="Supplier" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -508,11 +530,9 @@
           <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Office" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DOB" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="ProfilePicture" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ProfilePicture" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="7" />
         </EntityType>
         <EntityType Name="CartItem">
@@ -641,6 +661,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Product_Supplier">
+          <End Type="UserModel.Supplier" Role="Supplier" Multiplicity="0..1" />
+          <End Type="UserModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="supplierID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -703,6 +735,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="UserModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
                 <ScalarProperty Name="ProductColor" ColumnName="ProductColor" />
                 <ScalarProperty Name="ProductStorage" ColumnName="ProductStorage" />
                 <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
@@ -768,8 +801,6 @@
                 <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="DOB" ColumnName="DOB" />
-                <ScalarProperty Name="Office" ColumnName="Office" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
                 <ScalarProperty Name="Email" ColumnName="Email" />

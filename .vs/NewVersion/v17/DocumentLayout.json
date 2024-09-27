@@ -1,12 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\chong\\documents\\github\\newversion\\newversion\\admin.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -39,19 +34,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Admin.Master",
-              "DocumentMoniker": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\Admin.Master",
-              "RelativeDocumentMoniker": "NewVersion\\Admin.Master",
-              "ToolTip": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\NewVersion\\Admin.Master",
-              "RelativeToolTip": "NewVersion\\Admin.Master",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-09-27T11:13:26.952Z",
-              "EditorCaption": ""
             }
           ]
         }

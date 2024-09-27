@@ -14,10 +14,19 @@ namespace NewVersion.Models
     
     public partial class Supplier
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Supplier()
+        {
+            this.Products = new HashSet<Product>();
+        }
+    
         public int supplierID { get; set; }
         public string supplierBranch { get; set; }
         public string supplierEmail { get; set; }
         public string supplierPhone { get; set; }
         public string supplierAddress { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

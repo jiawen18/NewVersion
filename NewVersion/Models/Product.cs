@@ -30,6 +30,7 @@ namespace NewVersion.Models
         public bool IsVisible { get; set; }
         public string ProductStorage { get; set; }
         public string ProductColor { get; set; }
+        public Nullable<int> SupplierID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
@@ -37,5 +38,6 @@ namespace NewVersion.Models
         public virtual ICollection<CartItem> CartItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Reviews { get; set; }
+        public virtual Supplier Supplier { get; set; }
     }
 }
