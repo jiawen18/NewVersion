@@ -85,6 +85,10 @@ namespace NewVersion.css
                         {
                             profilePictureUrl = "/admin/assets/img/" + reader["ProfilePicture"].ToString(); // Append the profile picture filename
                         }
+                        else
+                        {
+                            profilePictureUrl = "/admin/assets/img/default.jpg"; // Default image path
+                        }
                     }
                 }
             }
