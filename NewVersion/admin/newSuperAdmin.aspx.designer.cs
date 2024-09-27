@@ -15,6 +15,15 @@ namespace NewVersion.admin
     {
 
         /// <summary>
+        /// RepeaterSuperAdminList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater RepeaterSuperAdminList;
+
+        /// <summary>
         /// lbl_sp_adm_username control.
         /// </summary>
         /// <remarks>
