@@ -10,9 +10,7 @@ using System.Web.UI.WebControls;
 namespace NewVersion
 {
     public partial class customerlist : System.Web.UI.Page
-    {
-        public partial class update : System.Web.UI.Page
-        {
+    {           
             protected void Page_Load(object sender, EventArgs e)
             {
                 if (!IsPostBack)
@@ -83,16 +81,17 @@ namespace NewVersion
                 using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
-                    string updateQuery = "UPDATE MemberUser SET Username = @Username, Email = @Email WHERE Username = @Username";
+                    string updateQuery = "UPDATE MemberUser SET Username = @Username, Email = @Email WHERE Username = @OriginalUsername";
                     using (SqlCommand cmd = new SqlCommand(updateQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("@Username", newUsername);
                         cmd.Parameters.AddWithValue("@Email",newEmail);
-                        cmd.Parameters.AddWithValue("@Username", username);
+                        cmd.Parameters.AddWithValue("@OriginalUsername", username);
                         cmd.ExecuteNonQuery();
                     }
                 }
 
+                Response.Write("<script>alert('Infomation Edited successfully.');</script>");
                 // Reload the customer data to reflect the changes
                 LoadCustomerData();
             }
@@ -106,7 +105,7 @@ namespace NewVersion
                 using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
-                    string deleteQuery = "DELETE FROM AdminUser WHERE Username = @Username";
+                    string deleteQuery = "DELETE FROM MemberUser WHERE Username = @Username";
                     using (SqlCommand cmd = new SqlCommand(deleteQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("@Username", username);
@@ -114,9 +113,9 @@ namespace NewVersion
                     }
                 }
 
+                Response.Write("<script>alert('Account Deleted successfully.');</script>");
                 // Reload the admin data to reflect the changes
                 LoadCustomerData();
             }
         }
     }
-}
