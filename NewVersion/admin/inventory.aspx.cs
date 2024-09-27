@@ -158,7 +158,6 @@ namespace NewVersion.admin
             }
         }
 
-
         private void ResetModalState()
         {
             addInventoryName.Text = string.Empty;
@@ -170,5 +169,25 @@ namespace NewVersion.admin
             ScriptManager.RegisterStartupScript(this, GetType(), "closeModal", "$('#addRowModal').modal('hide');", true);
             BindGrid();
         }
+        protected void ValidateQuantity(object source, ServerValidateEventArgs args)
+        {
+            int currentQuantity;
+            int adjustment;
+
+            bool isCurrentQuantityValid = int.TryParse(currentInventoryQuantity.Text, out currentQuantity);
+            bool isAdjustmentValid = int.TryParse(adjustInventoryQuantity.Text, out adjustment);
+
+            if (!isCurrentQuantityValid || !isAdjustmentValid)
+            {
+                args.IsValid = false;
+                FeedbackLabel.Text = "Quantity cannot be less than zero.";
+                FeedbackLabel.CssClass = "text-danger";
+                return;
+            }
+
+            args.IsValid = (currentQuantity + adjustment) >= 0;
+        }
+
+
     }
 }

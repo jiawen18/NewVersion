@@ -27,9 +27,6 @@
 
             $('#addRowModal').modal('show');
         }
-
-
-
     </script>
 
     <div class="card">
@@ -67,6 +64,15 @@
                                         <div class="form-group form-group-default">
                                             <label>Supplier</label>
                                             <asp:DropDownList ID="addInventorySupplier" runat="server" CssClass="form-control"></asp:DropDownList>
+                                            <asp:RequiredFieldValidator
+                                                ID="RequiredFieldValidator1"
+                                                runat="server"
+                                                ControlToValidate="addInventorySupplier"
+                                                ErrorMessage="Supplier is required."
+                                                CssClass="text-danger"
+                                                Display="Dynamic"
+                                                InitialValue="">
+                                            </asp:RequiredFieldValidator>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -94,6 +100,14 @@
                                                 ValidationExpression="^-?\d+$"
                                                 CssClass="text-danger"
                                                 Display="Dynamic" />
+                                            <asp:CustomValidator
+                                                ID="CustomQuantityValidator"
+                                                runat="server"
+                                                ErrorMessage="Adjustment must be less than the current quantity."
+                                                CssClass="text-danger"
+                                                Display="Dynamic"
+                                                OnServerValidate="ValidateQuantity"
+                                                ClientValidationFunction="ValidateQuantityClient" />
                                         </div>
                                     </div>
                                 </div>
