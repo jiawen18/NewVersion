@@ -23,7 +23,17 @@ namespace NewVersion.admin
         {
             using (var context = new userEntities())
             {
-                var inventoryItems = context.Inventories.ToList();
+                var inventoryItems = (from product in context.Products
+                                      join supplier in context.Suppliers on product.SupplierID equals supplier.supplierID into supplierGroup
+                                      from supplier in supplierGroup.DefaultIfEmpty() // Left join
+                                      select new
+                                      {
+                                          product.ProductID,
+                                          product.ProductName,
+                                          SupplierName = supplier != null ? supplier.supplierBranch : string.Empty,
+                                          product.Quantity
+                                      }).ToList();
+
                 GridView1.DataSource = inventoryItems;
                 GridView1.DataBind();
             }
@@ -36,7 +46,7 @@ namespace NewVersion.admin
                 var suppliers = context.Suppliers.ToList();
                 addInventorySupplier.DataSource = suppliers;
                 addInventorySupplier.DataTextField = "supplierBranch";
-                addInventorySupplier.DataValueField = "supplierBranch";
+                addInventorySupplier.DataValueField = "supplierID";
                 addInventorySupplier.DataBind();
             }
         }
@@ -52,43 +62,51 @@ namespace NewVersion.admin
             var sortColumn = e.SortExpression;
             using (var context = new userEntities())
             {
-                var inventoryItems = context.Inventories.ToList();
+                var productItems = (from p in context.Products
+                                    join s in context.Suppliers on p.ProductID equals s.supplierID
+                                    select new
+                                    {
+                                        ProductID = p.ProductID,
+                                        ProductName = p.ProductName,
+                                        SupplierBranch = s.supplierBranch,
+                                        Quantity = p.Quantity
+                                    }).ToList();
 
                 switch (sortColumn)
                 {
-                    case "inventoryName":
-                        inventoryItems = inventoryItems.OrderBy(i => i.inventoryName).ToList();
+                    case "ProductName":
+                        productItems = productItems.OrderBy(p => p.ProductName).ToList();
                         break;
-                    case "inventorySupplier":
-                        inventoryItems = inventoryItems.OrderBy(i => i.inventorySupplier).ToList();
+                    case "SupplierBranch":
+                        productItems = productItems.OrderBy(p => p.SupplierBranch).ToList();
                         break;
-                    case "inventoryQuantity":
-                        inventoryItems = inventoryItems.OrderBy(i => i.inventoryQuantity).ToList();
+                    case "Quantity":
+                        productItems = productItems.OrderBy(p => p.Quantity).ToList();
                         break;
                 }
 
-                GridView1.DataSource = inventoryItems;
+                GridView1.DataSource = productItems;
                 GridView1.DataBind();
             }
         }
 
-        protected void RemoveInventoryButton_Click(object sender, EventArgs e)
+        protected void RemoveProductButton_Click(object sender, EventArgs e)
         {
-            Button btn = (Button)sender; // Cast sender to Button
-            int inventoryId = Convert.ToInt32(btn.CommandArgument);
+            Button btn = (Button)sender;
+            int productId = Convert.ToInt32(btn.CommandArgument);
 
             using (var context = new userEntities())
             {
-                var inventoryToRemove = context.Inventories.Find(inventoryId);
-                if (inventoryToRemove != null)
+                var productToRemove = context.Products.Find(productId);
+                if (productToRemove != null)
                 {
-                    context.Inventories.Remove(inventoryToRemove);
+                    context.Products.Remove(productToRemove);
                     context.SaveChanges();
                 }
             }
 
             BindGrid();
-            FeedbackLabel.Text = "Inventory item removed successfully!";
+            FeedbackLabel.Text = "Product removed successfully!";
             FeedbackLabel.CssClass = "text-success";
         }
 
@@ -98,28 +116,27 @@ namespace NewVersion.admin
             {
                 using (var context = new userEntities())
                 {
-                    int inventoryID;
-                    if (int.TryParse(HiddenInventoryID.Value, out inventoryID) && inventoryID > 0)
+                    int productId;
+                    if (int.TryParse(HiddenProductID.Value, out productId) && productId > 0)
                     {
-                        var inventoryItem = context.Inventories.Find(inventoryID);
-                        if (inventoryItem != null)
+                        var productItem = context.Products.Find(productId);
+                        if (productItem != null)
                         {
+                            int initialQuantity = productItem.Quantity;
 
-                            int initialQuantity = inventoryItem.inventoryQuantity;
-
-                            inventoryItem.inventorySupplier = addInventorySupplier.SelectedValue;
-
+                            int selectedSupplierId = Convert.ToInt32(addInventorySupplier.SelectedValue);
+                            productItem.SupplierID = selectedSupplierId;
 
                             int adjustment;
                             if (int.TryParse(adjustInventoryQuantity.Text, out adjustment))
                             {
-                                inventoryItem.inventoryQuantity += adjustment;
+                                productItem.Quantity += adjustment;
                                 context.SaveChanges();
 
-                                FeedbackLabel.Text = $"Inventory item updated successfully!<br />" +
-                                                     $"Initial Quantity: {initialQuantity} | " +
-                                                     $"Adjustment: {adjustment} ({(adjustment >= 0 ? "Added" : "Subtracted")}) | " +
-                                                     $"Final Quantity: {inventoryItem.inventoryQuantity}";
+                                FeedbackLabel.Text = $"Product updated successfully!<br />" +
+                                                     $"Initial Quantity: {initialQuantity}, " +
+                                                     $"Adjustment: {adjustment} ({(adjustment >= 0 ? "Added" : "Subtracted")}), " +
+                                                     $"Final Quantity: {productItem.Quantity}";
                                 FeedbackLabel.CssClass = "text-success";
                             }
                             else
@@ -131,7 +148,7 @@ namespace NewVersion.admin
                     }
                     else
                     {
-                        FeedbackLabel.Text = "Invalid Inventory ID.";
+                        FeedbackLabel.Text = "Invalid Product ID.";
                         FeedbackLabel.CssClass = "text-danger";
                         return;
                     }
@@ -148,7 +165,7 @@ namespace NewVersion.admin
             addInventorySupplier.SelectedIndex = -1;
             currentInventoryQuantity.Text = string.Empty;
             adjustInventoryQuantity.Text = string.Empty;
-            HiddenInventoryID.Value = string.Empty;
+            HiddenProductID.Value = string.Empty;
 
             ScriptManager.RegisterStartupScript(this, GetType(), "closeModal", "$('#addRowModal').modal('hide');", true);
             BindGrid();
