@@ -7,8 +7,38 @@
     ConnectionString="<%$ ConnectionStrings:productConnectionString %>"
     SelectCommand="SELECT r.ReviewID, r.ReviewDate, r.ReviewRating, r.ReviewImage, r.ReviewDescription, p.ProductName, p.Price, p.ProductImageURL 
                    FROM Review r
-                   INNER JOIN Product p ON r.ProductID = p.ProductID">
+                   INNER JOIN Product p ON r.ProductID = p.ProductID WHERE p.ProductID = @@ProductID">
 </asp:SqlDataSource>
+
+    <style>
+        #divSuccessMessage {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 128, 0, 0.7);
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+
+        .add-to-cart-btn {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #218838;
+}
+
+    </style>
+
     <!-- Start Hero Section -->
 <div class="hero">
 	<div class="container">
@@ -30,19 +60,26 @@
 
 
     <div class="product-detail">
-        <!-- Product Image Carousel -->
+        <div class="container">
+            <div class="row">
+            <!-- Product Image Carousel -->
+            <div class="col-lg-5">
         <div class="product-image-carousel">
             <div>
-                <asp:Image ID="ProductImg" alt="Product Image 1" runat="server" ImageUrl="images/z-flip_blue.jpg"/></div>
-            <div><img src="images/z-flip_blue.jpg" alt="Product Image 2"></div>
-            <div><img src="images/z-flip_blue.jpg" alt="Product Image 3"></div>
+                <asp:Image ID="ProductImg1" runat="server" /></div>
+            <div><asp:Image ID="ProductImg2" runat="server" /></div>
+            <div><asp:Image ID="ProductImg3" runat="server" /></div>
         </div>
+                </div>
+            </div>
+
 
         <!-- Product Information -->
+            <div class="col-lg-7">
         <div class="product-info">
             <div class="product-desc">
                 <h1 class="product-name">
-                    <asp:Label ID="lblProductName" runat="server" Text="Z-Flip">Z-Flip</asp:Label>
+                    <asp:Label ID="lblProductName" runat="server" ></asp:Label>
                 </h1>
                 <p class="product-description">Product description goes here. This section provides details about the product, its features, and benefits.</p>
             </div>
@@ -52,35 +89,45 @@
             <h3 class="heading-large">Please select your storage:</h3>
             <h3 class="heading-small">Select Storage</h3>
             <div class="storage-selection">
-                <asp:Button ID="Button1" runat="server" Text="256GB | 12GB" CssClass="storage-button" OnClientClick="return selectStorage(this);" />
-                <asp:Button ID="Button2" runat="server" Text="128GB | 12GB" CssClass="storage-button" OnClientClick="return selectStorage(this);" />
-                <asp:Button ID="Button3" runat="server" Text="64GB | 12GB" CssClass="storage-button" OnClientClick="return selectStorage(this);" />
+                <asp:Button ID="btnStorage1" runat="server" Text="256GB | 12GB" CssClass="storage-button" OnClick="btnStorage_Click" />
+                <asp:Button ID="btnStorage2" runat="server" Text="128GB | 12GB" CssClass="storage-button" OnClick="btnStorage_Click" />
+                <asp:Button ID="btnStorage3" runat="server" Text="64GB | 12GB" CssClass="storage-button" OnClick="btnStorage_Click" />
             </div>
         </div>
 
         <!-- Color Selection -->
-        <div class="color-container" style="display: none;">
+        <div id="colorContainer" class="color-container" runat="server"  style="display: none;">
             <h3 class="heading-large">Now select your color:</h3>
             <h3 class="heading-small">Select Color</h3>
             <div class="color-selection">
-                <asp:Button ID="ColorButton1" runat="server" CssClass="color-button" OnClientClick="return selectColor(this);" style="background-color: #dcf5fc;" Text="Blue"/>
-                <asp:Button ID="ColorButton2" runat="server" CssClass="color-button" OnClientClick="return selectColor(this);" style="background-color: #fffdcf;" />
-                <asp:Button ID="ColorButton3" runat="server" CssClass="color-button" OnClientClick="return selectColor(this);" style="background-color: #000000;" />
+                <asp:Button ID="ColorButton1" runat="server" CssClass="color-button" OnClick="ColorButton_Click"  style="background-color: #dcf5fc;" value="Blue"/>
+                <asp:Button ID="ColorButton2" runat="server" CssClass="color-button" OnClick="ColorButton_Click"  style="background-color: #fffdcf;" value="Yellow"/>
+                <asp:Button ID="ColorButton3" runat="server" CssClass="color-button" OnClick="ColorButton_Click"  style="background-color: #000000;" value="Black"/>
             </div>
         </div>
 
-            <div class="price-container"> <asp:Label ID="lblPrice" runat="server" Text="200.50"></asp:Label></div>
+            <div class="price-container"> <asp:Label ID="lblPrice" runat="server" ></asp:Label></div>
 
             <div class="quantity-container"> <asp:Label ID="lblQuantity" runat="server" Text="1"></asp:Label></div>
 
-            <asp:HiddenField ID="hiddenProductId" runat="server" Value="1" />
-
+            
             <!-- Add to Cart Button -->
             <div class="AddToCart">
-                <asp:Button ID="Button4" runat="server" CssClass="add-to-cart-btn" Text="Add to Cart" OnClick="Button4_Click"/>
+                <asp:Button ID="btnAddToCart" runat="server" CssClass="add-to-cart-btn" Text="Add to Cart" OnClick="btnAddToCart_Click"/>
             </div>
         </div>
+                <asp:Label ID="lblDebugInfo" runat="server" ForeColor="Red"></asp:Label>
+
+        
+        <div id="divSuccessMessage" runat="server"><span>
+        <asp:Label ID="lblSuccessMessage" runat="server" Text=""></asp:Label></span>
+</div>
+                
+
     </div>
+            </div>
+    </div>
+
 
     <br />
     <br />
@@ -216,7 +263,7 @@
 
 
 
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -247,6 +294,7 @@
 
         button.classList.add('selected');
 
+        
         document.querySelector('.color-container').style.display = 'block';
         return false;
     }
@@ -260,13 +308,24 @@
         });
 
         button.classList.add('selected');
+
         return false; // Prevent further action
     }
 </script>
 
+    <script type="text/javascript">
+        
+        function updateSelection(storage, color) {
+            
+            console.log('Selected Storage: ' + storage);
+            console.log('Selected Color: ' + color);
+        }
+    </script>
+
+
 <script>
     function toggleRatings(event) {
-        event.preventDefault(); 
+        event.preventDefault();
 
         var moreRatings = document.querySelectorAll('.more-ratings');
         moreRatings.forEach(function (rating) {
@@ -282,6 +341,11 @@
     }
 </script>
 
+    <script>setTimeout(function () {
+            console.log('Hiding the success message'); // 检查是否到达此处
+            div.style.display = 'none';
+        }, 10000);
+    </script>
 
 
 </asp:Content>

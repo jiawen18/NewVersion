@@ -32,7 +32,7 @@
     <h2>Galaxy A55 | A35 5G Series</h2>
 </div>
 <!-- End Section Title -->
-
+    <asp:HiddenField ID="hiddenProductId" runat="server" />
 
 <!-- Start Products Row -->
 <div class="products-row row">
@@ -63,6 +63,7 @@
 </asp:Repeater>
 </div>
 <!-- End Products Row -->
+
 
 
 </asp:Content>

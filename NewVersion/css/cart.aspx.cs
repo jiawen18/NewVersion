@@ -15,7 +15,6 @@ namespace NewVersion.css
 {
     public partial class cart : System.Web.UI.Page
     {
-        string cs = Global.CS;
 
         /* private void LogInUser(int memberId)
          {
@@ -28,7 +27,7 @@ namespace NewVersion.css
             if (!IsPostBack)
             {
                 LoadCartItems();
-                UpdateCartTotals();
+                CalculateTotals();
             }
 
             /*if (Session["MemberID"] != null)
@@ -47,255 +46,120 @@ namespace NewVersion.css
 
         private void LoadCartItems()
         {
-            using(SqlConnection con = new SqlConnection(cs))
+            List<CartItem> cart = Session["Cart"] as List<CartItem>;
+            if (cart != null && cart.Count > 0)
             {
-                string query = "SELECT * FROM CartItems  WHERE CartID = @CartID";
-
-                SqlCommand cmd = new SqlCommand(query, con);
-
-                int cartId = GetCurrentCartID();
-
-                cmd.Parameters.AddWithValue("@CartID", cartId);
-
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-
-                if (dt.Rows.Count > 0)
-                {
-                    rptProduct.DataSource = dt;
-                    rptProduct.DataBind();
-                }
-                else
-                {
-                    
-                    rptProduct.DataSource = null;
-                    rptProduct.DataBind(); 
-                }
-            }
-        }
-
-        private int GetCurrentCartID()
-        {
-            int cartId = -1;
-
-            SqlConnection con = new SqlConnection(cs);
-
-            string query = "SELECT CartID FROM ShoppingCart";
-
-            SqlCommand cmd = new SqlCommand(query, con);
-
-            try
-            {
-                con.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                if (reader.Read()) // if read
-                {
-                    cartId = reader.GetInt32(0); // get first cartId
-                }
-                reader.Close();
-            }
-            catch (Exception ex)
-            {
-                Response.Write($"<script>alert('Error: {ex.Message}');</script>");
-            }
-            finally
-            {
-                con.Close();
-            }
-
-            return cartId;
-        }
-
-        protected void btnDecrease_Click(object sender, EventArgs e)
-        {
-            Button btn = (Button)sender;
-
-            string[] arguments = btn.CommandArgument.Split(','); 
-            string ciId = arguments[0]; // CartItemID
-            string pId = arguments[1];
-
-            int cartItemId = Convert.ToInt32(arguments[0]);
-            int productID = Convert.ToInt32(arguments[1]);
-
-           
-            int currentQuantity = GetCurrentQuantity(cartItemId,productID);
-
-            if (currentQuantity > 1)
-            {
-                
-                UpdateCartQuantity(cartItemId, -1, productID);
-                LoadCartItems();
+                rptProduct.DataSource = cart;
+                rptProduct.DataBind();
             }
             else
             {
-                DeleteCartItem(cartItemId, productID);
-                LoadCartItems();
+
+            }
+        }
+
+        protected void txtQuantity_TextChanged(object sender, EventArgs e)
+        {
+            TextBox txtQuantity = (TextBox)sender;
+            RepeaterItem item = (RepeaterItem)txtQuantity.NamingContainer;
+            int productId = Convert.ToInt32(((Button)item.FindControl("btnRemove")).CommandArgument);
+
+            List<CartItem> cart = Session["Cart"] as List<CartItem>;
+            var existingItem = cart.FirstOrDefault(i => i.ProductID == productId);
+
+            if (existingItem != null)
+            {
+                existingItem.Quantity = Convert.ToInt32(txtQuantity.Text);
             }
 
+            Session["Cart"] = cart;
+            CalculateTotals();
+        }
+
+        protected void btnDeleteSelected_Click(object sender, EventArgs e)
+        {
+            List<CartItem> cart = Session["Cart"] as List<CartItem>;
+
+            if (cart != null)
+            {
+                for (int i = cart.Count - 1; i >= 0; i--)
+                {
+                    RepeaterItem item = rptProduct.Items[i];
+                    CheckBox chkSelect = (CheckBox)item.FindControl("chkSelect");
+
+                    if (chkSelect.Checked)
+                    {
+                        // Confirm deletion if needed.
+                        cart.RemoveAt(i); // Remove the selected item.
+                    }
+                }
+
+                Session["Cart"] = cart;
+                LoadCartItems(); // Refresh the cart items display.
+                CalculateTotals(); // Update totals after deletion.
+            }
+        }
+
+        private void CalculateTotals()
+        {
+            List<CartItem> cart = Session["Cart"] as List<CartItem>;
+            decimal subtotal = cart?.Sum(item => item.Price * item.Quantity) ?? 0;
+            lblSubtotal.Text = subtotal.ToString("0.00");
+            lblTotal.Text = subtotal.ToString("0.00");
+        }
+
+        protected void btnSelectAll_Click(object sender, EventArgs e)
+        {
+            CheckBox selectAll = (CheckBox)sender;
+            foreach (RepeaterItem item in rptProduct.Items)
+            {
+                CheckBox chkSelect = (CheckBox)item.FindControl("chkSelect");
+                chkSelect.Checked = selectAll.Checked;
+            }
         }
 
         protected void btnIncrease_Click(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
+            Button btnIncrease = (Button)sender;
+            int productId = Convert.ToInt32(btnIncrease.CommandArgument); // Get the ProductID from CommandArgument
 
-            string[] arguments = btn.CommandArgument.Split(','); 
-            string ciId = arguments[0]; // CartItemID
-            string pId = arguments[1];
+            List<CartItem> cart = Session["Cart"] as List<CartItem>;
+            var existingItem = cart.FirstOrDefault(i => i.ProductID == productId);
 
-            int cartItemId = Convert.ToInt32(arguments[0]);
-            int productID = Convert.ToInt32(arguments[1]);
-
-            
-            UpdateCartQuantity(cartItemId, 1,productID); 
-        }
-
-        private int GetCurrentQuantity(int cartItemId, int productID)
-        {
-            using (SqlConnection con = new SqlConnection(cs))
+            if (existingItem != null)
             {
-                string query = "SELECT Quantity FROM CartItems WHERE CartItemID = @CartItemID AND ProductID=@ProductID AND CartID=@CartID" ;
-                SqlCommand cmd = new SqlCommand(query, con);
-
-                cmd.Parameters.AddWithValue("@CartID", GetCurrentCartID());
-                cmd.Parameters.AddWithValue("@CartItemID", cartItemId);
-                cmd.Parameters.AddWithValue("@ProductID", productID);
-
-                con.Open();
-                object result = cmd.ExecuteScalar();
-                con.Close();
-
-                return result != null ? Convert.ToInt32(result) : 0;
+                existingItem.Quantity++; // Increment the quantity
             }
+
+            Session["Cart"] = cart;
+            LoadCartItems(); // Refresh the cart display
+            CalculateTotals(); // Update totals
         }
 
-        private void DeleteCartItem(int cartItemId,int productID)
+        protected void btnDecrease_Click(object sender, EventArgs e)
         {
-            using (SqlConnection con = new SqlConnection(cs))
+            Button btnDecrease = (Button)sender;
+            int productId = Convert.ToInt32(btnDecrease.CommandArgument); // Get the ProductID from CommandArgument
+
+            List<CartItem> cart = Session["Cart"] as List<CartItem>;
+            var existingItem = cart.FirstOrDefault(i => i.ProductID == productId);
+
+            if (existingItem != null)
             {
-                string query = "DELETE FROM CartItems WHERE CartItemID = @CartItemID AND ProductID=@ProductID AND CartID=@CartID";
-                SqlCommand cmd = new SqlCommand(query, con);
-
-                cmd.Parameters.AddWithValue("@CartID", GetCurrentCartID());
-                cmd.Parameters.AddWithValue("@CartItemID", cartItemId);
-                cmd.Parameters.AddWithValue("@ProductID", productID);
-
-                con.Open();
-                cmd.ExecuteNonQuery(); 
-
-                con.Close();
-            }
-        }
-
-        private void UpdateCartQuantity(int cartItemId, int change, int productID)
-        {
-            int currentQuantity = 0; // Declare these variables at the start
-            decimal price = 0;
-
-            using (SqlConnection con = new SqlConnection(cs))
-            {
-                string query = "SELECT Quantity, Price FROM CartItems WHERE CartItemID = @CartItemID AND ProductID=@ProductID AND CartID=@CartID";
-                SqlCommand cmd = new SqlCommand(query, con);
-
-                cmd.Parameters.AddWithValue("@CartID", GetCurrentCartID());
-                cmd.Parameters.AddWithValue("@CartItemID", cartItemId);
-                cmd.Parameters.AddWithValue("@ProductID", productID);
-
-                con.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                if (existingItem.Quantity > 1) // Prevent quantity from going below 1
                 {
-                    if (reader.Read())
-                    {
-                        currentQuantity = reader.GetInt32(0); // Get quantity
-                        price = reader.GetDecimal(1); // Get price
-                    }
-                } // The reader is closed here automatically
-            } // The connection is closed here automatically
-
-            // Calculate the new quantity
-            int newQuantity = currentQuantity + change;
-
-            // If the new quantity is valid
-            if (newQuantity > 0)
-            {
-                // Calculate the new total price for this item
-                decimal newTotalPrice = price * newQuantity;
-
-                // Now update the quantity and total price
-                using (SqlConnection con = new SqlConnection(cs))
+                    existingItem.Quantity--; // Decrement the quantity
+                }
+                else
                 {
-                    string updateQuery = "UPDATE CartItems SET Quantity = @Quantity, TotalPrice = @TotalPrice WHERE CartItemID = @CartItemID AND ProductID=@ProductID AND CartID=@CartID";
-                    SqlCommand updateCmd = new SqlCommand(updateQuery, con);
-
-                    updateCmd.Parameters.AddWithValue("@Quantity", newQuantity);
-                    updateCmd.Parameters.AddWithValue("@TotalPrice", newTotalPrice);
-                    updateCmd.Parameters.AddWithValue("@CartID", GetCurrentCartID());
-                    updateCmd.Parameters.AddWithValue("@CartItemID", cartItemId);
-                    updateCmd.Parameters.AddWithValue("@ProductID", productID);
-
-                    con.Open();
-                    updateCmd.ExecuteNonQuery();
+                    // Optionally handle removing the item if quantity is 1 and the user decrements
+                    cart.Remove(existingItem);
                 }
             }
-            else
-            {
-                // If quantity goes below 1, delete the item
-                DeleteCartItem(cartItemId, productID);
-            }
 
-            LoadCartItems(); // Refresh cart items
-            UpdateCartTotals(); // Update the overall totals
-        }
-
-
-        private decimal CalculateSubtotal()
-        {
-            decimal subtotal = 0;
-
-            using (SqlConnection con = new SqlConnection(cs))
-            {
-                string query = "SELECT Quantity, Price FROM CartItems WHERE CartID = @CartID";
-                SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@CartID", GetCurrentCartID());
-
-                con.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    int quantity = reader.GetInt32(0); // Quantity
-                    decimal price = reader.GetDecimal(1); // Price
-                    subtotal += quantity * price; // Calculate subtotal
-                }
-                reader.Close();
-            }
-
-            return subtotal;
-        }
-
-        private void UpdateCartTotals()
-        {
-            decimal subtotal = CalculateSubtotal();
-            decimal total = subtotal; // Assuming no additional fees for simplicity
-
-            using (SqlConnection con = new SqlConnection(cs))
-            {
-                string query = "UPDATE ShoppingCart SET Subtotal = @SubTotal, CartTotal = @CartTotal WHERE CartID = @CartID";
-
-                SqlCommand cmd = new SqlCommand(query, con);
-
-                cmd.Parameters.AddWithValue("@SubTotal", subtotal);
-                cmd.Parameters.AddWithValue("@CartTotal", total);
-                cmd.Parameters.AddWithValue("@CartID", GetCurrentCartID());
-
-                con.Open();
-                cmd.ExecuteNonQuery();
-            }
-
-            // Update UI Labels
-            lblSubtotal.Text = $"RM {subtotal:F2}";
-            lblTotal.Text = $"RM {total:F2}";
+            Session["Cart"] = cart;
+            LoadCartItems(); // Refresh the cart display
+            CalculateTotals(); // Update totals
         }
 
         protected void btnContinue_Click(object sender, EventArgs e)
@@ -303,14 +167,9 @@ namespace NewVersion.css
             Response.Redirect("Smartphones.aspx");
         }
 
-        
         protected void btnCheckOut_Click(object sender, EventArgs e)
         {
-            int cartId = GetCurrentCartID(); 
 
-           
-            Response.Redirect($"Checkout.aspx?cartId={cartId}");
         }
-
     }
 }

@@ -47,7 +47,7 @@
       <HintPath>..\packages\Aspose.Imaging.24.9.0\lib\net40\Aspose.Imaging.dll</HintPath>
     </Reference>
     <Reference Include="ASPSnippets.GoogleAPI">
-      <HintPath>..\..\..\..\..\Downloads\ASPSnippets.GoogleAPI.dll</HintPath>
+      <HintPath>..\..\..\..\Downloads\ASPSnippets.GoogleAPI.dll</HintPath>
     </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
       <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
@@ -536,8 +536,6 @@
     <Content Include="css\css\Address.css" />
     <Content Include="css\css\AdminAccount.css" />
     <Content Include="css\css\bootstrap.min.css" />
-    <Content Include="css\css\cancelled.aspx" />
-    <Content Include="css\css\completed.aspx" />
     <Content Include="css\css\delivery.css" />
     <Content Include="css\css\login.css" />
     <Content Include="css\css\order.css" />
@@ -907,20 +905,6 @@
     </Compile>
     <Compile Include="css\Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="css\css\cancelled.aspx.cs">
-      <DependentUpon>cancelled.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="css\css\cancelled.aspx.designer.cs">
-      <DependentUpon>cancelled.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="css\css\completed.aspx.cs">
-      <DependentUpon>completed.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="css\css\completed.aspx.designer.cs">
-      <DependentUpon>completed.aspx</DependentUpon>
     </Compile>
     <Compile Include="css\Delivery.aspx.cs">
       <DependentUpon>Delivery.aspx</DependentUpon>

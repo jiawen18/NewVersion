@@ -12,7 +12,6 @@ namespace NewVersion.admin
 {
     public partial class reviews : System.Web.UI.Page
     {
-        string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

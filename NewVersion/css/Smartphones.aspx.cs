@@ -8,6 +8,7 @@ using System.Configuration;
 
 using System.Data.SqlClient;
 using Razorpay.Api;
+using NewVersion.Models;
 
 
 namespace NewVersion.css
@@ -45,7 +46,7 @@ namespace NewVersion.css
                         ProductName = reader["ProductName"].ToString(),
                         ProductImageURL = reader["ProductImageURL"].ToString(),
                         Price = Convert.ToDecimal(reader["Price"]),
-                       
+
                     };
                     products.Add(product);
                 }
@@ -61,20 +62,21 @@ namespace NewVersion.css
             Button btn = (Button)sender;
             string productId = btn.CommandArgument;
 
-            // Redirect to the product detail page or add to cart
-            Response.Redirect($"ProductDetails.aspx?ProductID={productId}");
+            Response.Redirect("ProductDetails.aspx?ProductID=" + productId);
 
         }
     }
 
-    // Product class to hold the product information
-    public class Product
-    {
-        public string ProductID { get; set; }
-        public string ProductName { get; set; }
-        public string ProductImageURL { get; set; }
-        public decimal Price { get; set; }
+}
 
-    }
+// Product class to hold the product information
+public class Product
+{
+    public string ProductID { get; set; }
+    public string ProductName { get; set; }
+    public string ProductImageURL { get; set; }
+    public decimal Price { get; set; }
 
 }
+
+

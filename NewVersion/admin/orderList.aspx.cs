@@ -21,7 +21,7 @@ namespace NewVersion.admin
 
         private void BindOrderData()
         {
-            string query = "SELECT OrderID, OrderDetails, PaymentStatus, DeliveryStatus,OrderDate FROM [Order]";
+            string query = "SELECT OrderID,OrderDetails, PaymentStatus, DeliveryStatus,OrderDate FROM [Order]";
 
             using (SqlConnection conn = new SqlConnection(cs))
             {
@@ -44,5 +44,121 @@ namespace NewVersion.admin
             }
         }
 
-}
+        protected void OrderRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "EditOrder")
+            {
+                string orderId = e.CommandArgument.ToString();
+                LoadOrderDetails(orderId);
+                ShowEditModal();
+            }
+
+            if (e.CommandName == "DeleteOrder")
+            {
+                string orderId = e.CommandArgument.ToString();
+                DeleteOrder(orderId);
+                BindOrderData();
+            }
+        }
+
+        protected void RemoveOrderButton_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string orderId = btn.CommandArgument;
+
+            DeleteOrder(orderId);
+
+            BindOrderData();
+
+            lblMessage.Text = "order deleted";
+            lblMessage.CssClass = "alert alert-success";
+        }
+
+        private void ShowEditModal()
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "showEditModal", "$('#addRowModal').modal('show');", true);
+        }
+
+        private void LoadOrderDetails(string orderId)
+        {
+            string sql = "SELECT OrderDetails, PaymentStatus, DeliveryStatus, OrderDate FROM [Order] WHERE OrderID = @OrderID";
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@OrderID", orderId);
+                    con.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            txtOrderID.Value = orderId;
+                            txtOrderDetails.Text = reader["OrderDetails"].ToString();
+                            txtPaymentStatus.Text = reader["PaymentStatus"].ToString();
+                            ddlDeliveryStatus.SelectedValue = reader["DeliveryStatus"].ToString();
+                            txtOrderDate.Text = Convert.ToDateTime(reader["OrderDate"]).ToString("yyyy-MM-dd");
+                        }
+                    }
+                }
+            }
+        }
+
+        protected void btnUpdateOrder_Click(object sender, EventArgs e)
+        {
+            string orderID = txtOrderID.Value;
+            string deliveryStatus = ddlDeliveryStatus.SelectedValue;
+
+            // Update the product in the database
+            string sql = "UPDATE [Order] SET DeliveryStatus = @DeliveryStatus WHERE OrderID = @OrderID";
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    // Supply input/data into parameters
+                    cmd.Parameters.AddWithValue("@OrderID", orderID);
+                    cmd.Parameters.AddWithValue("@DeliveryStatus", deliveryStatus);
+
+                    try
+                    {
+                        con.Open();
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            lblMessage.Text = "Order updated successfully.";
+                            lblMessage.CssClass = "text-success";
+                        }
+                        else
+                        {
+                            lblMessage.Text = "Order update failed. Order ID not found.";
+                            lblMessage.CssClass = "text-danger";
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        lblMessage.Text = "Error: " + ex.Message;
+                        lblMessage.CssClass = "text-danger";
+                    }
+                }
+            }
+
+            BindOrderData();
+        }
+
+        private void DeleteOrder(string orderID)
+        {
+            string query = "DELETE FROM [Order] WHERE OrderID = @OrderID";
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@OrderID", orderID);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+    }
 }

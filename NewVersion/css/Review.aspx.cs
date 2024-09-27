@@ -15,8 +15,6 @@ namespace NewVersion.css
 {
     public partial class Review : System.Web.UI.Page
     {
-        //step 2: retrieve CS from Global.asax
-        string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
