@@ -35,13 +35,12 @@ namespace NewVersion.admin
 
         private void LoadInventoryData()
         {
-
             var products = _context.Products.Include(p => p.Supplier).ToList();
 
             var inventoryData = products.Select(p => new
             {
                 ProductName = p.ProductName,
-                Supplier = p.Supplier.supplierBranch,
+                Supplier = p.Supplier != null ? p.Supplier.supplierBranch : "",
                 Quantity = p.Quantity,
                 Status = GetStockStatus(p.Quantity)
             }).ToList();
@@ -49,6 +48,7 @@ namespace NewVersion.admin
             InventoryGridView.DataSource = inventoryData;
             InventoryGridView.DataBind();
         }
+
 
 
         private string GetStockStatus(int quantity)
