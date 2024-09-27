@@ -47,8 +47,8 @@ namespace NewVersion.admin
                     Username = username,
                     Email = email,
                     PasswordHash = hashedPassword, // Store the hashed password
-                    Position = position,
-                    Office  = office,
+                    //Position = position,
+                    //Office  = office,
                     Role = "Super Admin" // Set the role to Admin (or use role-based logic)     
                 };
 

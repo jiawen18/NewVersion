@@ -4,15 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7384506c29b94de387168adc2c7bf247" Name="Diagram1" ZoomLevel="73">
+      <Diagram DiagramId="7384506c29b94de387168adc2c7bf247" Name="Diagram1" ZoomLevel="95">
         <EntityTypeShape EntityType="UserModel.MemberUser" Width="1.5" PointX="7.375" PointY="13.25" />
         <EntityTypeShape EntityType="UserModel.Supplier" Width="1.5" PointX="7.125" PointY="1.375" />
         <EntityTypeShape EntityType="UserModel.AdminUser" Width="1.5" PointX="5.125" PointY="13.25" />
-        <EntityTypeShape EntityType="UserModel.Inventory" Width="1.5" PointX="2.875" PointY="17" />
         <EntityTypeShape EntityType="UserModel.Product" Width="1.5" PointX="7.125" PointY="4.25" />
         <EntityTypeShape EntityType="UserModel.Order" Width="1.5" PointX="9.625" PointY="4.25" />
         <EntityTypeShape EntityType="UserModel.Refund" Width="1.5" PointX="12.125" PointY="4.25" />
-        <EntityTypeShape EntityType="UserModel.Shipper" Width="1.5" PointX="5.125" PointY="16.875" />
+        <EntityTypeShape EntityType="UserModel.Shipper" Width="1.5" PointX="11.75" PointY="13.25" />
         <AssociationConnector Association="UserModel.FK_Order_ToRefund" />
         <AssociationConnector Association="UserModel.FK_Product_ToOrder" />
         <EntityTypeShape EntityType="UserModel.Support" Width="1.5" PointX="9.625" PointY="13.25" />

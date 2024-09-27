@@ -24,13 +24,13 @@ namespace NewVersion.admin
         protected global::System.Web.UI.WebControls.Label FeedbackLabel;
 
         /// <summary>
-        /// HiddenInventoryID control.
+        /// HiddenProductID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenInventoryID;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenProductID;
 
         /// <summary>
         /// addInventoryName control.
