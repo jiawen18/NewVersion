@@ -7,227 +7,200 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NewVersion.css
+namespace NewVersion.admin
 {
 
 
-    public partial class Home
+    public partial class newSuperAdmin
     {
 
         /// <summary>
-        /// hfProductId control.
+        /// lbl_sp_adm_username control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfProductId;
+        protected global::System.Web.UI.WebControls.Label lbl_sp_adm_username;
 
         /// <summary>
-        /// btnBuyNow control.
+        /// txt_sp_adm_username control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuyNow;
+        protected global::System.Web.UI.WebControls.TextBox txt_sp_adm_username;
 
         /// <summary>
-        /// HiddenField5 control.
+        /// rqvld_username control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField5;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rqvld_username;
 
         /// <summary>
-        /// Button1 control.
+        /// lbl_sp_adm_email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Label lbl_sp_adm_email;
 
         /// <summary>
-        /// HiddenField2 control.
+        /// txt_sp_adm_email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField2;
+        protected global::System.Web.UI.WebControls.TextBox txt_sp_adm_email;
 
         /// <summary>
-        /// Button2 control.
+        /// rqvld_email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rqvld_email;
 
         /// <summary>
-        /// HiddenField3 control.
+        /// revld_email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField3;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revld_email;
 
         /// <summary>
-        /// Button3 control.
+        /// cvExisted control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.CustomValidator cvExisted;
 
         /// <summary>
-        /// HiddenField4 control.
+        /// lbl_sp_adm_position control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField4;
+        protected global::System.Web.UI.WebControls.Label lbl_sp_adm_position;
 
         /// <summary>
-        /// Button4 control.
+        /// txt_sp_adm_position control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button4;
+        protected global::System.Web.UI.WebControls.TextBox txt_sp_adm_position;
 
         /// <summary>
-        /// HiddenField8 control.
+        /// lbl_sp_adm_office control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField8;
+        protected global::System.Web.UI.WebControls.Label lbl_sp_adm_office;
 
         /// <summary>
-        /// Button5 control.
+        /// txt_sp_adm_office control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button5;
+        protected global::System.Web.UI.WebControls.TextBox txt_sp_adm_office;
 
         /// <summary>
-        /// HiddenField6 control.
+        /// lbl_sp_adm_password control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField6;
+        protected global::System.Web.UI.WebControls.Label lbl_sp_adm_password;
 
         /// <summary>
-        /// Button6 control.
+        /// txt_sp_adm_password control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button6;
+        protected global::System.Web.UI.WebControls.TextBox txt_sp_adm_password;
 
         /// <summary>
-        /// HiddenField7 control.
+        /// rqvld_password control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField7;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rqvld_password;
 
         /// <summary>
-        /// Button7 control.
+        /// revld_password control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button7;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revld_password;
 
         /// <summary>
-        /// HiddenField9 control.
+        /// lbl_sp_adm_passwordconfirm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField9;
+        protected global::System.Web.UI.WebControls.Label lbl_sp_adm_passwordconfirm;
 
         /// <summary>
-        /// Button8 control.
+        /// txt_sp_adm_passwordconfirm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button8;
+        protected global::System.Web.UI.WebControls.TextBox txt_sp_adm_passwordconfirm;
 
         /// <summary>
-        /// HiddenField10 control.
+        /// cpvld_password control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField10;
+        protected global::System.Web.UI.WebControls.CompareValidator cpvld_password;
 
         /// <summary>
-        /// Button9 control.
+        /// rqcld_passwordconfirm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button9;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rqcld_passwordconfirm;
 
         /// <summary>
-        /// HiddenField11 control.
+        /// btn_add_sp_admin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField11;
-
-        /// <summary>
-        /// Button10 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button10;
-
-        /// <summary>
-        /// HiddenField12 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField12;
-
-        /// <summary>
-        /// Button11 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button11;
+        protected global::System.Web.UI.WebControls.Button btn_add_sp_admin;
     }
 }

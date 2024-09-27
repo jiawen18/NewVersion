@@ -98,7 +98,7 @@
                         <ul class="nav nav-secondary">
                             <li class="nav-item active">
                                 <a href="dashboard.aspx">
-                                    <i class="fas fa-home"></i>
+                                    <i class="fas fa-chart-line"></i>
                                     <span class="sub-item">Dashboard</span>
                                 </a>
                             </li>
@@ -197,7 +197,7 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li class="nav-item">
+                            <%--<li class="nav-item">
                                 <a data-bs-toggle="collapse" href="#analytics">
                                     <i class="fas fa-chart-line"></i>
                                     <p>Analytics</p>
@@ -217,7 +217,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </li>
+                            </li>--%>
                         </ul>
                         <ul class="nav nav-secondary">
                             <li class="nav-section">
@@ -249,26 +249,30 @@
                                                 <span class="sub-item">New Supplier</span>
                                             </a>
                                         </li>
-                                        <li>
+                                        <!-- Superadmin-only section -->
+                                        <li class="nav-item" id="superAdminSection1" runat="server">
                                             <a href="newAdmin.aspx">
                                                 <span class="sub-item">New Admin</span>
                                             </a>
                                         </li>
+
+                                        <li class="nav-item" id="superAdminSection2" runat="server">
+                                            <a href="newSuperAdmin.aspx">
+                                                <span class="sub-item">New Super Admin</span>
+                                            </a>
+                                        </li>
+
                                     </ul>
                                 </div>
                             </li>
-                            <%--<li class="nav-item">
-                                <a href="read.aspx">
-                                    <i class="fas fa-user-check"></i>
-                                    <p>Read</p>
-                                </a>
-                            </li>--%>
-                            <li class="nav-item">
+
+                            <li class="nav-item" id="superAdminUpdateSection" runat="server">
                                 <a href="update.aspx">
                                     <i class="fas fa-user-cog"></i>
-                                    <p>Update Admins</p>
+                                    <p>Update</p>
                                 </a>
                             </li>
+
                             <%--<li class="nav-item">
                                 <a href="delete.aspx">
                                     <i class="fas fa-user-minus"></i>
@@ -422,24 +426,19 @@
 
                                             <li>
                                                 <div class="user-box">
-                                                    <div class="avatar-lg">
-                                                        <img
-                                                            src="assets/img/profile.jpg"
-                                                            alt="image profile"
-                                                            class="avatar-img rounded" />
-                                                    </div>
                                                     <div class="u-text">
-                                                        <h4>Hizrian</h4>
-                                                        <p class="text-muted">hello@example.com</p>
+                                                        <asp:Label ID="lbl_user_name" runat="server" Text=""></asp:Label>
+                                                        <asp:Label ID="lbl_user_email" runat="server" Text="" class="text-muted"></asp:Label>
                                                     </div>
                                                 </div>
                                             </li>
                                             <li>
+
                                                 <div class="dropdown-divider"></div>
 
                                                 <a class="dropdown-item" href="AdminProfile.aspx">Account Settings</a>
 
-                                                <a class="dropdown-item" href="../css/Home.aspx">Logout</a>
+                                                <a class="dropdown-item" href="login.aspx" runat="server" onserverclick ="LogoutUser">Logout</a>
                                             </li>
                                         </ul>
                                     </div>

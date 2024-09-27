@@ -4,7 +4,7 @@
 		<siteMapNode title="Home">
 
 			<!-- Dashboard Section -->
-			<siteMapNode url="admin/dashboard.aspx"				title="Dashboard" />
+			<siteMapNode url="admin/dashboard.aspx"/>
 
 			<!-- Products Section -->
 			<siteMapNode title="Products">
