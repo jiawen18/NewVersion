@@ -121,6 +121,16 @@
                                                 <span class="sub-item">Product List</span>
                                             </a>
                                         </li>
+                                        <li>
+                                            <a href="inventory.aspx">
+                                                <span class="sub-item">Inventory List</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="suppliers.aspx">
+                                                <span class="sub-item">Suppliers</span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </li>
@@ -156,27 +166,6 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a data-bs-toggle="collapse" href="#inventory">
-                                    <i class="fas fa-warehouse"></i>
-                                    <p>Inventory</p>
-                                    <span class="caret"></span>
-                                </a>
-                                <div class="collapse" id="inventory">
-                                    <ul class="nav nav-collapse">
-                                        <li>
-                                            <a href="inventory.aspx">
-                                                <span class="sub-item">Inventory List</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="suppliers.aspx">
-                                                <span class="sub-item">Suppliers</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
                                 <a data-bs-toggle="collapse" href="#customers">
                                     <i class="fas fa-users"></i>
                                     <p>Customers</p>
@@ -184,6 +173,11 @@
                                 </a>
                                 <div class="collapse" id="customers">
                                     <ul class="nav nav-collapse">
+                                         <li>
+                                             <a href="customerlist.aspx">
+                                                 <span class="sub-item">Customer List</span>
+                                             </a>
+                                         </li>
                                         <li>
                                             <a href="reviews.aspx">
                                                 <span class="sub-item">Reviews</span>
@@ -194,11 +188,6 @@
                                                 <span class="sub-item">Support</span>
                                             </a>
                                         </li>
-                                         <li>
-                                             <a href="customerlist.aspx">
-                                                 <span class="sub-item">Customer List</span>
-                                             </a>
-                                         </li>
                                     </ul>
                                 </div>
                             </li>
