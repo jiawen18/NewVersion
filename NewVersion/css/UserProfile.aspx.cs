@@ -69,11 +69,7 @@ namespace NewVersion.css
                 // Check in both AdminUser and SuperAdminUser tables
                 string query = @"
                     SELECT ProfilePicture 
-                    FROM AdminUser 
-                    WHERE Username = @Username
-                    UNION ALL
-                    SELECT ProfilePicture 
-                    FROM SuperAdminUser 
+                    FROM MemberUser
                     WHERE Username = @Username";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))

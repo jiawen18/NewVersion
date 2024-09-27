@@ -1,28 +1,21 @@
-﻿
-<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="Account.aspx.cs" Inherits="NewVersion.css.Account" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="Account.aspx.cs" Inherits="NewVersion.css.Account" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
      <script type="text/javascript">
          function triggerFileUpload() {
              document.getElementById('<%= fileUpload.ClientID %>').click();
+     }
+
+     function previewImage(input) {
+         if (input.files && input.files[0]) {
+             var reader = new FileReader();
+             reader.onload = function (e) {
+                 document.getElementById('<%= imgProfile.ClientID %>').src = e.target.result;
+                 };
+                 reader.readAsDataURL(input.files[0]);
+             }
          }
-
-         function previewImage(input) {
-             if (input.files && input.files[0]) {
-                 var file = input.files[0];
-                 if (!file.type.startsWith('image/')) {
-                     alert('Please upload an image file.');
-                     return;
-                 }
-                 var reader = new FileReader();
-                 reader.onload = function (e) {
-                     document.getElementById('<%= imgProfile.ClientID %>').src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        }
      </script>
-
 
  <style>
     /* Hide the actual file input */
@@ -30,6 +23,7 @@
         display: none;
     }
  </style>
+
         <div class="hero">
         <div class="container">
             <div class="row justify-content-between">
@@ -149,7 +143,7 @@
         </div>
     </div>
     <div class="text-right mt-3">
-        <asp:Button ID="btn_acc_svChanges" runat="server" Text="Save Changes" class="btn btn-primary"/>
+        <asp:Button ID="btn_acc_svChanges" runat="server" Text="Save Changes" class="btn btn-primary" OnClick="btn_acc_svChanges_Click"/>
         <asp:Button ID="btn_acc_cancel" runat="server" Text="Cancel" class="btn btn-default" OnClick="btn_acc_cancel_Click" />       
     </div>
 </div>
