@@ -194,6 +194,11 @@
                                                 <span class="sub-item">Support</span>
                                             </a>
                                         </li>
+                                         <li>
+                                             <a href="customerlist.aspx">
+                                                 <span class="sub-item">Customer List</span>
+                                             </a>
+                                         </li>
                                     </ul>
                                 </div>
                             </li>

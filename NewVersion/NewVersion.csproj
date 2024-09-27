@@ -691,6 +691,7 @@
     <Content Include="css\SuccessPage.aspx" />
     <Content Include="css\ThankYou.aspx" />
     <Content Include="css\UserProfile.aspx" />
+    <Content Include="admin\customerlist.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Models\UserModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -1033,6 +1034,13 @@
     </Compile>
     <Compile Include="css\UserProfile.aspx.designer.cs">
       <DependentUpon>UserProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\customerlist.aspx.cs">
+      <DependentUpon>customerlist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\customerlist.aspx.designer.cs">
+      <DependentUpon>customerlist.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
