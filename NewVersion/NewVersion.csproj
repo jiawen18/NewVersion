@@ -115,12 +115,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\AdminProfile.aspx" />
+    <Content Include="admin\assets\img\default.jpg" />
     <Content Include="admin\dashboard.aspx" />
     <Content Include="admin\edit.aspx" />
     <Content Include="admin\inventory.aspx" />
     <Content Include="admin\newAdmin.aspx" />
     <Content Include="admin\newInventory.aspx" />
     <Content Include="admin\newShipper.aspx" />
+    <Content Include="admin\newSuperAdmin.aspx" />
     <Content Include="admin\newSupplier.aspx" />
     <Content Include="admin\orderList.aspx" />
     <Content Include="admin\productList.aspx" />
@@ -518,7 +520,6 @@
       <DependentUpon>product.mdf</DependentUpon>
     </Content>
     <Content Include="css\AboutUs.aspx" />
-    <Content Include="css\Accessories.aspx" />
     <Content Include="css\Account.aspx" />
     <Content Include="css\Blog.aspx" />
     <Content Include="css\cancelled.aspx" />
@@ -546,11 +547,9 @@
     <Content Include="css\css\tiny-slider.css" />
     <Content Include="css\Delivery.aspx" />
     <Content Include="css\css\UserProfile.css" />
-    <Content Include="css\facebooklogin.aspx" />
     <Content Include="css\FailurePage.aspx" />
     <Content Include="css\fonts\slick.svg" />
     <Content Include="css\forgotpw.aspx" />
-    <Content Include="css\Home.aspx" />
     <Content Include="css\Home2.aspx" />
     <Content Include="css\images\AI_image.png" />
     <Content Include="css\images\arrow.png" />
@@ -690,7 +689,6 @@
     <Content Include="css\Signup.aspx" />
     <Content Include="css\Smartphones.aspx" />
     <Content Include="css\SuccessPage.aspx" />
-    <Content Include="css\Tablets.aspx" />
     <Content Include="css\ThankYou.aspx" />
     <Content Include="css\UserProfile.aspx" />
     <Content Include="Global.asax" />
@@ -769,6 +767,13 @@
     </Compile>
     <Compile Include="admin\newShipper.aspx.designer.cs">
       <DependentUpon>newShipper.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\newSuperAdmin.aspx.cs">
+      <DependentUpon>newSuperAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\newSuperAdmin.aspx.designer.cs">
+      <DependentUpon>newSuperAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\newSupplier.aspx.cs">
       <DependentUpon>newSupplier.aspx</DependentUpon>
@@ -861,13 +866,6 @@
     <Compile Include="css\AboutUs.aspx.designer.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
     </Compile>
-    <Compile Include="css\Accessories.aspx.cs">
-      <DependentUpon>Accessories.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="css\Accessories.aspx.designer.cs">
-      <DependentUpon>Accessories.aspx</DependentUpon>
-    </Compile>
     <Compile Include="css\Account.aspx.cs">
       <DependentUpon>Account.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -938,13 +936,6 @@
     <Compile Include="css\Delivery.aspx.designer.cs">
       <DependentUpon>Delivery.aspx</DependentUpon>
     </Compile>
-    <Compile Include="css\facebooklogin.aspx.cs">
-      <DependentUpon>facebooklogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="css\facebooklogin.aspx.designer.cs">
-      <DependentUpon>facebooklogin.aspx</DependentUpon>
-    </Compile>
     <Compile Include="css\FailurePage.aspx.cs">
       <DependentUpon>FailurePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -958,13 +949,6 @@
     </Compile>
     <Compile Include="css\forgotpw.aspx.designer.cs">
       <DependentUpon>forgotpw.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="css\Home.aspx.cs">
-      <DependentUpon>Home.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="css\Home.aspx.designer.cs">
-      <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
     <Compile Include="css\Home2.aspx.cs">
       <DependentUpon>Home2.aspx</DependentUpon>
@@ -1036,13 +1020,6 @@
     <Compile Include="css\SuccessPage.aspx.designer.cs">
       <DependentUpon>SuccessPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="css\Tablets.aspx.cs">
-      <DependentUpon>Tablets.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="css\Tablets.aspx.designer.cs">
-      <DependentUpon>Tablets.aspx</DependentUpon>
-    </Compile>
     <Compile Include="css\ThankYou.aspx.cs">
       <DependentUpon>ThankYou.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1070,6 +1047,12 @@
     <Compile Include="Models\AdminUser.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartItem.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CheckOut.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Inventory.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
@@ -1085,16 +1068,25 @@
     <Compile Include="Models\Refund.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Review.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Shipper.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SuperAminUser.cs">
+    <Compile Include="Models\ShoppingCart.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SuperAdminUser.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Supplier.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Support.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Transaction.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserModel.Context.cs">
@@ -1121,6 +1113,7 @@
       <DependentUpon>Home.Master</DependentUpon>
     </Compile>
     <Compile Include="Security.cs" />
+    <Compile Include="SimpleImage.cs" />
     <Compile Include="startup.cs" />
   </ItemGroup>
   <ItemGroup>

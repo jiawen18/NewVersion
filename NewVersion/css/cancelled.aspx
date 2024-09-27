@@ -1,6 +1,25 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="cancelled.aspx.cs" Inherits="NewVersion.css.cancelled" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-                <div class="hero">
+               <style>
+.no-underline {
+    text-decoration: none; 
+    color: inherit; 
+}
+.no-underline:hover {
+    text-decoration: none; 
+}
+
+h2 {
+z-index: 10; 
+position: relative;
+}
+
+.card-details {
+    z-index: 1;
+}
+</style>
+    
+    <div class="hero">
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-lg-5">
@@ -27,7 +46,9 @@
 
          <!-- main content -->
          <main class="col-md-10 content">
-             <h2 style="transform: translate(100px, 60px);">Cancelled <img src="images/cancel-order.png" /></h2>
+             <h2 style="transform: translate(100px, 60px);">
+                 <asp:HyperLink ID="hplBackHome1" runat="server" CssClass="no-underline" NavigateUrl="UserProfile.aspx">< </asp:HyperLink>
+                 Cancelled <img src="images/cancel-order.png" /></h2>
     <%-- Content Section --%>
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">

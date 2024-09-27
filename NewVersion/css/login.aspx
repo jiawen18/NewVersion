@@ -22,7 +22,7 @@
             <asp:Label ID="lbl_password" runat="server" Text="Password" class="form-label"></asp:Label>
             <asp:TextBox ID="txt_password" runat="server" class="form-control form-control-lg" type="password" ></asp:TextBox> 
             <asp:RequiredFieldValidator ID="rq_password" runat="server" ControlToValidate="txt_password" Display="Dynamic" ErrorMessage="*Please Enter Password" ForeColor="Red"></asp:RequiredFieldValidator>
-            <asp:CustomValidator ID="cvNotMatched" runat="server" Display="Dynamic" ErrorMessage="Password and Email not matched"></asp:CustomValidator>
+            <asp:CustomValidator ID="cvNotMatched" runat="server" Display="Dynamic" ErrorMessage="*Password and Email not matched" ForeColor="Red"></asp:CustomValidator>
           </div>
           </div>
            
@@ -52,9 +52,6 @@
             <i class="fab fa-google me-2"></i>Continue with Google
           </asp:LinkButton>
     
-          <asp:LinkButton ID="login_facebook" runat="server" CausesValidation="false" class="btn btn-primary btn-lg btn-block" style="background-color: #5D5D5D; border:2px solid #5D5D5D; border-radius:50px" OnClick="login_facebook_Click">        
-            <i class="fab fa-facebook me-2"></i>Continue with Facebook
-          </asp:LinkButton>
           </div>
       </div>
     </div>

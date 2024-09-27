@@ -1,6 +1,25 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="completed.aspx.cs" Inherits="NewVersion.css.completed" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    <style>
+.no-underline {
+    text-decoration: none; 
+    color: inherit; 
+}
+.no-underline:hover {
+    text-decoration: none; 
+}
+
+h2 {
+z-index: 10; 
+position: relative;
+}
+
+.card-details {
+    z-index: 1;
+}
+</style>
+
             <div class="hero">
         <div class="container">
             <div class="row justify-content-between">
@@ -38,7 +57,9 @@
 
          <!-- main content -->
          <main class="col-md-10 content">
-             <h2 style="transform: translate(100px, 60px);">Completed <img src="images/package.png" /></h2>
+             <h2 style="transform: translate(100px, 60px);">
+                 <asp:HyperLink ID="hplBackHome1" runat="server" CssClass="no-underline" NavigateUrl="UserProfile.aspx">< </asp:HyperLink>
+                 Completed <img src="images/package.png" /></h2>
     <%-- Content Section --%>
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
