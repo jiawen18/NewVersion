@@ -79,12 +79,21 @@ namespace NewVersion.css
                     {
                         if (reader.Read())
                         {
-                            profilePictureUrl = "/admin/assets/img/" + reader["ProfilePicture"].ToString(); // Append the profile picture filename
+                            string profilePictureFilename = reader["ProfilePicture"].ToString();
+                            if (!string.IsNullOrEmpty(profilePictureFilename))
+                            {
+                                profilePictureUrl = "/admin/assets/img/" + profilePictureFilename; // Append the profile picture filename }
+
+                            }
+                            else
+                            {
+                                profilePictureUrl = "/admin/assets/img/default.jpg"; // Default image path
+                            }
                         }
                     }
                 }
+                return profilePictureUrl; // Return the URL
             }
-            return profilePictureUrl; // Return the URL
         }
     }
 }
