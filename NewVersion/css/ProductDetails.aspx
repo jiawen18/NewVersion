@@ -7,7 +7,7 @@
     ConnectionString="<%$ ConnectionStrings:productConnectionString %>"
     SelectCommand="SELECT r.ReviewID, r.ReviewDate, r.ReviewRating, r.ReviewImage, r.ReviewDescription, p.ProductName, p.Price, p.ProductImageURL 
                    FROM Review r
-                   INNER JOIN Product p ON r.ProductID = p.ProductID WHERE p.ProductID = @@ProductID">
+                   INNER JOIN Product p ON r.ProductID = p.ProductID WHERE p.ProductID = @ProductID">
 </asp:SqlDataSource>
 
     <style>
@@ -39,6 +39,8 @@
 
     </style>
 
+
+
     <!-- Start Hero Section -->
 <div class="hero">
 	<div class="container">
@@ -59,18 +61,22 @@
 
 
 
+
     <div class="product-detail">
         <asp:HyperLink ID="hplBackHome1" runat="server" CssClass="no-underline" style="transform: translate(100px, 60px);" NavigateUrl="Smartphones.aspx">< </asp:HyperLink>
         <div class="container">
             <div class="row">
+
+<div class="product-detail">
+    <div class="container">
+        <div class="row" style="display: flex; flex-wrap: wrap; gap: 20px;"> 
+
             <!-- Product Image Carousel -->
-            <div class="col-lg-5">
-        <div class="product-image-carousel">
-            <div>
-                <asp:Image ID="ProductImg1" runat="server" /></div>
-            <div><asp:Image ID="ProductImg2" runat="server" /></div>
-            <div><asp:Image ID="ProductImg3" runat="server" /></div>
-        </div>
+            <div class="col-lg-5" style="flex: 1; min-width: 300px;"> 
+                <div class="product-image-carousel" style="display: flex; flex-direction: column; gap: 10px;"> 
+                    <div><asp:Image ID="ProductImg1" runat="server" style="width: 100%; height: auto;" /></div> 
+                    <div><asp:Image ID="ProductImg2" runat="server" style="width: 100%; height: auto;" /></div>
+                    <div><asp:Image ID="ProductImg3" runat="server" style="width: 100%; height: auto;" /></div>
                 </div>
             </div>
 
@@ -78,12 +84,12 @@
         <!-- Product Information -->
             <div class="col-lg-7">
         <div class="product-info">
-            <div class="product-desc">
-                <h1 class="product-name">
-                    <asp:Label ID="lblProductName" runat="server" ></asp:Label>
-                </h1>
-                <p class="product-description">Product description goes here. This section provides details about the product, its features, and benefits.</p>
-            </div>
+
+             <!-- Product Name -->
+                    <div class="product-name-container">
+                        <h3 class="heading-large">Product Name:</h3>
+                        <asp:Label ID="lblProductName" runat="server" CssClass="product-name-label"></asp:Label>
+                    </div>
 
         <!-- Storage Selection -->
         <div class="storage-container">
@@ -127,6 +133,7 @@
 
     </div>
             </div>
+    </div>
     </div>
 
 
@@ -264,9 +271,7 @@
 
 
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <!-- Scripts -->
