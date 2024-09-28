@@ -171,6 +171,7 @@ namespace NewVersion.css
                 return;
             }
 
+            int selectedQuantity = int.Parse(ddlQuantity.SelectedValue);
 
             List<CartItem> cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>(); // Get the cart items
 
@@ -180,8 +181,8 @@ namespace NewVersion.css
 
             if (existingItem != null)
             {
-                existingItem.Quantity++;
-                
+                existingItem.Quantity += selectedQuantity;
+
             }
             else
             {
@@ -190,7 +191,7 @@ namespace NewVersion.css
                     ProductID = productId,
                     ProductName = productName,
                     Price = price,
-                    Quantity = 1, 
+                    Quantity = selectedQuantity,
                     StorageOption = selectedStorage,
                     ColorOption = selectedColor,
                     ProductImage = productImage
