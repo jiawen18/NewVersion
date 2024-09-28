@@ -1,14 +1,17 @@
 ﻿using NewVersion.admin;
 using NewVersion.Models;
+using Razorpay.Api;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.EnterpriseServices;
 using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Util;
 
 namespace NewVersion.css
 {
@@ -19,11 +22,6 @@ namespace NewVersion.css
         {
             if (!IsPostBack)
             {
-                string paymentStatus = "Paid"; 
-                string deliveryStatus = "Completed";
-                string orderDetails = "Z-Flip 128GB | Blue";
-
-                
                 string orderID = Request.QueryString["orderId"];
                 lblOrderId.Text = orderID;
 
@@ -34,33 +32,18 @@ namespace NewVersion.css
                 lblInvoiceId.Text = invoiceId;
                 lblInvoiceDate.Text = date;
 
-                if (Session["CartID"] != null)
-                {
-                    int cartId = (int)Session["CartID"];
-                   
-
-                    
-                    List<int> productIds = GetProductIDsByCartId(cartId);
-                    if (productIds.Count == 0)
-                    {
-                        ;
-                    }
-                    else
-                    {
-                        
-                        InsertOrder(orderID, paymentStatus, deliveryStatus, orderDetails, productIds, transactionID, invoiceId, date);
-                    }
-                }
-                else
-                {
-                    
-                }
-
                 if (Session["Amount"] != null)
                 {
-                    decimal amount = (decimal)Session["Amount"]; 
+                    decimal amount = (decimal)Session["Amount"];
                     lblAmount.Text = "RM " + amount.ToString("F2");
+                    
                 }
+                
+                string totalPrice = lblAmount.Text;
+
+                string transactionStatus = "Success";
+
+                SaveTransactionDetails(transactionID, orderID, totalPrice, invoiceId, date, transactionStatus);
             }
         }
 
@@ -79,7 +62,7 @@ namespace NewVersion.css
             }
 
             // Get the current date in the specified format
-            string date = DateTime.Now.ToString("dd MMMM yyyy"); // Format: DD Month YYYY
+            string date = DateTime.Now.ToString("dd MMMM yyyy HH:mm:ss"); ; // Format: DD Month YYYY
 
             return (result.ToString(), date); // Return the generated random invoice ID and date
         }
@@ -89,103 +72,30 @@ namespace NewVersion.css
             Response.Redirect("Home2.aspx");
         }
 
-        private void InsertOrder(string orderID, string paymentStatus, string deliveryStatus, string orderDetails, List<int> productIds, string transactionID, string invoiceId, string date)
+        private void SaveTransactionDetails(string transactionID, string orderID, string totalPrice, string invoiceId, string date, string transactionStatus)
         {
-            using (SqlConnection con = new SqlConnection(cs))
+            string transactionQuery = "INSERT INTO Transaction (TransactionID, OrderID, OrderTotalPrice, InvoiceID, InvoiceDate, TransactionStatus) " +
+                                   "VALUES (@TransactionID, @OrderID, @OrderTotalPrice, @InvoiceID, @InvoiceDate, @TransactionStatus)";
+
+            using (SqlConnection conn = new SqlConnection(cs))
             {
-                con.Open();
-                using (SqlTransaction transaction = con.BeginTransaction())
+                conn.Open();
+
+                using (SqlCommand transactionCmd = new SqlCommand(transactionQuery, conn))
                 {
-                    try
-                    {
-                        
-                        string orderQuery = "INSERT INTO [Order] (OrderID, PaymentStatus, DeliveryStatus, OrderDetails) VALUES (@OrderID, @PaymentStatus, @DeliveryStatus, @OrderDetails)";
+                    transactionCmd.Parameters.AddWithValue("@TransactionID", transactionID);
+                    transactionCmd.Parameters.AddWithValue("@OrderID", orderID);
+                    transactionCmd.Parameters.AddWithValue("@TotalPrice", totalPrice);
+                    transactionCmd.Parameters.AddWithValue("@InvoiceID", invoiceId);
+                    transactionCmd.Parameters.AddWithValue("@InvoiceDate", date);
+                    transactionCmd.Parameters.AddWithValue("@TransactionStatus", transactionStatus);
 
-                        using (SqlCommand cmd = new SqlCommand(orderQuery, con, transaction))
-                        {
-                            cmd.Parameters.AddWithValue("@OrderID", orderID);
-                            cmd.Parameters.AddWithValue("@PaymentStatus", paymentStatus);
-                            cmd.Parameters.AddWithValue("@DeliveryStatus", deliveryStatus);
-                            cmd.Parameters.AddWithValue("@OrderDetails", orderDetails);
-                            cmd.ExecuteNonQuery();
-                        }
-
-                        
-                        if (productIds != null && productIds.Count > 0)
-                        {
-                           
-                            string transactionQuery = "INSERT INTO [Transaction] (ProductID, OrderID, TransactionID, InvoiceID, InvoiceDate) VALUES (@ProductID, @OrderID, @TransactionID, @InvoiceID, @InvoiceDate)";
-
-                            foreach (int productId in productIds)
-                            {
-                                if (productId > 0) 
-                                {
-                                    using (SqlCommand cmd = new SqlCommand(transactionQuery, con, transaction))
-                                    {
-                                        cmd.Parameters.AddWithValue("@ProductID", productId);
-                                        cmd.Parameters.AddWithValue("@OrderID", orderID);
-                                        cmd.Parameters.AddWithValue("@TransactionID", transactionID);
-                                        cmd.Parameters.AddWithValue("@InvoiceID", invoiceId);
-                                        cmd.Parameters.AddWithValue("@InvoiceDate", date);
-                                        cmd.ExecuteNonQuery();
-                                       
-                                    }
-                                }
-                                else
-                                {
-                                    
-                                   
-                                }
-                            }
-                        }
-                        else
-                        {
-                           
-                        }
-
-                        transaction.Commit();
-                        
-                    }
-                    catch (SqlException sqlEx)
-                    {
-                        transaction.Rollback();
-                        
-                    }
-                    catch (Exception ex)
-                    {
-                        transaction.Rollback();
-                        
-                    }
-                }
-
-            }
-         }
-
-
-        private List<int> GetProductIDsByCartId(int cartId)
-        {
-            List<int> productIds = new List<int>();
-
-            using (SqlConnection con = new SqlConnection(cs))
-            {
-                string query = "SELECT ProductID FROM CartItems WHERE CartID = @CartID";
-
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                {
-                    cmd.Parameters.AddWithValue("@CartID", cartId);
-                    con.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        int productId = Convert.ToInt32(reader["ProductID"]);
-                        productIds.Add(productId);
-                    }
+                    transactionCmd.ExecuteNonQuery();
                 }
             }
-
-            return productIds;
         }
+
+
     }
 
 

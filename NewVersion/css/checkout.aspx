@@ -210,6 +210,7 @@
                 "image": imageLogo,
                 "order_id": orderId, //This is a sample Order ID. Pass the id obtained in the response of Step 1
                 "handler": function (response) {
+                    UpdateOrderStatus(response.razorpay_order_id, "Shipping", "Success");
                     window.location.href = "SuccessPage.aspx?orderId=" + response.razorpay_order_id + "&TransactionId=" + response.razorpay_payment_id;
                     //alert(response.razorpay_payment_id);
                     //alert(response.razorpay_order_id);
@@ -224,6 +225,7 @@
             rzp1.open();
             rzp1.on('payment.failed', function (response) {
                 console.log(response.error);
+                UpdateOrderStatus(response.razorpay_order_id, "", "Failed");
                 window.location.href = "FailurePage.aspx";
             });
         }

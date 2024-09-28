@@ -7,13 +7,14 @@ using System.Web.UI.WebControls;
 using Razorpay.Api;
 using Newtonsoft.Json;
 using System.Data.SqlClient;
+using NewVersion.Models;
 
 
 namespace NewVersion.css
 {
     public partial class checkout : System.Web.UI.Page
     {
-        //String cs = Global.CS;
+        String cs = Global.CS;
 
         private const string _key = "rzp_test_7sBM0c2utoTQ59";
         private const string _secret = "OKDPvhfckfnU2BnhPs7dKERM";
@@ -280,6 +281,11 @@ namespace NewVersion.css
             string orderId = CreateOrder(currency, amountInSubunits, notes);
             string jsFunction = "OpenPaymentWindow('" + _key + "','" + currency + "','" + amountInSubunits + "','" + description + "', '" + imageLogo + "', '" + orderId + "','" + JsonConvert.SerializeObject(notes) + "');";
             ClientScript.RegisterStartupScript(this.GetType(), "OpenPaymentWindow", jsFunction, true);
+
+            List<CartItem> cartItems = Session["CartItems"] as List<CartItem>; 
+           
+            SaveOrderDetails(orderId, cartItems, Amount, DateTime.Now, "Shipping", "Success");
+
         }
 
         private decimal GetAmountFromLabel(string amountText)
@@ -322,6 +328,66 @@ namespace NewVersion.css
             catch (Exception ex)
             {
                 throw new Exception("Error when create Order: " + ex.Message);
+            }
+        }
+
+        private void SaveOrderDetails(string orderId, List<CartItem> cartItems, decimal totalPrice, DateTime orderDate, string deliveryStatus, string transactionStatus)
+        {
+            string orderQuery = "INSERT INTO Order (OrderID,TotalPrice,OrderDate,DeliveryStatus,TransactionStatus)" +
+                                "VALUES (@OrderID,@TotalPrice,@OrderDate,@DeliveryStatus,@TransactionStatus)";
+
+            string orderDetailsQuery = "INSERT INTO OrderDetails (OrderID, ProductID, ProductName, Price, Quantity, storage, Color, ProductImage) " +
+                               "VALUES (@OrderID, @ProductID, @ProductName, @Price, @Quantity, @storage, @Color, @ProductImage)";
+
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                conn.Open();
+
+                using (SqlCommand orderCmd = new SqlCommand(orderQuery, conn))
+                {
+                    orderCmd.Parameters.AddWithValue("@OrderID", orderId);
+                    orderCmd.Parameters.AddWithValue("@OrderTotalPrice", totalPrice);
+                    orderCmd.Parameters.AddWithValue("@OrderDate", orderDate);
+                    orderCmd.Parameters.AddWithValue("@DeliveryStatus", deliveryStatus);
+                    orderCmd.Parameters.AddWithValue("TransactionStatus", transactionStatus);
+
+                    orderCmd.ExecuteNonQuery();
+                }
+
+
+                foreach (CartItem item in cartItems)
+                {
+                    using (SqlCommand orderDetailsCmd = new SqlCommand(orderDetailsQuery, conn))
+                    {
+                        orderDetailsCmd.Parameters.AddWithValue("@OrderID", orderId);
+                        orderDetailsCmd.Parameters.AddWithValue("@ProductID", item.ProductID);
+                        orderDetailsCmd.Parameters.AddWithValue("@ProductName", item.ProductName);
+                        orderDetailsCmd.Parameters.AddWithValue("@Price", item.Price);
+                        orderDetailsCmd.Parameters.AddWithValue("@Quantity", item.Quantity);
+                        orderDetailsCmd.Parameters.AddWithValue("@storage", item.StorageOption);
+                        orderDetailsCmd.Parameters.AddWithValue("@Color", item.ColorOption);
+                        orderDetailsCmd.Parameters.AddWithValue("@ProductImage", item.ProductImage);
+
+                        orderDetailsCmd.ExecuteNonQuery(); 
+                    }
+                }
+            }
+        }
+
+        private void UpdateOrderStatus(string orderId, string deliveryStatus, string transactionStatus)
+        {
+            string updateQuery = "UPDATE Order SET DeliveryStatus = @DeliveryStatus, TransactionStatus = @TransactionStatus WHERE OrderID = @OrderID";
+
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(updateQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@DeliveryStatus", deliveryStatus);
+                    cmd.Parameters.AddWithValue("@TransactionStatus", transactionStatus);
+                    cmd.Parameters.AddWithValue("@OrderID", orderId);
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
 
