@@ -20,7 +20,7 @@ namespace NewVersion.css
 
             if (!IsPostBack)
             {
-                string orderID = Request.QueryString["orderId"];
+                string orderID ="";
 
                 string transactionID = Request.QueryString["TransactionId"];
 
@@ -39,37 +39,16 @@ namespace NewVersion.css
 
                 string transactionStatus = "Failed";
 
-                if (!string.IsNullOrEmpty(orderID)&&!string.IsNullOrEmpty(transactionID))
+                if (!string.IsNullOrEmpty(transactionID))
                 {
-                    // 确认订单是否存在
-                    if (CheckOrderExists(orderID))
-                    {
                         SaveTransactionDetails(transactionID, orderID, orderTotalPrice, invoiceId, date, transactionStatus);
-                    }
-                    else
-                    {
-                        // 记录日志或处理找不到订单的情况
-                        throw new Exception("Order does not exist.");
-                    }
+                   
                 }
 
             }
         }
 
-        private bool CheckOrderExists(string orderId)
-        {
-            using (SqlConnection con = new SqlConnection(cs))
-            {
-                con.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM [Order] WHERE OrderID = @OrderID", con))
-                {
-                    cmd.Parameters.AddWithValue("@OrderID", orderId);
-                    int count = (int)cmd.ExecuteScalar();
-                    return count > 0; 
-                }
-            }
-        }
-
+        
         protected void btnContinue_Click(object sender, EventArgs e)
         {
             Response.Redirect("Home2.aspx");

@@ -46,6 +46,12 @@
                                      </div>
                                  </div>
                                  <div class="col-md-6 pe-0">
+                                    <div class="form-group form-group-default">
+                                        <label>Delivery Fee</label>
+                                        <asp:TextBox ID="txtDeliveryFee" runat="server" CssClass="form-control" ReadOnly="true" />
+                                    </div>
+                                </div>
+                                 <div class="col-md-6 pe-0">
                                      <div class="form-group form-group-default">
                                          <label>Total Price</label>
                                          <asp:TextBox ID="txtTotalPrice" runat="server" CssClass="form-control" ReadOnly="true" />
@@ -91,6 +97,7 @@
                         <thead>
                             <tr>
                                 <th>Order ID</th>
+                                <th>Delivery Fee</th>
                                 <th>Total Price</th>
                                 <th>Transaction Status</th>
                                 <th>Delivery Status</th>
@@ -104,6 +111,7 @@
                                 <ItemTemplate>
                             <tr>
                                 <td><%# Eval("OrderID") %></td>
+                                <td><%# Eval("DeliveryFee") %></td>
                                 <td><%# Eval("TotalPrice") %></td>
                                 <td><%# Eval("TransactionStatus") %></td>
                                 <td><%# Eval("DeliveryStatus") %></td>
@@ -114,7 +122,7 @@
                                     CommandName="EditOrder"
                                     CommandArgument='<%# Eval("OrderID") %>'
                                     CssClass="btn btn-link btn-primary"
-                                    OnClientClick='<%# "populateModal(\"" + Eval("OrderID") + "\", \"" + Eval("TotalPrice") + "\", \"" + Eval("TransactionStatus") + "\", \"" + Eval("DeliveryStatus") + "\", \"" + Eval("OrderDate") + "\"); return false;" %>'
+                                    OnClientClick='<%# "populateModal(\"" + Eval("OrderID") + "\",\"" + Eval("DeliveryFee") + "\", \"" + Eval("TotalPrice") + "\", \"" + Eval("TransactionStatus") + "\", \"" + Eval("DeliveryStatus") + "\", \"" + Eval("OrderDate") + "\"); return false;" %>'
                                     Text="Edit" />
                                 <asp:Button
                                     ID="RemoveItemButton"
@@ -139,12 +147,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
-        function populateModal(orderID, transactionStatus, totalPrice, deliveryStatus, orderDate) {
+        function populateModal(orderID, deliveryFee,transactionStatus, totalPrice, deliveryStatus, orderDate) {
             
             document.getElementById('<%= txtOrderID.ClientID %>').value = orderID;
             document.getElementById('<%= txtTotalPrice.ClientID %>').value = totalPrice;
             document.getElementById('<%= txtTransactionStatus.ClientID %>').value = transactionStatus;
             document.getElementById('<%= txtOrderDate.ClientID %>').value = orderDate;
+            document.getElementById('<%= txtDeliveryFee.ClientID %>').value = deliveryFee;
+
 
             var ddlDeliveryStatus = document.getElementById('<%= ddlDeliveryStatus.ClientID %>');
             ddlDeliveryStatus.value = deliveryStatus;

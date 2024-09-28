@@ -8,6 +8,9 @@ using Razorpay.Api;
 using Newtonsoft.Json;
 using System.Data.SqlClient;
 using NewVersion.Models;
+using Microsoft.Owin.BuilderProperties;
+using System.Security.Policy;
+using System.Text;
 
 
 namespace NewVersion.css
@@ -168,6 +171,8 @@ namespace NewVersion.css
                 decimal deliveryFeeInitial = 5.90m;
                 lblDeliveryFee.Text = "RM " + deliveryFeeInitial.ToString("F2");
 
+                Session["DeliveryFee"] = lblDeliveryFee.Text;
+
                 lblAmount.Text = "RM " + (cartSubtotal + deliveryFeeInitial).ToString("F2");
                 
 
@@ -284,14 +289,10 @@ namespace NewVersion.css
                 throw new Exception("Order creation failed, orderId is null or empty.");
             }
 
-            Session["OrderID"] = orderId;
 
             string jsFunction = "OpenPaymentWindow('" + _key + "','" + currency + "','" + amountInSubunits + "','" + description + "', '" + imageLogo + "', '" + orderId + "','" + JsonConvert.SerializeObject(notes) + "');";
             ClientScript.RegisterStartupScript(this.GetType(), "OpenPaymentWindow", jsFunction, true);
 
-            List<CartItem> cartItems = Session["CartItems"] as List<CartItem>; 
-           
-            SaveOrderDetails(orderId, cartItems, Amount, DateTime.Now, "Shipping", "Paid");
 
         }
 
@@ -340,10 +341,11 @@ namespace NewVersion.css
 
         private void SaveOrderDetails(string orderId, List<CartItem> cartItems, decimal totalPrice, DateTime orderDate, string deliveryStatus, string transactionStatus)
         {
-            string userDetails = $"{Session["FirstName"]} {Session["LastName"]}, Phone: {Session["Phone"]}, Address: {Session["Address"]}";
+            string userDetails = GetUserDetailsFromPlaceholder(PlaceHolder1);
+            string deliveryFee = $"{ Session["DeliveryFee"] }";
 
-            string orderQuery = "INSERT INTO [Order] (OrderID,TotalPrice,OrderDate,DeliveryStatus,TransactionStatus,UserDetails)" +
-                                "VALUES (@OrderID,@TotalPrice,@OrderDate,@DeliveryStatus,@TransactionStatus,@UserDetails)";
+            string orderQuery = "INSERT INTO [Order] (OrderID,TotalPrice,OrderDate,DeliveryStatus,TransactionStatus,UserDetails,DeliveryFee)" +
+                                "VALUES (@OrderID,@TotalPrice,@OrderDate,@DeliveryStatus,@TransactionStatus,@UserDetails,@DeliveryFee)";
 
             string orderDetailsQuery = "INSERT INTO [OrderDetails] (OrderID, ProductID, ProductName, Price, Quantity, storage, Color, ProductImage) " +
                                "VALUES (@OrderID, @ProductID, @ProductName, @Price, @Quantity, @storage, @Color, @ProductImage)";
@@ -351,37 +353,69 @@ namespace NewVersion.css
             using (SqlConnection conn = new SqlConnection(cs))
             {
                 conn.Open();
-
-                using (SqlCommand orderCmd = new SqlCommand(orderQuery, conn))
+                using (SqlTransaction transaction = conn.BeginTransaction())
                 {
-                    orderCmd.Parameters.AddWithValue("@OrderID", orderId);
-                    orderCmd.Parameters.AddWithValue("@TotalPrice", totalPrice);
-                    orderCmd.Parameters.AddWithValue("@OrderDate", orderDate);
-                    orderCmd.Parameters.AddWithValue("@DeliveryStatus", deliveryStatus);
-                    orderCmd.Parameters.AddWithValue("@TransactionStatus", transactionStatus);
-                    orderCmd.Parameters.AddWithValue("@UserDetails", userDetails);
-
-                    orderCmd.ExecuteNonQuery();
-                }
-
-
-                foreach (CartItem item in cartItems)
-                {
-                    using (SqlCommand orderDetailsCmd = new SqlCommand(orderDetailsQuery, conn))
+                    try
                     {
-                        orderDetailsCmd.Parameters.AddWithValue("@OrderID", orderId);
-                        orderDetailsCmd.Parameters.AddWithValue("@ProductID", item.ProductID);
-                        orderDetailsCmd.Parameters.AddWithValue("@ProductName", item.ProductName);
-                        orderDetailsCmd.Parameters.AddWithValue("@Price", item.Price);
-                        orderDetailsCmd.Parameters.AddWithValue("@Quantity", item.Quantity);
-                        orderDetailsCmd.Parameters.AddWithValue("@storage", item.StorageOption);
-                        orderDetailsCmd.Parameters.AddWithValue("@Color", item.ColorOption);
-                        orderDetailsCmd.Parameters.AddWithValue("@ProductImage", item.ProductImage);
 
-                        orderDetailsCmd.ExecuteNonQuery(); 
+                        using (SqlCommand orderCmd = new SqlCommand(orderQuery, conn))
+                        {
+                            orderCmd.Parameters.AddWithValue("@OrderID", orderId);
+                            orderCmd.Parameters.AddWithValue("@TotalPrice", totalPrice);
+                            orderCmd.Parameters.AddWithValue("@OrderDate", orderDate);
+                            orderCmd.Parameters.AddWithValue("@DeliveryStatus", deliveryStatus);
+                            orderCmd.Parameters.AddWithValue("@TransactionStatus", transactionStatus);
+                            orderCmd.Parameters.AddWithValue("@UserDetails", userDetails);
+                            orderCmd.Parameters.AddWithValue("@DeliveryFee", deliveryFee);
+
+                            orderCmd.ExecuteNonQuery();
+                        }
+
+
+                        foreach (CartItem item in cartItems)
+                        {
+                            using (SqlCommand orderDetailsCmd = new SqlCommand(orderDetailsQuery, conn))
+                            {
+                                orderDetailsCmd.Parameters.AddWithValue("@OrderID", orderId);
+                                orderDetailsCmd.Parameters.AddWithValue("@ProductID", item.ProductID);
+                                orderDetailsCmd.Parameters.AddWithValue("@ProductName", item.ProductName);
+                                orderDetailsCmd.Parameters.AddWithValue("@Price", item.Price);
+                                orderDetailsCmd.Parameters.AddWithValue("@Quantity", item.Quantity);
+                                orderDetailsCmd.Parameters.AddWithValue("@storage", item.StorageOption);
+                                orderDetailsCmd.Parameters.AddWithValue("@Color", item.ColorOption);
+                                orderDetailsCmd.Parameters.AddWithValue("@ProductImage", item.ProductImage);
+
+                                orderDetailsCmd.ExecuteNonQuery();
+                            }
+                        }
+                        transaction.Commit(); // Commit the transaction if all commands succeed
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback(); // Rollback if any command fails
+                        throw new Exception("Error saving order details: " + ex.Message);
                     }
                 }
             }
+        }
+
+        private string GetUserDetailsFromPlaceholder(PlaceHolder placeholder)
+        {
+            StringBuilder userDetailsBuilder = new StringBuilder();
+
+            foreach (Control control in placeholder.Controls)
+            {
+                if (control is Label label)
+                {
+                    userDetailsBuilder.Append(label.Text + "\n"); // 使用换行符作为分隔
+                }
+                else if (control is LiteralControl literalControl)
+                {
+                    userDetailsBuilder.Append(literalControl.Text); // 处理其他类型的控件（如 LiteralControl）
+                }
+            }
+
+            return userDetailsBuilder.ToString().Trim(); // 返回构建好的字符串
         }
 
         private void UpdateOrderStatus(string orderId, string deliveryStatus, string transactionStatus)

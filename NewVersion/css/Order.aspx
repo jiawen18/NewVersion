@@ -57,52 +57,56 @@
         <div class="row d-flex justify-content-center align-items-center h-100" >
             <div class="col-lg-10 col-xl-8">
                 
+                <asp:Repeater ID="rptOrders" runat="server">
+                    <HeaderTemplate>
                         <div class="card" style="border-radius: 10px;">
                             <div class="card-header px-4 py-5">
-                                <h5 class="text-muted mb-0">Hamsung</h5>
+                                <h5 class="text-muted mb-0">Hansumg.</h5>
                             </div>
-
+                     </HeaderTemplate>
+                    <ItemTemplate>
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center mb-4">
                                     <p class="lead fw-normal mb-0" style="color: #a8729a;">Order</p>
-                                    <p class="small text-muted mb-0">Order ID : order_P1feldPpEXpb3E</p>
+                                    <p > <asp:Label ID="lblInvoiceNumber" runat="server" Text='<%# "Order ID: " + Eval("OrderID") %>' CssClass="small text-muted mb-0"></asp:Label></p>
                                 </div>
 
                                 <div class="border">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-2">
-                                                <img src="images/GalaxyA.png" style="max-width: 80px; max-height: 175px;" />
+                                                <img src='<%# Eval("ProductImage") %>' style="max-width: 80px; max-height: 175px;" />
 
                                             </div>
                                             <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                <p class="text-muted mb-0">GalaxyA</p>
+                                                <p> <asp:Label ID="lblProductName" runat="server" Text='<%# Eval("ProductName") %>' CssClass="text-muted mb-0"></asp:Label></p>
                                             </div>
                                             <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                <p class="text-muted mb-0">Color：Mix</p>
+                                                <p><asp:Label ID="lblColor" runat="server" Text='<%# "Color: " + Eval("Color") %>' CssClass="text-muted mb-0"></asp:Label></p>
                                             </div>
                                             <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                <p class="text-muted mb-0">Capacity: 128GB</p>
+                                                <p> <asp:Label ID="lblCapacity" runat="server" Text='<%# "Capacity:" + Eval("storage") %>' CssClass="text-muted mb-0"></asp:Label></p>
                                             </div>
                                             <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                <p class="text-muted mb-0">Qty: 1</p>
+                                                <p> <asp:Label ID="lblQuantity" runat="server" Text='<%# "Qty: " + Eval("Quantity") %>' CssClass="text-muted mb-0"></asp:Label></p>
                                             </div>
                                             <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                <p class="text-muted mb-0">RM 1999.99</p>
+                                                <p> <asp:Label ID="lblPrice" runat="server" Text='<%# "RM " + Eval("Price") %>' CssClass="text-muted mb-0"></asp:Label></p>
                                             </div>
                                         </div>
                                         <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
                                         <div class="row d-flex align-items-center">
 
                                             <div class="trackAndReview">
-                                                <asp:Button class="text-muted mb-0 small" ID="btnCancel" runat="server" Text="Cancel" CommandArgument='order_P1mfCSs9692kKx' OnClick="btnCancel_Click" />
+                                                <asp:Button class="text-muted mb-0 small" ID="btnCancel" runat="server" Text="Cancel" CommandArgument='<%# Eval("OrderID") %>' OnClick="btnCancel_Click" />
                                                 &nbsp&nbsp&nbsp&nbsp
                                                 <asp:Button class="text-muted mb-0 small" ID="btnTrack" runat="server" Text="Track Order"  OnClick="btnTrack_Click" />
                                             </div>
                                         </div>
                                     </div>
+                                  </ItemTemplate>
 
-
+                                  <FooterTemplate>
                                     <!-- Collapsible section -->
                                     <div class="card-details">
                                         <div class="d-flex justify-content-between pt-2">
@@ -112,32 +116,38 @@
                                         </div>
 
                                         <div class="d-flex justify-content-between pt-2">
-                                            <p class="text-muted mb-0" style="position: relative; left: 30px;">Invoice Number : 77777777</p>
-                                            <p class="text-muted mb-0" style="position: relative; right: 30px;"><span class="fw-bold me-4">Total</span> RM 1999.99</p>
+                                            <p>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# " Invoice Number : " + Eval("InvoiceID") %>' CssClass="text-muted mb-0" style="position: relative; left: 30px;"></asp:Label>
+                                            </p>
+                                            <p >
+                                            <asp:Label ID="lblPrice" runat="server" CssClass="text-muted mb-0" style="position: relative; right: 30px;"><span class="fw-bold me-4">Total</span>'<%# " RM " + Eval("TotalPrice") %>'</asp:Label>
+                                        </p>
                                         </div>
 
                                         <div class="d-flex justify-content-between">
-                                            <p class="text-muted mb-0" style="position: relative; left: 30px;">Invoice Date : 26 Sep 2024</p>
-                                            <p class="text-muted mb-0" style="position: relative; right: 30px;"><span class="fw-bold me-4">Delivery Charges</span> RM 5.90</p>
+                                            <p>
+                                            <asp:Label ID="lblInvoiceDate" runat="server" Text='<%# "Invoice Date: " + Convert.ToDateTime(Eval("InvoiceDate")).ToString("MM dd yyyy") %>' CssClass="text-muted mb-0" style="position: relative; left: 30px;"></asp:Label>
+                                            </p>
+                                            <p>
+                                            <asp:Label ID="lblDeliveryFee" runat="server" CssClass="text-muted mb-0" style="position: relative; right: 30px;"><span class="fw-bold me-4">Delivery Charges</span>'<%# " RM " + Eval("DeliveryFee") %>'</asp:Label>
+                                        </p>
                                         </div>
                                         <br />
 
 
                                         <div class="card-footer border-0 px-4 py-5"
                                             style="background-color: #a8729a; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-                                            <h5 class="d-flex align-items-center justify-content-end text-white text-uppercase mb-0">Total paid: <span class="h2 mb-0 ms-2">RM 2005.99</span></h5>
+                                                <asp:Label ID="lblTotalPrice" runat="server" CssClass="d-flex align-items-center justify-content-end text-white text-uppercase mb-0"><span class="h2 mb-0 ms-2">'<%# "Total Paid: RM " + (Convert.ToDecimal(Eval("TotalPrice")) + Convert.ToDecimal(Eval("DeliveryFee"))).ToString("N2") %>'</span></asp:Label>
+                                            </h5>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                    
-                        </div>
 
-                 
-            </div>
-        </div>
-    
-</main>
+                                  </FooterTemplate>
+                                 </asp:Repeater>
+                                </div>
+                                      
+                            </div>
+    </main>
         </div>
     </div>
 

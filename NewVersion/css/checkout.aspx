@@ -210,8 +210,11 @@
                 "image": imageLogo,
                 "order_id": orderId, //This is a sample Order ID. Pass the id obtained in the response of Step 1
                 "handler": function (response) {
-                    window.location.href = "SuccessPage.aspx?orderId=" + response.razorpay_order_id + "&TransactionId=" + response.razorpay_payment_id;
-                    UpdateOrderStatus(response.razorpay_order_id, "Shipping", "Paid");
+                    var orderId = response.razorpay_order_id;
+                    var transactionId = response.razorpay_payment_id; 
+                    window.location.href = "SuccessPage.aspx?orderId=" + orderId + "&TransactionId=" + transactionId;
+                    SaveOrderDetails(orderId, cartItems, Amount, DateTime.Now, "Shipping", "Paid");
+                    UpdateOrderStatus(orderId, "Shipping", "Paid");
                     //alert(response.razorpay_payment_id);
                     //alert(response.razorpay_order_id);
                     //alert(response.razorpay_signature)
@@ -224,11 +227,9 @@
             var rzp1 = new Razorpay(options);
             rzp1.open();
             rzp1.on('payment.failed', function (response) {
-                console.log(response.error);
-                var orderId = sessionStorage.getItem("OrderID") || response.razorpay_order_id; 
                 var transactionId = "Fail_" + new Date().getTime();
-                window.location.href = "FailurePage.aspx?orderId=" + orderId + "&TransactionId=" + transactionId;
-                UpdateOrderStatus(orderId, "", "Failed");
+                window.location.href = "FailurePage.aspx?TransactionId=" + transactionId;
+                UpdateOrderStatus("", "", "Failed");
             });
         }
     </script>
