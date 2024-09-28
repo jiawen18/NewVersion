@@ -172,8 +172,8 @@ namespace NewVersion.css
             }
 
 
-            List<CartItem> cart = Cart; // Get the cart items
-            
+            List<CartItem> cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>(); // Get the cart items
+
             var existingItem = cart.FirstOrDefault(item => item.ProductID == productId &&
                                                    item.StorageOption == selectedStorage &&
                                                    item.ColorOption == selectedColor);

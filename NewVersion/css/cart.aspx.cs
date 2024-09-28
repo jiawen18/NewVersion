@@ -26,9 +26,16 @@ namespace NewVersion.css
         {
             if (!IsPostBack)
             {
+                if (Session["Cart"] == null)
+                {
+                    Session["Cart"] = new List<CartItem>(); // Initialize the cart
+                }
+
                 LoadCartItems();
                 CalculateTotals();
             }
+
+            RegisterPostBackControls();
 
             /*if (Session["MemberID"] != null)
             {
@@ -44,6 +51,43 @@ namespace NewVersion.css
 
         }
 
+        private void RegisterPostBackControls()
+        {
+            foreach (RepeaterItem item in rptProduct.Items)
+            {
+                Button btnDecrease = (Button)item.FindControl("btnDecrease");
+                Button btnIncrease = (Button)item.FindControl("btnIncrease");
+
+                // Get the cart item from the data item
+                CartItem cartItem = (CartItem)item.DataItem; 
+
+                // Check if cartItem is not null
+                if (cartItem != null)
+                {
+                    // Assuming ProductID is a property of CartItem
+                    int productId = cartItem.ProductID;
+                    string storageOption = cartItem.StorageOption;
+                    string colorOption = cartItem.ColorOption;
+
+                    // Set CommandArgument with product details
+                    string commandArgument = $"{productId.ToString()}|{storageOption.ToString()}|{colorOption.ToString()}";
+
+                    if (btnDecrease != null)
+                    {
+                        btnDecrease.CommandArgument = commandArgument; // Set CommandArgument
+                        ClientScript.RegisterForEventValidation(btnDecrease.UniqueID, commandArgument);
+                    }
+
+                    if (btnIncrease != null)
+                    {
+                        btnIncrease.CommandArgument = commandArgument;// Set CommandArgument
+                        ClientScript.RegisterForEventValidation(btnIncrease.UniqueID, commandArgument);
+                    }
+                }
+            }
+        }
+
+
         private void LoadCartItems()
         {
             List<CartItem> cart = Session["Cart"] as List<CartItem>;
@@ -54,58 +98,80 @@ namespace NewVersion.css
             }
             else
             {
-
+                rptProduct.DataSource = null;
+                rptProduct.DataBind();
             }
         }
+
+        
 
         protected void txtQuantity_TextChanged(object sender, EventArgs e)
         {
             TextBox txtQuantity = (TextBox)sender;
             RepeaterItem item = (RepeaterItem)txtQuantity.NamingContainer;
-            int productId = Convert.ToInt32(((Button)item.FindControl("btnRemove")).CommandArgument);
+
+            int productId = Convert.ToInt32(((Button)item.FindControl("btnDecrease")).CommandArgument.Split('|')[0]);
+            string storageOption = ((Button)item.FindControl("btnDecrease")).CommandArgument.Split('|')[1];
+            string colorOption = ((Button)item.FindControl("btnDecrease")).CommandArgument.Split('|')[2];
 
             List<CartItem> cart = Session["Cart"] as List<CartItem>;
-            var existingItem = cart.FirstOrDefault(i => i.ProductID == productId);
+
+            var existingItem = cart.FirstOrDefault(i => i.ProductID == productId && i.StorageOption == storageOption && i.ColorOption == colorOption);
 
             if (existingItem != null)
             {
-                existingItem.Quantity = Convert.ToInt32(txtQuantity.Text);
+                int quantity;
+                if (int.TryParse(txtQuantity.Text, out quantity))
+                {
+                    if (quantity <= 0)
+                    {
+                        
+                            cart.Remove(existingItem);
+                        
+                    }
+                    else
+                    {
+                        existingItem.Quantity = quantity;
+                    }
+                }
             }
 
             Session["Cart"] = cart;
+            LoadCartItems();
             CalculateTotals();
         }
 
         protected void btnDeleteSelected_Click(object sender, EventArgs e)
         {
-            List<CartItem> cart = Session["Cart"] as List<CartItem>;
+            List<CartItem> cart = Session["Cart"] as List<CartItem>; // 假设你有一个方法获取购物车中的所有项目
 
-            if (cart != null)
+
+            for (int i = cart.Count - 1; i >= 0; i--)
             {
-                for (int i = cart.Count - 1; i >= 0; i--)
+                RepeaterItem item = rptProduct.Items[i];
+                CheckBox chkSelect = (CheckBox)item.FindControl("chkSelect");
+
+                if (chkSelect.Checked)
                 {
-                    RepeaterItem item = rptProduct.Items[i];
-                    CheckBox chkSelect = (CheckBox)item.FindControl("chkSelect");
-
-                    if (chkSelect.Checked)
-                    {
-                        // Confirm deletion if needed.
-                        cart.RemoveAt(i); // Remove the selected item.
-                    }
+                    cart.RemoveAt(i);
                 }
-
-                Session["Cart"] = cart;
-                LoadCartItems(); // Refresh the cart items display.
-                CalculateTotals(); // Update totals after deletion.
             }
+
+
+
+            LoadCartItems();
+            CalculateTotals(); // 更新购物车小计和总计
+
+            // 隐藏垃圾桶图标
+            ScriptManager.RegisterStartupScript(this, GetType(), "HideTrashIcon", "document.getElementById('trash-icon').style.display = 'none';", true);
         }
 
         private void CalculateTotals()
         {
             List<CartItem> cart = Session["Cart"] as List<CartItem>;
             decimal subtotal = cart?.Sum(item => item.Price * item.Quantity) ?? 0;
-            lblSubtotal.Text = subtotal.ToString("0.00");
-            lblTotal.Text = subtotal.ToString("0.00");
+            lblSubtotal.Text = subtotal.ToString("N2");
+            lblTotal.Text = subtotal.ToString("N2");
         }
 
         protected void btnSelectAll_Click(object sender, EventArgs e)
@@ -121,10 +187,16 @@ namespace NewVersion.css
         protected void btnIncrease_Click(object sender, EventArgs e)
         {
             Button btnIncrease = (Button)sender;
-            int productId = Convert.ToInt32(btnIncrease.CommandArgument); // Get the ProductID from CommandArgument
+            string[] args = btnIncrease.CommandArgument.Split('|');
+
+            if (args.Length != 3) return;
+
+            int productId = Convert.ToInt32(args[0]); // Get the ProductID from CommandArgument
+            string storageOption = args[1];
+            string colorOption = args[2];
 
             List<CartItem> cart = Session["Cart"] as List<CartItem>;
-            var existingItem = cart.FirstOrDefault(i => i.ProductID == productId);
+            var existingItem = cart.FirstOrDefault(i => i.ProductID == productId && i.StorageOption == storageOption && i.ColorOption == colorOption);
 
             if (existingItem != null)
             {
@@ -139,10 +211,16 @@ namespace NewVersion.css
         protected void btnDecrease_Click(object sender, EventArgs e)
         {
             Button btnDecrease = (Button)sender;
-            int productId = Convert.ToInt32(btnDecrease.CommandArgument); // Get the ProductID from CommandArgument
+            string[] args = btnDecrease.CommandArgument.Split('|');
+
+            if (args.Length != 3) return;
+
+            int productId = Convert.ToInt32(args[0]); // Get the ProductID from CommandArgument
+            string storageOption = args[1];
+            string colorOption = args[2];
 
             List<CartItem> cart = Session["Cart"] as List<CartItem>;
-            var existingItem = cart.FirstOrDefault(i => i.ProductID == productId);
+            var existingItem = cart.FirstOrDefault(i => i.ProductID == productId && i.StorageOption == storageOption && i.ColorOption == colorOption);
 
             if (existingItem != null)
             {
@@ -152,8 +230,7 @@ namespace NewVersion.css
                 }
                 else
                 {
-                    // Optionally handle removing the item if quantity is 1 and the user decrements
-                    cart.Remove(existingItem);
+                        cart.Remove(existingItem);
                 }
             }
 
@@ -161,6 +238,8 @@ namespace NewVersion.css
             LoadCartItems(); // Refresh the cart display
             CalculateTotals(); // Update totals
         }
+
+        
 
         protected void btnContinue_Click(object sender, EventArgs e)
         {

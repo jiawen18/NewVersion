@@ -14,8 +14,24 @@
             width: 40px;
         }
 
-        .toggle-table {
-            display: none; /* Initially hide */
+        
+        /* Optional styling for the table and scrolling effect */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        tbody {
+            display: block; /* 将 tbody 设为块元素 */
+            max-height: 400px; /* 设置最大高度 */
+            overflow-y: auto; /* 启用垂直滚动条 */
+            width: 100%;
+        }
+
+        tr {
+            display: table; /* 每行作为表格行显示 */
+            table-layout: fixed; /* 确保列宽度固定 */
+            width: 100%; /* 确保行宽为100% */
         }
     </style>
 
@@ -43,9 +59,9 @@
            <div class="col-md-12" method="post">
 
                <div class="site-blocks-table">
-                <div style="position: relative; margin-bottom: 10px;">
-                     <span id="trash-icon" style="display:none; cursor:pointer; position: absolute; right: 80px; top: 0px;" OnClick="btnDeleteSelected_Click">
-                        <img src="images/delete.png" alt="Delete" />
+                <div style="position: relative; margin-bottom: 50px;">
+                     <span id="trash-icon"  class="trash-icon" style="position: absolute; right: 20px; top: 0px; display: none;" onclick="deleteSelectedItems();">
+                         <img src="images/delete.png" alt="Delete" style="max-width :30px;max-height :30px;" />                 
                     </span>
 
                  </div>
@@ -62,12 +78,12 @@
                    </tr>
                  </thead>
 
-                 <tbody style="max-height:400px; overflow-y:auto;">  <!-- tbody can scroll -->
-                         <asp:Repeater ID="rptProduct" runat="server"  >
+                 <tbody style="display:block; max-height:400px; overflow-y:auto;">  <!-- tbody can scroll -->
+                         <asp:Repeater ID="rptProduct" runat="server" >
                              <ItemTemplate>
                                 <tr>
                                     <td class="select-item">
-                                        <asp:CheckBox ID="chkSelect" runat="server" OnClick="toggleTrashIcon();"/>
+                                        <asp:CheckBox ID="chkSelect" runat="server" OnClick="toggleTrashIcon();" AutoPostBack="false" />
                                     </td>
 
                                     <td class="productImg" id="productImg"><img src='<%# Eval("ProductImage") %>' alt='<%# Eval("ProductName") %>' style="max-width: 200px; max-height:175px;"/></td>
@@ -76,20 +92,20 @@
                                         <%# Eval("StorageOption") %><br />
                                         <%# Eval("ColorOption") %>
                                     </td>
-                                    <td class="productPrice" id="productPrice"><%# Eval("Price", "{0:F2}") %></td>
+                                    <td class="productPrice" id="productPrice"><%# Eval("Price", "{0:N2}") %></td>
                                     
                                     <td class="quantity-container">
                                          <div class="quantity-controls">
-                                             <asp:Button class="btn btn-outline-black decrease" ID="btnDecrease" runat="server" Text="-" CommandArgument='<%# Eval("ProductID") %>' OnClick="btnDecrease_Click"/>
+                                             <asp:Button class="btn btn-outline-black decrease" ID="btnDecrease" runat="server" Text="-" CommandArgument='<%# Eval("ProductID") + "|" + Eval("StorageOption") + "|" + Eval("ColorOption") %>'  OnClick="btnDecrease_Click"/>
         
                                              <asp:TextBox class="form-control text-center quantity-amount" ID="txtQuantity" runat="server" Text='<%# Eval("Quantity") %>' OnTextChanged="txtQuantity_TextChanged" AutoPostBack="true" style="max-width: 120px; max-height:30px;"></asp:TextBox>
         
-                                             <asp:Button class="btn btn-outline-black increase" ID="btnIncrease" runat="server" Text="+" CommandArgument='<%# Eval("ProductID") %>' OnClick="btnIncrease_Click"/>
+                                             <asp:Button class="btn btn-outline-black increase" ID="btnIncrease" runat="server" Text="+" CommandArgument='<%# Eval("ProductID") + "|" + Eval("StorageOption") + "|" + Eval("ColorOption") %>'  OnClick="btnIncrease_Click"/>
                                         </div>
                                     </td>
                                     
                                     <td>
-                                    <asp:Label ID="lblTotalPrice" runat="server"><%# "RM " + (Convert.ToDecimal(Eval("Price")) * Convert.ToDecimal(Eval("Quantity"))).ToString("N2") %></asp:Label>
+                                    <asp:Label ID="lblTotalPrice" runat="server"><%# (Convert.ToDecimal(Eval("Price")) * Convert.ToDecimal(Eval("Quantity"))).ToString("N2") %></asp:Label>
                                     </td>
                                     
 
@@ -155,16 +171,32 @@
         <script type="text/javascript">
         // Show or hide trash icon
             function toggleTrashIcon() {
-            var checkboxes = document.querySelectorAll('input[type="checkbox"][id$="_chkSelect"]');
-            var trashIcon = document.getElementById('trash-icon');
-            var isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
-            trashIcon.style.display = isAnyChecked ? 'inline' : 'none';
-        }
+                var checkboxes = document.querySelectorAll('input[id*="_chkSelect"]');
+                var trashIcon = document.getElementById('trash-icon');
+                var isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+                trashIcon.style.display = isAnyChecked ? 'inline' : 'none';
+            }
 
-        // Handle checkbox change
-        document.querySelectorAll('input[type="checkbox"][id$="_chkSelect"]').forEach(checkbox => {
-                checkbox.addEventListener('change', toggleTrashIcon);
-        });
-    </script>
+            // Function to select or deselect all checkboxes
+            function SelectAllCheckBoxes(selectAllCheckbox) {
+                var checkboxes = document.querySelectorAll('input[id*="_chkSelect"]');
+                checkboxes.forEach(function (checkbox) {
+                    checkbox.checked = selectAllCheckbox.checked;
+                });
+                toggleTrashIcon();
+            }
+
+            // Function to trigger delete operation for selected items
+            function deleteSelectedItems() {
+                var confirmed = confirm("Are you sure you want to delete the selected items?");
+                if (confirmed) {
+                    __doPostBack('<%= btnDeleteSelected.UniqueID %>', ''); // Trigger server-side event
+            }
+            }
+
+        </script>
+
+    <!-- Hidden button to handle server-side delete -->
+    <asp:Button ID="btnDeleteSelected" runat="server" Style="display:none;" OnClick="btnDeleteSelected_Click" />
 
 </asp:Content>
