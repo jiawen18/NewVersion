@@ -13,7 +13,7 @@ namespace NewVersion.css
 {
     public partial class checkout : System.Web.UI.Page
     {
-        String cs = Global.CS;
+        //String cs = Global.CS;
 
         private const string _key = "rzp_test_7sBM0c2utoTQ59";
         private const string _secret = "OKDPvhfckfnU2BnhPs7dKERM";
@@ -25,11 +25,11 @@ namespace NewVersion.css
             {
                 LoadSessionValues();
                 LoadCartItems();
-                //LoadCartItems();
+                
             }
         }
 
-        private int GetCurrentCartID()
+       /* private int GetCurrentCartID()
         {
             int cartId = -1;
 
@@ -60,7 +60,7 @@ namespace NewVersion.css
             }
 
             return cartId;
-        }
+        }*/
 
         private void LoadSessionValues()
         {
@@ -130,83 +130,57 @@ namespace NewVersion.css
 
         private void LoadCartItems()
         {
-            using (SqlConnection con = new SqlConnection(cs))
+            List<CartItem> cartItems = Session["CartItems"] as List<CartItem>;
+
+            if (cartItems != null && cartItems.Count > 0)
             {
-                int cartId = GetCurrentCartID();
-
-                string query = "SELECT * FROM CartItems WHERE CartID = @CartID";
-                SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@CartID", cartId);
-
-                con.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-
                 decimal cartSubtotal = 0m;
 
-                // Lists to store product details
-                List<string> productNames = new List<string>();
-                List<string> prices = new List<string>();
-                List<int> quantities = new List<int>();
-                List<string> storages = new List<string>();
-                List<string> colors = new List<string>();
-
-                while (reader.Read())
+                foreach (var item in cartItems)
                 {
                     TableRow row = new TableRow();
 
-                    // Assuming you have the following fields
-                    string productName = reader["ProductName"].ToString();
-                    string price = reader["Price"].ToString();
-                    int quantity = Convert.ToInt32(reader["Quantity"]);
-                    string storage = reader["ProductStorage"].ToString(); // Fetch storage
-                    string color = reader["ProductColor"].ToString();
-
-                    // Add product details to lists
-                    productNames.Add(productName);
-                    prices.Add(price);
-                    quantities.Add(quantity);
-                    storages.Add(storage); // Store storage details
-                    colors.Add(color);
-
                     TableCell cell1 = new TableCell();
-                    cell1.Controls.Add(new Label { Text = productName });
+                    cell1.Controls.Add(new Label { Text = item.ProductName });
                     cell1.Controls.Add(new Label { Text = "<strong class='mx-2'>x</strong>" });
-                    cell1.Controls.Add(new Literal { Text = quantity.ToString() });
+                    cell1.Controls.Add(new Literal { Text = item.Quantity.ToString() });
                     cell1.Controls.Add(new Literal { Text = "<br />" });
 
                     Label lblDetails = new Label();
-                    lblDetails.Text = "Storage: " + storage + "</br>Color: " + color;
-                    lblDetails.Attributes.Add("style", "color: #888;"); // Set lighter color
+                    lblDetails.Text = "Storage: " + item.StorageOption + "</br>Color: " + item.ColorOption;
+                    lblDetails.Attributes.Add("style", "color: #888;"); // 设置较浅的颜色
                     cell1.Controls.Add(lblDetails);
                     row.Cells.Add(cell1);
 
                     TableCell cell2 = new TableCell();
-                    cell2.Controls.Add(new Label { Text = "RM " + price});
+                    cell2.Controls.Add(new Label { Text = "RM " + (item.Price * item.Quantity).ToString("F2") });
                     row.Cells.Add(cell2);
-
 
                     phCartItems.Controls.Add(row);
 
-                    // Calculate subtotal
-                    cartSubtotal += Convert.ToDecimal(price) * quantity;
+                    // 计算小计
+                    cartSubtotal += item.Price * item.Quantity;
                 }
 
                 lblCartSubTotal.Text = "RM " + cartSubtotal.ToString("F2");
-                string subTotal = lblCartSubTotal.Text;
-
+                
                 decimal deliveryFeeInitial = 5.90m;
                 lblDeliveryFee.Text = "RM " + deliveryFeeInitial.ToString("F2");
-                string deliveryFee = lblDeliveryFee.Text;
 
                 lblAmount.Text = "RM " + (cartSubtotal + deliveryFeeInitial).ToString("F2");
-                string totalPrice = lblAmount.Text;
+                
 
-                // Store cart items including product names, prices, quantities, storages, and colors
-                StoreCartItems(cartId, subTotal, deliveryFee, totalPrice, productNames, prices, quantities, storages, colors);
+                }
+            else
+            {
+                // 处理购物车为空的情况
+                lblCartSubTotal.Text = "RM 0.00";
+                lblDeliveryFee.Text = "RM 0.00";
+                lblAmount.Text = "RM 0.00";
             }
         }
 
-        private void StoreCartItems(int cartId, string subTotal, string deliveryFee, string totalPrice, List<string> productNames, List<string> prices, List<int> quantities,List<string> storages,List<string> colors)
+       /* private void StoreCartItems(int cartId, string subTotal, string deliveryFee, string totalPrice, List<string> productNames, List<string> prices, List<int> quantities,List<string> storages,List<string> colors)
         {
             using (SqlConnection con = new SqlConnection(cs))
             {
@@ -235,8 +209,9 @@ namespace NewVersion.css
                     }
                 }
             }
-        }
-        private List<int> GetProductIDs(int cartId)
+        }*/
+
+       /* private List<int> GetProductIDs(int cartId)
         {
             List<int> productIds = new List<int>(); // List to store multiple ProductIDs
             string query = "SELECT ProductID FROM CartItems WHERE CartID = @CartID";
@@ -267,7 +242,7 @@ namespace NewVersion.css
             }
 
             return productIds; // Return the list of ProductIDs
-        }
+        }*/
 
 
 
@@ -292,13 +267,7 @@ namespace NewVersion.css
 
             Session["Amount"] = Amount; // store to session
 
-            // Store the CartID and ProductIDs to session
-            int cartId = GetCurrentCartID();
-            Session["CartID"] = cartId;
-
-            List<int> productIds = GetProductIDs(cartId); // Assuming GetProductIDs returns a list of ProductID based on CartID
-            Session["ProductIDs"] = productIds; // Store the list of ProductIDs in session
-
+            
             string description = "Razorpay Payment Gateway";
             string imageLogo = "";
 

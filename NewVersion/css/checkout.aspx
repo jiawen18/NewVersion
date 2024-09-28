@@ -155,13 +155,15 @@
     <div class="col-md-6">
 
         <div class="row mb-5">
-            <div class="col-md-12" style="transform: translate(70%,-55%)">
+            <div class="col-md-12" style="transform: translate(80%,-45%)">
                 <h2 class="h3 mb-3 text-black">Your Order</h2>
                 <div class="p-3 p-lg-5 border bg-white">
                     <table class="table site-block-order-table mb-5">
                         <thead>
+                            <tr>
                             <th>Product</th>
                             <th>Total</th>
+                            </tr>
                         </thead>
                         <tbody>
                             <asp:PlaceHolder ID="phCartItems" runat="server">

@@ -248,7 +248,17 @@ namespace NewVersion.css
 
         protected void btnCheckOut_Click(object sender, EventArgs e)
         {
+            List<CartItem> cart = Session["Cart"] as List<CartItem>;
 
+            if (cart != null && cart.Count > 0)
+            {
+                // 将商品详情存储到 Session 中
+                Session["CartItems"] = cart; // 保存购物车商品
+                Session["TotalPrice"] = cart.Sum(item => item.Price * item.Quantity); // 计算并保存总价格
+
+                // 重定向到结账页面
+                Response.Redirect("checkout.aspx");
+            }
         }
     }
 }
