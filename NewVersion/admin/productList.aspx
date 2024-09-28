@@ -7,7 +7,7 @@
     ConnectionString="<%$ ConnectionStrings:productConnectionString %>"
     ProviderName="System.Data.SqlClient"
     SelectCommand="SELECT ProductID, ProductName, ProductImageURL, Price, Quantity, 
-    ProductStorage, ProductColor, IsVisible FROM Product">
+    ProductStorage, ProductColor FROM Product">
 </asp:SqlDataSource>
 
 <div class="col-md-12">
@@ -73,12 +73,6 @@
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Please enter a quantity." Display="Dynamic" CssClass="text-danger" ControlToValidate="txtQuantity" />
                                             </div>
                                         </div>
-                                        <div class="col-sm-12">
-                                            <div class="form-group form-group-default">
-                                                <label for="chkIsVisible">Is Visible:</label>
-                                                <asp:CheckBox ID="chkIsVisible" runat="server" />
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -122,10 +116,6 @@
                             <div class="form-group form-group-default">
                                 <label for="txtQuantity1">Quantity:</label>
                                 <asp:TextBox ID="txtQuantity1" runat="server" class="form-control" placeholder="Enter quantity" />
-                            </div>
-                            <div class="form-group form-group-default">
-                                <label for="chkIsVisible1">Is Visible:</label>
-                                <asp:CheckBox ID="chkIsVisible1" runat="server" />
                             </div>
                         </div>
                         <div class="modal-footer border-0">

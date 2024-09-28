@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 using System.IO;
 using System.Data.SqlClient;
 using System.Configuration;
+using NewVersion;
 
 namespace NewVersion.css
 {
@@ -92,6 +93,29 @@ namespace NewVersion.css
 
         }
 
+        private string SaveMediaFiles()
+        {
+            string photoPath = MapPath("~/Photos/");
+            string filename = Guid.NewGuid().ToString("N") + ".jpg"; // Unique filename for the photo
+            string imagePath = "";
+
+            // Check if files are uploaded
+            if (FileUploadMedia.HasFile)
+            {
+                // Process each uploaded file
+                foreach (HttpPostedFile file in FileUploadMedia.PostedFiles)
+                {
+                    // Save image processing logic here
+                    SimpleImage img = new SimpleImage(file.InputStream);
+                    img.Square();
+                    img.Resize(150);
+                    img.SaveAs(photoPath + filename);
+                    imagePath = "~/Photos/" + filename; // Set the image path to save in the database
+                }
+            }
+
+            return imagePath;
+        }
 
         private void LoadProductDetails(int productId)
         {

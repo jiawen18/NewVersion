@@ -36,12 +36,11 @@ namespace NewVersion.admin
             string productImageURL = txtProductImageURL.Text;
             decimal price = decimal.Parse(txtPrice.Text);
             int quantity = int.Parse(txtQuantity.Text);
-            bool isVisible = chkIsVisible.Checked;
 
             string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
 
-            string query = @"INSERT INTO Product (ProductImageURL, ProductName, Price, Quantity, IsVisible) 
-                     VALUES (@ProductImageURL, @ProductName, @Price, @Quantity, @IsVisible)";
+            string query = @"INSERT INTO Product (ProductImageURL, ProductName, Price, Quantity) 
+                     VALUES (@ProductImageURL, @ProductName, @Price, @Quantity)";
 
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString))
             {
@@ -52,7 +51,6 @@ namespace NewVersion.admin
                     cmd.Parameters.AddWithValue("@ProductName", productName);
                     cmd.Parameters.AddWithValue("@Price", price);
                     cmd.Parameters.AddWithValue("@Quantity", quantity);
-                    cmd.Parameters.AddWithValue("@IsVisible", isVisible);
 
                     con.Open(); 
                     int rowsAffected = cmd.ExecuteNonQuery();
@@ -82,7 +80,7 @@ namespace NewVersion.admin
             string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
 
             // SQL query to fetch product data
-            string query = "SELECT ProductID, ProductName, ProductImageURL, Price, Quantity FROM Product WHERE IsVisible = 1";
+            string query = "SELECT ProductID, ProductName, ProductImageURL, Price, Quantity FROM Product";
 
             // Connect to the database
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -126,7 +124,7 @@ namespace NewVersion.admin
 
         private void LoadProductDetails(string productId)
         {
-            string sql = "SELECT ProductName, ProductImageURL, Price, Quantity, IsVisible FROM Product WHERE ProductID = @ProductID";
+            string sql = "SELECT ProductName, ProductImageURL, Price, QuantityFROM Product WHERE ProductID = @ProductID";
             using (SqlConnection con = new SqlConnection(cs))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
@@ -142,7 +140,6 @@ namespace NewVersion.admin
                             txtProductImageURL.Text = reader["ProductImageURL"].ToString();
                             txtPrice.Text = reader["Price"].ToString();
                             txtQuantity.Text = reader["Quantity"].ToString();
-                            chkIsVisible.Checked = (bool)reader["IsVisible"];
                         }
                     }
                 }
@@ -164,11 +161,9 @@ namespace NewVersion.admin
             int quantity = int.Parse(txtQuantity.Text);
 
 
-            bool isVisible = chkIsVisible.Checked;
-
             // Update the product in the database
             string sql = @"UPDATE Product SET ProductName = @ProductName, ProductImageURL = @ProductImageURL, 
-                       Price = @Price, Quantity = @Quantity, IsVisible = @IsVisible WHERE ProductID = @ProductID";
+                       Price = @Price, Quantity = @Quantity WHERE ProductID = @ProductID";
 
             using (SqlConnection con = new SqlConnection(cs))
             {
@@ -179,7 +174,6 @@ namespace NewVersion.admin
                     cmd.Parameters.AddWithValue("@ProductImageURL", productImageUrl);
                     cmd.Parameters.AddWithValue("@Price", price);
                     cmd.Parameters.AddWithValue("@Quantity", quantity);
-                    cmd.Parameters.AddWithValue("@IsVisible", isVisible);
                     cmd.Parameters.AddWithValue("@ProductID", productId);
 
                     try
@@ -216,13 +210,12 @@ namespace NewVersion.admin
             txtProductImageURL.Text = string.Empty;
             txtPrice.Text = string.Empty;
             txtQuantity.Text = string.Empty;
-            chkIsVisible.Checked = false;
         }
 
 
         private void LoadProducts()
         {
-            string sql = "SELECT ProductID, ProductName, ProductImageURL, Price, Quantity, IsVisible FROM Product";
+            string sql = "SELECT ProductID, ProductName, ProductImageURL, Price, Quantity FROM Product";
             using (SqlConnection con = new SqlConnection(cs))
             {
                 SqlCommand cmd = new SqlCommand(sql, con);
