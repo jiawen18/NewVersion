@@ -2,21 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
         <div class="col-md-12">
         <div class="card">
-            <div class="card-header">
-                    <div class="d-flex align-items-center">
-                        <asp:LinkButton
-                            ID="AddRowButton"
-                            runat="server"
-                            CssClass="btn btn-black btn-border btn-round ms-auto"
-                            OnClientClick="return false;"
-                            data-bs-toggle="modal"
-                            data-bs-target="#addRowModal">
-                            <i class="fa fa-plus" style="padding-right: 8px;"></i>
-                            Add 
-                        </asp:LinkButton>
-                    </div>
-                    <asp:Label ID="FeedbackLabel" runat="server"></asp:Label>
-                </div>
+          
             <div class="card-body">
                 <div class="table-responsive">
                     <table
