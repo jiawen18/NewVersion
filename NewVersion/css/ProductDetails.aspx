@@ -100,7 +100,7 @@
                 <asp:Button ID="btnStorage2" runat="server" Text="128GB | 12GB" CssClass="storage-button" OnClick="btnStorage_Click" style="padding: 10px 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #f4f4f4; color: #333; cursor: pointer;" />
                 <asp:Button ID="btnStorage3" runat="server" Text="64GB | 12GB" CssClass="storage-button" OnClick="btnStorage_Click" style="padding: 10px 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #f4f4f4; color: #333; cursor: pointer;" />
             </div>
-<<<<<<< Updated upstream
+
         </div>
 
         <!-- Color Selection -->
@@ -111,22 +111,11 @@
                 <asp:Button ID="ColorButton1" runat="server" CssClass="color-button" OnClick="ColorButton_Click"  style="background-color: #dcf5fc;" value="Blue"/>
                 <asp:Button ID="ColorButton2" runat="server" CssClass="color-button" OnClick="ColorButton_Click"  style="background-color: #fffdcf;" value="Yellow"/>
                 <asp:Button ID="ColorButton3" runat="server" CssClass="color-button" OnClick="ColorButton_Click"  style="background-color: #000000;" value="Black"/>
-=======
+
             <asp:Label ID="lblSelectedStorage" runat="server" CssClass="storage-label" style="display: block; margin-top: 10px; font-size: 14px; color: #666;"></asp:Label>
         </div>
 
-        <!-- Color Selection -->
-        <div id="colorContainer" class="color-container" runat="server" style="display: none; margin-bottom: 20px;">
-            <h3 class="heading-large" style="font-size: 20px; margin-bottom: 5px; color: #333;">Now select your color:</h3>
-            <h3 class="heading-small" style="font-size: 16px; margin-bottom: 8px; color: #666;">Select Color</h3>
-            <div class="color-selection" style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <asp:Button ID="ColorButton1" runat="server" CssClass="color-button" OnClick="ColorButton_Click" style="padding: 10px 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #dcf5fc; color: #333; cursor: pointer;" value="Blue" />
-                <asp:Button ID="ColorButton2" runat="server" CssClass="color-button" OnClick="ColorButton_Click" style="padding: 10px 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #fffdcf; color: #333; cursor: pointer;" value="Yellow" />
-                <asp:Button ID="ColorButton3" runat="server" CssClass="color-button" OnClick="ColorButton_Click" style="padding: 10px 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #000000; color: #fff; cursor: pointer;" value="Black" />
-            </div>
-            <asp:Label ID="lblSelectedColor" runat="server" CssClass="color-label" style="display: block; margin-top: 10px; font-size: 14px; color: #666;"></asp:Label>
-        </div>
-
+       
         <!-- Price Container -->
         <div class="price-container" style="margin-bottom: 15px;">
             <asp:Label ID="lblPrice" runat="server" style="font-size: 18px; font-weight: bold; color: #333;"></asp:Label>
@@ -149,13 +138,14 @@
                     <asp:ListItem Text="9" Value="9"></asp:ListItem>
                     <asp:ListItem Text="10" Value="10"></asp:ListItem>
                 </asp:DropDownList>
->>>>>>> Stashed changes
+
             </div>
         </div>
 
         <!-- Add to Cart Button -->
         <div class="AddToCart" style="text-align: center; margin-top: 20px;">
-            <asp:Button ID="btnAddToCart" runat="server" CssClass="add-to-cart-btn" Text="Add to Cart" OnClick="btnAddToCart_Click" style="padding: 12px 20px; font-size: 16px; color: #fff; background-color: #6c757d; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;" />
+            <asp:Button ID="btnAddToCart" runat="server" CssClass="add-to-cart-btn" Text="Add to Cart" OnClick="btnAddToCart_Click" OnClientClick="return validateAddToCart();" 
+                style="padding: 12px 20px; font-size: 16px; color: #fff; background-color: #6c757d; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;" />
         </div>
 
         <!-- Debug Information -->
@@ -170,9 +160,13 @@
     </div>
 </div>                
 
-    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
             </div>
-    </div>
+        </div>
 
 
 
@@ -393,4 +387,12 @@
     </script>
 
 
+<script>
+    function validateAddToCart() {
+
+        // If everything is selected, alert success
+        window.alert("Product added to cart successfully!");
+        return true; // Allow form submission
+    }
+</script>
 </asp:Content>

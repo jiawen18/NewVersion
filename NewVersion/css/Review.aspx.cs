@@ -15,11 +15,11 @@ namespace NewVersion.css
 {
     public partial class Review : System.Web.UI.Page
     {
+        string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                // Get the ProductID from a query string or any other source
                 int productId = Convert.ToInt32(Request.QueryString["ProductID"] ?? "1");
                 LoadProductDetails(productId);
             }
