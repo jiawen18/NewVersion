@@ -26,7 +26,7 @@ namespace NewVersion.admin
         {
             var totalMembers = _context.MemberUsers.Count();
             var totalAdmins = _context.AdminUsers.Count();
-            var totalSales = _context.Products.Sum(s => s.Quantity); // Replace with transaction!!!!!
+            var totalSales = _context.Transactions.Sum(s => s.OrderTotalPrice);
             var totalOrders = _context.Orders.Count();
 
             MembersCountLabel.Text = totalMembers.ToString();
@@ -68,14 +68,15 @@ namespace NewVersion.admin
                 .Select(r => new RefundViewModel
                 {
                     OrderID = r.OrderID,
-                    TotalAmount = _context.Orders
-                        .Where(o => o.OrderID == r.OrderID)
-                        .Select(o => o.ProductID) // change to order amount!!!!!!!!
+                    TotalAmount = _context.Transactions
+                        .Where(t => t.OrderID == r.OrderID)
+                        .Select(t => t.OrderTotalPrice)
                         .FirstOrDefault(),
                     RefundRequestDate = r.RefundRequestDate,
                     RefundStatus = r.RefundStatus
                 }).ToList();
         }
+
 
 
         protected void InventoryGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
