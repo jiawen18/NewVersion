@@ -74,7 +74,7 @@ namespace NewVersion.css
         {
             using (SqlConnection conn = new SqlConnection(cs))
             {
-                string query = "SELECT ProductName,Price,ProductImageURL FROM [Product] WHERE ProductID = @ProductID";
+                string query = "SELECT ProductName,Price,ProductImageURL FROM Product WHERE ProductID = @ProductID";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
