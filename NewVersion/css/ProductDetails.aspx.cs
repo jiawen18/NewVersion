@@ -223,17 +223,17 @@ namespace NewVersion.css
              "setTimeout(function() { div.style.display = 'none'; }, 10000);", true);
         }
 
-      
+
 
         protected void btnStorage_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
             string selectedStorage = btn.Text;
             Session["SelectedStorage"] = selectedStorage;
-            
 
-            // Show color selection after storage is selected
             colorContainer.Style["display"] = "block"; // Assuming 'colorContainer' is the ID of the color selection div
+
+            lblSelectedStorage.Text = "Selected Storage: " + selectedStorage;
         }
 
         protected void ColorButton_Click(object sender, EventArgs e)
@@ -241,7 +241,10 @@ namespace NewVersion.css
             Button btn = (Button)sender;
             string selectedColor = btn.Attributes["value"];
             Session["SelectedColor"] = selectedColor;
+
+            lblSelectedColor.Text = "Selected Color: " + selectedColor;
         }
+
     }
 
 }
