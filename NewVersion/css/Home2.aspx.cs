@@ -24,7 +24,11 @@ namespace NewVersion.css
 
         protected void btnBuyNow_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ProductDetails.aspx");
+            Button btn = (Button)sender;
+            string productId = btn.CommandArgument;
+
+            Response.Redirect("ProductDetails.aspx?ProductID=" + productId);
+
         }
 
         private void BindProductData()

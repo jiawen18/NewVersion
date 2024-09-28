@@ -203,10 +203,41 @@
 
         <!-- Submit Button -->
         <div class="submit-section"> 
-            <asp:Button ID="btnReview" runat="server" class="submit-btn" Text="Submit Review" OnClick="btnReview_Click" />
+            <asp:Button ID="btnReview" runat="server" class="submit-btn" Text="Submit Review" OnClick="btnReview_Click" OnClientClick="return validateReview();"/>
         </div>
+        <div id="errorMessage2" class="error-message" style="color: red; display: none;"></div>
     </div>
 
+
+<script>
+    function validateReview() {
+        // Get the rating value from the hidden field
+        var rating = document.getElementById('<%= HiddenFieldRating.ClientID %>').value;
+        // Get the review description value
+        var reviewDescription = document.getElementById('<%= txtReviewDescription.ClientID %>').value;
+
+        // Initialize error message
+        var errorMessage2 = "";
+
+        // Check if rating is not selected
+        if (!rating) {
+            errorMessage2 += "Please select a product quality rating.\n";
+        }
+
+        // Check if description is empty
+        if (reviewDescription.trim() === "") {
+            errorMessage2 += "Please provide a product description.";
+        }
+
+        // Display error message if any validation fails
+        if (errorMessage2) {
+            window.alert(errorMessage2); // Use window.alert to display error message
+            return false; // Prevent form submission
+        }
+
+        return true; // Allow form submission
+    }
+</script>
 
 <!-- Script for Rating Stars -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">

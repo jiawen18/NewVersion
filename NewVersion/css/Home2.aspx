@@ -97,11 +97,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="add-to-cart" style="margin-top: auto;">
-                                                        <asp:HiddenField ID="hfProductId" runat="server" Value='<%# Eval("ProductID") %>' />
-                                                        <asp:Button ID="btnBuyNow" runat="server" CssClass="add-to-cart-btn" 
-                                                            Text="Buy Now" CommandArgument='<%# Eval("ProductID") %>' 
-                                                            OnClick="btnBuyNow_Click" 
-                                                            style="background-color: darkred; color: white; border: none; padding: 10px 20px; cursor: pointer;" />
+                                                       <asp:Button ID="Button1" runat="server" Text="Buy Now" CssClass="buyNow-btn" CommandArgument='<%# Eval("ProductID") %>' OnClick="btnBuyNow_Click" style="background-color: darkred; color: white; border: none; padding: 10px 20px; cursor: pointer;" />
                                                     </div>
                                                 </div>
                                             </div>

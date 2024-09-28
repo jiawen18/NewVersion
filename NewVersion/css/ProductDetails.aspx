@@ -81,25 +81,26 @@
             </div>
 
 
-        <!-- Product Information -->
-            <div class="col-lg-7">
-        <div class="product-info">
-
-             <!-- Product Name -->
-                    <div class="product-name-container">
-                        <h3 class="heading-large">Product Name:</h3>
-                        <asp:Label ID="lblProductName" runat="server" CssClass="product-name-label"></asp:Label>
-                    </div>
+<!-- Product Information -->
+<div class="col-lg-7">
+    <div class="product-info" style="padding: 20px; background-color: #ffffff;">
+        <br />
+        <!-- Product Name -->
+        <div class="product-name-container" style="margin-bottom: 15px;">
+            <h3 class="heading-large" style="font-size: 20px; margin-bottom: 8px; color: #333;">Product Name:</h3>
+            <asp:Label ID="lblProductName" runat="server" CssClass="product-name-label" style="font-size: 18px; color: #555;"></asp:Label>
+        </div>
 
         <!-- Storage Selection -->
-        <div class="storage-container">
-            <h3 class="heading-large">Please select your storage:</h3>
-            <h3 class="heading-small">Select Storage</h3>
-            <div class="storage-selection">
-                <asp:Button ID="btnStorage1" runat="server" Text="256GB | 12GB" CssClass="storage-button" OnClick="btnStorage_Click" />
-                <asp:Button ID="btnStorage2" runat="server" Text="128GB | 12GB" CssClass="storage-button" OnClick="btnStorage_Click" />
-                <asp:Button ID="btnStorage3" runat="server" Text="64GB | 12GB" CssClass="storage-button" OnClick="btnStorage_Click" />
+        <div class="storage-container" style="margin-bottom: 20px;">
+            <h3 class="heading-large" style="font-size: 20px; margin-bottom: 5px; color: #333;">Please select your storage:</h3>
+            <h3 class="heading-small" style="font-size: 16px; margin-bottom: 8px; color: #666;">Select Storage</h3>
+            <div class="storage-selection" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <asp:Button ID="btnStorage1" runat="server" Text="256GB | 12GB" CssClass="storage-button" OnClick="btnStorage_Click" style="padding: 10px 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #f4f4f4; color: #333; cursor: pointer;" />
+                <asp:Button ID="btnStorage2" runat="server" Text="128GB | 12GB" CssClass="storage-button" OnClick="btnStorage_Click" style="padding: 10px 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #f4f4f4; color: #333; cursor: pointer;" />
+                <asp:Button ID="btnStorage3" runat="server" Text="64GB | 12GB" CssClass="storage-button" OnClick="btnStorage_Click" style="padding: 10px 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #f4f4f4; color: #333; cursor: pointer;" />
             </div>
+
         </div>
 
         <!-- Color Selection -->
@@ -110,31 +111,63 @@
                 <asp:Button ID="ColorButton1" runat="server" CssClass="color-button" OnClick="ColorButton_Click"  style="background-color: #dcf5fc;" value="Blue"/>
                 <asp:Button ID="ColorButton2" runat="server" CssClass="color-button" OnClick="ColorButton_Click"  style="background-color: #fffdcf;" value="Yellow"/>
                 <asp:Button ID="ColorButton3" runat="server" CssClass="color-button" OnClick="ColorButton_Click"  style="background-color: #000000;" value="Black"/>
+
+            <asp:Label ID="lblSelectedStorage" runat="server" CssClass="storage-label" style="display: block; margin-top: 10px; font-size: 14px; color: #666;"></asp:Label>
+        </div>
+
+       
+        <!-- Price Container -->
+        <div class="price-container" style="margin-bottom: 15px;">
+            <asp:Label ID="lblPrice" runat="server" style="font-size: 18px; font-weight: bold; color: #333;"></asp:Label>
+        </div>
+
+        <!-- Quantity Container -->
+        <div class="quantity-container" style="margin-bottom: 15px;">
+            <h3 class="heading-large" style="font-size: 20px; margin-bottom: 8px; color: #333;">Select Quantity:</h3>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <asp:Label ID="lblQuantity" runat="server" Text="Quantity:" style="font-size: 16px; color: #555;"></asp:Label>
+                <asp:DropDownList ID="ddlQuantity" runat="server" CssClass="quantity-dropdown" style="padding: 8px; font-size: 16px; border: 1px solid #ddd; border-radius: 5px; color: #333;">
+                    <asp:ListItem Text="1" Value="1"></asp:ListItem>
+                    <asp:ListItem Text="2" Value="2"></asp:ListItem>
+                    <asp:ListItem Text="3" Value="3"></asp:ListItem>
+                    <asp:ListItem Text="4" Value="4"></asp:ListItem>
+                    <asp:ListItem Text="5" Value="5"></asp:ListItem>
+                    <asp:ListItem Text="6" Value="6"></asp:ListItem>
+                    <asp:ListItem Text="7" Value="7"></asp:ListItem>
+                    <asp:ListItem Text="8" Value="8"></asp:ListItem>
+                    <asp:ListItem Text="9" Value="9"></asp:ListItem>
+                    <asp:ListItem Text="10" Value="10"></asp:ListItem>
+                </asp:DropDownList>
+
             </div>
         </div>
 
-            <div class="price-container"> <asp:Label ID="lblPrice" runat="server" ></asp:Label></div>
-
-            <div class="quantity-container"> <asp:Label ID="lblQuantity" runat="server" Text="1"></asp:Label></div>
-
-            
-            <!-- Add to Cart Button -->
-            <div class="AddToCart">
-                <asp:Button ID="btnAddToCart" runat="server" CssClass="add-to-cart-btn" Text="Add to Cart" OnClick="btnAddToCart_Click"/>
-            </div>
+        <!-- Add to Cart Button -->
+        <div class="AddToCart" style="text-align: center; margin-top: 20px;">
+            <asp:Button ID="btnAddToCart" runat="server" CssClass="add-to-cart-btn" Text="Add to Cart" OnClick="btnAddToCart_Click" OnClientClick="return validateAddToCart();" 
+                style="padding: 12px 20px; font-size: 16px; color: #fff; background-color: #6c757d; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;" />
         </div>
-                <asp:Label ID="lblDebugInfo" runat="server" ForeColor="Red"></asp:Label>
 
-        
-        <div id="divSuccessMessage" runat="server"><span>
-        <asp:Label ID="lblSuccessMessage" runat="server" Text=""></asp:Label></span>
+        <!-- Debug Information -->
+        <asp:Label ID="lblDebugInfo" runat="server" ForeColor="Red" style="display: block; margin-top: 15px; font-size: 14px;"></asp:Label>
+
+        <!-- Success Message -->
+        <div id="divSuccessMessage" runat="server" style="margin-top: 10px;">
+            <span>
+                <asp:Label ID="lblSuccessMessage" runat="server" Text="" style="font-size: 14px; color: green;"></asp:Label>
+            </span>
+        </div>
+    </div>
+</div>                
+
 </div>
-                
-
-    </div>
+</div>
+</div>
+</div>
+</div>
             </div>
-    </div>
-    </div>
+        </div>
+
 
 
     <br />
@@ -354,4 +387,12 @@
     </script>
 
 
+<script>
+    function validateAddToCart() {
+
+        // If everything is selected, alert success
+        window.alert("Product added to cart successfully!");
+        return true; // Allow form submission
+    }
+</script>
 </asp:Content>

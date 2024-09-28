@@ -123,15 +123,6 @@ namespace NewVersion.admin
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
 
         /// <summary>
-        /// chkIsVisible control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkIsVisible;
-
-        /// <summary>
         /// btnAddProduct control.
         /// </summary>
         /// <remarks>
@@ -202,15 +193,6 @@ namespace NewVersion.admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtQuantity1;
-
-        /// <summary>
-        /// chkIsVisible1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkIsVisible1;
 
         /// <summary>
         /// btnUpdateProduct control.
