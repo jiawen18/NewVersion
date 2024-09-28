@@ -17,7 +17,7 @@
          </div>
 
          <div class="btn_resetpw_wrapper">
-         <asp:Button ID="btn_resetpw" runat="server" Text="Reset Password" class="btn_resetpw"/>
+         <asp:Button ID="btn_resetpw" runat="server" Text="Reset Password" class="btn_resetpw" OnClick="btn_resetpw_Click"/>
          </div>
 
          </div>

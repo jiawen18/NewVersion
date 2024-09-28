@@ -19,6 +19,7 @@ namespace NewVersion.Models
         public System.DateTime RefundRequestDate { get; set; }
         public Nullable<System.DateTime> RefundClosureDate { get; set; }
         public string RefundStatus { get; set; }
+        public Nullable<bool> IsSpam { get; set; }
     
         public virtual Order Order { get; set; }
     }

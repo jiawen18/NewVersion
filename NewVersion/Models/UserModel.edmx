@@ -99,6 +99,7 @@
           <Property Name="RefundRequestDate" Type="datetime" Nullable="false" />
           <Property Name="RefundClosureDate" Type="datetime" />
           <Property Name="RefundStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsSpam" Type="bit" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -174,6 +175,8 @@
           </Key>
           <Property Name="TransactionID" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="OrderID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TransactionStatus" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="OrderTotalPrice" Type="decimal" Precision="8" Scale="2" Nullable="false" />
           <Property Name="InvoiceID" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="InvoiceDate" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
@@ -456,6 +459,7 @@
           <Property Name="RefundClosureDate" Type="DateTime" Precision="3" />
           <Property Name="RefundStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Order" Relationship="UserModel.FK_Order_ToRefund" FromRole="Refund" ToRole="Order" />
+          <Property Name="IsSpam" Type="Boolean" />
         </EntityType>
         <EntityType Name="Shipper">
           <Key>
@@ -584,6 +588,8 @@
           <Property Name="InvoiceID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="InvoiceDate" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Order" Relationship="UserModel.FK_Transaction_ToOrder" FromRole="Transaction" ToRole="Order" />
+          <Property Name="TransactionStatus" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="OrderTotalPrice" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
         </EntityType>
         <Association Name="FK_ShoppingCart_ToProduct">
           <End Type="UserModel.Product" Role="Product" Multiplicity="1" />
@@ -736,6 +742,7 @@
           <EntitySetMapping Name="Refunds">
             <EntityTypeMapping TypeName="UserModel.Refund">
               <MappingFragment StoreEntitySet="Refund">
+                <ScalarProperty Name="IsSpam" ColumnName="IsSpam" />
                 <ScalarProperty Name="RefundStatus" ColumnName="RefundStatus" />
                 <ScalarProperty Name="RefundClosureDate" ColumnName="RefundClosureDate" />
                 <ScalarProperty Name="RefundRequestDate" ColumnName="RefundRequestDate" />
@@ -842,6 +849,8 @@
           <EntitySetMapping Name="Transactions">
             <EntityTypeMapping TypeName="UserModel.Transaction">
               <MappingFragment StoreEntitySet="Transaction">
+                <ScalarProperty Name="OrderTotalPrice" ColumnName="OrderTotalPrice" />
+                <ScalarProperty Name="TransactionStatus" ColumnName="TransactionStatus" />
                 <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
                 <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
