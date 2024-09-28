@@ -89,10 +89,11 @@ namespace NewVersion.css
                             {
                                 profilePictureUrl = "/admin/assets/img/default.jpg"; // Default image path
                             }
+                        }
                     }
                 }
+                return profilePictureUrl; // Return the URL
             }
-            return profilePictureUrl; // Return the URL
         }
     }
 }
