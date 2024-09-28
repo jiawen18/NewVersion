@@ -62,7 +62,7 @@ namespace NewVersion.css
             }
 
             // Get the current date in the specified format
-            string date = DateTime.Now.ToString("dd MMMM yyyy HH:mm:ss"); ; // Format: DD Month YYYY
+            string date = DateTime.Now.ToString("M/d/yyyy hh:mm:ss tt"); ; // Format: DD Month YYYY
 
             return (result.ToString(), date); // Return the generated random invoice ID and date
         }
@@ -74,8 +74,8 @@ namespace NewVersion.css
 
         private void SaveTransactionDetails(string transactionID, string orderID, string totalPrice, string invoiceId, string date, string transactionStatus)
         {
-            string transactionQuery = "INSERT INTO Transaction (TransactionID, OrderID, OrderTotalPrice, InvoiceID, InvoiceDate, TransactionStatus) " +
-                                   "VALUES (@TransactionID, @OrderID, @OrderTotalPrice, @InvoiceID, @InvoiceDate, @TransactionStatus)";
+            string transactionQuery = "INSERT INTO [Transaction] (TransactionID, OrderID, OrderTotalPrice, InvoiceID, InvoiceDate, TransactionStatus,TransactionDate) " +
+                                   "VALUES (@TransactionID, @OrderID, @OrderTotalPrice, @InvoiceID, @InvoiceDate, @TransactionStatus,@TransactionDate)";
 
             using (SqlConnection conn = new SqlConnection(cs))
             {
@@ -85,10 +85,11 @@ namespace NewVersion.css
                 {
                     transactionCmd.Parameters.AddWithValue("@TransactionID", transactionID);
                     transactionCmd.Parameters.AddWithValue("@OrderID", orderID);
-                    transactionCmd.Parameters.AddWithValue("@TotalPrice", totalPrice);
+                    transactionCmd.Parameters.AddWithValue("@OrderTotalPrice", totalPrice);
                     transactionCmd.Parameters.AddWithValue("@InvoiceID", invoiceId);
                     transactionCmd.Parameters.AddWithValue("@InvoiceDate", date);
                     transactionCmd.Parameters.AddWithValue("@TransactionStatus", transactionStatus);
+                    transactionCmd.Parameters.AddWithValue("@TransactionDate", DateTime.Now);
 
                     transactionCmd.ExecuteNonQuery();
                 }

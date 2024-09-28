@@ -233,7 +233,6 @@ namespace NewVersion.css
 
             colorContainer.Style["display"] = "block"; // Assuming 'colorContainer' is the ID of the color selection div
 
-            lblSelectedStorage.Text = "Selected Storage: " + selectedStorage;
         }
 
         protected void ColorButton_Click(object sender, EventArgs e)
@@ -242,7 +241,6 @@ namespace NewVersion.css
             string selectedColor = btn.Attributes["value"];
             Session["SelectedColor"] = selectedColor;
 
-            lblSelectedColor.Text = "Selected Color: " + selectedColor;
         }
 
     }

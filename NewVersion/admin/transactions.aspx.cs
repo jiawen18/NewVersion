@@ -14,12 +14,15 @@ namespace NewVersion.admin
         string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
-            BindTransactionData();
+            if (!IsPostBack)
+            {
+                BindTransactionData();
+            }
         }
 
         private void BindTransactionData()
         {
-            string query = "SELECT TransactionID, OrderID, TransactionStatus,InvoiceID, InvoiceDate FROM [Transaction]";
+            string query = "SELECT TransactionID, OrderID, TransactionStatus,InvoiceID, InvoiceDate,OrderTotalPrice,TransactionDate FROM [Transaction]";
 
             using (SqlConnection conn = new SqlConnection(cs))
             {
@@ -79,7 +82,7 @@ namespace NewVersion.admin
 
         private void LoadTransactionDetails(string transactionId)
         {
-            string sql = "SELECT OrderID,TransactionStatus, InvoiceID, InvoiceDate FROM [Transaction] WHERE TransactionID = @TransactionID";
+            string sql = "SELECT OrderID,TransactionStatus, InvoiceID, InvoiceDate,TransactionDate,OrderTotalPrice FROM [Transaction] WHERE TransactionID = @TransactionID";
             using (SqlConnection con = new SqlConnection(cs))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
@@ -94,7 +97,9 @@ namespace NewVersion.admin
                             txtOrderID.Text = reader["OrderID"].ToString();
                             ddlTransactionStatus.SelectedValue = reader["TransactionStatus"].ToString();
                             txtInvoiceID.Text = reader["InvoiceID"].ToString();
-                            txtInvoiceDate.Text = Convert.ToDateTime(reader["InvoiceDate"]).ToString("yyyy-MM-dd");
+                            txtInvoiceDate.Text = Convert.ToDateTime(reader["InvoiceDate"]).ToString("M/d/yyyy hh:mm:ss tt");
+                            txtOrderTotalPrice.Text = reader["OrderTotalPrice"].ToString();
+                            txtTransactionDate.Text = Convert.ToDateTime(reader["TransactionDate"]).ToString("M/d/yyyy hh:mm:ss tt"); 
                         }
                     }
                 }
@@ -145,11 +150,48 @@ namespace NewVersion.admin
 
         private void DeleteTransaction(string transactionID)
         {
-            string query = "DELETE FROM [Transaction] WHERE TransactionID = @TransactionID";
+            string orderId = null;
 
+            string getOrderIdQuery = "SELECT OrderID FROM [Transaction] WHERE TransactionID = @TransactionID";
             using (SqlConnection con = new SqlConnection(cs))
             {
-                using (SqlCommand cmd = new SqlCommand(query, con))
+                using (SqlCommand cmd = new SqlCommand(getOrderIdQuery, con))
+                {
+                    cmd.Parameters.AddWithValue("@TransactionID", transactionID);
+                    con.Open();
+                    orderId = cmd.ExecuteScalar()?.ToString(); // 获取相关的 OrderID
+                }
+            }
+
+            if (orderId != null)
+            {
+                string deleteDetailsQuery = "DELETE FROM [OrderDetails] WHERE OrderID = @OrderID";
+                using (SqlConnection con = new SqlConnection(cs))
+                {
+                    using (SqlCommand cmd = new SqlCommand(deleteDetailsQuery, con))
+                    {
+                        cmd.Parameters.AddWithValue("@OrderID", orderId);
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                string deleteOrderQuery = "DELETE FROM [Order] WHERE OrderID = @OrderID";
+                using (SqlConnection con = new SqlConnection(cs))
+                {
+                    using (SqlCommand cmd = new SqlCommand(deleteOrderQuery, con))
+                    {
+                        cmd.Parameters.AddWithValue("@OrderID", orderId);
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+
+            string deleteTransactionQuery = "DELETE FROM [Transaction] WHERE TransactionID = @TransactionID";
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                using (SqlCommand cmd = new SqlCommand(deleteTransactionQuery, con))
                 {
                     cmd.Parameters.AddWithValue("@TransactionID", transactionID);
                     con.Open();
@@ -157,5 +199,6 @@ namespace NewVersion.admin
                 }
             }
         }
+
     }
 }

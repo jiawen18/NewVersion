@@ -60,6 +60,15 @@ namespace NewVersion.admin
         protected global::System.Web.UI.WebControls.TextBox txtOrderID;
 
         /// <summary>
+        /// txtOrderTotalPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtOrderTotalPrice;
+
+        /// <summary>
         /// ddlTransactionStatus control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace NewVersion.admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlTransactionStatus;
+
+        /// <summary>
+        /// txtTransactionDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTransactionDate;
 
         /// <summary>
         /// txtInvoiceID control.

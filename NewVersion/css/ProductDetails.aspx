@@ -60,6 +60,7 @@
 
 
     <div class="product-detail">
+        <asp:HyperLink ID="hplBackHome1" runat="server" CssClass="no-underline" style="transform: translate(100px, 60px);" NavigateUrl="Smartphones.aspx">< </asp:HyperLink>
         <div class="container">
             <div class="row">
             <!-- Product Image Carousel -->
@@ -93,7 +94,6 @@
                 <asp:Button ID="btnStorage2" runat="server" Text="128GB | 12GB" CssClass="storage-button" OnClick="btnStorage_Click" />
                 <asp:Button ID="btnStorage3" runat="server" Text="64GB | 12GB" CssClass="storage-button" OnClick="btnStorage_Click" />
             </div>
-            <asp:Label ID="lblSelectedStorage" runat="server" CssClass="storage-label" />
         </div>
 
         <!-- Color Selection -->
@@ -104,7 +104,6 @@
                 <asp:Button ID="ColorButton1" runat="server" CssClass="color-button" OnClick="ColorButton_Click"  style="background-color: #dcf5fc;" value="Blue"/>
                 <asp:Button ID="ColorButton2" runat="server" CssClass="color-button" OnClick="ColorButton_Click"  style="background-color: #fffdcf;" value="Yellow"/>
                 <asp:Button ID="ColorButton3" runat="server" CssClass="color-button" OnClick="ColorButton_Click"  style="background-color: #000000;" value="Black"/>
-                <asp:Label ID="lblSelectedColor" runat="server" CssClass="color-label" />
             </div>
         </div>
 

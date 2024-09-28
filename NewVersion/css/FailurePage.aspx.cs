@@ -1,4 +1,5 @@
-﻿using Razorpay.Api;
+﻿using NewVersion.Models;
+using Razorpay.Api;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -38,12 +39,37 @@ namespace NewVersion.css
 
                 string transactionStatus = "Failed";
 
-                SaveTransactionDetails(transactionID, orderID, orderTotalPrice, invoiceId, date, transactionStatus);
+                if (!string.IsNullOrEmpty(orderID)&&!string.IsNullOrEmpty(transactionID))
+                {
+                    // 确认订单是否存在
+                    if (CheckOrderExists(orderID))
+                    {
+                        SaveTransactionDetails(transactionID, orderID, orderTotalPrice, invoiceId, date, transactionStatus);
+                    }
+                    else
+                    {
+                        // 记录日志或处理找不到订单的情况
+                        throw new Exception("Order does not exist.");
+                    }
+                }
+
             }
         }
 
+        private bool CheckOrderExists(string orderId)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM [Order] WHERE OrderID = @OrderID", con))
+                {
+                    cmd.Parameters.AddWithValue("@OrderID", orderId);
+                    int count = (int)cmd.ExecuteScalar();
+                    return count > 0; 
+                }
+            }
+        }
 
-        
         protected void btnContinue_Click(object sender, EventArgs e)
         {
             Response.Redirect("Home2.aspx");
@@ -51,8 +77,8 @@ namespace NewVersion.css
 
         private void SaveTransactionDetails(string transactionID, string orderID, string totalPrice, string invoiceId, string date, string transactionStatus)
         {
-            string transactionQuery = "INSERT INTO Transaction (TransactionID, OrderID, OrderTotalPrice, InvoiceID, InvoiceDate, TransactionStatus) " +
-                                   "VALUES (@TransactionID, @OrderID, @OrderTotalPrice, @InvoiceID, @InvoiceDate, @TransactionStatus)";
+            string transactionQuery = "INSERT INTO [Transaction] (TransactionID, OrderID, OrderTotalPrice, InvoiceID, InvoiceDate, TransactionStatus,TransactionDate) " +
+                                   "VALUES (@TransactionID, @OrderID, @OrderTotalPrice, @InvoiceID, @InvoiceDate, @TransactionStatus,@TransactionDate)";
 
             using (SqlConnection conn = new SqlConnection(cs))
             {
@@ -62,10 +88,12 @@ namespace NewVersion.css
                 {
                     transactionCmd.Parameters.AddWithValue("@TransactionID", transactionID);
                     transactionCmd.Parameters.AddWithValue("@OrderID", orderID);
-                    transactionCmd.Parameters.AddWithValue("@TotalPrice", totalPrice);
+                    transactionCmd.Parameters.AddWithValue("@OrderTotalPrice", totalPrice);
                     transactionCmd.Parameters.AddWithValue("@InvoiceID", invoiceId);
                     transactionCmd.Parameters.AddWithValue("@InvoiceDate", date);
                     transactionCmd.Parameters.AddWithValue("@TransactionStatus", transactionStatus);
+
+                    transactionCmd.Parameters.AddWithValue("@TransactionDate", DateTime.Now);
 
                     transactionCmd.ExecuteNonQuery();
                 }

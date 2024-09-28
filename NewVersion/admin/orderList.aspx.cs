@@ -16,12 +16,15 @@ namespace NewVersion.admin
         string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
-            BindOrderData();
+            if (!IsPostBack)
+            {
+                BindOrderData();
+            }
         }
 
         private void BindOrderData()
         {
-            string query = "SELECT OrderID,OrderDetails, PaymentStatus, DeliveryStatus,OrderDate FROM [Order]";
+            string query = "SELECT OrderID,OrderDate, TransactionStatus, DeliveryStatus,TotalPrice FROM [Order]";
 
             using (SqlConnection conn = new SqlConnection(cs))
             {
@@ -81,7 +84,7 @@ namespace NewVersion.admin
 
         private void LoadOrderDetails(string orderId)
         {
-            string sql = "SELECT OrderDetails, PaymentStatus, DeliveryStatus, OrderDate FROM [Order] WHERE OrderID = @OrderID";
+            string sql = "SELECT TransactionStatus, DeliveryStatus, OrderDate,TotalPrice FROM [Order] WHERE OrderID = @OrderID";
             using (SqlConnection con = new SqlConnection(cs))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
@@ -93,10 +96,10 @@ namespace NewVersion.admin
                         if (reader.Read())
                         {
                             txtOrderID.Value = orderId;
-                            txtOrderDetails.Text = reader["OrderDetails"].ToString();
-                            txtPaymentStatus.Text = reader["PaymentStatus"].ToString();
+                            txtTotalPrice.Text = reader["TotalPrice"].ToString();
+                            txtTransactionStatus.Text = reader["TransactionStatus"].ToString();
                             ddlDeliveryStatus.SelectedValue = reader["DeliveryStatus"].ToString();
-                            txtOrderDate.Text = Convert.ToDateTime(reader["OrderDate"]).ToString("yyyy-MM-dd");
+                            txtOrderDate.Text = Convert.ToDateTime(reader["OrderDate"]).ToString("M/d/yyyy hh:mm:ss tt");
                         }
                     }
                 }
@@ -147,6 +150,19 @@ namespace NewVersion.admin
 
         private void DeleteOrder(string orderID)
         {
+           
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string deleteDetailsQuery = "DELETE FROM [OrderDetails] WHERE OrderID = @OrderID";
+
+                using (SqlCommand cmd = new SqlCommand(deleteDetailsQuery, con))
+                {
+                    cmd.Parameters.AddWithValue("@OrderID", orderID);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
             string query = "DELETE FROM [Order] WHERE OrderID = @OrderID";
 
             using (SqlConnection con = new SqlConnection(cs))

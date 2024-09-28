@@ -51,6 +51,13 @@
                                      </div>
                                  </div>
                                  
+                                 <div class="col-md-6 pe-0">
+                                    <div class="form-group form-group-default">
+                                        <label>Order Total Price</label>
+                                       <asp:TextBox ID="txtOrderTotalPrice" runat="server" CssClass="form-control" ReadOnly="true" />
+                                    </div>
+                                </div>
+
                                  <div class="col-md-6">
                                 <div class="form-group form-group-default">
                                     <label>Transaction Status</label>
@@ -60,6 +67,14 @@
                                     </asp:DropDownList>
                                 </div>
                             </div>
+
+                                      <div class="col-md-6">
+                                        <div class="form-group form-group-default">
+                                            <label>Transaction Date</label>
+                                            <asp:TextBox ID="txtTransactionDate" runat="server" CssClass="form-control" ReadOnly="true" />
+                                        </div>
+                                    </div>
+
                                  <div class="col-md-6">
                                      <div class="form-group form-group-default">
                                          <label>Invoice ID</label>
@@ -91,7 +106,9 @@
                             <tr>
                                 <th>Transaction ID</th>
                                 <th>Order ID</th>
+                                <th>Order Total Price</th>
                                 <th>Transaction Status</th>
+                                <th>Transaction Date</th>
                                 <th>Invoice ID</th>
                                 <th>Invoice Date</th>
                                 <th>Action</th>
@@ -104,14 +121,16 @@
                             <tr>
                                 <td><%# Eval("TransactionID") %></td>
                                 <td><%# Eval("OrderID") %></td>
+                                <td><%# Eval("OrderTotalPrice") %></td>
                                 <td><%# Eval("TransactionStatus") %></td>
+                                <td><%# Eval("TransactionDate") %></td>
                                 <td><%# Eval("InvoiceID") %></td>
                                 <td><%# Eval("InvoiceDate") %></td>
                                 <td><asp:Button
                                     ID="EditTaskButton"
                                     runat="server"
                                     CssClass="btn btn-link btn-primary"
-                                    OnClientClick='<%# "populateModal(\"" + Eval("TransactionID") + "\", \"" + Eval("OrderID") + "\", \"" + Eval("TransactionStatus") + "\", \"" + Eval("InvoiceID") + "\", \"" + Eval("InvoiceDate") + "\"); return false;" %>'
+                                    OnClientClick='<%# "populateModal(\"" + Eval("TransactionID") + "\", \"" + Eval("OrderID") + "\",\"" + Eval("OrderTotalPrice") + "\", \"" + Eval("TransactionStatus") + "\",\"" + Eval("TransactionDate") + "\", \"" + Eval("InvoiceID") + "\", \"" + Eval("InvoiceDate") + "\"); return false;" %>'
                                     Text="Edit" />
                                 <asp:Button
                                     ID="RemoveItemButton"
@@ -136,9 +155,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
-    function populateModal(orderID, transactionID, invoiceID, invoiceDate, transactionStatus) {
+    function populateModal(orderID, transactionID, invoiceID, invoiceDate, transactionStatus,transactionDate,orderTotalPrice) {
         
         document.getElementById('<%= txtOrderID.ClientID %>').value = orderID;
+        document.getElementById('<%= txtTransactionDate.ClientID %>').value = transactionDate;
+        document.getElementById('<%= txtOrderTotalPrice.ClientID %>').value = orderTotalPrice;
         document.getElementById('<%= txtTransactionID.ClientID %>').value = transactionID;
         document.getElementById('<%= txtInvoiceID.ClientID %>').value = invoiceID;
         document.getElementById('<%= txtInvoiceDate.ClientID %>').value = invoiceDate;

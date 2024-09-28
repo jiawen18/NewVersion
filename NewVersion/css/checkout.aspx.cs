@@ -279,12 +279,19 @@ namespace NewVersion.css
             };
 
             string orderId = CreateOrder(currency, amountInSubunits, notes);
+            if (string.IsNullOrEmpty(orderId))
+            {
+                throw new Exception("Order creation failed, orderId is null or empty.");
+            }
+
+            Session["OrderID"] = orderId;
+
             string jsFunction = "OpenPaymentWindow('" + _key + "','" + currency + "','" + amountInSubunits + "','" + description + "', '" + imageLogo + "', '" + orderId + "','" + JsonConvert.SerializeObject(notes) + "');";
             ClientScript.RegisterStartupScript(this.GetType(), "OpenPaymentWindow", jsFunction, true);
 
             List<CartItem> cartItems = Session["CartItems"] as List<CartItem>; 
            
-            SaveOrderDetails(orderId, cartItems, Amount, DateTime.Now, "Shipping", "Success");
+            SaveOrderDetails(orderId, cartItems, Amount, DateTime.Now, "Shipping", "Paid");
 
         }
 
@@ -333,10 +340,12 @@ namespace NewVersion.css
 
         private void SaveOrderDetails(string orderId, List<CartItem> cartItems, decimal totalPrice, DateTime orderDate, string deliveryStatus, string transactionStatus)
         {
-            string orderQuery = "INSERT INTO Order (OrderID,TotalPrice,OrderDate,DeliveryStatus,TransactionStatus)" +
-                                "VALUES (@OrderID,@TotalPrice,@OrderDate,@DeliveryStatus,@TransactionStatus)";
+            string userDetails = $"{Session["FirstName"]} {Session["LastName"]}, Phone: {Session["Phone"]}, Address: {Session["Address"]}";
 
-            string orderDetailsQuery = "INSERT INTO OrderDetails (OrderID, ProductID, ProductName, Price, Quantity, storage, Color, ProductImage) " +
+            string orderQuery = "INSERT INTO [Order] (OrderID,TotalPrice,OrderDate,DeliveryStatus,TransactionStatus,UserDetails)" +
+                                "VALUES (@OrderID,@TotalPrice,@OrderDate,@DeliveryStatus,@TransactionStatus,@UserDetails)";
+
+            string orderDetailsQuery = "INSERT INTO [OrderDetails] (OrderID, ProductID, ProductName, Price, Quantity, storage, Color, ProductImage) " +
                                "VALUES (@OrderID, @ProductID, @ProductName, @Price, @Quantity, @storage, @Color, @ProductImage)";
 
             using (SqlConnection conn = new SqlConnection(cs))
@@ -346,10 +355,11 @@ namespace NewVersion.css
                 using (SqlCommand orderCmd = new SqlCommand(orderQuery, conn))
                 {
                     orderCmd.Parameters.AddWithValue("@OrderID", orderId);
-                    orderCmd.Parameters.AddWithValue("@OrderTotalPrice", totalPrice);
+                    orderCmd.Parameters.AddWithValue("@TotalPrice", totalPrice);
                     orderCmd.Parameters.AddWithValue("@OrderDate", orderDate);
                     orderCmd.Parameters.AddWithValue("@DeliveryStatus", deliveryStatus);
-                    orderCmd.Parameters.AddWithValue("TransactionStatus", transactionStatus);
+                    orderCmd.Parameters.AddWithValue("@TransactionStatus", transactionStatus);
+                    orderCmd.Parameters.AddWithValue("@UserDetails", userDetails);
 
                     orderCmd.ExecuteNonQuery();
                 }
@@ -376,7 +386,7 @@ namespace NewVersion.css
 
         private void UpdateOrderStatus(string orderId, string deliveryStatus, string transactionStatus)
         {
-            string updateQuery = "UPDATE Order SET DeliveryStatus = @DeliveryStatus, TransactionStatus = @TransactionStatus WHERE OrderID = @OrderID";
+            string updateQuery = "UPDATE [Order] SET DeliveryStatus = @DeliveryStatus, TransactionStatus = @TransactionStatus WHERE OrderID = @OrderID";
 
             using (SqlConnection conn = new SqlConnection(cs))
             {

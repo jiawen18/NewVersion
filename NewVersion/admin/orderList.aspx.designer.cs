@@ -51,22 +51,22 @@ namespace NewVersion.admin
         protected global::System.Web.UI.WebControls.HiddenField txtOrderID;
 
         /// <summary>
-        /// txtOrderDetails control.
+        /// txtTotalPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtOrderDetails;
+        protected global::System.Web.UI.WebControls.TextBox txtTotalPrice;
 
         /// <summary>
-        /// txtPaymentStatus control.
+        /// txtTransactionStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPaymentStatus;
+        protected global::System.Web.UI.WebControls.TextBox txtTransactionStatus;
 
         /// <summary>
         /// ddlDeliveryStatus control.
