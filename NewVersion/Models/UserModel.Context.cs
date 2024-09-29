@@ -25,19 +25,17 @@ namespace NewVersion.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<MemberUser> MemberUsers { get; set; }
-        public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<AdminUser> AdminUsers { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<MemberUser> MemberUsers { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Refund> Refunds { get; set; }
-        public virtual DbSet<Shipper> Shippers { get; set; }
-        public virtual DbSet<Support> Supports { get; set; }
-        public virtual DbSet<SuperAdminUser> SuperAdminUsers { get; set; }
-        public virtual DbSet<CartItem> CartItems { get; set; }
-        public virtual DbSet<CheckOut> CheckOuts { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
-        public virtual DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public virtual DbSet<Shipper> Shippers { get; set; }
+        public virtual DbSet<SuperAdminUser> SuperAdminUsers { get; set; }
+        public virtual DbSet<Supplier> Suppliers { get; set; }
+        public virtual DbSet<Support> Supports { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
     }
 }

@@ -12,19 +12,19 @@ namespace NewVersion.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CheckOut
+    public partial class OrderDetail
     {
-        public int CheckOutID { get; set; }
-        public int CartID { get; set; }
-        public string DeliveryFee { get; set; }
+        public int OrderDetailsID { get; set; }
+        public string OrderID { get; set; }
+        public int ProductID { get; set; }
         public string ProductName { get; set; }
-        public string Price { get; set; }
-        public string TotalPrice { get; set; }
         public int Quantity { get; set; }
-        public bool CheckOutStatus { get; set; }
-        public string ProductDetails { get; set; }
-        public string SubTotal { get; set; }
+        public decimal Price { get; set; }
+        public string Color { get; set; }
+        public string storage { get; set; }
+        public string ProductImage { get; set; }
     
-        public virtual ShoppingCart ShoppingCart { get; set; }
+        public virtual Order Order { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

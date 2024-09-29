@@ -17,8 +17,7 @@ namespace NewVersion.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.Orders = new HashSet<Order>();
-            this.CartItems = new HashSet<CartItem>();
+            this.OrderDetails = new HashSet<OrderDetail>();
             this.Reviews = new HashSet<Review>();
         }
     
@@ -27,15 +26,13 @@ namespace NewVersion.Models
         public string ProductName { get; set; }
         public decimal Price { get; set; }
         public int Quantity { get; set; }
-        public bool IsVisible { get; set; }
         public string ProductStorage { get; set; }
         public string ProductColor { get; set; }
+        public bool IsVisible { get; set; }
         public Nullable<int> SupplierID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CartItem> CartItems { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Reviews { get; set; }
         public virtual Supplier Supplier { get; set; }

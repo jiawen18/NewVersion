@@ -18,20 +18,20 @@ namespace NewVersion.Models
         public Order()
         {
             this.Refunds = new HashSet<Refund>();
-            this.Transactions = new HashSet<Transaction>();
+            this.OrderDetails = new HashSet<OrderDetail>();
         }
     
         public string OrderID { get; set; }
-        public int ProductID { get; set; }
+        public string UserDetails { get; set; }
         public System.DateTime OrderDate { get; set; }
-        public string PaymentStatus { get; set; }
+        public string TransactionStatus { get; set; }
         public string DeliveryStatus { get; set; }
-        public string OrderDetails { get; set; }
+        public decimal DeliveryFee { get; set; }
+        public decimal TotalPrice { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Refund> Refunds { get; set; }
-        public virtual Product Product { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Transaction> Transactions { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }
