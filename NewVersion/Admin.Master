@@ -59,7 +59,7 @@
                 <div class="sidebar-logo">
                     <!-- Logo Header -->
                     <div class="logo-header">
-                        <a href="../css/Home2.aspx" class="logo">
+                        <a href="dashboard.aspx" class="logo">
                             <img src="../CSS/images/HanSumg.png"
                                 alt="navbar brand"
                                 class="navbar-brand" />
