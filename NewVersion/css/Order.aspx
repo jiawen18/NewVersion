@@ -85,7 +85,7 @@
                                                 <p><asp:Label ID="lblColor" runat="server" Text='<%# "Color: " + Eval("Color") %>' CssClass="text-muted mb-0"></asp:Label></p>
                                             </div>
                                             <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                <p> <asp:Label ID="lblCapacity" runat="server" Text='<%# "Capacity:" + Eval("storage") %>' CssClass="text-muted mb-0"></asp:Label></p>
+                                                <p> <asp:Label ID="lblCapacity" runat="server" Text='<%# "Capacity:" + Eval("Capacity") %>' CssClass="text-muted mb-0"></asp:Label></p>
                                             </div>
                                             <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
                                                 <p> <asp:Label ID="lblQuantity" runat="server" Text='<%# "Qty: " + Eval("Quantity") %>' CssClass="text-muted mb-0"></asp:Label></p>
@@ -117,10 +117,10 @@
 
                                         <div class="d-flex justify-content-between pt-2">
                                             <p>
-                                            <asp:Label ID="Label1" runat="server" Text='<%# " Invoice Number : " + Eval("InvoiceID") %>' CssClass="text-muted mb-0" style="position: relative; left: 30px;"></asp:Label>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# " Invoice Number : " + Eval("InvoiceNumber") %>' CssClass="text-muted mb-0" style="position: relative; left: 30px;"></asp:Label>
                                             </p>
                                             <p >
-                                            <asp:Label ID="lblPrice" runat="server" CssClass="text-muted mb-0" style="position: relative; right: 30px;"><span class="fw-bold me-4">Total</span>'<%# " RM " + Eval("TotalPrice") %>'</asp:Label>
+                                            <asp:Label ID="lblPrice" runat="server" CssClass="text-muted mb-0" style="position: relative; right: 30px;"><span class="fw-bold me-4">Total</span><%# " RM " + Eval("TotalPrice") %></asp:Label>
                                         </p>
                                         </div>
 
@@ -129,7 +129,7 @@
                                             <asp:Label ID="lblInvoiceDate" runat="server" Text='<%# "Invoice Date: " + Convert.ToDateTime(Eval("InvoiceDate")).ToString("MM dd yyyy") %>' CssClass="text-muted mb-0" style="position: relative; left: 30px;"></asp:Label>
                                             </p>
                                             <p>
-                                            <asp:Label ID="lblDeliveryFee" runat="server" CssClass="text-muted mb-0" style="position: relative; right: 30px;"><span class="fw-bold me-4">Delivery Charges</span>'<%# " RM " + Eval("DeliveryFee") %>'</asp:Label>
+                                            <asp:Label ID="lblDeliveryFee" runat="server" CssClass="text-muted mb-0" style="position: relative; right: 30px;"><span class="fw-bold me-4">Delivery Charges</span><%# " RM " + Eval("DeliveryFee") %></asp:Label>
                                         </p>
                                         </div>
                                         <br />
@@ -137,7 +137,7 @@
 
                                         <div class="card-footer border-0 px-4 py-5"
                                             style="background-color: #a8729a; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-                                                <asp:Label ID="lblTotalPrice" runat="server" CssClass="d-flex align-items-center justify-content-end text-white text-uppercase mb-0"><span class="h2 mb-0 ms-2">'<%# "Total Paid: RM " + (Convert.ToDecimal(Eval("TotalPrice")) + Convert.ToDecimal(Eval("DeliveryFee"))).ToString("N2") %>'</span></asp:Label>
+                                                <asp:Label ID="lblTotalPrice" runat="server" CssClass="d-flex align-items-center justify-content-end text-white text-uppercase mb-0"><span class="h2 mb-0 ms-2"><%# "Total Paid: RM " + Eval("TotalPrice") %></span></asp:Label>
                                             </h5>
                                         </div>
                                     </div>

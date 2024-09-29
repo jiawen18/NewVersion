@@ -211,9 +211,9 @@
                 "order_id": orderId, //This is a sample Order ID. Pass the id obtained in the response of Step 1
                 "handler": function (response) {
                     var orderId = response.razorpay_order_id;
-                    var transactionId = response.razorpay_payment_id; 
+                    var transactionId = response.razorpay_payment_id;
+                    
                     window.location.href = "SuccessPage.aspx?orderId=" + orderId + "&TransactionId=" + transactionId;
-                    SaveOrderDetails(orderId, cartItems, Amount, DateTime.Now, "Shipping", "Paid");
                     UpdateOrderStatus(orderId, "Shipping", "Paid");
                     //alert(response.razorpay_payment_id);
                     //alert(response.razorpay_order_id);

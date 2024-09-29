@@ -41,7 +41,7 @@ namespace NewVersion.css
                                     FROM [Order] o
                                     JOIN [OrderDetails] od ON o.OrderID = od.OrderID
                                     JOIN [Transaction] t ON o.OrderID = t.OrderID
-                                    WHERE o.DeliveryStatus = 'Shipping'";
+                                    WHERE o.DeliveryStatus = 'Shipping' AND t.TransactionStatus ='Success'";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
