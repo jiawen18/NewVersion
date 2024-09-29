@@ -106,14 +106,14 @@
             <!-- content -->
             <main class="col-md-10 content">
                 <h2 style="transform: translate(100px, 60px);">
-                    <asp:HyperLink ID="hplBackHome1" runat="server" CssClass="no-underline" NavigateUrl="UserProfile.aspx">< </asp:HyperLink>
+                    <asp:HyperLink ID="hplBackHome2" runat="server" CssClass="no-underline" NavigateUrl="UserProfile.aspx">< </asp:HyperLink>
                     To Ship <img src="images/truck.png" />
                 </h2>
 
                 <%-- Content Section --%>
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-lg-10 col-xl-8">
-                        <asp:Repeater ID="rptOrderDetails" runat="server" OnItemDataBound="rptOrderDetails_ItemDataBound">
+                        <asp:Repeater ID="rptOrderDetails" runat="server" OnItemDataBound="rptCOrderDetails_ItemDataBound">
                             <ItemTemplate>
                                 <div class="card" style="margin-bottom: 20px;">
                                     <div class="header px-4 py-5">
@@ -205,16 +205,4 @@
 </asp:Content>
 
 
-   <script>
-       function toggleDetails(button) {
-           var detailsDiv = button.closest('.card').querySelector('.details');
-           if (detailsDiv.style.display === 'none' || detailsDiv.style.display === '') {
-               detailsDiv.style.display = 'block';
-               button.innerText = 'Hide Details';
-           } else {
-               detailsDiv.style.display = 'none';
-               button.innerText = 'View Details';
-           }
-       }
-   </script>
 </asp:Content>

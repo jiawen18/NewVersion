@@ -16,7 +16,7 @@ namespace NewVersion.css
         {
             if (!IsPostBack)
             {
-                LoadCompletedOrders();
+                BindOrderData();
             }
 
         }
@@ -52,7 +52,7 @@ namespace NewVersion.css
         }
 
         // Fetch completed orders from the database and bind them to a control
-        private List<OrderViewModel> LoadOrdersItem()
+        private List<OrderViewModel> LoadCompletedOrders()
         {
             List<OrderViewModel> orderViewModels = new List<OrderViewModel>();
 
@@ -65,6 +65,7 @@ namespace NewVersion.css
                     od.ProductName,
                     od.ProductID,
                     od.Quantity,
+                    od.ProductID,
                     od.Storage,
                     od.Color,
                     od.Price,
@@ -108,6 +109,7 @@ namespace NewVersion.css
 
                             Order order = new Order
                             {
+                                ProductID = Convert.ToInt32 (reader["ProductID"]),
                                 ProductName = reader["ProductName"].ToString(),
                                 ProductImage = reader["ProductImage"].ToString(),
                                 Color = reader["Color"].ToString(),
@@ -146,11 +148,11 @@ namespace NewVersion.css
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                var order = (OrderViewModel)e.Item.DataItem; // 使用 OrderViewModel 类型
+                var order = (OrderViewModel)e.Item.DataItem; 
                 Repeater rptProducts = (Repeater)e.Item.FindControl("rptProducts");
 
-                // 确保 order.Products 返回产品列表
-                rptProducts.DataSource = order.Products; // 绑定产品列表
+                
+                rptProducts.DataSource = order.Products;
                 rptProducts.DataBind();
             }
         }
@@ -159,6 +161,7 @@ namespace NewVersion.css
 
 public partial class Order
 {
+    public int ProductID { get; set; }
     public string ProductName { get; set; }
     public string ProductImage { get; set; }
     public string Color { get; set; }
