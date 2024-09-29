@@ -2,6 +2,28 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="UserProfile.aspx.cs" Inherits="NewVersion.css.UserProfile" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+	<asp:SqlDataSource 
+        ID="SqlDataSource1" 
+        runat="server" 
+        ConnectionString="<%$ ConnectionStrings:productConnectionString %>"
+        ProviderName="System.Data.SqlClient"
+        SelectCommand="
+            SELECT 
+                p.ProductID, 
+                p.ProductName, 
+                p.ProductImageURL, 
+                p.Price, 
+                AVG(r.ReviewRating) AS AverageRating 
+            FROM 
+                Product p 
+            LEFT JOIN 
+                Review r ON p.ProductID = r.ProductID 
+            GROUP BY 
+                p.ProductID, 
+                p.ProductName, 
+                p.ProductImageURL, 
+                p.Price">
+    </asp:SqlDataSource>
     <div class="user-container">
 
 
@@ -57,242 +79,44 @@
                 <!-- /section title -->
 
                 <!-- Products tab & slick -->
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="products-tabs">
-                            <!-- tab -->
-                            <div id="tab2" class="tab-pane fade in active">
-                                <div class="products-slick" data-nav="#slick-nav-1">
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <div class="product-label">
-                                                <span class="sale">-30%</span>
-                                                <span class="new">NEW</span>
+                <div class="row">
+                    <div class="products-tabs">
+                        <div id="tab2" class="tab-pane active">
+                            <div class="products-slick" data-nav="#slick-nav-1" style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                                <div class="row" style="display: flex; flex-wrap: wrap; width: 100%; margin-bottom: 40px;">
+                                    <asp:Repeater ID="productRepeater" runat="server">
+                                        <ItemTemplate>
+                                            <div class="col-md-4" style="flex: 1 1 30%; box-sizing: border-box; margin-bottom: 20px; position: relative;">
+                                                <a href='ProductDetails.aspx?ProductID=<%# Eval("ProductID") %>' style="text-decoration: none; color: inherit; height: 100%;">
+                                                    <div class="product" style="height: 100%; background-color: transparent;"> <!-- Added background-color -->
+                                                        <div class="product-img">
+                                                            <img src='<%# Eval("ProductImageURL") %>' alt="image" style="width: 100%; height: 200px; object-fit: cover;">
+                                                            <div class="product-label">
+                                                                <span class="sale">-30%</span>
+                                                                <span class="new">NEW</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="product-body" style="flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; background-color: transparent;"> <!-- Added background-color -->
+                                                            <h3 class="product-name"><%# Eval("ProductName") %></h3>
+                                                            <h4 class="product-price">RM <%# Eval("Price") %></h4>
+                                                            <div class="product-rating">
+                                                                <%# GetRatingStars(Eval("AverageRating")) %>
+                                                            </div>      
+                                                            <div class="add-to-cart" style="opacity: 0; transition: opacity 0.3s ease; margin-top: 10px; background-color: transparent;"> <!-- Added background-color -->
+                                                                <asp:Button ID="Button1" runat="server" Text="Buy Now" CssClass="buyNow-btn" CommandArgument='<%# Eval("ProductID") %>' OnClick="btnBuyNow_Click" style="background-color: darkred; color: white; border: none; padding: 10px 20px; cursor: pointer; width: 100%;" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
                                             </div>
-                                            <a href="#">
-                                                <img src="images/zflips.jpg" alt="image" style="width: 350px; height: 300px;"></a>
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">Galaxy Z flip 3</a></h3>
-                                            <h4 class="product-price">RM 895.95 </h4>
-                                            <h4 class="product-price"><del class="product-old-price">RM 1200.89</del></h4>
-                                        </div>
-                                    </div>
-                                    <!-- /product -->
-
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <a href="#">
-                                                <img src="images/galaxyA55.jpg" alt="image" style="width: 350px; height: 300px;"></a>
-                                            <div class="product-label">
-                                                <span class="new">NEW</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">Galaxy A55 5G</a></h3>
-                                            <h4 class="product-price">RM1999.90 </h4>
-                                            <h4 class="product-price"><del class="product-old-price">RM 2550.79</del></h4>
-                                        </div>
-                                    </div>
-                                    <!-- /product -->
-
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <a href="#">
-                                                <img src="images/galaxyS23Ultra.jpg" alt="image" style="width: 350px; height: 300px;"></a>
-                                            <div class="product-label">
-                                                <span class="sale">-20%</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">Galaxy S23 Ultra</a></h3>
-                                            <h4 class="product-price">RM 5299.00 </h4>
-                                            <h4 class="product-price"><del class="product-old-price">RM 5700.89</del></h4>
-                                        </div>
-                                    </div>
-                                    <!-- /product -->
-
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <a href="#">
-                                                <img src="images/galaxyS21Ultra.jpg" alt="image" style="width: 350px; height: 300px;"></a>
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">Galaxy S21 Ultra 5G</a></h3>
-                                            <h4 class="product-price">RM 3400.95</h4>
-                                            <h4 class="product-price"><del class="product-old-price">RM 3790.79</del></h4>
-                                        </div>
-                                    </div>
-                                    <!-- /product -->
-
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <a href="#">
-                                                <img src="images/galaxyNote20.jpg" alt="image" style="width: 350px; height: 300px;"></a>
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">Galaxy Note 20 5G</a></h3>
-                                            <h4 class="product-price">RM 2250.98</h4>
-                                            <h4 class="product-price"><del class="product-old-price">RM 2509.87</del></h4>
-                                        </div>
-                                    </div>
-                                    <!-- /product -->
+                                        </ItemTemplate>
+                                    </asp:Repeater>
                                 </div>
-                            </div>
-                            <!-- /tab -->
-
-                            <!-- tab -->
-                            <div id="tab3" class="tab-pane fade">
-                                <div class="products-slick" data-nav="#slick-nav-1">
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <a href="#">
-                                                <img src="images/tab_S9.jpg" alt="image" style="width: 350px; height: 300px;"></a>
-                                            <div class="product-label">
-                                                <span class="sale">-30%</span>
-                                                <span class="new">NEW</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">Samsung Galaxy Tab S9 FE (Wi-Fi)</a></h3>
-                                            <h4 class="product-price">RM 2099.98 </h4>
-                                            <h4 class="product-price"><del class="product-old-price">RM 2309.78</del></h4>
-                                        </div>
-                                    </div>
-                                    <!-- /product -->
-
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <a href="#">
-                                                <img src="images/samsung_tab9.jpg" alt="image" style="width: 350px; height: 300px;"></a>
-                                            <div class="product-label">
-                                                <span class="sale">-30%</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">Galaxy Tab A9</a></h3>
-                                            <h4 class="product-price">RM 699.00 </h4>
-                                            <h4 class="product-price"><del class="product-old-price">RM 812.89</del></h4>
-                                        </div>
-                                    </div>
-                                    <!-- /product -->
-
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <a href="#">
-                                                <img src="images/tab_S9plus.jpg" alt="image" style="width: 350px; height: 300px;"></a>
-                                            <div class="product-label">
-                                                <span class="new">NEW</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#"></a>Galaxy Tab S9 FE+></h3>
-                                            <h4 class="product-price">RM3399.00 </h4>
-                                            <h4 class="product-price"><del class="product-old-price">RM 3500.98</del></h4>
-
-                                        </div>
-
-                                    </div>
-                                    <!-- /product -->
-
-                                </div>
-                            </div>
-                            <!-- /tab -->
-
-
-                            <!-- tab -->
-                            <div id="tab4" class="tab-pane fade">
-                                <div class="products-slick" data-nav="#slick-nav-1">
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <a href="#">
-                                                <img src="images/Samsung_Galaxy_Buds_Pro.jpg" alt="image" style="width: 350px; height: 300px;"></a>
-                                            <div class="product-label">
-                                                <span class="sale">-30%</span>
-                                                <span class="new">NEW</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">Samsung Galaxy Buds Pro </a></h3>
-                                            <h4 class="product-price">RM 799.95 </h4>
-                                            <h4 class="product-price"><del class="product-old-price">RM 1050.89</del></h4>
-
-
-                                        </div>
-
-                                    </div>
-                                    <!-- /product -->
-
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <a href="#">
-                                                <img src="images/Samsung_Galaxy_Buds_Live.jpg" alt="image" style="width: 350px; height: 300px;"></a>
-                                            <div class="product-label">
-                                                <span class="new">NEW</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">Samsung Galaxy Buds Live</a></h3>
-                                            <h4 class="product-price">RM269.90 </h4>
-                                            <h4 class="product-price"><del class="product-old-price">RM 279.79</del></h4>
-
-                                        </div>
-
-                                    </div>
-                                    <!-- /product -->
-
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <a href="#">
-                                                <img src="images/Samsung_Galaxy_Watch_5.jpg" alt="image" style="width: 350px; height: 300px;"></a>
-                                            <div class="product-label">
-                                                <span class="sale">-30%</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">Samsung Galaxy Watch 5</a></h3>
-                                            <h4 class="product-price">RM 1299.00 </h4>
-                                            <h4 class="product-price"><del class="product-old-price">RM 1500.89</del></h4>
-
-                                        </div>
-
-                                    </div>
-                                    <!-- /product -->
-
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <a href="#">
-                                                <img src="images/GalaxyS24Case.jpg" alt="image" style="width: 350px; height: 300px;"></a>
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">Galaxy S24+ Case</a></h3>
-                                            <h4 class="product-price">RM 189.95</h4>
-                                            <h4 class="product-price"><del class="product-old-price">RM 220.79</del></h4>
-
-                                        </div>
-                                    </div>
-
-                                    <!-- /product -->
-                                </div>
-                            </div>
-                            <!-- /tab -->
-                            <div id="slick-nav-2" class="products-slick-nav">
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <!-- /Products tab & slick -->
             </div>
             <!-- /row -->
@@ -300,6 +124,18 @@
     </div>
     <!-- /container -->
     <!-- /SECTION -->
-
+    
+    <script>
+    // Show button on hover
+    const productColumns = document.querySelectorAll('.col-md-4');
+    productColumns.forEach(column => {
+        column.addEventListener('mouseover', () => {
+            column.querySelector('.add-to-cart').style.opacity = '1';
+        });
+        column.addEventListener('mouseout', () => {
+            column.querySelector('.add-to-cart').style.opacity = '0';
+        });
+    });
+    </script>
     
 </asp:Content>
