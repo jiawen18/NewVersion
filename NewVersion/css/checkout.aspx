@@ -214,7 +214,7 @@
                     var transactionId = response.razorpay_payment_id;
                     
                     window.location.href = "SuccessPage.aspx?orderId=" + orderId + "&TransactionId=" + transactionId;
-                    UpdateOrderStatus(orderId, "Shipping", "Paid");
+                    UpdateOrderStatus(orderId, "Shipping", "Success");
                     //alert(response.razorpay_payment_id);
                     //alert(response.razorpay_order_id);
                     //alert(response.razorpay_signature)

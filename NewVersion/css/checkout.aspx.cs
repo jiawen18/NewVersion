@@ -153,7 +153,7 @@ namespace NewVersion.css
 
                     Label lblDetails = new Label();
                     lblDetails.Text = "Storage: " + item.StorageOption + "</br>Color: " + item.ColorOption;
-                    lblDetails.Attributes.Add("style", "color: #888;"); // 设置较浅的颜色
+                    lblDetails.Attributes.Add("style", "color: #888;"); 
                     cell1.Controls.Add(lblDetails);
                     row.Cells.Add(cell1);
 
@@ -163,7 +163,7 @@ namespace NewVersion.css
 
                     phCartItems.Controls.Add(row);
 
-                    // 计算小计
+                    
                     cartSubtotal += item.Price * item.Quantity;
                 }
 
@@ -172,7 +172,7 @@ namespace NewVersion.css
                 decimal deliveryFeeInitial = 5.90m;
                 lblDeliveryFee.Text = "RM " + deliveryFeeInitial.ToString("F2");
 
-                Session["DeliveryFee"] = lblDeliveryFee.Text;
+                Session["DeliveryFee"] = deliveryFeeInitial;
 
                 lblAmount.Text = "RM " + (cartSubtotal + deliveryFeeInitial).ToString("F2");
                 

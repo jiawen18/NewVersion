@@ -130,7 +130,7 @@
                                     ID="EditTaskButton"
                                     runat="server"
                                     CssClass="btn btn-link btn-primary"
-                                    OnClientClick='<%# "populateModal(\"" + Eval("TransactionID") + "\", \"" + Eval("OrderID") + "\",\"" + Eval("OrderTotalPrice") + "\", \"" + Eval("TransactionStatus") + "\",\"" + Eval("TransactionDate") + "\", \"" + Eval("InvoiceID") + "\", \"" + Eval("InvoiceDate") + "\"); return false;" %>'
+                                    OnClientClick='<%# "populateModal(\"" + Eval("OrderID") + "\", \"" + Eval("TransactionID") + "\", \"" + Eval("InvoiceID") + "\", \"" + Eval("InvoiceDate") + "\", \"" + Eval("TransactionStatus") + "\", \"" + Eval("TransactionDate") + "\", \"" + Eval("OrderTotalPrice") + "\"); return false;" %>'
                                     Text="Edit" />
                                 <asp:Button
                                     ID="RemoveItemButton"

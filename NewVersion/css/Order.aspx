@@ -18,6 +18,23 @@
     .card-details {
         z-index: 1;
     }
+
+    .collapsible {
+            cursor: pointer;
+            padding: 10px;
+            border: none;
+            text-align: left;
+            outline: inherit;
+            background-color: #a8729a;
+            color: white;
+            border-radius: 5px;
+        }
+        .content {
+            display: none;
+            overflow: hidden;
+            padding: 10px 0;
+        }
+
     </style>
 
     <div class="hero">
@@ -57,7 +74,7 @@
         <div class="row d-flex justify-content-center align-items-center h-100" >
             <div class="col-lg-10 col-xl-8">
                 
-                <asp:Repeater ID="rptOrders" runat="server">
+                <asp:Repeater ID="rptOrders" runat="server" OnItemDataBound="rptOrders_ItemDataBound">
                     <HeaderTemplate>
                         <div class="card" style="border-radius: 10px;">
                             <div class="card-header px-4 py-5">
@@ -70,7 +87,10 @@
                                     <p class="lead fw-normal mb-0" style="color: #a8729a;">Order</p>
                                     <p > <asp:Label ID="lblInvoiceNumber" runat="server" Text='<%# "Order ID: " + Eval("OrderID") %>' CssClass="small text-muted mb-0"></asp:Label></p>
                                 </div>
-
+                                
+                        
+                            <asp:Repeater ID="rptProducts" runat="server">
+                                <ItemTemplate>
                                 <div class="border">
                                     <div class="card-body">
                                         <div class="row">
@@ -91,23 +111,31 @@
                                                 <p> <asp:Label ID="lblQuantity" runat="server" Text='<%# "Qty: " + Eval("Quantity") %>' CssClass="text-muted mb-0"></asp:Label></p>
                                             </div>
                                             <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                <p> <asp:Label ID="lblPrice" runat="server" Text='<%# "RM " + Eval("Price") %>' CssClass="text-muted mb-0"></asp:Label></p>
+                                                <p> <asp:Label ID="lblProductPrice" runat="server" Text='<%# "RM " + Eval("Price") %>' CssClass="text-muted mb-0"></asp:Label></p>
                                             </div>
                                         </div>
-                                        <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
-                                        <div class="row d-flex align-items-center">
+                                        </div>
+                                    </div>
+                                        </ItemTemplate>
+                                </asp:Repeater>
 
-                                            <div class="trackAndReview">
-                                                <asp:Button class="text-muted mb-0 small" ID="btnCancel" runat="server" Text="Cancel" CommandArgument='<%# Eval("OrderID") %>' OnClick="btnCancel_Click" />
-                                                &nbsp&nbsp&nbsp&nbsp
-                                                <asp:Button class="text-muted mb-0 small" ID="btnTrack" runat="server" Text="Track Order"  OnClick="btnTrack_Click" />
-                                            </div>
+                                      <div class="row d-flex align-items-center">
+
+                                        <div class="d-flex justify-content-end mt-4">
+                                            <asp:Button class="text-muted mb-0 small" ID="btnCancel" runat="server" Text="Cancel" CommandArgument='<%# Eval("OrderID") %>' OnClick="btnCancel_Click" />
+                                            &nbsp&nbsp&nbsp&nbsp
+                                            <asp:Button class="text-muted mb-0 small" ID="btnTrack" runat="server" Text="Track Order"  OnClick="btnTrack_Click" />
                                         </div>
+                                    </div>
                                     </div>
                                   </ItemTemplate>
 
                                   <FooterTemplate>
+                                      
                                     <!-- Collapsible section -->
+                                      <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
+                                      <button type="button" class="collapsible">Order Details</button>
+                                      <div class="content">
                                     <div class="card-details">
                                         <div class="d-flex justify-content-between pt-2">
                                             <p class="text-muted mb-0" style="position: relative; left: 30px;">
@@ -141,6 +169,7 @@
                                             </h5>
                                         </div>
                                     </div>
+                                          </div>
 
                                   </FooterTemplate>
                                  </asp:Repeater>
@@ -152,20 +181,18 @@
     </div>
 
    <script>
-       document.addEventListener('DOMContentLoaded', function () {
-           var menuItems = document.querySelectorAll('.sidebar a');
-
-           menuItems.forEach(function (item) {
-               var currentPage = window.location.pathname;
-               var linkPage = item.getAttribute('href');
-
-               if (currentPage.includes(linkPage)) {
-                   item.classList.add('active');
+       var coll = document.getElementsByClassName("collapsible");
+       for (var i = 0; i < coll.length; i++) {
+           coll[i].addEventListener("click", function () {
+               this.classList.toggle("active");
+               var content = this.nextElementSibling;
+               if (content.style.display === "block") {
+                   content.style.display = "none";
                } else {
-                   item.classList.remove('active');
+                   content.style.display = "block";
                }
            });
-       });
+       }
 
 
    </script>

@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using NewVersion.Models;
+using Razorpay.Api;
 
 namespace NewVersion.css
 {
@@ -24,51 +25,125 @@ namespace NewVersion.css
 
         private void BindOrderData()
         {
-            List<Order> orders = LoadOrdersItem();
+            List<OrderViewModel> orders = LoadOrdersItem();
 
-            rptOrders.DataSource = orders;
-            rptOrders.DataBind();
+            // 确保 orders 不为空
+            if (orders != null && orders.Count > 0)
+            {
+                var groupedOrders = orders
+                    .GroupBy(order => order.OrderID)
+                    .Select(group => new OrderViewModel
+                    {
+                        OrderID = group.Key,
+                        Products = group.SelectMany(o => o.Products).ToList(),
+                        InvoiceNumber = group.First().InvoiceNumber,
+                        TotalPrice = group.Sum(o => o.TotalPrice),
+                        DeliveryFee = group.First().DeliveryFee,
+                        InvoiceDate = group.First().InvoiceDate
+                    }).ToList();
+
+                rptOrders.DataSource = groupedOrders;
+                rptOrders.DataBind();
+            }
+            else
+            {
+                // 处理没有订单的情况，例如显示一条消息
+                rptOrders.DataSource = null;
+                rptOrders.DataBind();
+            }
         }
 
-        private List<Order> LoadOrdersItem()
+        private List<OrderViewModel> LoadOrdersItem()
         {
-            List<Order> orders = new List<Order>();
+            List<OrderViewModel> orderViewModels = new List<OrderViewModel>();
 
             using (SqlConnection conn = new SqlConnection(cs))
             {
                 conn.Open();
-                string query = @"SELECT o.OrderID, o.TotalPrice,o.DeliveryFee, od.ProductName,t.InvoiceID, t.InvoiceDate,od.ProductImage,od.Color, od.storage, od.Quantity, od.Price 
-                                    FROM [Order] o
-                                    JOIN [OrderDetails] od ON o.OrderID = od.OrderID
-                                    JOIN [Transaction] t ON o.OrderID = t.OrderID
-                                    WHERE o.DeliveryStatus = 'Shipping' AND t.TransactionStatus ='Success'";
+                string query = @"SELECT o.OrderID, o.TotalPrice, o.DeliveryFee, od.ProductName, t.InvoiceID, t.InvoiceDate, 
+                                 od.ProductImage, od.Color, od.storage, od.Quantity, od.Price 
+                         FROM [Order] o
+                         JOIN [OrderDetails] od ON o.OrderID = od.OrderID
+                         JOIN [Transaction] t ON o.OrderID = t.OrderID
+                         WHERE o.DeliveryStatus = 'Shipping' AND t.TransactionStatus = 'Success'
+                         ORDER BY o.OrderID";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        Order order = new Order
+                        
+                        Dictionary<string, OrderViewModel> orderDict = new Dictionary<string, OrderViewModel>();
+
+                        while (reader.Read())
                         {
-                            OrderID = reader["OrderID"].ToString(),
-                            ProductName = reader["ProductName"].ToString(),
-                            InvoiceNumber = reader["InvoiceID"].ToString(),
-                            InvoiceDate = reader["InvoiceDate"].ToString(),
-                            ProductImage = reader["ProductImage"].ToString(),
-                            DeliveryFee = reader["DeliveryFee"].ToString(),
-                            Color = reader["Color"].ToString(),
-                            Capacity = reader["storage"].ToString(),
-                            Quantity = Convert.ToInt32(reader["Quantity"]),
-                            Price = reader["Price"].ToString(),
-                            TotalPrice = reader["TotalPrice"].ToString(),
-                        };
-                        orders.Add(order);
+                            string orderID = reader["OrderID"].ToString();
+
+                            
+                            if (!orderDict.ContainsKey(orderID))
+                            {
+                                orderDict[orderID] = new OrderViewModel
+                                {
+                                    OrderID = orderID,
+                                    Products = new List<Order>(), 
+                                    InvoiceNumber = reader["InvoiceID"].ToString(),
+                                    TotalPrice = Convert.ToDecimal(reader["TotalPrice"]),
+                                    DeliveryFee = Convert.ToDecimal(reader["DeliveryFee"]),
+                                    InvoiceDate = Convert.ToDateTime(reader["InvoiceDate"]).ToString("yyyy-MM-dd") // 或者根据需要格式化
+                                };
+                            }
+
+                           
+                            Order order = new Order
+                            {
+                                ProductName = reader["ProductName"].ToString(),
+                                ProductImage = reader["ProductImage"].ToString(),
+                                Color = reader["Color"].ToString(),
+                                Capacity = reader["storage"].ToString(),
+                                Quantity = Convert.ToInt32(reader["Quantity"]),
+                                Price = Convert.ToDecimal(reader["Price"])
+                            };
+
+                            
+                            orderDict[orderID].Products.Add(order);
+                        }
+
+                       
+                        orderViewModels = orderDict.Values.ToList();
                     }
                 }
             }
 
-            return orders;
+            return orderViewModels;
         }
+
+
+        private string previousOrderID = null;
+
+        protected void rptOrders_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                var order = e.Item.DataItem as OrderViewModel;
+
+                // 添加Header
+                if (previousOrderID != order.OrderID)
+                {
+                    // 更新 previousOrderID
+                    previousOrderID = order.OrderID;
+
+                    // 查找嵌套的 Repeater
+                    var rptProducts = (Repeater)e.Item.FindControl("rptProducts");
+                    if (rptProducts != null && order.Products != null && order.Products.Count > 0)
+                    {
+                        rptProducts.DataSource = order.Products;
+                        rptProducts.DataBind();
+                    }
+                }
+            }
+        }
+
+
 
         protected void btnTrack_Click(object sender, EventArgs e)
         {
@@ -78,7 +153,7 @@ namespace NewVersion.css
         // yujing edited this for refund
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Button cancelButton = sender as Button;
+          /*  Button cancelButton = sender as Button;
             if (cancelButton != null)
             {
 
@@ -102,25 +177,31 @@ namespace NewVersion.css
                 //FeedbackLabel.CssClass = "text-success";
 
                 Response.Redirect("cancelled.aspx");
-            }
+            }*/
         }
 
     }
 
     public partial class Order
-    {
-        public string OrderID { get; set; }
+    { 
         public string ProductName { get; set; }
-        public string InvoiceNumber { get; set; }
-        public string InvoiceDate { get; set; }
         public string ProductImage { get; set; }
         public string Color { get; set; }
         public string Capacity { get; set; }
         public int Quantity { get; set; }
-        public string Price { get; set; }
-        public string DeliveryFee { get; set; }
-        public string TotalPrice { get; set; }
+        public decimal Price { get; set; }
     }
+
+    public class OrderViewModel
+    {
+        public string OrderID { get; set; }
+        public List<Order> Products { get; set; }
+        public string InvoiceNumber { get; set; }
+        public decimal TotalPrice { get; set; }
+        public decimal DeliveryFee { get; set; }
+        public string InvoiceDate { get; set; }
+    }
+
 }
 
 
