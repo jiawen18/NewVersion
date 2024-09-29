@@ -83,53 +83,53 @@ position: relative;
              <h2 style="transform: translate(100px, 60px);">
                  <asp:HyperLink ID="hplBackHome1" runat="server" CssClass="no-underline" NavigateUrl="UserProfile.aspx">< </asp:HyperLink>
                  Completed <img src="images/package.png" /></h2>
-    <%-- Content Section --%>
+            
+             <%-- Content Section --%>
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-lg-10 col-xl-8">
-                <div class="card" style="border-radius: 10px;">
-                    <div class="card-header px-4 py-5">
-                        <h5 class="text-muted mb-0">HanSumg.</h5>
-                    </div>
-
-                    <asp:Repeater ID="rptTransactions" runat="server">
-                    <ItemTemplate>
-                        <div class="card-body p-4">
-                            <div class="d-flex justify-content-between align-items-center mb-4">
-                                <p class="lead fw-normal mb-0" style="color: #a8729a;">Order</p>
-                                <p class="small text-muted mb-0">Order ID : <%# Eval("OrderID") %></p>
+                <asp:Repeater ID="rptOrderDetails" runat="server" >
+                    <HeaderTemplate>
+                        <div class="card" style="border-radius: 10px;">
+                            <div class="card-header px-4 py-5">
+                                <h5 class="text-muted mb-0">HanSumg.</h5>
                             </div>
+                            <div class="card-body p-4">
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <p class="lead fw-normal mb-0" style="color: #a8729a;">Order</p>
+                            <p class="small text-muted mb-0">Order ID : <%# Eval("OrderID") %></p>
+                        </div>
 
-                            <div class="border">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <img src='<%# Eval("ProductImage") %>' style="max-width: 80px; max-height: 175px;" />
-                                        </div>
-                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                            <p class="text-muted mb-0"><%# Eval("ProductName") %></p>
-                                        </div>
-                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                            <p class="text-muted mb-0">Color: <%# Eval("Color") %></p>
-                                        </div>
-                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                            <p class="text-muted mb-0">Capacity: <%# Eval("Storage") %></p>
-                                        </div>
-                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                            <p class="text-muted mb-0">Qty: <%# Eval("Quantity") %></p>
-                                        </div>
-                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                            <p class="text-muted mb-0">RM<%# Eval("Price") %></p>
-                                        </div>
+                        <div class="border">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <img src='<%# Eval("ProductImage") %>' style="max-width: 80px; max-height: 175px;" />
                                     </div>
-
-                                    <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="trackAndReview">
-                                            <asp:Button class="text-muted mb-0 small" ID="btnReview" runat="server" Text="Review"  CommandArgument='<%# Eval("ProductID") %>'  OnClick="btnReview_Click" />
-                                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <asp:Button class="text-muted mb-0 small" ID="btnTrack" runat="server" Text="Track Order" OnClick="btnTrack_Click" />
-                                        </div>
+                                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                        <p class="text-muted mb-0"><%# Eval("ProductName") %></p>
+                                    </div>
+                                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                        <p class="text-muted mb-0">Color: <%# Eval("Color") %></p>
+                                    </div>
+                                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                        <p class="text-muted mb-0">Capacity: <%# Eval("Storage") %></p>
+                                    </div>
+                                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                        <p class="text-muted mb-0">Qty: <%# Eval("Quantity") %></p>
+                                    </div>
+                                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                        <p class="text-muted mb-0">RM<%# Eval("Price", "{0:N2}") %></p>
+                                    </div>
+                                </div>
+                                <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
+                                <div class="row d-flex align-items-center">
+                                    <div class="trackAndReview">
+                                        <asp:Button class="text-muted mb-0 small" ID="btnReview" runat="server" Text="Review" OnClick="btnReview_Click" />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <asp:Button class="text-muted mb-0 small" ID="btnTrack" runat="server" Text="Track Order" OnClick="btnTrack_Click" />
                                     </div>
                                 </div>
                             </div>
