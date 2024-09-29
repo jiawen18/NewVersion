@@ -1,6 +1,29 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="completed.aspx.cs" Inherits="NewVersion.css.completed" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <asp:SqlDataSource 
+    ID="SqlDataSource1" 
+    runat="server" 
+    ConnectionString="<%$ ConnectionStrings:productConnectionString %>"
+    ProviderName="System.Data.SqlClient"
+    SelectCommand="
+           SELECT 
+            o.OrderID,
+            od.ProductName,
+            od.Quantity,
+            od.Storage,
+            od.Color,
+            od.Price,
+            od.ProductImage,
+            t.TransactionStatus
+        FROM 
+            [dbo].[Transaction] t
+        INNER JOIN 
+            [dbo].[Order] o ON t.OrderID = o.OrderID
+        INNER JOIN 
+            [dbo].[OrderDetails] od ON o.OrderID = od.OrderID
+        WHERE 
+            t.TransactionStatus = 'Success'">
+</asp:SqlDataSource>
     <style>
 .no-underline {
     text-decoration: none; 
@@ -69,45 +92,50 @@ position: relative;
                         <h5 class="text-muted mb-0">HanSumg.</h5>
                     </div>
 
-                    <div class="card-body p-4">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <p class="lead fw-normal mb-0" style="color: #a8729a;">Order</p>
-                            <p class="small text-muted mb-0">Order ID : ORD12345</p>
-                        </div>
+                    <asp:Repeater ID="rptTransactions" runat="server">
+                    <ItemTemplate>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <p class="lead fw-normal mb-0" style="color: #a8729a;">Order</p>
+                                <p class="small text-muted mb-0">Order ID : <%# Eval("OrderID") %></p>
+                            </div>
 
-                        <div class="border">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <img src="images/GalaxyA.png" style="max-width: 80px; max-height: 175px;" />
+                            <div class="border">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <img src='<%# Eval("ProductImage") %>' style="max-width: 80px; max-height: 175px;" />
+                                        </div>
+                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                            <p class="text-muted mb-0"><%# Eval("ProductName") %></p>
+                                        </div>
+                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                            <p class="text-muted mb-0">Color: <%# Eval("Color") %></p>
+                                        </div>
+                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                            <p class="text-muted mb-0">Capacity: <%# Eval("Storage") %></p>
+                                        </div>
+                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                            <p class="text-muted mb-0">Qty: <%# Eval("Quantity") %></p>
+                                        </div>
+                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                            <p class="text-muted mb-0">RM<%# Eval("Price") %></p>
+                                        </div>
+                                    </div>
 
-                                    </div>
-                                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                        <p class="text-muted mb-0">Samsung Galaxy A55</p>
-                                    </div>
-                                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                        <p class="text-muted mb-0">Color：Mix</p>
-                                    </div>
-                                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                        <p class="text-muted mb-0">Capacity: 64GB</p>
-                                    </div>
-                                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                        <p class="text-muted mb-0">Qty: 1</p>
-                                    </div>
-                                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                        <p class="text-muted mb-0">RM1999.90</p>
-                                    </div>
-                                </div>
-                                <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
-                                <div class="row d-flex align-items-center">
-
-                                    <div class="trackAndReview">
-                                        <asp:Button class="text-muted mb-0 small" ID="btnReview" runat="server" Text="Review" OnClick="btnReview_Click" />
-                                        &nbsp&nbsp&nbsp&nbsp
-                                        <asp:Button class="text-muted mb-0 small" ID="btnTrack" runat="server" Text="Track Order" OnClick="btnTrack_Click" />
+                                    <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="trackAndReview">
+                                            <asp:Button class="text-muted mb-0 small" ID="btnReview" runat="server" Text="Review"  CommandArgument='<%# Eval("ProductID") %>'  OnClick="btnReview_Click" />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            <asp:Button class="text-muted mb-0 small" ID="btnTrack" runat="server" Text="Track Order" OnClick="btnTrack_Click" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
 
 
                             <!-- Collapsible section -->

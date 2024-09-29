@@ -63,5 +63,21 @@ namespace NewVersion.css
                 }
             }
         }
+
+        protected string GetRatingStars(object ratingObj)
+        {
+            // Safely parse the rating, handling null values.
+            double rating = ratingObj != DBNull.Value ? Convert.ToDouble(ratingObj) : 0;
+            int fullStars = (int)Math.Floor(rating); // Number of full stars
+            bool hasHalfStar = (rating - fullStars) >= 0.5; // Check for half star
+            int emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0); // Remaining empty stars
+
+            // Build the HTML string for star ratings.
+            string starsHtml = new string('★', fullStars); // Full stars
+            if (hasHalfStar) starsHtml += "☆"; // Half star
+            starsHtml += new string('☆', emptyStars); // Empty stars
+
+            return starsHtml;
+        }
     }
 }
