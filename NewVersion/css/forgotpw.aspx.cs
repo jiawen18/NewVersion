@@ -15,25 +15,27 @@ namespace NewVersion.css
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void btn_resetpw_Click(object sender, EventArgs e)
         {
             string userEmail = txt_emailreset.Text;
 
-            // TODO: Validate that email exists in your database and generate a token or link.
             if (IsValidEmail(userEmail))
             {
-                // Generate password reset link (could be a token that you store in your database)
-                string resetToken = Guid.NewGuid().ToString();
-                string resetLink = "https://localhost:44344/css/forgotpw.aspx?token=" + resetToken;
+                // Generate a new random password
+                string newPassword = GenerateRandomPassword();
 
-                // Send the email
-                SendResetPasswordEmail(userEmail, resetLink);
+                string hashPassword = Security.HashPassword(newPassword);
 
-                // Optionally, you can show a confirmation message
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Password reset instructions have been sent to your email.');", true);
+                // Update the new password in the database
+                UpdateUserPassword(userEmail, hashPassword);
+
+                // Send the new password via email
+                SendNewPasswordEmail(userEmail, newPassword);
+
+                // Optionally, show a confirmation message
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('A new password has been sent to your email!'); window.location='login.aspx';", true);
             }
             else
             {
@@ -55,24 +57,42 @@ namespace NewVersion.css
 
                     int count = (int)cmd.ExecuteScalar(); // Get the number of rows with the provided email
 
-                    if (count > 0)
-                    {
-                        // Email exists in the database
-                        return true;
-                    }
-
-                    else
-                    {                       
-                        // Email does not exist, return true
-                        return false;
-                    }
+                    return count > 0; // Email exists in the database
                 }
             }
-
-        
         }
 
-        private void SendResetPasswordEmail(string userEmail, string resetLink)
+        private string GenerateRandomPassword(int length = 8)
+        {
+            const string validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+            Random random = new Random();
+            char[] newPassword = new char[length];
+
+            for (int i = 0; i < length; i++)
+            {
+                newPassword[i] = validChars[random.Next(validChars.Length)];
+            }
+
+            return new string(newPassword);
+        }
+
+        private void UpdateUserPassword(string userEmail, string hashPassword)
+        {
+            string connString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                conn.Open();
+                string query = "UPDATE MemberUser SET PasswordHash = @NewPassword WHERE Email = @Email"; // Assuming PasswordHash stores the password securely
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@NewPassword", hashPassword); // Save the new password
+                    cmd.Parameters.AddWithValue("@Email", userEmail);
+                    cmd.ExecuteNonQuery(); // Execute the update command
+                }
+            }
+        }
+
+        private void SendNewPasswordEmail(string userEmail, string newPassword)
         {
             try
             {
@@ -80,11 +100,11 @@ namespace NewVersion.css
                 SmtpClient smtpServer = new SmtpClient("smtp.gmail.com"); // Replace with your SMTP server
                 mail.From = new MailAddress("kelvinchong0457@gmail.com"); // Sender email address
                 mail.To.Add(userEmail);
-                mail.Subject = "Password Reset Request";
-                mail.Body = $"Click the link below to reset your password:\n{resetLink}";
+                mail.Subject = "Your New Password";
+                mail.Body = $"Your new password is: {newPassword}";
 
-                smtpServer.Port = 587; //  vary based on SMTP server
-                smtpServer.Credentials = new NetworkCredential("kelvinchong0457@gmail.com", "fdxk vpul gxqv ivlu"); 
+                smtpServer.Port = 587; // vary based on SMTP server
+                smtpServer.Credentials = new NetworkCredential("kelvinchong0457@gmail.com", "fdxk vpul gxqv ivlu");
                 smtpServer.EnableSsl = true; // Enable SSL if required by your email provider
 
                 smtpServer.Send(mail);
@@ -95,6 +115,5 @@ namespace NewVersion.css
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Error sending email: " + ex.Message + "');", true);
             }
         }
-
     }
 }

@@ -32,6 +32,8 @@ namespace NewVersion.css
 
         protected void btnReview_Click(object sender, EventArgs e)
         {
+            Product product = new Product();
+
             int rating;
             int productId;
 
@@ -43,18 +45,19 @@ namespace NewVersion.css
             }
 
             string description = txtReviewDescription.Text;
-            string imagePath = string.Empty; // Start with empty image path
+            byte[] imageBytes = null; // Start with null byte array
             DateTime reviewDate = DateTime.Now;
 
+            // Check if any file is uploaded
             if (FileUploadMedia.HasFile)
             {
                 try
                 {
-                    imagePath = SaveMediaFiles(); // Call the method to save the media files
-                    if (string.IsNullOrEmpty(imagePath))
+                    imageBytes = SaveMediaFiles(); // Call the method to save the media files
+                    if (imageBytes == null || imageBytes.Length == 0)
                     {
                         Response.Write("No valid files uploaded.<br/>");
-                        return; // No valid image path to save
+                        return; // No valid image bytes to save
                     }
                 }
                 catch (Exception ex)
@@ -68,7 +71,6 @@ namespace NewVersion.css
                 Response.Write("No file uploaded.<br/>");
             }
 
-
             // Save the review to the database
             string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
 
@@ -81,7 +83,7 @@ namespace NewVersion.css
                 {
                     command.Parameters.AddWithValue("@ReviewDate", reviewDate);
                     command.Parameters.AddWithValue("@ReviewRating", rating);
-                    command.Parameters.AddWithValue("@ReviewImage", imagePath);
+                    command.Parameters.AddWithValue("@ReviewImage", (object)imageBytes ?? DBNull.Value); // Set DBNull if imageBytes is null
                     command.Parameters.AddWithValue("@ReviewDescription", description);
                     command.Parameters.AddWithValue("@ProductID", productId);
 
@@ -102,28 +104,43 @@ namespace NewVersion.css
             Response.Redirect("Home2.aspx"); // Redirect after saving
         }
 
-        private string SaveMediaFiles()
+        private byte[] SaveMediaFiles()
         {
-            string photoPath = MapPath("~/Photos/");
-            string filename = Guid.NewGuid().ToString("N") + ".jpg"; // Unique filename for the photo
-            string imagePath = "";
+            byte[] imageBytes = null; // Initialize the byte array to hold the image data
+            string photoPath = MapPath("~/Photos/"); // Path to save the uploaded photos
 
             // Check if files are uploaded
-            if (FileUploadMedia.HasFile)
+            if (FileUploadMedia.HasFiles)
             {
-                // Process each uploaded file
                 foreach (HttpPostedFile file in FileUploadMedia.PostedFiles)
                 {
-                    // Save image processing logic here
-                    SimpleImage img = new SimpleImage(file.InputStream);
-                    img.Square();
-                    img.Resize(150);
-                    img.SaveAs(photoPath + filename);
-                    imagePath = "~/Photos/" + filename; // Set the image path to save in the database
+                    // Check if the file is a valid image type
+                    if (file.ContentType.StartsWith("image/"))
+                    {
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            file.InputStream.CopyTo(ms); // Copy the input stream to the memory stream
+                            imageBytes = ms.ToArray(); // Convert the memory stream to a byte array
+
+                            // Save the file to the server if needed
+                            string filename = Guid.NewGuid().ToString("N") + ".jpg"; // Unique filename for the photo
+                            string fullPath = Path.Combine(photoPath, filename); // Full path to save the image
+                            file.SaveAs(fullPath); // Save the original file to disk
+                        }
+                    }
+                    else
+                    {
+                        Response.Write("Invalid file type. Please upload an image.<br/>");
+                        return null; // Invalid file type, return null
+                    }
                 }
             }
+            else
+            {
+                Response.Write("No files were uploaded.<br/>");
+            }
 
-            return imagePath;
+            return imageBytes; // Return the byte array containing the image data
         }
 
         private void LoadProductDetails(int productId)
