@@ -1039,16 +1039,13 @@
     <Compile Include="Models\AdminUser.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CartItem.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CheckOut.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\MemberUser.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Order.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderDetail.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs">
@@ -1061,9 +1058,6 @@
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Shipper.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ShoppingCart.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SuperAdminUser.cs">

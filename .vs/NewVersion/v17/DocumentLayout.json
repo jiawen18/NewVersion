@@ -1,24 +1,7 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\asus\\documents\\github\\newversion\\newversion\\css\\order.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\order.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\asus\\documents\\github\\newversion\\newversion\\css\\cart.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\cart.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\asus\\documents\\github\\newversion\\newversion\\css\\cart.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\cart.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\asus\\documents\\github\\newversion\\newversion\\admin\\orderlist.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\admin\\orderlist.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    }
-  ],
+  "WorkspaceRootPath": "C:\\Users\\chong\\Documents\\GitHub\\NewVersion\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -26,12 +9,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
@@ -42,67 +21,19 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Order.aspx",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Order.aspx",
-              "RelativeDocumentMoniker": "NewVersion\\css\\Order.aspx",
-              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Order.aspx",
-              "RelativeToolTip": "NewVersion\\css\\Order.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-09-29T13:19:37.283Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "cart.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\cart.aspx.cs",
-              "RelativeDocumentMoniker": "NewVersion\\css\\cart.aspx.cs",
-              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\cart.aspx.cs",
-              "RelativeToolTip": "NewVersion\\css\\cart.aspx.cs",
-              "ViewState": "AgIAALgAAAAAAAAAAADwv78AAABRAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T13:11:12.909Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "cart.aspx",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\cart.aspx",
-              "RelativeDocumentMoniker": "NewVersion\\css\\cart.aspx",
-              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\cart.aspx",
-              "RelativeToolTip": "NewVersion\\css\\cart.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-09-29T13:06:07.838Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "orderList.aspx",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\orderList.aspx",
-              "RelativeDocumentMoniker": "NewVersion\\admin\\orderList.aspx",
-              "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\NewVersion\\NewVersion\\admin\\orderList.aspx",
-              "RelativeToolTip": "NewVersion\\admin\\orderList.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-09-29T12:58:54.764Z",
-              "EditorCaption": ""
             }
           ]
         }

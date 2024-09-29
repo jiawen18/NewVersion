@@ -16,11 +16,10 @@ namespace NewVersion.Models
     {
         public string TransactionID { get; set; }
         public string OrderID { get; set; }
-        public string InvoiceID { get; set; }
-        public string InvoiceDate { get; set; }
         public string TransactionStatus { get; set; }
         public decimal OrderTotalPrice { get; set; }
-    
-        public virtual Order Order { get; set; }
+        public string InvoiceID { get; set; }
+        public System.DateTime InvoiceDate { get; set; }
+        public System.DateTime TransactionDate { get; set; }
     }
 }

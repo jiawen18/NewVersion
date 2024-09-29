@@ -4,27 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7384506c29b94de387168adc2c7bf247" Name="Diagram1" ZoomLevel="95">
-        <EntityTypeShape EntityType="UserModel.MemberUser" Width="1.5" PointX="7.375" PointY="13.25" />
-        <EntityTypeShape EntityType="UserModel.Supplier" Width="1.5" PointX="7.125" PointY="1.375" />
-        <EntityTypeShape EntityType="UserModel.AdminUser" Width="1.5" PointX="5.125" PointY="13.25" />
-        <EntityTypeShape EntityType="UserModel.Product" Width="1.5" PointX="7.125" PointY="4.25" />
-        <EntityTypeShape EntityType="UserModel.Order" Width="1.5" PointX="9.625" PointY="4.25" />
-        <EntityTypeShape EntityType="UserModel.Refund" Width="1.5" PointX="12.125" PointY="4.25" />
-        <EntityTypeShape EntityType="UserModel.Shipper" Width="1.5" PointX="11.75" PointY="13.25" />
+      <Diagram DiagramId="7384506c29b94de387168adc2c7bf247" Name="Diagram1" ZoomLevel="39">
+        <EntityTypeShape EntityType="UserModel.AdminUser" Width="1.5" PointX="0.75" PointY="8.625" />
+        <EntityTypeShape EntityType="UserModel.MemberUser" Width="1.5" PointX="7.75" PointY="2.625" />
+        <EntityTypeShape EntityType="UserModel.Order" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="UserModel.OrderDetail" Width="1.5" PointX="5.25" PointY="4.5" />
+        <EntityTypeShape EntityType="UserModel.Product" Width="1.5" PointX="3" PointY="4.5" />
+        <EntityTypeShape EntityType="UserModel.Refund" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="UserModel.Review" Width="1.5" PointX="5.25" PointY="8.875" />
+        <EntityTypeShape EntityType="UserModel.Shipper" Width="1.5" PointX="7.75" PointY="6.625" />
+        <EntityTypeShape EntityType="UserModel.SuperAdminUser" Width="1.5" PointX="7.75" PointY="9.625" />
+        <EntityTypeShape EntityType="UserModel.Supplier" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="UserModel.Support" Width="1.5" PointX="9.75" PointY="2.625" />
+        <EntityTypeShape EntityType="UserModel.Transaction" Width="1.5" PointX="9.75" PointY="6.625" />
         <AssociationConnector Association="UserModel.FK_Order_ToRefund" />
-        <AssociationConnector Association="UserModel.FK_Product_ToOrder" />
-        <EntityTypeShape EntityType="UserModel.Support" Width="1.5" PointX="9.625" PointY="13.25" />
-        <EntityTypeShape EntityType="UserModel.SuperAdminUser" Width="1.5" PointX="2.875" PointY="13.25" />
-        <EntityTypeShape EntityType="UserModel.CartItem" Width="1.5" PointX="4.5" PointY="4.25" />
-        <EntityTypeShape EntityType="UserModel.CheckOut" Width="1.5" PointX="1.625" PointY="7.75" />
-        <EntityTypeShape EntityType="UserModel.Review" Width="1.5" PointX="7.125" PointY="8.25" />
-        <EntityTypeShape EntityType="UserModel.ShoppingCart" Width="1.5" PointX="4.375" PointY="8.5" />
-        <EntityTypeShape EntityType="UserModel.Transaction" Width="1.5" PointX="9.625" PointY="8.375" />
-        <AssociationConnector Association="UserModel.FK_ShoppingCart_ToProduct" />
-        <AssociationConnector Association="UserModel.FK_ShoppingCart_ToShoppingCart" />
-        <AssociationConnector Association="UserModel.FK_CheckOut_ToCart" />
-        <AssociationConnector Association="UserModel.FK_Transaction_ToOrder" />
+        <AssociationConnector Association="UserModel.FK_OrderDetails_ToOrder" />
+        <AssociationConnector Association="UserModel.FK_OrderDetails_ToProduct" />
         <AssociationConnector Association="UserModel.FK__Review__ProductI__004002F9" />
         <AssociationConnector Association="UserModel.FK_Product_Supplier" />
       </Diagram>
