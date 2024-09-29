@@ -14,7 +14,7 @@ namespace NewVersion
     public class Security
     {
 
-        public static void LoginUser(string username, string role, string userType, bool rememberMe)
+        public static void LoginUser(string username, string role, bool rememberMe)
         {
             HttpContext ctx = HttpContext.Current;
             try
@@ -24,37 +24,31 @@ namespace NewVersion
                 // Decrypt the old ticket
                 FormsAuthenticationTicket oldTicket = FormsAuthentication.Decrypt(authCookie.Value);
 
-                // Combine role and user type into UserData for ticket
-                string userData = $"{role},{userType}";
-
-                // Create a new ticket with updated role and user type information
+                // Create a new ticket with updated role information
                 FormsAuthenticationTicket newTicket = new FormsAuthenticationTicket(
                     oldTicket.Version,
                     oldTicket.Name,
                     oldTicket.IssueDate,
                     DateTime.Now.AddMinutes(30), // Set a new expiration time
                     oldTicket.IsPersistent,
-                    userData  // Store role and userType in UserData
+                    role
                 );
 
                 // Encrypt the new ticket
                 authCookie.Value = FormsAuthentication.Encrypt(newTicket);
                 ctx.Response.Cookies.Add(authCookie);
 
-                // Redirect user based on role and user type
-                if (role == "Super Admin" || role == "Admin")
+                // Redirect user to the appropriate URL             
+                if (role == "Admin" || role == "Super Admin")
                 {
-                    ctx.Response.Redirect("~/admin/dashboard.aspx");  // Redirect to admin dashboard
-                }
-                else if (role == "Member")
-                {
-                    ctx.Response.Redirect("~/css/Home2.aspx");  // Redirect to member's home page
+                    ctx.Response.Redirect("~/admin/dashboard.aspx");  // Redirect to the admin dashboard
                 }
                 else
                 {
-                    throw new Exception("Unknown user type");  // Handle any undefined user types
+                    ctx.Response.Redirect("~/css/Home2.aspx");  // Redirect to the member's home page
                 }
             }
+
             catch (Exception ex)
             {
                 // Handle other exceptions (e.g., logging)
@@ -69,30 +63,7 @@ namespace NewVersion
 
             if (ctx.User != null && ctx.User.Identity.IsAuthenticated && ctx.User.Identity is FormsIdentity identity)
             {
-                // Extract role and user type from UserData
-                string[] userData = identity.Ticket.UserData.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                string role = userData.Length > 0 ? userData[0] : string.Empty;
-                string userType = userData.Length > 1 ? userData[1] : string.Empty;
-
-                // Dynamically set roles based on user type
-                string[] roles;
-                switch (userType.ToLower())
-                {
-                    case "superadmin":
-                        roles = new[] { "SuperAdmin", role };
-                        break;
-                    case "admin":
-                        roles = new[] { "Admin", role };
-                        break;
-                    case "member":
-                        roles = new[] { "Member", role };
-                        break;
-                    default:
-                        roles = new[] { role };  // Handle any undefined roles
-                        break;
-                }
-
-                // Create a new GenericPrincipal with roles
+                string[] roles = identity.Ticket.UserData.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                 GenericPrincipal principal = new GenericPrincipal(identity, roles);
                 ctx.User = principal;
                 Thread.CurrentPrincipal = principal;
