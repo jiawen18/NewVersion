@@ -18,7 +18,7 @@ namespace NewVersion
             string currentPage = Request.Url.AbsolutePath.ToLower();
 
             // Check if the current page is not Home2.aspx or the login page
-            if (!IsUserMember() && !currentPage.Contains("home2.aspx") && !currentPage.Contains("login.aspx"))
+            if (!IsUserMember())
             {
                 // Redirect to the login page
                 string loginPageUrl = "../css/login.aspx"; // Adjust the path as necessary
