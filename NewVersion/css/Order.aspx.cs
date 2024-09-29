@@ -151,7 +151,7 @@ namespace NewVersion.css
                 using (var context = new userEntities())
                 {
 
-                    var refundRequest = new Refund
+                    var refundRequest = new NewVersion.Models.Refund
                     {
                         OrderID = orderID,
                         RefundRequestDate = DateTime.Now,
