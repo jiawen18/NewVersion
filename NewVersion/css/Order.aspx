@@ -49,7 +49,7 @@
             padding-top: 10px;
         }
         .details {
-            margin-top: 10px; /* 增加间距，确保不会遮挡其他内容 */
+            margin-top: 10px;
         }
     </style>
 
@@ -167,11 +167,11 @@
         function toggleDetails(button) {
             var detailsDiv = button.closest('.card').querySelector('.details');
             if (detailsDiv.style.display === 'none' || detailsDiv.style.display === '') {
-                detailsDiv.style.display = 'block'; // 展开
-                button.innerText = 'Hide Details'; // 更改按钮文本
+                detailsDiv.style.display = 'block'; 
+                button.innerText = 'Hide Details';
             } else {
-                detailsDiv.style.display = 'none'; // 收起
-                button.innerText = 'View Details'; // 恢复按钮文本
+                detailsDiv.style.display = 'none'; 
+                button.innerText = 'View Details'; 
             }
         }
     </script>
