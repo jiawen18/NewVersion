@@ -25,5 +25,27 @@ namespace NewVersion
             // Redirect to login page
             ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Successfully Log Out!'); window.location='Home2.aspx';", true);
         }
+
+        protected void checkAuthAndRedirect()
+        {
+
+            if (!HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                // Register the alert and redirect script
+                string script = "alert('You need to log in to access the cart.'); window.location.href='login.aspx';";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertRedirect", script, true);
+            }
+            else
+            {
+                // Redirect to the cart if authenticated
+                Response.Redirect("cart.aspx");
+            }
+        }
+
+        protected void btnCart_Click(object sender, EventArgs e)
+        {
+            checkAuthAndRedirect();
+        }
+
     }
 }
