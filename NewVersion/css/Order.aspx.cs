@@ -118,30 +118,19 @@ namespace NewVersion.css
         }
 
 
-        private string previousOrderID = null;
-
         protected void rptOrders_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                var order = e.Item.DataItem as OrderViewModel;
+                var order = (OrderViewModel)e.Item.DataItem; // 使用 OrderViewModel 类型
+                Repeater rptProducts = (Repeater)e.Item.FindControl("rptProducts");
 
-                // 添加Header
-                if (previousOrderID != order.OrderID)
-                {
-                    // 更新 previousOrderID
-                    previousOrderID = order.OrderID;
-
-                    // 查找嵌套的 Repeater
-                    var rptProducts = (Repeater)e.Item.FindControl("rptProducts");
-                    if (rptProducts != null && order.Products != null && order.Products.Count > 0)
-                    {
-                        rptProducts.DataSource = order.Products;
-                        rptProducts.DataBind();
-                    }
-                }
+                // 确保 order.Products 返回产品列表
+                rptProducts.DataSource = order.Products; // 绑定产品列表
+                rptProducts.DataBind();
             }
         }
+
 
 
 
@@ -153,7 +142,7 @@ namespace NewVersion.css
         // yujing edited this for refund
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-          /*  Button cancelButton = sender as Button;
+          /* Button cancelButton = sender as Button;
             if (cancelButton != null)
             {
 
