@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Util;
 using NewVersion.Models;
+using Razorpay.Api;
 
 namespace NewVersion.admin
 {
@@ -126,6 +131,8 @@ namespace NewVersion.admin
                         refundRequest.RefundClosureDate = DateTime.Now;
 
                         context.SaveChanges();
+
+                        var (orderId, orderTotalPrice) = RefundTransaction(refundRequest.OrderID);
                     }
                 }
 
@@ -137,6 +144,86 @@ namespace NewVersion.admin
 
             }
         }
+
+        public (string OrderID, decimal OrderTotalPrice) RefundTransaction(string orderId)
+        {
+            string cs = Global.CS;
+            string _key = "rzp_test_7sBM0c2utoTQ59";
+            string _secret = "OKDPvhfckfnU2BnhPs7dKERM";
+            string paymentID = "";
+            decimal orderTotalPrice = 0;
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                string query = "SELECT TransactionID, OrderTotalPrice FROM Transactions WHERE OrderID = @OrderID";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@OrderID", orderId);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            paymentID = reader["TransactionID"].ToString();
+                            orderTotalPrice = Convert.ToDecimal(reader["OrderTotalPrice"]);
+                        }
+                    }
+                }
+            }
+
+            if (string.IsNullOrEmpty(paymentID))
+            {
+                throw new Exception("Transaction not found for the given OrderID.");
+            }
+
+            var client = new RazorpayClient(_key, _secret);
+
+            var options = new Dictionary<string, object>
+            {
+                { "amount", orderTotalPrice * 100 }, // Amount should be in paise
+            };
+
+            try
+            {
+                // Assuming the Refund method takes a single parameter which is an options dictionary
+                var refund = client.Payment.Refund(options);
+                Console.WriteLine("Refund successful: " + refund);
+
+                UpdateTransactionAndOrderStatus(paymentID, orderId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Refund failed: " + ex.Message);
+            }
+
+            return (orderId, orderTotalPrice);
+        }
+
+        private void UpdateTransactionAndOrderStatus(string paymentID, string orderId)
+        {
+            string cs = Global.CS;
+
+            using (SqlConnection con = new SqlConnection(cs)) {
+                
+                string updateTransactionQuery = "UPDATE Transactions SET TransactionStatus = @Status WHERE PaymentID = @PaymentID";
+                using (SqlCommand cmd = new SqlCommand(updateTransactionQuery, con))
+                {
+                    cmd.Parameters.AddWithValue("@Status", "Refunded");
+                    cmd.Parameters.AddWithValue("@PaymentID", paymentID);
+                    cmd.ExecuteNonQuery();
+                }
+
+                
+                string updateOrderQuery = "UPDATE Orders SET OrderStatus = @OrderStatus WHERE OrderID = @OrderID"; 
+                using (SqlCommand cmd = new SqlCommand(updateOrderQuery, con))
+                {
+                    cmd.Parameters.AddWithValue("@OrderStatus", "Cancelled");
+                    cmd.Parameters.AddWithValue("@OrderID", orderId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        } 
 
         protected void RejectRefundButton_Click(object sender, EventArgs e)
         {
