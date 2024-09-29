@@ -31,7 +31,7 @@
 
             <div id="header">
                 <div class="header_content">
-                    <a class="brand_name" href="Home.aspx">HanSumg . <span style="font-weight: 400;">Account</span></a>
+                    <a class="brand_name" href="Home2.aspx">HanSumg . <span style="font-weight: 400;">Account</span></a>
                 </div>
             </div>
 
