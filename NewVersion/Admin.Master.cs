@@ -13,28 +13,6 @@ namespace NewVersion
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            // Get the current user's identity
-            var currentUser = HttpContext.Current.User;
-
-            // Check if the user is authenticated
-            if (currentUser == null || !currentUser.Identity.IsAuthenticated)
-            {
-                // Redirect to login page if the user is not authenticated
-                Response.Write("<script>alert('Please Log In before access to this page!');</script>");
-                Response.Redirect("/css/login.aspx");
-                return;
-            }
-
-             // Check if the user is in Admin or SuperAdmin roles
-    if (!currentUser.IsInRole("Admin") && !currentUser.IsInRole("SuperAdmin"))
-    {
-                // If user is authenticated but not authorized, redirect to an Unauthorized page
-                Response.Write("<script>alert('You do not have access to this page!');</script>");
-                Response.Redirect("/css/login.aspx");
-    }
-
-
-
             if (!IsPostBack)
             {
                 // Set the SiteMapProvider
