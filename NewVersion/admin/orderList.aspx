@@ -71,9 +71,10 @@
                                  </div>
                                  <div class="col-md-6">
                                 <div class="form-group form-group-default">
-                                    <label>Delivery Status</label>
+                                    <label>Order Status</label>
                                     <asp:DropDownList ID="ddlDeliveryStatus" runat="server" CssClass="form-control">
                                         <asp:ListItem Value="Completed">Completed</asp:ListItem>
+                                        <asp:ListItem Value="Completed">Cancelled</asp:ListItem>
                                         <asp:ListItem Value="Shipping">Shipping</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
@@ -107,7 +108,7 @@
                                 <th>Delivery Fee</th>
                                 <th>Total Price</th>
                                 <th>Transaction Status</th>
-                                <th>Delivery Status</th>
+                                <th>Order Status</th>
                                 <th>Order Date</th>
                                 <th>Actions</th>
                             </tr>

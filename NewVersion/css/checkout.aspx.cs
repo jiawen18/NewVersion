@@ -27,10 +27,10 @@ namespace NewVersion.css
         {
             if (!IsPostBack)
             {
-                string userDetails = GetUserDetailsFromPlaceholder(PlaceHolder1);
+                
                 LoadSessionValues();
                 LoadCartItems();
-                
+                DisplayUserDetails();
             }
         }
 
@@ -91,6 +91,38 @@ namespace NewVersion.css
             }
         }
 
+        private void DisplayUserDetails()
+        {
+            // 如果Session中有数据，则重新加载到PlaceHolder
+            if (Session["FirstName"] != null && Session["LastName"] != null && Session["Phone"] != null && Session["Address"] != null)
+            {
+                PlaceHolder1.Controls.Clear();
+
+                Label lbl1 = new Label();
+                lbl1.ID = "lbl1";
+                lbl1.Text = Session["FirstName"].ToString();  // First Name
+
+                Label lbl2 = new Label();
+                lbl2.ID = "lbl2";
+                lbl2.Text = Session["LastName"].ToString();  // Last Name
+
+                Label lbl3 = new Label();
+                lbl3.ID = "lbl3";
+                lbl3.Text = Session["Phone"].ToString();  // Phone Number
+
+                Label lbl4 = new Label();
+                lbl4.ID = "lbl4";
+                lbl4.Text = Session["Address"].ToString();  // Address
+
+                PlaceHolder1.Controls.Add(lbl1);
+                PlaceHolder1.Controls.Add(new LiteralControl(" "));
+                PlaceHolder1.Controls.Add(lbl2);
+                PlaceHolder1.Controls.Add(new LiteralControl(" | "));
+                PlaceHolder1.Controls.Add(lbl3);
+                PlaceHolder1.Controls.Add(new LiteralControl("<br />"));
+                PlaceHolder1.Controls.Add(lbl4);
+            }
+        }
 
         protected void btnCloseDialog_Click(object sender, EventArgs e)
         {
@@ -187,115 +219,138 @@ namespace NewVersion.css
             }
         }
 
-       /* private void StoreCartItems(int cartId, string subTotal, string deliveryFee, string totalPrice, List<string> productNames, List<string> prices, List<int> quantities,List<string> storages,List<string> colors)
-        {
-            using (SqlConnection con = new SqlConnection(cs))
-            {
-                con.Open();
+        /* private void StoreCartItems(int cartId, string subTotal, string deliveryFee, string totalPrice, List<string> productNames, List<string> prices, List<int> quantities,List<string> storages,List<string> colors)
+         {
+             using (SqlConnection con = new SqlConnection(cs))
+             {
+                 con.Open();
 
-                foreach (var productName in productNames.Select((value, index) => new { value, index }))
-                {
-                    string productDetails = "Storage: " + storages[productName.index] + "Color: " + colors[productName.index];
+                 foreach (var productName in productNames.Select((value, index) => new { value, index }))
+                 {
+                     string productDetails = "Storage: " + storages[productName.index] + "Color: " + colors[productName.index];
 
-                    // Update the INSERT statement to include ProductName, Price, and Quantity
-                    string query = "INSERT INTO CheckOut (CartID, SubTotal, DeliveryFee, TotalPrice, ProductName, Price, Quantity,ProductDetails) VALUES (@CartID, @SubTotal, @DeliveryFee, @TotalPrice, @ProductName, @Price, @Quantity,@ProductDetails)";
+                     // Update the INSERT statement to include ProductName, Price, and Quantity
+                     string query = "INSERT INTO CheckOut (CartID, SubTotal, DeliveryFee, TotalPrice, ProductName, Price, Quantity,ProductDetails) VALUES (@CartID, @SubTotal, @DeliveryFee, @TotalPrice, @ProductName, @Price, @Quantity,@ProductDetails)";
 
-                    using (SqlCommand cmd = new SqlCommand(query, con))
-                    {
-                        cmd.Parameters.AddWithValue("@CartID", cartId);
-                        cmd.Parameters.AddWithValue("@SubTotal", subTotal);
-                        cmd.Parameters.AddWithValue("@DeliveryFee", deliveryFee);
-                        cmd.Parameters.AddWithValue("@TotalPrice", totalPrice);
-                        cmd.Parameters.AddWithValue("@ProductName", productNames[productName.index]); // Get product name
-                        cmd.Parameters.AddWithValue("@Price", prices[productName.index]); // Get price
-                        cmd.Parameters.AddWithValue("@Quantity", quantities[productName.index]); // Get quantity
-                        cmd.Parameters.AddWithValue("@ProductDetails", productDetails);
-                        
+                     using (SqlCommand cmd = new SqlCommand(query, con))
+                     {
+                         cmd.Parameters.AddWithValue("@CartID", cartId);
+                         cmd.Parameters.AddWithValue("@SubTotal", subTotal);
+                         cmd.Parameters.AddWithValue("@DeliveryFee", deliveryFee);
+                         cmd.Parameters.AddWithValue("@TotalPrice", totalPrice);
+                         cmd.Parameters.AddWithValue("@ProductName", productNames[productName.index]); // Get product name
+                         cmd.Parameters.AddWithValue("@Price", prices[productName.index]); // Get price
+                         cmd.Parameters.AddWithValue("@Quantity", quantities[productName.index]); // Get quantity
+                         cmd.Parameters.AddWithValue("@ProductDetails", productDetails);
 
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-            }
-        }*/
 
-       /* private List<int> GetProductIDs(int cartId)
-        {
-            List<int> productIds = new List<int>(); // List to store multiple ProductIDs
-            string query = "SELECT ProductID FROM CartItems WHERE CartID = @CartID";
+                         cmd.ExecuteNonQuery();
+                     }
+                 }
+             }
+         }*/
 
-            using (SqlConnection con = new SqlConnection(cs)) // 'cs' is your connection string
-            {
-                SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@CartID", cartId);
+        /* private List<int> GetProductIDs(int cartId)
+         {
+             List<int> productIds = new List<int>(); // List to store multiple ProductIDs
+             string query = "SELECT ProductID FROM CartItems WHERE CartID = @CartID";
 
-                try
-                {
-                    con.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
+             using (SqlConnection con = new SqlConnection(cs)) // 'cs' is your connection string
+             {
+                 SqlCommand cmd = new SqlCommand(query, con);
+                 cmd.Parameters.AddWithValue("@CartID", cartId);
 
-                    while (reader.Read()) // Loop through all rows
-                    {
-                        int productId = Convert.ToInt32(reader["ProductID"]); // Get ProductID
-                        productIds.Add(productId); // Add to the list
-                    }
+                 try
+                 {
+                     con.Open();
+                     SqlDataReader reader = cmd.ExecuteReader();
 
-                    reader.Close();
-                }
-                catch (Exception ex)
-                {
-                    // Log or handle the exception
-                    Response.Write($"<script>alert('Error: {ex.Message}');</script>");
-                }
-            }
+                     while (reader.Read()) // Loop through all rows
+                     {
+                         int productId = Convert.ToInt32(reader["ProductID"]); // Get ProductID
+                         productIds.Add(productId); // Add to the list
+                     }
 
-            return productIds; // Return the list of ProductIDs
-        }*/
+                     reader.Close();
+                 }
+                 catch (Exception ex)
+                 {
+                     // Log or handle the exception
+                     Response.Write($"<script>alert('Error: {ex.Message}');</script>");
+                 }
+             }
+
+             return productIds; // Return the list of ProductIDs
+         }*/
 
 
 
         protected void btnPay_Click1(object sender, EventArgs e)
         {
-            string currency = "MYR";
-            decimal amount = GetAmountFromLabel(lblAmount.Text);
-
-            if (amount <= 0)
+            if (Page.IsValid)
             {
-                throw new Exception("Parsed amount is less than or equal to 0: " + amount);
+                // 获取用户输入的内容
+                string firstName = c_diff_fname.Text;
+                string lastName = c_diff_lname.Text;
+                string address = c_diff_address.Text;
+                string phone = c_diff_phone.Text;
+
+                if (!string.IsNullOrEmpty(firstName) &&
+                    !string.IsNullOrEmpty(lastName) &&
+                    !string.IsNullOrEmpty(address) &&
+                    !string.IsNullOrEmpty(phone))
+                {
+
+                    string currency = "MYR";
+                    decimal amount = GetAmountFromLabel(lblAmount.Text);
+
+                    if (amount <= 0)
+                    {
+                        throw new Exception("Parsed amount is less than or equal to 0: " + amount);
+                    }
+
+                    decimal amountInSubunits = amount * 100;
+
+                    if (amountInSubunits <= 0)
+                    {
+                        throw new Exception("Amount in subunits is less than or equal to 0: " + amountInSubunits);
+                    }
+
+                    decimal Amount = GetAmountFromLabel(lblAmount.Text);
+
+                    Session["Amount"] = Amount; // store to session
+
+
+                    string description = "Razorpay Payment Gateway";
+                    string imageLogo = "";
+
+                    Dictionary<string, string> notes = new Dictionary<string, string>()
+                    {
+                        {"note 1", "This is a Payment Note"},
+                        {"note 2", "Here another note, you can add max 15 notes"}
+                    };
+
+                    string orderId = CreateOrder(currency, amountInSubunits, notes);
+                    if (string.IsNullOrEmpty(orderId))
+                    {
+                        throw new Exception("Order creation failed, orderId is null or empty.");
+                    }
+
+
+                    string jsFunction = "OpenPaymentWindow('" + _key + "','" + currency + "','" + amountInSubunits + "','" + description + "', '" + imageLogo + "', '" + orderId + "','" + JsonConvert.SerializeObject(notes) + "');";
+                    ClientScript.RegisterStartupScript(this.GetType(), "OpenPaymentWindow", jsFunction, true);
+
+                    List<CartItem> cart = Session["Cart"] as List<CartItem>;
+                    SaveOrderDetails(orderId, cart, Amount, DateTime.Now, "Shipping", "Paid");
+                    Session["Cart"] = null;
+                }
             }
-
-            decimal amountInSubunits = amount * 100;
-
-            if (amountInSubunits <= 0)
+            else
             {
-                throw new Exception("Amount in subunits is less than or equal to 0: " + amountInSubunits);
+                // 如果必填字段缺失，显示错误消息
+                lblErrorMessage.Text = "Please fill all the required fields.";
+                lblErrorMessage.Visible = true;
             }
-
-            decimal Amount = GetAmountFromLabel(lblAmount.Text);
-
-            Session["Amount"] = Amount; // store to session
-
-            
-            string description = "Razorpay Payment Gateway";
-            string imageLogo = "";
-
-            Dictionary<string, string> notes = new Dictionary<string, string>()
-            {
-                {"note 1", "This is a Payment Note"},
-                {"note 2", "Here another note, you can add max 15 notes"}
-            };
-
-            string orderId = CreateOrder(currency, amountInSubunits, notes);
-            if (string.IsNullOrEmpty(orderId))
-            {
-                throw new Exception("Order creation failed, orderId is null or empty.");
-            }
-
-
-            string jsFunction = "OpenPaymentWindow('" + _key + "','" + currency + "','" + amountInSubunits + "','" + description + "', '" + imageLogo + "', '" + orderId + "','" + JsonConvert.SerializeObject(notes) + "');";
-            ClientScript.RegisterStartupScript(this.GetType(), "OpenPaymentWindow", jsFunction, true);
-
-            List<CartItem> cart = Session["Cart"] as List<CartItem>;
-            SaveOrderDetails(orderId, cart, Amount, DateTime.Now, "Shipping", "Paid");
         }
 
         private decimal GetAmountFromLabel(string amountText)
@@ -407,7 +462,7 @@ namespace NewVersion.css
             }
 
 
-            return userDetailsBuilder.ToString().Trim(); // 返回构建好的字符串
+            return userDetailsBuilder.ToString().Trim(); 
         }
 
         private void UpdateOrderStatus(string orderId, string deliveryStatus, string transactionStatus)

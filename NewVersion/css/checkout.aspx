@@ -31,11 +31,7 @@
             <div>
                 <p>
                     <asp:PlaceHolder ID="PlaceHolder1" runat="server">
-                        <asp:Label ID="lblNameAndPhone" runat="server">Tang Yan Chun | 014 899 5230</asp:Label>
-                <br />
-                        <asp:Label ID="lblCurrentAddress" runat="server">77, Lorong Lembah Permai 3,
-                <br />
-                        11200 Tanjung Bungah, Pulau Pinang</asp:Label>
+               
                     </asp:PlaceHolder>
                 </p>
             </div>
@@ -44,6 +40,7 @@
                 <!-- Button to trigger modal -->
                 <asp:Button ID="btnShowModal" runat="server" Text="Edit >" CssClass="btn btn-primary" OnClientClick="$('#myModal').modal('show'); return false;" />
             </div>
+            <asp:Label ID="lblErrorMessage" runat="server"></asp:Label>
         </div>
     </div>
 
@@ -188,7 +185,7 @@
 
                     <div class="group-paymentmethod">
                          <div class="form-group">
-                            <asp:Button class="btn btn-black btn-lg py-3 btn-block" ID="btnPay" runat="server" Text="Place Order" OnClick="btnPay_Click1" CausesValidation="false"/>
+                            <asp:Button class="btn btn-black btn-lg py-3 btn-block" ID="btnPay" runat="server" Text="Place Order" OnClientClick="return validateForm();" OnClick="btnPay_Click1" CausesValidation="false"/>
                         </div>
                     </div>
             </div>
@@ -196,6 +193,22 @@
      </div>
 </div>
     <!-- </form> -->
+
+    <script type="text/javascript">
+        function validateForm() {
+            var firstName = document.getElementById('<%= c_diff_fname.ClientID %>').value;
+        var lastName = document.getElementById('<%= c_diff_lname.ClientID %>').value;
+        var address = document.getElementById('<%= c_diff_address.ClientID %>').value;
+        var phone = document.getElementById('<%= c_diff_phone.ClientID %>').value;
+
+            if (firstName === "" || lastName === "" || address === "" || phone === "") {
+                alert("Please fill in all required fields.");
+                return false;  
+            }
+
+            return true;  
+        }
+    </script>
 
     <script src ="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
@@ -233,6 +246,8 @@
             });
         }
     </script>
+
+
 
         
 </asp:Content>
