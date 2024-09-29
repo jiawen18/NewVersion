@@ -213,13 +213,13 @@ namespace NewVersion.css
         protected global::System.Web.UI.WebControls.Panel PanelFirstRating;
 
         /// <summary>
-        /// PanelMoreRatings control.
+        /// rptCustomerRatings control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelMoreRatings;
+        protected global::System.Web.UI.WebControls.Repeater rptCustomerRatings;
 
         /// <summary>
         /// btnViewMore control.

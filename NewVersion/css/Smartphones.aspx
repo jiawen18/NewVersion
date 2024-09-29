@@ -6,7 +6,22 @@
     runat="server" 
     ConnectionString="<%$ ConnectionStrings:productConnectionString %>"
     ProviderName="System.Data.SqlClient"
-    SelectCommand="SELECT ProductID, ProductName, ProductImageURL, Price, Quantity, IsVisible FROM Product">
+    SelectCommand="
+        SELECT 
+            p.ProductID, 
+            p.ProductName, 
+            p.ProductImageURL, 
+            p.Price, 
+            AVG(r.ReviewRating) AS AverageRating 
+        FROM 
+            Product p 
+        LEFT JOIN 
+            Review r ON p.ProductID = r.ProductID 
+        GROUP BY 
+            p.ProductID, 
+            p.ProductName, 
+            p.ProductImageURL, 
+            p.Price">
 </asp:SqlDataSource>
 
     <!-- Start Hero Section -->
@@ -44,16 +59,9 @@
             <h3 class="product-title"><%# Eval("ProductName") %></h3>
             <strong class="product-price">RM <%# Eval("Price", "{0:F2}") %></strong>
 
-            <div class="product-ratings">
-                <div class="star-rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <span class="rating-text">4.5 (245)</span>
-            </div>
+           <div class="product-rating">
+            <%# GetRatingStars(Eval("AverageRating")) %>
+        </div>   
 
             <div class="buyNow">
                 <asp:Button ID="btnBuyNow" runat="server" Text="Buy Now" CssClass="buyNow-btn" CommandArgument='<%# Eval("ProductID") %>' OnClick="btnBuyNow_Click" />

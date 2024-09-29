@@ -15,6 +15,15 @@ namespace NewVersion.css
     {
 
         /// <summary>
+        /// SqlDataSource1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+
+        /// <summary>
         /// hplBackHome1 control.
         /// </summary>
         /// <remarks>
@@ -24,22 +33,13 @@ namespace NewVersion.css
         protected global::System.Web.UI.WebControls.HyperLink hplBackHome1;
 
         /// <summary>
-        /// btnReview control.
+        /// rptTransactions control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReview;
-
-        /// <summary>
-        /// btnTrack control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTrack;
+        protected global::System.Web.UI.WebControls.Repeater rptTransactions;
 
         /// <summary>
         /// lblOrderDetails control.

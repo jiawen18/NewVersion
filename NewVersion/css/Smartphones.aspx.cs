@@ -15,46 +15,85 @@ namespace NewVersion.css
 {
     public partial class Smartphones : System.Web.UI.Page
     {
-        private string connectionString 
-            = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
+        string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                LoadProducts();
+                rptProducts.DataSource = SqlDataSource1;
+                rptProducts.DataBind();
+                BindProductData();
             }
 
         }
 
-        private void LoadProducts()
+        private void BindProductData()
         {
-            List<Product> products = new List<Product>();
-            string query = "SELECT ProductID, ProductName, ProductImageURL, Price FROM Product WHERE IsVisible = 1";
 
-            using (SqlConnection con = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(cs))
             {
-                SqlCommand cmd = new SqlCommand(query, con);
-                con.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
+                string query = @"
+                    SELECT 
+                        p.ProductID, 
+                        p.ProductImageURL, 
+                        p.ProductName, 
+                        p.Price, 
+                        AVG(r.ReviewRating) AS AverageRating 
+                    FROM 
+                        Product p 
+                    LEFT JOIN 
+                        Review r ON p.ProductID = r.ProductID 
+                    WHERE 
+                        p.IsVisible = 1 
+                    GROUP BY 
+                        p.ProductID, 
+                        p.ProductImageURL, 
+                        p.ProductName, 
+                        p.Price";
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    // Create a product object and populate it
-                    var product = new Product
-                    {
-                        ProductID = reader["ProductID"].ToString(),
-                        ProductName = reader["ProductName"].ToString(),
-                        ProductImageURL = reader["ProductImageURL"].ToString(),
-                        Price = Convert.ToDecimal(reader["Price"]),
-
-                    };
-                    products.Add(product);
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    rptProducts.DataSource = reader;
+                    rptProducts.DataBind();
                 }
             }
+        }
 
-            // Bind the products to the Repeater control
-            rptProducts.DataSource = products;
-            rptProducts.DataBind();
+        protected string GetRatingStars(object ratingObj)
+        {
+            double rating = ratingObj != DBNull.Value ? Convert.ToDouble(ratingObj) : 0;
+            int fullStars = (int)Math.Floor(rating);
+            bool hasHalfStar = (rating - fullStars) >= 0.5;
+            int emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+            // Define the star styles
+            string fullStarStyle = "color: gold; font-size: 20px;"; // Customize color and size for full stars
+            string halfStarStyle = "color: gold; font-size: 20px;"; // Customize color and size for half star
+            string emptyStarStyle = "color: lightgray; font-size: 20px;"; // Customize color and size for empty stars
+
+            // Build the HTML string for star ratings with inline styles
+            string starsHtml = new string('★', fullStars); // Full stars
+            if (hasHalfStar) starsHtml += "☆"; // Half star
+            starsHtml += new string('☆', emptyStars); // Empty stars
+
+            // Wrap each star with a span for styling
+            // Replace full stars
+            starsHtml = starsHtml.Replace("★", $"<span style='{fullStarStyle}'>★</span>");
+            // Replace half star (only the first occurrence)
+            if (hasHalfStar)
+            {
+                int halfStarIndex = starsHtml.IndexOf("☆");
+                if (halfStarIndex != -1)
+                {
+                    starsHtml = starsHtml.Remove(halfStarIndex, 1)
+                                         .Insert(halfStarIndex, $"<span style='{halfStarStyle}'>☆</span>");
+                }
+            }
+            // Replace empty stars
+            starsHtml = starsHtml.Replace("☆", $"<span style='{emptyStarStyle}'>☆</span>");
+
+            return starsHtml;
         }
 
         protected void btnBuyNow_Click(object sender, EventArgs e)
@@ -65,6 +104,7 @@ namespace NewVersion.css
             Response.Redirect("ProductDetails.aspx?ProductID=" + productId);
 
         }
+
     }
 
 }
@@ -76,6 +116,7 @@ public class Product
     public string ProductName { get; set; }
     public string ProductImageURL { get; set; }
     public decimal Price { get; set; }
+    public double AverageRating { get; set; }
 
 }
 

@@ -28,43 +28,42 @@ namespace NewVersion.css
 
         protected void btnReview_Click(object sender, EventArgs e)
         {
+            int rating;
+            int productId;
 
-            int rating = Convert.ToInt32(HiddenFieldRating.Value); ;
-            int productId = Convert.ToInt32(HiddenFieldProductID.Value);
-
-            
             if (!int.TryParse(HiddenFieldRating.Value, out rating) ||
                 !int.TryParse(HiddenFieldProductID.Value, out productId))
             {
-                
                 Response.Write("Invalid rating or product ID. Please try again.");
-                return; 
+                return;
             }
-            string description = txtReviewDescription.Text;
-            string imagePath = "";
 
+            string description = txtReviewDescription.Text;
+            string imagePath = string.Empty; // Start with empty image path
             DateTime reviewDate = DateTime.Now;
 
             if (FileUploadMedia.HasFile)
             {
-                string fileName = Path.GetFileName(FileUploadMedia.PostedFile.FileName);
-                string uploadPath = Server.MapPath("~/Uploads/");
-                string fullPath = Path.Combine(uploadPath, fileName);
-
-                // Save the file to the server
-                FileUploadMedia.SaveAs(fullPath);
-
-                Response.Write($"File saved to: {fullPath}<br/>");
-
-                // Set the image path to save in the database
-                imagePath = "~/Uploads/" + fileName; 
-                HiddenFieldImagePath.Value = imagePath; 
+                try
+                {
+                    imagePath = SaveMediaFiles(); // Call the method to save the media files
+                    if (string.IsNullOrEmpty(imagePath))
+                    {
+                        Response.Write("No valid files uploaded.<br/>");
+                        return; // No valid image path to save
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("Error saving the file: " + ex.Message);
+                    return; // Handle any errors in saving files
+                }
             }
-
             else
             {
                 Response.Write("No file uploaded.<br/>");
             }
+
 
             // Save the review to the database
             string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
@@ -82,15 +81,21 @@ namespace NewVersion.css
                     command.Parameters.AddWithValue("@ReviewDescription", description);
                     command.Parameters.AddWithValue("@ProductID", productId);
 
-                    connection.Open();
-                    command.ExecuteNonQuery();
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SqlException sqlEx)
+                    {
+                        Response.Write("Database error: " + sqlEx.Message);
+                        return; // Handle database errors
+                    }
                 }
             }
 
-            txtReviewDescription.Text = string.Empty;
-
-            Response.Redirect("Home2.aspx");
-
+            txtReviewDescription.Text = string.Empty; // Clear the text box
+            Response.Redirect("Home2.aspx"); // Redirect after saving
         }
 
         private string SaveMediaFiles()

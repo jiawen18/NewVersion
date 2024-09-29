@@ -155,10 +155,10 @@ namespace NewVersion.admin
         {
             // Retrieve user input
             string productId = txtProductID.Value;
-            string productName = txtProductName.Text;
-            string productImageUrl = txtProductImageURL.Text;
-            decimal price = decimal.Parse(txtPrice.Text);
-            int quantity = int.Parse(txtQuantity.Text);
+            string productName = txtProductName1.Text;
+            string productImageUrl = txtProductImageURL1.Text;
+            decimal price = decimal.Parse(txtPrice1.Text);
+            int quantity = int.Parse(txtQuantity1.Text);
 
 
             // Update the product in the database

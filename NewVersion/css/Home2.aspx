@@ -89,12 +89,8 @@
                                                         <h3 class="product-name"><%# Eval("ProductName") %></h3>
                                                         <h4 class="product-price">RM <%# Eval("Price") %></h4>
                                                         <div class="product-rating">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </div>
+                                                            <%# GetRatingStars(Eval("AverageRating")) %>
+                                                        </div>      
                                                     </div>
                                                     <div class="add-to-cart" style="margin-top: auto;">
                                                        <asp:Button ID="Button1" runat="server" Text="Buy Now" CssClass="buyNow-btn" CommandArgument='<%# Eval("ProductID") %>' OnClick="btnBuyNow_Click" style="background-color: darkred; color: white; border: none; padding: 10px 20px; cursor: pointer;" />
