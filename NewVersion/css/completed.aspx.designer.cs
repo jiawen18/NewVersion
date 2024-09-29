@@ -11,7 +11,7 @@ namespace NewVersion.css
 {
 
 
-    public partial class Order
+    public partial class completed
     {
 
         /// <summary>
@@ -24,13 +24,13 @@ namespace NewVersion.css
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
 
         /// <summary>
-        /// hplBackHome2 control.
+        /// hplBackHome1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hplBackHome2;
+        protected global::System.Web.UI.WebControls.HyperLink hplBackHome1;
 
         /// <summary>
         /// rptOrderDetails control.
@@ -40,5 +40,14 @@ namespace NewVersion.css
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptOrderDetails;
+
+        /// <summary>
+        /// lblOrderDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOrderDetails;
     }
 }

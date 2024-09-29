@@ -15,39 +15,21 @@ namespace NewVersion.css
     {
 
         /// <summary>
-        /// hplBackHome1 control.
+        /// hplBackHome2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hplBackHome1;
+        protected global::System.Web.UI.WebControls.HyperLink hplBackHome2;
 
         /// <summary>
-        /// btnBuyAgain control.
+        /// rptCancelOrders control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuyAgain;
-
-        /// <summary>
-        /// btnTrackRefund control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTrackRefund;
-
-        /// <summary>
-        /// lblOrderDetails control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOrderDetails;
+        protected global::System.Web.UI.WebControls.Repeater rptCancelOrders;
     }
 }

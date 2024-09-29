@@ -27,7 +27,7 @@ namespace NewVersion.css
         {
             List<OrderViewModel> orders = LoadOrdersItem();
 
-            // 确保 orders 不为空
+           
             if (orders != null && orders.Count > 0)
             {
                 var groupedOrders = orders
@@ -47,7 +47,7 @@ namespace NewVersion.css
             }
             else
             {
-                // 处理没有订单的情况，例如显示一条消息
+                
                 rptOrders.DataSource = null;
                 rptOrders.DataBind();
             }
@@ -122,11 +122,11 @@ namespace NewVersion.css
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                var order = (OrderViewModel)e.Item.DataItem; // 使用 OrderViewModel 类型
+                var order = (OrderViewModel)e.Item.DataItem; 
                 Repeater rptProducts = (Repeater)e.Item.FindControl("rptProducts");
 
-                // 确保 order.Products 返回产品列表
-                rptProducts.DataSource = order.Products; // 绑定产品列表
+                
+                rptProducts.DataSource = order.Products; 
                 rptProducts.DataBind();
             }
         }
@@ -142,7 +142,7 @@ namespace NewVersion.css
         // yujing edited this for refund
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-          /* Button cancelButton = sender as Button;
+          Button cancelButton = sender as Button;
             if (cancelButton != null)
             {
 
@@ -166,7 +166,7 @@ namespace NewVersion.css
                 //FeedbackLabel.CssClass = "text-success";
 
                 Response.Redirect("cancelled.aspx");
-            }*/
+            }
         }
 
     }
