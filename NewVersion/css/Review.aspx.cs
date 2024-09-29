@@ -45,102 +45,87 @@ namespace NewVersion.css
             }
 
             string description = txtReviewDescription.Text;
-            byte[] imageBytes = null; // Start with null byte array
+
             DateTime reviewDate = DateTime.Now;
 
-            // Check if any file is uploaded
-            if (FileUploadMedia.HasFile)
+            using (SqlConnection con = new SqlConnection(cs))
             {
-                try
+                con.Open();
+                string insertQuery = "INSERT INTO Review (ReviewDate, ReviewRating, ReviewDescription, ProductID) VALUES (@reviewDate, @rating, @description, @productId); SELECT SCOPE_IDENTITY();";
+                using (SqlCommand cmdInsert = new SqlCommand(insertQuery, con))
                 {
-                    imageBytes = SaveMediaFiles(); // Call the method to save the media files
-                    if (imageBytes == null || imageBytes.Length == 0)
+                    // Add parameters for the values you want to insert
+                    cmdInsert.Parameters.AddWithValue("@reviewDate", reviewDate);
+                    cmdInsert.Parameters.AddWithValue("@rating", rating);
+                    cmdInsert.Parameters.AddWithValue("@productId", productId);
+                    cmdInsert.Parameters.AddWithValue("@description", description);
+
+                    // Execute the command and retrieve the new ReviewID
+                    var newReviewID = cmdInsert.ExecuteScalar();
+
+                    // Convert to the appropriate type (e.g., int)
+                    int reviewID = Convert.ToInt32(newReviewID);
+
+                    string fileName2 = HiddenFieldImagePath.Value;
+                    if (fileName2 != null)
                     {
-                        Response.Write("No valid files uploaded.<br/>");
-                        return; // No valid image bytes to save
+
+
+                        // Set the directory to store the image on your server
+                        string savePath = Server.MapPath("ReviewImg/");
+
+                        // Create the directory if it doesn't exist
+                        if (!Directory.Exists(savePath))
+                        {
+                            Directory.CreateDirectory(savePath);
+                        }
+
+                        // Combine the directory and file name to get the complete path
+                        string fullFilePath = Path.Combine(savePath, fileName2);
+
+                        // Update the productPic in the existing product row
+                        string updateQuery = "UPDATE Review SET ReviewImage = @ReviewImage WHERE ReviewID = @ReviewID";
+                        string fileName = Path.GetFileName(fileName2);
+                        using (SqlCommand cmdUpdate = new SqlCommand(updateQuery, con))
+                        {
+                            cmdUpdate.Parameters.AddWithValue("@ReviewImage", "ReviewImg/" + fileName);
+                            cmdUpdate.Parameters.AddWithValue("@ReviewID", reviewID);
+
+                            cmdUpdate.ExecuteNonQuery();
+                        }
+
+
                     }
                 }
-                catch (Exception ex)
-                {
-                    Response.Write("Error saving the file: " + ex.Message);
-                    return; // Handle any errors in saving files
-                }
-            }
-            else
-            {
-                Response.Write("No file uploaded.<br/>");
             }
 
-            // Save the review to the database
-            string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
+            txtReviewDescription.Text = string.Empty;
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string query = "INSERT INTO Review (ReviewDate, ReviewRating, ReviewImage, ReviewDescription, ProductID) " +
-                               "VALUES (@ReviewDate, @ReviewRating, @ReviewImage, @ReviewDescription, @ProductID)";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@ReviewDate", reviewDate);
-                    command.Parameters.AddWithValue("@ReviewRating", rating);
-                    command.Parameters.AddWithValue("@ReviewImage", (object)imageBytes ?? DBNull.Value); // Set DBNull if imageBytes is null
-                    command.Parameters.AddWithValue("@ReviewDescription", description);
-                    command.Parameters.AddWithValue("@ProductID", productId);
-
-                    try
-                    {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                    catch (SqlException sqlEx)
-                    {
-                        Response.Write("Database error: " + sqlEx.Message);
-                        return; // Handle database errors
-                    }
-                }
-            }
-
-            txtReviewDescription.Text = string.Empty; // Clear the text box
-            Response.Redirect("Home2.aspx"); // Redirect after saving
+            Response.Redirect("Home2.aspx");
         }
 
-        private byte[] SaveMediaFiles()
+        private string SaveMediaFiles()
         {
-            byte[] imageBytes = null; // Initialize the byte array to hold the image data
-            string photoPath = MapPath("~/Photos/"); // Path to save the uploaded photos
+            string photoPath = MapPath("~/Photos/");
+            string filename = Guid.NewGuid().ToString("N") + ".jpg"; // Unique filename for the photo
+            string imagePath = "";
 
             // Check if files are uploaded
-            if (FileUploadMedia.HasFiles)
+            if (FileUploadMedia.HasFile)
             {
+                // Process each uploaded file
                 foreach (HttpPostedFile file in FileUploadMedia.PostedFiles)
                 {
-                    // Check if the file is a valid image type
-                    if (file.ContentType.StartsWith("image/"))
-                    {
-                        using (MemoryStream ms = new MemoryStream())
-                        {
-                            file.InputStream.CopyTo(ms); // Copy the input stream to the memory stream
-                            imageBytes = ms.ToArray(); // Convert the memory stream to a byte array
-
-                            // Save the file to the server if needed
-                            string filename = Guid.NewGuid().ToString("N") + ".jpg"; // Unique filename for the photo
-                            string fullPath = Path.Combine(photoPath, filename); // Full path to save the image
-                            file.SaveAs(fullPath); // Save the original file to disk
-                        }
-                    }
-                    else
-                    {
-                        Response.Write("Invalid file type. Please upload an image.<br/>");
-                        return null; // Invalid file type, return null
-                    }
+                    // Save image processing logic here
+                    SimpleImage img = new SimpleImage(file.InputStream);
+                    img.Square();
+                    img.Resize(150);
+                    img.SaveAs(photoPath + filename);
+                    imagePath = "~/Photos/" + filename; // Set the image path to save in the database
                 }
             }
-            else
-            {
-                Response.Write("No files were uploaded.<br/>");
-            }
 
-            return imageBytes; // Return the byte array containing the image data
+            return imagePath;
         }
 
         private void LoadProductDetails(int productId)
