@@ -9,6 +9,7 @@
            SELECT 
             o.OrderID,
             od.ProductName,
+            od.ProductID,
             od.Quantity,
             od.Storage,
             od.Color,
@@ -127,7 +128,7 @@ position: relative;
                                 <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
                                 <div class="row d-flex align-items-center">
                                     <div class="trackAndReview">
-                                        <asp:Button class="text-muted mb-0 small" ID="btnReview" runat="server" Text="Review" OnClick="btnReview_Click" />
+                                        <asp:Button class="text-muted mb-0 small" ID="btnReview" runat="server" Text="Review" OnClick="btnReview_Click"  CommandArgument='<%# Eval("ProductID") %>'/>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                         <asp:Button class="text-muted mb-0 small" ID="btnTrack" runat="server" Text="Track Order" OnClick="btnTrack_Click" />
                                     </div>

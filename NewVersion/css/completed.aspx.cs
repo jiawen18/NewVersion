@@ -31,6 +31,7 @@ namespace NewVersion.css
                 SELECT 
                     o.OrderID,
                     od.ProductName,
+                    od.ProductID,
                     od.Quantity,
                     od.Storage,
                     od.Color,
