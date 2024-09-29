@@ -118,6 +118,8 @@ namespace NewVersion.admin
 
         protected void ApproveRefundButton_Click(object sender, EventArgs e)
         {
+            string cs = Global.CS;
+
             Button approveButton = sender as Button;
             if (approveButton != null)
             {
@@ -133,15 +135,60 @@ namespace NewVersion.admin
 
                         context.SaveChanges();
 
+                        string orderId = "";
+                        using (SqlConnection con = new SqlConnection(cs))
+                        {
+                            con.Open();
+
+                            string query = "SELECT OrderID FROM f.Refund WHERE RefundID = @ORefundID";
+
+                            using (SqlCommand cmd = new SqlCommand(query, con))
+                            {
+                                using (SqlDataReader dr = cmd.ExecuteReader())
+                                {
+
+                                    if (dr.Read())
+                                    {
+                                        orderId = dr["OrderID"].ToString();
+                                    }
+                                }
+
+                                string query1 = "UPDATE Order OrderStatus=@orderStatus WHERE OrderID = @OrderID ";
+
+                                using (SqlCommand cmd1 = new SqlCommand(query1, con))
+                                {
+                                    using (SqlDataReader dr1 = cmd1.ExecuteReader())
+                                    {
+                                        cmd1.Parameters.AddWithValue("OrderStatus", "Cancelled");
+                                        cmd1.Parameters.AddWithValue("OrderID", orderId);
+
+                                        cmd.ExecuteNonQuery();
+                                    }
+                                }
+
+                                string query2 = "UPDATE Transaction TransactionStatus = @TransactionStatus WHERE OrderID = @OrderID ";
+
+                                using (SqlCommand cmd2 = new SqlCommand(query2, con))
+                                {
+                                    using (SqlDataReader dr2 = cmd2.ExecuteReader())
+                                    {
+                                        cmd2.Parameters.AddWithValue("OrderStatus", "Refunded");
+                                        cmd2.Parameters.AddWithValue("OrderID", orderId);
+
+                                        cmd.ExecuteNonQuery();
+                                    }
+                                }
+                            }
+
+                        }
+
+                        //logic to update at customer's side here
+
+                        BindGrid();
+                        FeedbackLabel.Text = "Refund request approved successfully!";
+                        FeedbackLabel.CssClass = "text-success";
 
                     }
-
-                    //logic to update at customer's side here
-
-                    BindGrid();
-                    FeedbackLabel.Text = "Refund request approved successfully!";
-                    FeedbackLabel.CssClass = "text-success";
-
                 }
             }
         }
