@@ -31,15 +31,18 @@ namespace NewVersion.css
                 var (invoiceId, date) = GenerateRandomInvoiceId();
                 lblInvoiceId.Text = invoiceId;
                 lblInvoiceDate.Text = date;
+                
+                decimal totalPrice = 0.00m;
 
                 if (Session["Amount"] != null)
                 {
                     decimal amount = (decimal)Session["Amount"];
                     lblAmount.Text = "RM " + amount.ToString("F2");
+                    totalPrice = amount;
                     
                 }
                 
-                string totalPrice = lblAmount.Text;
+                
 
                 string transactionStatus = "Success";
 
@@ -72,7 +75,7 @@ namespace NewVersion.css
             Response.Redirect("Home2.aspx");
         }
 
-        private void SaveTransactionDetails(string transactionID, string orderID, string totalPrice, string invoiceId, string date, string transactionStatus)
+        private void SaveTransactionDetails(string transactionID, string orderID, decimal totalPrice, string invoiceId, string date, string transactionStatus)
         {
             string transactionQuery = "INSERT INTO [Transaction] (TransactionID, OrderID, OrderTotalPrice, InvoiceID, InvoiceDate, TransactionStatus,TransactionDate) " +
                                    "VALUES (@TransactionID, @OrderID, @OrderTotalPrice, @InvoiceID, @InvoiceDate, @TransactionStatus,@TransactionDate)";
