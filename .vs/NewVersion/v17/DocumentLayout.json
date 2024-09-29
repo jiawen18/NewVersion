@@ -1,7 +1,48 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\dell\\documents\\github\\newversion\\newversion\\css\\productdetails.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\productdetails.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\dell\\documents\\github\\newversion\\newversion\\css\\productdetails.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\productdetails.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\dell\\documents\\github\\newversion\\newversion\\css\\smartphones.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\smartphones.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\dell\\documents\\github\\newversion\\newversion\\css\\smartphones.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\smartphones.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\dell\\documents\\github\\newversion\\newversion\\css\\home2.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\home2.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\dell\\documents\\github\\newversion\\newversion\\css\\home2.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\home2.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\dell\\documents\\github\\newversion\\newversion\\css\\failurepage.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\failurepage.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\dell\\documents\\github\\newversion\\newversion\\css\\failurepage.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\failurepage.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\dell\\documents\\github\\newversion\\newversion\\css\\order.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\order.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|c:\\users\\dell\\documents\\github\\newversion\\newversion\\css\\order.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{481640D4-8B51-4486-8BE8-6C1293424CC4}|NewVersion\\NewVersion.csproj|solutionrelative:newversion\\css\\order.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,6 +87,136 @@
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProductDetails.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\ProductDetails.aspx.cs",
+              "RelativeDocumentMoniker": "NewVersion\\css\\ProductDetails.aspx.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\ProductDetails.aspx.cs",
+              "RelativeToolTip": "NewVersion\\css\\ProductDetails.aspx.cs",
+              "ViewState": "AgIAAAEBAAAAAAAAAADwvx8BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T02:20:17.572Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProductDetails.aspx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\ProductDetails.aspx",
+              "RelativeDocumentMoniker": "NewVersion\\css\\ProductDetails.aspx",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\ProductDetails.aspx",
+              "RelativeToolTip": "NewVersion\\css\\ProductDetails.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-29T02:16:52.793Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FailurePage.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\FailurePage.aspx.cs",
+              "RelativeDocumentMoniker": "NewVersion\\css\\FailurePage.aspx.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\FailurePage.aspx.cs",
+              "RelativeToolTip": "NewVersion\\css\\FailurePage.aspx.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T02:15:55.266Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FailurePage.aspx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\FailurePage.aspx",
+              "RelativeDocumentMoniker": "NewVersion\\css\\FailurePage.aspx",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\FailurePage.aspx",
+              "RelativeToolTip": "NewVersion\\css\\FailurePage.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-29T02:12:53.143Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Order.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Order.aspx.cs",
+              "RelativeDocumentMoniker": "NewVersion\\css\\Order.aspx.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Order.aspx.cs",
+              "RelativeToolTip": "NewVersion\\css\\Order.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T02:12:19.721Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Order.aspx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Order.aspx",
+              "RelativeDocumentMoniker": "NewVersion\\css\\Order.aspx",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Order.aspx",
+              "RelativeToolTip": "NewVersion\\css\\Order.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-29T02:10:50.813Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Home2.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Home2.aspx.cs",
+              "RelativeDocumentMoniker": "NewVersion\\css\\Home2.aspx.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Home2.aspx.cs",
+              "RelativeToolTip": "NewVersion\\css\\Home2.aspx.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAADwvzEAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T02:08:49.651Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Home2.aspx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Home2.aspx",
+              "RelativeDocumentMoniker": "NewVersion\\css\\Home2.aspx",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Home2.aspx",
+              "RelativeToolTip": "NewVersion\\css\\Home2.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-29T02:08:25.279Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Smartphones.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Smartphones.aspx.cs",
+              "RelativeDocumentMoniker": "NewVersion\\css\\Smartphones.aspx.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Smartphones.aspx.cs",
+              "RelativeToolTip": "NewVersion\\css\\Smartphones.aspx.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAcwGAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T02:08:07.687Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Smartphones.aspx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Smartphones.aspx",
+              "RelativeDocumentMoniker": "NewVersion\\css\\Smartphones.aspx",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\GitHub\\NewVersion\\NewVersion\\css\\Smartphones.aspx",
+              "RelativeToolTip": "NewVersion\\css\\Smartphones.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-29T02:07:52.817Z",
+              "EditorCaption": ""
             }
           ]
         }

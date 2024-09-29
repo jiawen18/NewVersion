@@ -37,38 +37,58 @@ namespace NewVersion.css
                 int productId = Convert.ToInt32(Request.QueryString["productID"]);
                
                  LoadProductDetails(productId);
-
+                 LoadProductRatings(productId);
+                 ShowOnlyFirstRating();
 
                 List<CartItem> cart = Cart; // Using Cart property to get cart items
 
-                PanelMoreRatings.Visible = true;
-                PanelMoreRatings.Visible = false;
                 btnViewMore.Text = "View More Ratings";
             }
 
         }
 
-
-        /*
-        protected void Page_Load(object sender, EventArgs e)
+        private void BindCustomerRatings(int productId)
         {
-            string productID = Request.QueryString["ProductID"];
-            System.Diagnostics.Debug.WriteLine($"ProductID: {productID}");
-            if (!IsPostBack)
-            {
-                LoadProductDetails(productID);
-                LoadProductReviews(productID);
-            }
+            rptCustomerRatings.DataSource = SqlDataSource1;
+            rptCustomerRatings.DataBind();
+        }
 
-            else
-            {
-                lblProductName.Text = "Product not found.";
-                lblPrice.Text = string.Empty;
-                lblQuantity.Text = string.Empty;
-                ProductImg.ImageUrl = string.Empty;
-            }
 
-        }*/
+        protected string GetRatingStars(object ratingObj)
+        {
+            double rating = ratingObj != DBNull.Value ? Convert.ToDouble(ratingObj) : 0;
+            int fullStars = (int)Math.Floor(rating);
+            bool hasHalfStar = (rating - fullStars) >= 0.5;
+            int emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+            // Define the star styles
+            string fullStarStyle = "color: gold; font-size: 20px;"; // Customize color and size for full stars
+            string halfStarStyle = "color: gold; font-size: 20px;"; // Customize color and size for half star
+            string emptyStarStyle = "color: lightgray; font-size: 20px;"; // Customize color and size for empty stars
+
+            // Build the HTML string for star ratings with inline styles
+            string starsHtml = new string('★', fullStars); // Full stars
+            if (hasHalfStar) starsHtml += "☆"; // Half star
+            starsHtml += new string('☆', emptyStars); // Empty stars
+
+            // Wrap each star with a span for styling
+            // Replace full stars
+            starsHtml = starsHtml.Replace("★", $"<span style='{fullStarStyle}'>★</span>");
+            // Replace half star (only the first occurrence)
+            if (hasHalfStar)
+            {
+                int halfStarIndex = starsHtml.IndexOf("☆");
+                if (halfStarIndex != -1)
+                {
+                    starsHtml = starsHtml.Remove(halfStarIndex, 1)
+                                         .Insert(halfStarIndex, $"<span style='{halfStarStyle}'>☆</span>");
+                }
+            }
+            // Replace empty stars
+            starsHtml = starsHtml.Replace("☆", $"<span style='{emptyStarStyle}'>☆</span>");
+
+            return starsHtml;
+        }
 
         private void LoadProductDetails(int productId)
         {
@@ -104,55 +124,75 @@ namespace NewVersion.css
             }
         }
 
-                /*
-                private void LoadProductReviews(string productID)
+        private void LoadProductRatings(int productId)
+        {
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                string query = @"
+            SELECT 
+                R.ReviewRating,
+                R.ReviewDescription,
+                R.ReviewImage,
+                R.ReviewDate,
+                P.ProductName 
+            FROM 
+                Review R
+            JOIN 
+                Product P ON R.ProductID = P.ProductID 
+            WHERE 
+                R.ProductID = @ProductID"; // Adjust this query as necessary
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    using (SqlConnection conn = new SqlConnection(cs))
+                    cmd.Parameters.AddWithValue("@ProductID", productId);
+                    conn.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        string query = "SELECT ReviewDate, ReviewRating, ReviewImage, ReviewDescription, ProductName FROM Review WHERE ProductID = @ProductID";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        if (reader.HasRows)
                         {
-                            cmd.Parameters.AddWithValue("@ProductID", productID);
-                            conn.Open();
-                            SqlDataReader reader = cmd.ExecuteReader();
-                            DataTable dt = new DataTable();
-                            dt.Load(reader);
-                            rptCustomerRatings.DataSource = dt;
+                            rptCustomerRatings.DataSource = reader; // Bind the reader directly
                             rptCustomerRatings.DataBind();
+                        }
+                        else
+                        {
+                            ShowSuccessMessage("No ratings found for this product.");
                         }
                     }
                 }
+            }
+        }
 
-                // Helper method to return the HTML for star ratings
-                private string GetStarRatingHtml(int rating)
+        private void ShowOnlyFirstRating()
+        {
+            if (rptCustomerRatings.Items.Count > 0)
+            {
+                rptCustomerRatings.Items[0].Visible = true; // Show the first rating
+
+                if (rptCustomerRatings.Items.Count > 1)
                 {
-                    string starsHtml = "";
-                    for (int i = 0; i < rating; i++)
+                    // Hide additional ratings initially
+                    for (int i = 1; i < rptCustomerRatings.Items.Count; i++)
                     {
-                        starsHtml += "<i class='fa fa-star'></i>";
+                        rptCustomerRatings.Items[i].Visible = false;
                     }
-                    for (int i = rating; i < 5; i++)
-                    {
-                        starsHtml += "<i class='fa fa-star-o'></i>";
-                    }
-                    return starsHtml;
                 }
+            }
+        }
 
-                */
         protected void btnViewMore_Click(object sender, EventArgs e)
         {
-            PanelMoreRatings.Visible = !PanelMoreRatings.Visible;
-
-            if (PanelMoreRatings.Visible)
+            // Show the next two ratings
+            for (int i = 1; i < rptCustomerRatings.Items.Count && i <= 2; i++)
             {
-                btnViewMore.Text = "View Less Ratings";
-            }
-            else
-            {
-                btnViewMore.Text = "View More Ratings";
+                rptCustomerRatings.Items[i].Visible = true;
             }
 
-
+            // Optionally, hide the button if all ratings are shown
+            if (rptCustomerRatings.Items.Count <= 3)
+            {
+                btnViewMore.Visible = false;
+            }
         }
 
         protected void btnAddToCart_Click(object sender, EventArgs e)

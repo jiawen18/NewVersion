@@ -10,6 +10,7 @@
                    INNER JOIN Product p ON r.ProductID = p.ProductID WHERE p.ProductID = @ProductID">
 </asp:SqlDataSource>
 
+
     <style>
         #divSuccessMessage {
             display: none;
@@ -178,129 +179,35 @@
     <h2>Customer Ratings</h2>
 
     <asp:Panel ID="PanelFirstRating" runat="server">
-    <div class="rating-box">
-        <!-- Rating Entry -->
-        <div class="rating-entry">
-            <!-- Username -->
-            <div class="rating-username">
-                <strong>John Doe</strong>
-            </div>
-
-            <!-- Star Rating -->
-            <div class="rating-star-fixed">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-alt"></i>
-            </div>
-
-            <!-- Product Model -->
-            <h4 class="rating-model">Z-Flip 2024, Blue</h4>
-
-            <!-- Comments -->
-            <div class="rating-comments">
-                The product is good. I really like the new features and the color.
-            </div>
-
-            <!-- Product Image Posted by User -->
-            <div class="rating-image">
-                <img src="images/z-flip_blue.jpg" alt="Customer Image">
-            </div>
-
-            <!-- Date of Rating -->
-            <div class="rating-date">
-                <small>Reviewed on: August 22, 2024</small>
-            </div>
-        </div>
-        <!-- Repeat rating blocks as needed -->
-    </div>
+        <asp:Repeater ID="rptCustomerRatings" runat="server">
+            <ItemTemplate>
+                <div class="rating-entry" style="border: 1px solid lightgrey; border-radius: 5px; padding: 15px; margin-bottom: 15px; background-color: #f9f9f9;">
+                    <div class="product-rating" style="margin-bottom: 10px;">
+                        <%# GetRatingStars(Eval("ReviewRating")) %>
+                    </div>
+                    <h4 class="rating-model" style="margin: 10px 0;">
+                        <strong>Product Name:</strong> <%# Eval("ProductName") %>
+                    </h4>
+                    <div class="rating-comments" style="margin: 5px 0;">
+                        <strong>Comments:</strong> <%# Eval("ReviewDescription") %>
+                    </div>
+                    <div class="rating-image" style="margin: 5px 0;">
+                        <strong>Image:</strong> <img src='<%# Eval("ReviewImage") %>' style="max-width: 100px; border-radius: 5px;">
+                    </div>
+                    <div class="rating-date" style="margin-top: 10px;">
+                        <small>Reviewed on: <%# Eval("ReviewDate", "{0:yyyy-MM-dd}") %></small>
+                    </div>
+                </div>
+            </ItemTemplate>
+        </asp:Repeater>
     </asp:Panel>
-
-<asp:Panel ID="PanelMoreRatings" runat="server" Visible ="false">
-        <div class="rating-box">
-        <!-- Rating Entry -->
-        <div class="rating-entry">
-            <!-- Username -->
-            <div class="rating-username">
-                <strong>John Doe</strong>
-            </div>
-
-            <!-- Star Rating -->
-            <div class="rating-star-fixed">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-alt"></i>
-            </div>
-
-            <!-- Product Model -->
-            <h4 class="rating-model">Z-Flip 2024, Blue</h4>
-
-            <!-- Comments -->
-            <div class="rating-comments">
-                The product is good. I really like the new features and the color.
-            </div>
-
-            <!-- Product Image Posted by User -->
-            <div class="rating-image">
-                <img src="images/z-flip_blue.jpg" alt="Customer Image">
-            </div>
-
-            <!-- Date of Rating -->
-            <div class="rating-date">
-                <small>Reviewed on: August 22, 2024</small>
-            </div>
-        </div>
-        <!-- Repeat rating blocks as needed -->
-    </div>
-
-
-        <div class="rating-box">
-        <!-- Rating Entry -->
-        <div class="rating-entry">
-            <!-- Username -->
-            <div class="rating-username">
-                <strong>John Doe</strong>
-            </div>
-
-            <!-- Star Rating -->
-            <div class="rating-star-fixed">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-alt"></i>
-            </div>
-
-            <!-- Product Model -->
-            <h4 class="rating-model">Z-Flip 2024, Blue</h4>
-
-            <!-- Comments -->
-            <div class="rating-comments">
-                The product is good. I really like the new features and the color.
-            </div>
-
-            <!-- Product Image Posted by User -->
-            <div class="rating-image">
-                <img src="images/z-flip_blue.jpg" alt="Customer Image">
-            </div>
-
-            <!-- Date of Rating -->
-            <div class="rating-date">
-                <small>Reviewed on: August 22, 2024</small>
-            </div>
-        </div>
-        <!-- Repeat rating blocks as needed -->
-    </div>
-</asp:Panel>
-       
+</div>
+      
     <div class="view-more-container">
         <asp:Button ID="btnViewMore" runat="server" Text="View More Ratings" class="view-more-btn" OnClick="btnViewMore_Click" />
     </div>
 
-</div>
+
 
 
 
