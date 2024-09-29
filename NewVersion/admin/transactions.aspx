@@ -63,7 +63,7 @@
                                     <label>Transaction Status</label>
                                     <asp:DropDownList ID="ddlTransactionStatus" runat="server" CssClass="form-control">
                                         <asp:ListItem Value="Success">Success</asp:ListItem>
-                                        <asp:ListItem Value="Cancel">Cancel</asp:ListItem>
+                                        <asp:ListItem Value="Failed">Failed</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                             </div>

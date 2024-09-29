@@ -159,7 +159,7 @@ namespace NewVersion.admin
                 {
                     cmd.Parameters.AddWithValue("@TransactionID", transactionID);
                     con.Open();
-                    orderId = cmd.ExecuteScalar()?.ToString(); // 获取相关的 OrderID
+                    orderId = cmd.ExecuteScalar()?.ToString(); 
                 }
             }
 
