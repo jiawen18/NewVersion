@@ -12,6 +12,10 @@ namespace NewVersion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!IsUserSuperAdmin() || !IsUserAdmin())
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('You Cannot Access to this page!'); window.location='../css/login.aspx';", true);
+            }
 
             if (!IsPostBack)
             {
@@ -110,12 +114,7 @@ namespace NewVersion
                         {
                             lbl_user_name.Text = reader["Username"].ToString();
                             lbl_user_email.Text = reader["Email"].ToString();
-
-                            // Optional: Check if the user is SuperAdmin for additional logic
-                            if (reader["UserType"].ToString() == "SuperAdmin")
-                            {
-                                // Additional logic if needed for superadmin
-                            }
+                      
                         }
                     }
                 }
@@ -146,6 +145,31 @@ namespace NewVersion
 
             return isSuperAdmin;
         }
+
+        protected bool IsUserAdmin()
+        {
+            string currentUser = HttpContext.Current.User.Identity.Name; // Get the currently logged-in user's username
+            string connString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
+            bool isAdmin = false;
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                conn.Open();
+
+                // Query to check if the user exists in the SuperAdmin table
+                string queryAdmin = "SELECT COUNT(1) FROM AdminUser WHERE Username = @Username";
+                using (SqlCommand cmdAdmin = new SqlCommand(queryAdmin, conn))
+                {
+                    cmdAdmin.Parameters.AddWithValue("@Username", currentUser);
+
+                    int count = (int)cmdAdmin.ExecuteScalar();
+                    isAdmin = count > 0; 
+                }
+            }
+
+            return isAdmin;
+        }
+
         protected void LogoutUser(object sender, EventArgs e)
         {
 

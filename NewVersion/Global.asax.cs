@@ -28,8 +28,7 @@ namespace NewVersion
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
-            // This method ensures the roles are applied to the authenticated user
-            Security.ProcessRoles();
+  
         }
 
         protected void Application_Error(object sender, EventArgs e)
