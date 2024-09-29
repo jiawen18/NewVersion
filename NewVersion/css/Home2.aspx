@@ -73,29 +73,31 @@
                     <div class="products-tabs">
                         <div id="tab2" class="tab-pane active">
                             <div class="products-slick" data-nav="#slick-nav-1" style="display: flex; flex-wrap: wrap; justify-content: space-between;">
-                                <div class="row" style="display: flex; flex-wrap: wrap; width: 100%;">
-                                    <asp:Repeater ID="productRepeater" runat="server" >
+                                <div class="row" style="display: flex; flex-wrap: wrap; width: 100%; margin-bottom: 40px;">
+                                    <asp:Repeater ID="productRepeater" runat="server">
                                         <ItemTemplate>
-                                            <div class="col-md-4" style="flex: 1 1 30%; box-sizing: border-box; margin-bottom: 20px;">
-                                                <div class="product" style="height: 100%;">
-                                                    <div class="product-img">
-                                                        <img src='<%# Eval("ProductImageURL") %>' alt="image" style="width: 100%; height: 200px; object-fit: cover;">
-                                                        <div class="product-label">
-                                                            <span class="sale">-30%</span>
-                                                            <span class="new">NEW</span>
+                                            <div class="col-md-4" style="flex: 1 1 30%; box-sizing: border-box; margin-bottom: 20px; position: relative;">
+                                                <a href='ProductDetails.aspx?ProductID=<%# Eval("ProductID") %>' style="text-decoration: none; color: inherit; height: 100%;">
+                                                    <div class="product" style="height: 100%; background-color: transparent;"> <!-- Added background-color -->
+                                                        <div class="product-img">
+                                                            <img src='<%# Eval("ProductImageURL") %>' alt="image" style="width: 100%; height: 200px; object-fit: cover;">
+                                                            <div class="product-label">
+                                                                <span class="sale">-30%</span>
+                                                                <span class="new">NEW</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="product-body" style="flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; background-color: transparent;"> <!-- Added background-color -->
+                                                            <h3 class="product-name"><%# Eval("ProductName") %></h3>
+                                                            <h4 class="product-price">RM <%# Eval("Price") %></h4>
+                                                            <div class="product-rating">
+                                                                <%# GetRatingStars(Eval("AverageRating")) %>
+                                                            </div>      
+                                                            <div class="add-to-cart" style="opacity: 0; transition: opacity 0.3s ease; margin-top: 10px; background-color: transparent;"> <!-- Added background-color -->
+                                                                <asp:Button ID="Button1" runat="server" Text="Buy Now" CssClass="buyNow-btn" CommandArgument='<%# Eval("ProductID") %>' OnClick="btnBuyNow_Click" style="background-color: darkred; color: white; border: none; padding: 10px 20px; cursor: pointer; width: 100%;" />
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="product-body" style="flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
-                                                        <h3 class="product-name"><%# Eval("ProductName") %></h3>
-                                                        <h4 class="product-price">RM <%# Eval("Price") %></h4>
-                                                        <div class="product-rating">
-                                                            <%# GetRatingStars(Eval("AverageRating")) %>
-                                                        </div>      
-                                                    </div>
-                                                    <div class="add-to-cart" style="margin-top: auto;">
-                                                       <asp:Button ID="Button1" runat="server" Text="Buy Now" CssClass="buyNow-btn" CommandArgument='<%# Eval("ProductID") %>' OnClick="btnBuyNow_Click" style="background-color: darkred; color: white; border: none; padding: 10px 20px; cursor: pointer;" />
-                                                    </div>
-                                                </div>
+                                                </a>
                                             </div>
                                         </ItemTemplate>
                                     </asp:Repeater>
@@ -103,10 +105,11 @@
                             </div>
                         </div>
                     </div>
-                </div>				
+                </div>
 
-	<!-- HOT DEAL SECTION -->
-	<div id="hot-deal" class="section">
+
+<!-- HOT DEAL SECTION -->
+<div id="hot-deal" class="section" style="padding-top: 40px;"> 
 		<!-- container -->
 		<div class="container">
     <!-- row -->
@@ -167,7 +170,6 @@
 
 			    <!-- Start Column 2 -->
 			    <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-				    <a class="product-item" href="ProductDetails.aspx">
 					    <img src="images/z-flip_blue.jpg" class="image-fluid product-thumbnail">
 					    <h3 class="product-title"> Hamsung Galaxy Z Flip 6</h3>
 					    <strong class="product-price">RM 4499.00</strong>
@@ -175,13 +177,11 @@
 					    <span class="icon-cross">
 						    <img src="images/cross.svg" class="img-fluid">
 					    </span>
-				    </a>
 			    </div> 
 			    <!-- End Column 2 -->
 
 			    <!-- Start Column 3 -->
 			    <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-				    <a class="product-item" href="ProductDetails.aspx">
 					    <img src="images/samsung_tabS9_FE.jpg" class="image-fluid product-thumbnail">
 					    <h3 class="product-title"> Hansumg Tab S9 FE</h3>
 					    <strong class="product-price">RM 1799.00</strong>
@@ -189,13 +189,11 @@
 					    <span class="icon-cross">
 						    <img src="images/cross.svg" class="img-fluid">
 					    </span>
-				    </a>
 			    </div>
 			    <!-- End Column 3 -->
 
 			    <!-- Start Column 4 -->
 			    <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-				    <a class="product-item" href="ProductDetails.aspx">
 					    <img src="images/Galaxy_Buds3.jpg" class="image-fluid product-thumbnail">
 					    <h3 class="product-title">Galaxy Buds 3</h3>
 					    <strong class="product-price">RM 499.00</strong>
@@ -203,7 +201,6 @@
 					    <span class="icon-cross">
 						    <img src="images/cross.svg" class="img-fluid">
 					    </span>
-				    </a>
 			    </div>
 			    <!-- End Column 4 -->
 
@@ -329,6 +326,18 @@
 <!-- Include Slick CSS -->
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+<script>
+    // Show button on hover
+    const productColumns = document.querySelectorAll('.col-md-4');
+    productColumns.forEach(column => {
+        column.addEventListener('mouseover', () => {
+            column.querySelector('.add-to-cart').style.opacity = '1';
+        });
+        column.addEventListener('mouseout', () => {
+            column.querySelector('.add-to-cart').style.opacity = '0';
+        });
+    });
+</script>
 
 <!-- Include jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
