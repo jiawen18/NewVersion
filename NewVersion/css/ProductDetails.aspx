@@ -192,7 +192,7 @@
                         <strong>Comments:</strong> <%# Eval("ReviewDescription") %>
                     </div>
                     <div class="rating-image" style="margin: 5px 0;">
-                        <strong>Image:</strong> <img src='<%# Eval("ReviewImage") %>' style="max-width: 100px; border-radius: 5px;">
+                        <strong>Image:</strong> <img src='<%# ResolveUrl(Eval("ReviewImage").ToString()) %>' style="max-width: 100px; border-radius: 5px;">
                     </div>
                     <div class="rating-date" style="margin-top: 10px;">
                         <small>Reviewed on: <%# Eval("ReviewDate", "{0:yyyy-MM-dd}") %></small>
