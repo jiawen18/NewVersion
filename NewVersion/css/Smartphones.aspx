@@ -54,21 +54,22 @@
     <!-- Dynamic product listing using Repeater -->
     <asp:Repeater ID="rptProducts" runat="server">
     <ItemTemplate>
-        <div class="col-12 col-md-4 col-lg-3 mb-5 grey-container">
+        <!-- Wrap the entire product container in an anchor tag -->
+        <a href='ProductDetails.aspx?ProductID=<%# Eval("ProductID") %>' class="col-12 col-md-4 col-lg-3 mb-5 grey-container text-decoration-none">
             <img src='<%# Eval("ProductImageURL") %>' class="img-fluid product-thumbnail" alt='<%# Eval("ProductName") %>' />
             <h3 class="product-title"><%# Eval("ProductName") %></h3>
             <strong class="product-price">RM <%# Eval("Price", "{0:F2}") %></strong>
 
-           <div class="product-rating">
-            <%# GetRatingStars(Eval("AverageRating")) %>
-        </div>   
+            <div class="product-rating">
+                <%# GetRatingStars(Eval("AverageRating")) %>
+            </div>
 
             <div class="buyNow">
                 <asp:Button ID="btnBuyNow" runat="server" Text="Buy Now" CssClass="buyNow-btn" CommandArgument='<%# Eval("ProductID") %>' OnClick="btnBuyNow_Click" />
             </div>
-        </div>
+        </a>
     </ItemTemplate>
-</asp:Repeater>
+    </asp:Repeater>
 </div>
 <!-- End Products Row -->
 
