@@ -22,16 +22,16 @@
         }
 
         tbody {
-            display: block; /* 将 tbody 设为块元素 */
-            max-height: 400px; /* 设置最大高度 */
-            overflow-y: auto; /* 启用垂直滚动条 */
+            display: block; 
+            max-height: 400px; 
+            overflow-y: auto; 
             width: 100%;
         }
 
         tr {
-            display: table; /* 每行作为表格行显示 */
-            table-layout: fixed; /* 确保列宽度固定 */
-            width: 100%; /* 确保行宽为100% */
+            display: table; 
+            table-layout: fixed;
+            width: 100%; 
         }
     </style>
 
@@ -96,11 +96,11 @@
                                     
                                     <td class="quantity-container">
                                          <div class="quantity-controls">
-                                             <asp:Button class="btn btn-outline-black decrease" ID="btnDecrease" runat="server" Text="-" CommandArgument='<%# Eval("ProductID") + "|" + Eval("StorageOption") + "|" + Eval("ColorOption") %>'  OnClick="btnDecrease_Click"/>
+                                             <asp:Button class="btn btn-outline-black decrease" ID="btnDecrease" runat="server" Text="-" CommandArgument='<%# Eval("ProductID")  %>'  OnClick="btnDecrease_Click"/>
         
                                              <asp:TextBox class="form-control text-center quantity-amount" ID="txtQuantity" runat="server" Text='<%# Eval("Quantity") %>' OnTextChanged="txtQuantity_TextChanged" AutoPostBack="true" style="max-width: 120px; max-height:30px;"></asp:TextBox>
         
-                                             <asp:Button class="btn btn-outline-black increase" ID="btnIncrease" runat="server" Text="+" CommandArgument='<%# Eval("ProductID") + "|" + Eval("StorageOption") + "|" + Eval("ColorOption") %>'  OnClick="btnIncrease_Click"/>
+                                             <asp:Button class="btn btn-outline-black increase" ID="btnIncrease" runat="server" Text="+" CommandArgument='<%# Eval("ProductID") %>'  OnClick="btnIncrease_Click"/>
                                         </div>
                                     </td>
                                     

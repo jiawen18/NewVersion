@@ -93,7 +93,7 @@ namespace NewVersion.css
 
         private void DisplayUserDetails()
         {
-            // 如果Session中有数据，则重新加载到PlaceHolder
+            
             if (Session["FirstName"] != null && Session["LastName"] != null && Session["Phone"] != null && Session["Address"] != null)
             {
                 PlaceHolder1.Controls.Clear();
@@ -212,7 +212,7 @@ namespace NewVersion.css
                 }
             else
             {
-                // 处理购物车为空的情况
+                
                 lblCartSubTotal.Text = "RM 0.00";
                 lblDeliveryFee.Text = "RM 0.00";
                 lblAmount.Text = "RM 0.00";
@@ -287,9 +287,11 @@ namespace NewVersion.css
 
         protected void btnPay_Click1(object sender, EventArgs e)
         {
+            Page.Validate();
+
             if (Page.IsValid)
             {
-                // 获取用户输入的内容
+                
                 string firstName = c_diff_fname.Text;
                 string lastName = c_diff_lname.Text;
                 string address = c_diff_address.Text;
@@ -347,7 +349,7 @@ namespace NewVersion.css
             }
             else
             {
-                // 如果必填字段缺失，显示错误消息
+                
                 lblErrorMessage.Text = "Please fill all the required fields.";
                 lblErrorMessage.Visible = true;
             }

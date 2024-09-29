@@ -7,23 +7,25 @@
     ProviderName="System.Data.SqlClient"
     SelectCommand="
            SELECT 
-            o.OrderID,
-            od.ProductName,
-            od.ProductID,
-            od.Quantity,
-            od.Storage,
-            od.Color,
-            od.Price,
-            od.ProductImage,
-            t.TransactionStatus
-        FROM 
-            [dbo].[Transaction] t
-        INNER JOIN 
-            [dbo].[Order] o ON t.OrderID = o.OrderID
-        INNER JOIN 
-            [dbo].[OrderDetails] od ON o.OrderID = od.OrderID
-        WHERE 
-            t.TransactionStatus = 'Success'">
+    o.OrderID,
+    od.ProductName,
+    od.ProductID,
+    od.Quantity,
+    od.Storage,
+    od.Color,
+    od.Price,
+    od.ProductImage,
+    t.TransactionStatus,
+    t.InvoiceID,t.InvoiceDate,o.TotalPrice,o.DeliveryFee
+FROM 
+    [dbo].[Transaction] t
+INNER JOIN 
+    [dbo].[Order] o ON t.OrderID = o.OrderID
+INNER JOIN 
+    [dbo].[OrderDetails] od ON o.OrderID = od.OrderID
+WHERE o.DeliveryStatus = 'Completed' AND
+    t.TransactionStatus = 'Success'
+         ORDER BY o.OrderID">
 </asp:SqlDataSource>
     <style>
     .no-underline {

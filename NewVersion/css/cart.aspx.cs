@@ -66,11 +66,9 @@ namespace NewVersion.css
                 {
                     // Assuming ProductID is a property of CartItem
                     int productId = cartItem.ProductID;
-                    string storageOption = cartItem.StorageOption;
-                    string colorOption = cartItem.ColorOption;
 
                     // Set CommandArgument with product details
-                    string commandArgument = $"{productId.ToString()}|{storageOption.ToString()}|{colorOption.ToString()}";
+                    string commandArgument = $"{productId.ToString()}";
 
                     if (btnDecrease != null)
                     {
@@ -110,13 +108,11 @@ namespace NewVersion.css
             TextBox txtQuantity = (TextBox)sender;
             RepeaterItem item = (RepeaterItem)txtQuantity.NamingContainer;
 
-            int productId = Convert.ToInt32(((Button)item.FindControl("btnDecrease")).CommandArgument.Split('|')[0]);
-            string storageOption = ((Button)item.FindControl("btnDecrease")).CommandArgument.Split('|')[1];
-            string colorOption = ((Button)item.FindControl("btnDecrease")).CommandArgument.Split('|')[2];
+            int productId = Convert.ToInt32(((Button)item.FindControl("btnDecrease")).CommandArgument);
 
             List<CartItem> cart = Session["Cart"] as List<CartItem>;
 
-            var existingItem = cart.FirstOrDefault(i => i.ProductID == productId && i.StorageOption == storageOption && i.ColorOption == colorOption);
+            var existingItem = cart.FirstOrDefault(i => i.ProductID == productId );
 
             if (existingItem != null)
             {
@@ -160,9 +156,9 @@ namespace NewVersion.css
 
 
             LoadCartItems();
-            CalculateTotals(); // 更新购物车小计和总计
+            CalculateTotals(); 
 
-            // 隐藏垃圾桶图标
+            
             ScriptManager.RegisterStartupScript(this, GetType(), "HideTrashIcon", "document.getElementById('trash-icon').style.display = 'none';", true);
         }
 

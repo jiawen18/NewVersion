@@ -24,14 +24,14 @@ namespace NewVersion.css
         // Fetch completed orders from the database and bind them to a control
         private void BindCompletedOrderData()
         {
-            List<OrderViewModel> orders = LoadCompletedOrders();
+            List<CompletedOrderViewModel> orders = LoadCompletedOrders();
 
             
             if (orders != null && orders.Count > 0)
             {
                 var groupedOrders = orders
                     .GroupBy(order => order.OrderID)
-                    .Select(group => new OrderViewModel
+                    .Select(group => new CompletedOrderViewModel
                     {
                         OrderID = group.Key,
                         Products = group.SelectMany(o => o.Products).ToList(),
@@ -46,15 +46,15 @@ namespace NewVersion.css
             }
             else
             {
-                // 处理没有订单的情况，例如显示一条消息
+                
                 rptOrders.DataSource = null;
                 rptOrders.DataBind();
             }
         }
 
-        private List<OrderViewModel> LoadCompletedOrders()
+        private List<CompletedOrderViewModel> LoadCompletedOrders()
         {
-            List<OrderViewModel> orderViewModels = new List<OrderViewModel>();
+            List<CompletedOrderViewModel> orderViewModels = new List<CompletedOrderViewModel>();
 
             using (SqlConnection conn = new SqlConnection(cs))
             {
@@ -69,7 +69,8 @@ namespace NewVersion.css
                     od.Color,
                     od.Price,
                     od.ProductImage,
-                    t.TransactionStatus
+                    t.TransactionStatus,
+                    t.InvoiceID,t.InvoiceDate,o.TotalPrice,o.DeliveryFee
                 FROM 
                     [dbo].[Transaction] t
                 INNER JOIN 
@@ -85,7 +86,7 @@ namespace NewVersion.css
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
 
-                        Dictionary<string, OrderViewModel> orderDict = new Dictionary<string, OrderViewModel>();
+                        Dictionary<string, CompletedOrderViewModel> orderDict = new Dictionary<string, CompletedOrderViewModel>();
 
                         while (reader.Read())
                         {
@@ -94,10 +95,11 @@ namespace NewVersion.css
 
                             if (!orderDict.ContainsKey(orderID))
                             {
-                                orderDict[orderID] = new OrderViewModel
+                                orderDict[orderID] = new CompletedOrderViewModel
                                 {
+                                    ProductID = Convert.ToInt32(reader["ProductID"]),
                                     OrderID = orderID,
-                                    Products = new List<Order>(),
+                                    Products = new List<CompletedOrder>(),
                                     InvoiceNumber = reader["InvoiceID"].ToString(),
                                     TotalPrice = Convert.ToDecimal(reader["TotalPrice"]),
                                     DeliveryFee = Convert.ToDecimal(reader["DeliveryFee"]),
@@ -106,7 +108,7 @@ namespace NewVersion.css
                             }
 
 
-                            Order order = new Order
+                            CompletedOrder order = new CompletedOrder
                             {
                                 ProductName = reader["ProductName"].ToString(),
                                 ProductImage = reader["ProductImage"].ToString(),
@@ -134,11 +136,11 @@ namespace NewVersion.css
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                var order = (OrderViewModel)e.Item.DataItem; // 使用 OrderViewModel 类型
+                var order = (CompletedOrderViewModel)e.Item.DataItem; 
                 Repeater rptProducts = (Repeater)e.Item.FindControl("rptProducts");
 
-                // 确保 order.Products 返回产品列表
-                rptProducts.DataSource = order.Products; // 绑定产品列表
+                
+                rptProducts.DataSource = order.Products; 
                 rptProducts.DataBind();
             }
         }
@@ -173,10 +175,11 @@ namespace NewVersion.css
     public class CompletedOrderViewModel
     {
         public string OrderID { get; set; }
-        public List<Order> Products { get; set; }
+        public List<CompletedOrder> Products { get; set; }
         public string InvoiceNumber { get; set; }
         public decimal TotalPrice { get; set; }
         public decimal DeliveryFee { get; set; }
         public string InvoiceDate { get; set; }
+        public int ProductID { get; set; }
     }
 }

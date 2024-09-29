@@ -135,7 +135,7 @@
 
                                 <div class="modal-footer">
                                     <asp:Button ID="btnCloseDialog" CssClass="btn btn-secondary" data-dismiss="modal" runat="server" Text="Close" OnClick="btnCloseDialog_Click" CausesValidation="false"/>
-                                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary" OnClick="btnSubmit_Click" CausesValidation="true"/>
+                                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary" OnClick="btnSubmit_Click" />
                                 </div>
 
                             </div>
