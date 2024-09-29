@@ -27,6 +27,8 @@ namespace NewVersion.css
         {
             if (!IsPostBack)
             {
+                string userDetails = GetUserDetailsFromPlaceholder(PlaceHolder1);
+                Response.Write(userDetails);
                 LoadSessionValues();
                 LoadCartItems();
                 
@@ -403,17 +405,19 @@ namespace NewVersion.css
         {
             StringBuilder userDetailsBuilder = new StringBuilder();
 
-            foreach (Control control in placeholder.Controls)
+            foreach (Control control in PlaceHolder1.Controls)
             {
+                Response.Write($"Control Type: {control.GetType().Name}<br/>");
                 if (control is Label label)
                 {
-                    userDetailsBuilder.Append(label.Text + "\n"); // 使用换行符作为分隔
+                    Response.Write($"Label Text: {label.Text}<br/>");
                 }
                 else if (control is LiteralControl literalControl)
                 {
-                    userDetailsBuilder.Append(literalControl.Text); // 处理其他类型的控件（如 LiteralControl）
+                    Response.Write($"LiteralControl Text: {literalControl.Text}<br/>");
                 }
             }
+
 
             return userDetailsBuilder.ToString().Trim(); // 返回构建好的字符串
         }
