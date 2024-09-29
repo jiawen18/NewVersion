@@ -12,25 +12,28 @@ namespace NewVersion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsUserSuperAdmin() || !IsUserAdmin())
+            if (!IsUserSuperAdmin() && !IsUserAdmin())
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('You Cannot Access to this page!'); window.location='../css/login.aspx';", true);
             }
 
-            if (!IsPostBack)
+            else
             {
-                // Set the SiteMapProvider
-                AdminBreadcrumbDataSource.Provider = SiteMap.Providers["AdminSiteMapProvider"];
-
-                // Load the user details
-                LoadUserDetails();
-
-                if (!IsUserSuperAdmin())
+                if (!IsPostBack)
                 {
-                    // Hide sections only meant for superadmin
-                    superAdminSection1.Visible = false;
-                    superAdminSection2.Visible = false;
-                    superAdminUpdateSection.Visible = false;
+                    // Set the SiteMapProvider
+                    AdminBreadcrumbDataSource.Provider = SiteMap.Providers["AdminSiteMapProvider"];
+
+                    // Load the user details
+                    LoadUserDetails();
+
+                    if (!IsUserSuperAdmin())
+                    {
+                        // Hide sections only meant for superadmin
+                        superAdminSection1.Visible = false;
+                        superAdminSection2.Visible = false;
+                        superAdminUpdateSection.Visible = false;
+                    }
                 }
             }
         }
