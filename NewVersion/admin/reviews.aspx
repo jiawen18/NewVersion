@@ -38,7 +38,7 @@
                                             <td><%# Eval("ReviewDate", "{0:yyyy-MM-dd}") %></td>
                                             <td><%# Eval("ReviewRating") %></td>
                                             <td>
-                                                <img src='<%# Eval("ReviewImage") %>' alt="Review Image" style="width:50px;height:50px;" />
+                                                <img src='<%# ResolveUrl(Eval("ReviewImage").ToString()) %>' style="width:50px;height:50px;" />
                                             </td>
                                             <td><%# Eval("ReviewDescription") %></td>
                                             <td>

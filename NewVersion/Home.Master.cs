@@ -1,6 +1,8 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -13,8 +15,24 @@ namespace NewVersion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string currentPage = Request.Url.AbsolutePath.ToLower();
+
+            // Check if the current page is not Home2.aspx or the login page
+            if (!IsUserMember())
+            {
+                // Redirect to the login page
+                string loginPageUrl = "../css/login.aspx"; // Adjust the path as necessary
+
+                // Display alert and redirect to the login page
+                string script = $@"
+            alert('You Cannot Access this page!'); 
+            window.location='{loginPageUrl}';
+        ";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
+            }
 
         }
+
 
         protected void LogoutUser(object sender, EventArgs e)
         {
@@ -45,6 +63,30 @@ namespace NewVersion
         protected void btnCart_Click(object sender, EventArgs e)
         {
             checkAuthAndRedirect();
+        }
+
+        protected bool IsUserMember()
+        {
+            string currentUser = HttpContext.Current.User.Identity.Name; // Get the currently logged-in user's username
+            string connString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
+            bool isMember = false;
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                conn.Open();
+
+                // Query to check if the user exists in the SuperAdmin table
+                string queryMember = "SELECT COUNT(1) FROM MemberUser WHERE Username = @Username";
+                using (SqlCommand cmdMember = new SqlCommand(queryMember, conn))
+                {
+                    cmdMember.Parameters.AddWithValue("@Username", currentUser);
+
+                    int count = (int)cmdMember.ExecuteScalar();
+                    isMember = count > 0; // If the user exists in SuperAdmin table, treat them as superadmin
+                }
+            }
+
+            return isMember;
         }
 
     }
