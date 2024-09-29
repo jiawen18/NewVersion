@@ -19,9 +19,13 @@ namespace NewVersion.css
         string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            // Retrieve the ProductID from the query string
+            int productId;
+
+            // Check if ProductID is present in the query string
+            if (int.TryParse(Request.QueryString["ProductID"], out productId))
             {
-                int productId = Convert.ToInt32(Request.QueryString["ProductID"] ?? "1");
+                // If valid, load the product details
                 LoadProductDetails(productId);
             }
         }
