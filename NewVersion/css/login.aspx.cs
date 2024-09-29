@@ -62,7 +62,7 @@ namespace NewVersion.css
                     if (AdminUser.PasswordHash == inputPasswordHash)
                     {
                         // Log the user in (Admin)
-                        Security.LoginUser(AdminUser.Username, AdminUser.Role, rememberMe);
+                        Security.LoginUser(AdminUser.Username, AdminUser.Role, "AdminUser", rememberMe);
                     }
                     else
                     {
@@ -78,7 +78,7 @@ namespace NewVersion.css
                     if (MemberUser.PasswordHash == inputPasswordHash)
                     {
                         // Log the user in (Member)
-                        Security.LoginUser(MemberUser.Username, MemberUser.Role, rememberMe);
+                        Security.LoginUser(MemberUser.Username, MemberUser.Role,"MemberUser", rememberMe);
 
                     }
                     else
@@ -95,7 +95,7 @@ namespace NewVersion.css
                     if (SuperAdminUser.PasswordHash == inputPasswordHash)
                     {
                         // Log the user in (Member)
-                        Security.LoginUser(SuperAdminUser.Username, SuperAdminUser.Role, rememberMe);
+                        Security.LoginUser(SuperAdminUser.Username, SuperAdminUser.Role, "SuperAdminUser", rememberMe);
 
                     }
                     else
