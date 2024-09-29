@@ -51,6 +51,15 @@ namespace NewVersion.admin
         protected global::System.Web.UI.WebControls.HiddenField txtOrderID;
 
         /// <summary>
+        /// txtUserDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtUserDetails;
+
+        /// <summary>
         /// txtDeliveryFee control.
         /// </summary>
         /// <remarks>

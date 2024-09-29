@@ -163,8 +163,7 @@ namespace NewVersion.admin
                 }
             }
 
-            if (orderId != null)
-            {
+            
                 string deleteDetailsQuery = "DELETE FROM [OrderDetails] WHERE OrderID = @OrderID";
                 using (SqlConnection con = new SqlConnection(cs))
                 {
@@ -186,7 +185,7 @@ namespace NewVersion.admin
                         cmd.ExecuteNonQuery();
                     }
                 }
-            }
+            
 
             string deleteTransactionQuery = "DELETE FROM [Transaction] WHERE TransactionID = @TransactionID";
             using (SqlConnection con = new SqlConnection(cs))

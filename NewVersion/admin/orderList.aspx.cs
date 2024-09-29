@@ -24,7 +24,7 @@ namespace NewVersion.admin
 
         private void BindOrderData()
         {
-            string query = "SELECT OrderID,OrderDate, TransactionStatus, DeliveryStatus,TotalPrice,DeliveryFee FROM [Order]";
+            string query = "SELECT OrderID,UserDetails,OrderDate, TransactionStatus, DeliveryStatus,TotalPrice,DeliveryFee FROM [Order]";
 
             using (SqlConnection conn = new SqlConnection(cs))
             {
@@ -84,7 +84,7 @@ namespace NewVersion.admin
 
         private void LoadOrderDetails(string orderId)
         {
-            string sql = "SELECT TransactionStatus, DeliveryStatus, OrderDate,TotalPrice,DeliveryFee FROM [Order] WHERE OrderID = @OrderID";
+            string sql = "SELECT TransactionStatus,UserDetails,DeliveryStatus, OrderDate,TotalPrice,DeliveryFee FROM [Order] WHERE OrderID = @OrderID";
             using (SqlConnection con = new SqlConnection(cs))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
@@ -96,6 +96,7 @@ namespace NewVersion.admin
                         if (reader.Read())
                         {
                             txtOrderID.Value = orderId;
+                            txtUserDetails.Text = reader["UserDetails"].ToString();
                             txtDeliveryFee.Text = reader["DeliveryFee"].ToString();
                             txtTotalPrice.Text = reader["TotalPrice"].ToString();
                             txtTransactionStatus.Text = reader["TransactionStatus"].ToString();
