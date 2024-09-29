@@ -459,7 +459,6 @@
           <Property Name="RefundClosureDate" Type="DateTime" Precision="3" />
           <Property Name="RefundStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Order" Relationship="UserModel.FK_Order_ToRefund" FromRole="Refund" ToRole="Order" />
-          <Property Name="IsSpam" Type="Boolean" />
         </EntityType>
         <EntityType Name="Shipper">
           <Key>
@@ -742,7 +741,6 @@
           <EntitySetMapping Name="Refunds">
             <EntityTypeMapping TypeName="UserModel.Refund">
               <MappingFragment StoreEntitySet="Refund">
-                <ScalarProperty Name="IsSpam" ColumnName="IsSpam" />
                 <ScalarProperty Name="RefundStatus" ColumnName="RefundStatus" />
                 <ScalarProperty Name="RefundClosureDate" ColumnName="RefundClosureDate" />
                 <ScalarProperty Name="RefundRequestDate" ColumnName="RefundRequestDate" />
