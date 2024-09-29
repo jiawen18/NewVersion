@@ -131,9 +131,9 @@
 
                                     <div class="row d-flex align-items-center">
                                         <div class="button d-flex justify-content-end">
-                                            <asp:Button class="text-muted mb-0 small" ID="btnCancel" runat="server" Text="Cancel" CommandArgument='<%# Eval("OrderID") %>' OnClick="btnCancel_Click" />
+                                            <asp:Button class="text-muted mb-0 small" ID="btnBuyAgain" runat="server" Text="Buy Again" CommandArgument='<%# Eval("OrderID") %>' OnClick="btnBuyAgain_Click" />
                                             &nbsp;&nbsp;&nbsp;
-                                            <asp:Button class="text-muted mb-0 small" ID="btnTrack" runat="server" Text="Track Order" OnClick="btnTrack_Click" />
+                                            <asp:Button class="text-muted mb-0 small" ID="btnTrack" runat="server" Text="Track Refund" OnClick="btnTrackRefund_Click" />
                                         </div>
 
                                         <div class="order-summary">
