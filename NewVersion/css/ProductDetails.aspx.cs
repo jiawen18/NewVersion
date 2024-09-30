@@ -95,7 +95,7 @@ namespace NewVersion.css
         {
             using (SqlConnection conn = new SqlConnection(cs))
             {
-                string query = "SELECT ProductName,Price,ProductImageURL FROM Product WHERE ProductID = @ProductID";
+                string query = "SELECT p.ProductName,p.Price,p.ProductImageURL,s.Storage,c.Color FROM Product p JOIN Storage s ON s.StorageID = p.Productstorage JOIN Color c ON c.ColorID = p.ProductColor WHERE ProductID = @ProductID";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -112,6 +112,8 @@ namespace NewVersion.css
                             ProductImg1.ImageUrl = reader["ProductImageURL"].ToString();
                             ProductImg2.ImageUrl = reader["ProductImageURL"].ToString();
                             ProductImg3.ImageUrl = reader["ProductImageURL"].ToString();
+                            ColorButton1.Text =reader["Color"].ToString();
+                            btnStorage1.Text = reader["Storage"].ToString();
                             lblPrice.Text = "RM " + Convert.ToDecimal(reader["Price"]).ToString("F2"); 
                                                                                                        
                         }
@@ -203,8 +205,8 @@ namespace NewVersion.css
             decimal price = Convert.ToDecimal(lblPrice.Text.Replace("RM ", ""));
             string productImage = ProductImg1.ImageUrl;
 
-            string selectedStorage = Session["SelectedStorage"]?.ToString();
-            string selectedColor = Session["SelectedColor"]?.ToString(); ;
+            string selectedStorage = btnStorage1.Text;
+            string selectedColor = ColorButton1.Text;
 
             if (string.IsNullOrEmpty(selectedStorage) || string.IsNullOrEmpty(selectedColor))
             {

@@ -97,9 +97,8 @@
             <h3 class="heading-large" style="font-size: 20px; margin-bottom: 5px; color: #333;">Please select your storage:</h3>
             <h3 class="heading-small" style="font-size: 16px; margin-bottom: 8px; color: #666;">Select Storage</h3>
             <div class="storage-selection" style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <asp:Button ID="btnStorage1" runat="server" Text="256GB | 12GB" CssClass="storage-button" OnClick="btnStorage_Click" style="padding: 10px 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #f4f4f4; color: #333; cursor: pointer;" />
-                <asp:Button ID="btnStorage2" runat="server" Text="128GB | 12GB" CssClass="storage-button" OnClick="btnStorage_Click" style="padding: 10px 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #f4f4f4; color: #333; cursor: pointer;" />
-                <asp:Button ID="btnStorage3" runat="server" Text="64GB | 12GB" CssClass="storage-button" OnClick="btnStorage_Click" style="padding: 10px 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #f4f4f4; color: #333; cursor: pointer;" />
+                <asp:Button ID="btnStorage1" runat="server" Text='<%# Eval("Storage")%>' CssClass="storage-button" OnClick="btnStorage_Click" style="padding: 10px 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #f4f4f4; color: #333; cursor: pointer;" />
+                
             </div>
 
         </div>
@@ -109,9 +108,7 @@
             <h3 class="heading-large">Now select your color:</h3>
             <h3 class="heading-small">Select Color</h3>
             <div class="color-selection">
-                <asp:Button ID="ColorButton1" runat="server" CssClass="color-button" OnClick="ColorButton_Click"  style="background-color: #dcf5fc;" value="Blue"/>
-                <asp:Button ID="ColorButton2" runat="server" CssClass="color-button" OnClick="ColorButton_Click"  style="background-color: #fffdcf;" value="Yellow"/>
-                <asp:Button ID="ColorButton3" runat="server" CssClass="color-button" OnClick="ColorButton_Click"  style="background-color: #000000;" value="Black"/>
+                <asp:Button ID="ColorButton1" runat="server" CssClass="color-button" OnClick="ColorButton_Click"  style="background-color: #dcf5fc;" value='<%# Eval("Color")%>'/>
 
             <asp:Label ID="lblSelectedStorage" runat="server" CssClass="storage-label" style="display: block; margin-top: 10px; font-size: 14px; color: #666;"></asp:Label>
         </div>

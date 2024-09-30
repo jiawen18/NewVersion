@@ -20,25 +20,33 @@ namespace NewVersion.css
         protected void Page_Load(object sender, EventArgs e)
         {
             // Retrieve the ProductID from the query string
-            int productId;
+            string orderId = Request.QueryString["OrderID"];
 
-            // Check if ProductID is present in the query string
-            if (int.TryParse(Request.QueryString["ProductID"], out productId))
+            // Check if OrderID is present
+            if (!string.IsNullOrEmpty(orderId))
             {
-                // If valid, load the product details
-                LoadProductDetails(productId);
+                // Load the product details using the string OrderID
+                LoadProductDetails(orderId);
             }
+            else
+            {
+                Response.Write("Invalid or missing OrderID.");
+            }
+
         }
 
         protected void btnReview_Click(object sender, EventArgs e)
         {
             Product product = new Product();
 
+
             int rating;
             int productId;
 
+            HiddenField hfProductID = (HiddenField)rptReview.FindControl("HiddenFieldProductID");
+
             if (!int.TryParse(HiddenFieldRating.Value, out rating) ||
-                !int.TryParse(HiddenFieldProductID.Value, out productId))
+                !int.TryParse(hfProductID.Value, out productId))
             {
                 Response.Write("Invalid rating or product ID. Please try again.");
                 return;
@@ -51,7 +59,8 @@ namespace NewVersion.css
             using (SqlConnection con = new SqlConnection(cs))
             {
                 con.Open();
-                string insertQuery = "INSERT INTO Review (ReviewDate, ReviewRating, ReviewDescription, ProductID) VALUES (@reviewDate, @rating, @description, @productId); SELECT SCOPE_IDENTITY();";
+                string insertQuery = "INSERT INTO Review (ReviewDate, ReviewRating, ReviewDescription, ProductID) " +
+                    "VALUES (@reviewDate, @rating, @description, @productId); SELECT SCOPE_IDENTITY();";
                 using (SqlCommand cmdInsert = new SqlCommand(insertQuery, con))
                 {
                     // Add parameters for the values you want to insert
@@ -128,43 +137,78 @@ namespace NewVersion.css
             return imagePath;
         }
 
-        private void LoadProductDetails(int productId)
+        private void LoadProductDetails(string orderId)
         {
+            // Define the connection string (assuming it's in the web.config file)
             string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
-            string query = "SELECT ProductImageURL, ProductName, Price FROM Product WHERE ProductID = @ProductID";
+
+            List<Product> productList = new List<Product>();
+
+            // SQL query to join Order and Product tables and retrieve product details for the given OrderID
+            string query = @"
+                        SELECT p.ProductID, p.ProductImageURL, p.ProductName, p.Price 
+                        FROM OrderDetails od
+                        INNER JOIN Product p ON od.ProductID = p.ProductID
+                        WHERE od.OrderID = @OrderID";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@ProductID", productId);
+                    cmd.Parameters.AddWithValue("@OrderID", orderId);
                     conn.Open();
 
                     SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.Read())
-                    {
-                        // Get the product details
-                        string productImageURL = reader["ProductImageURL"].ToString();
-                        string productName = reader["ProductName"].ToString();
-                        decimal price = (decimal)reader["Price"];
 
-                        // Bind the retrieved values to the controls
-                        Image1.ImageUrl = productImageURL;
-                        lblProdName.Text = productName;
-                        lblProdDetails.Text = $"Price: {price:C}";
-                        HiddenFieldProductID.Value = productId.ToString();
+                    if (reader.HasRows)  // Check if the reader has rows
+                    {
+                        while (reader.Read())
+                        {
+                            productList.Add(new Product
+                            {
+                                // Get the product details
+                                ProductImageURL = reader["ProductImageURL"].ToString(),
+                                ProductName = reader["ProductName"].ToString(),
+                                Price = (decimal)reader["Price"],
+                                ProductID = (int)reader["ProductID"]
+
+
+                            });
+                        }
                     }
                     else
                     {
-                        // Handle case where product is not found
-                        lblProdName.Text = "Product not found";
-                        lblProdDetails.Text = "";
+                        Response.Write("No products found for the given OrderID.");
                     }
                 }
             }
+            rptReview.DataSource = productList;
+            rptReview.DataBind();
+        }
+
+        protected void rptReview_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                // 查找 HiddenField 控件
+                HiddenField hfProductID = (HiddenField)e.Item.FindControl("hfProductID");
+
+                // 获取 HiddenField 的值
+                int productId = Convert.ToInt32(hfProductID.Value);
+
+
+            }
         }
     }
-}
 
+    public class Product
+    {
+        public int ProductID { get; set; }
+        public string ProductName { get; set; }
+        public string ProductImageURL { get; set; }
+        public decimal Price { get; set; }
+    }
+
+}
 
 

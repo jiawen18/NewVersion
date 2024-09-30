@@ -24,22 +24,27 @@
 </div>
 <!-- End Hero Section -->
 
+    <asp:Repeater runat ="server" ID="rptReview" OnItemDataBound ="rptReview_ItemDataBound">
+        <ItemTemplate >
 	<div class="review-container">
        <!-- Product Details -->
         <div class="prod-details">
             <div class="prod-image">
-                <asp:Image ID="Image1" runat="server" alt="Product Image" />
+                <asp:Image ID="Image1" runat="server" alt="Product Image" ImageUrl='<%#Eval("ProductImageURL") %>'/>
             </div>
             <div class="prod-info">
                 <h3 class="prod-name">
-                    <asp:Label ID="lblProdName" runat="server" CssClass="prod-name"></asp:Label>
+                    <asp:Label ID="lblProdName" runat="server" CssClass="prod-name" Text='<%#Eval("ProductName") %>'></asp:Label>
                 </h3>
                 <p class="prod-details">
-                    <asp:Label ID="lblProdDetails" runat="server" CssClass="prod-details"></asp:Label>
+                    <asp:Label ID="lblProdDetails" runat="server" CssClass="prod-details" Text='<%#Eval("Price") %>'></asp:Label>
                 </p>
-                <asp:HiddenField ID="HiddenFieldProductID" runat="server" />
+               <asp:HiddenField ID="HiddenFieldProductID" runat="server" Value='<%#Eval("ProductID") %>' />
+
             </div>
         </div>
+        </ItemTemplate>
+</asp:Repeater>
 
         <!-- Product Quality Rating -->
         <div class="rating-section">
@@ -301,7 +306,8 @@
 
         $('#photoModal').modal('show');
         isModalOpen = true;
-    }
+    } isModalOpen = true;
+    
 
     // Hide modal
     function hideModal() {
@@ -313,76 +319,76 @@
         document.getElementById('mediaInput').click();
     }
 
-   function previewMedia(event) {
-    const mediaPreview = document.getElementById('mediaPreview');
-    const files = Array.from(event.target.files);
-    const errorMessage = document.getElementById('errorMessage');
-    errorMessage.style.display = 'none';
+    function previewMedia(event) {
+        const mediaPreview = document.getElementById('mediaPreview');
+        const files = Array.from(event.target.files);
+        const errorMessage = document.getElementById('errorMessage');
+        errorMessage.style.display = 'none';
 
-    files.forEach(file => {
-        const fileURL = URL.createObjectURL(file);
-        const previewBox = document.createElement('div');
-        previewBox.classList.add('image-preview');
-        previewBox.style.position = 'relative';
+        files.forEach(file => {
+            const fileURL = URL.createObjectURL(file);
+            const previewBox = document.createElement('div');
+            previewBox.classList.add('image-preview');
+            previewBox.style.position = 'relative';
 
-        const removeButton = document.createElement('span');
-        removeButton.textContent = 'x';
-        removeButton.classList.add('remove-button');
+            const removeButton = document.createElement('span');
+            removeButton.textContent = 'x';
+            removeButton.classList.add('remove-button');
 
-        previewBox.appendChild(removeButton);
+            previewBox.appendChild(removeButton);
 
-        if (file.type.startsWith('image/')) {
-            if (imageCount < 2) {
-                const img = document.createElement('img');
-                img.src = fileURL;
-                img.style.width = '100%';
-                img.style.height = '100%';
-                img.style.objectFit = 'contain';
+            if (file.type.startsWith('image/')) {
+                if (imageCount < 2) {
+                    const img = document.createElement('img');
+                    img.src = fileURL;
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    img.style.objectFit = 'contain';
 
-                // Open modal immediately when the image is added
-                showModal(file);
+                    // Open modal immediately when the image is added
+                    showModal(file);
 
-                // Add click event to open modal for editing when clicking on the preview image
-                img.addEventListener('click', () => showModal(file));
+                    // Add click event to open modal for editing when clicking on the preview image
+                    img.addEventListener('click', () => showModal(file));
 
-                previewBox.appendChild(img);
-                mediaPreview.appendChild(previewBox);
-                imageCount++;
-            } else {
-                errorMessage.textContent = "You can only upload a maximum of two images.";
+                    previewBox.appendChild(img);
+                    mediaPreview.appendChild(previewBox);
+                    imageCount++;
+                } else {
+                    errorMessage.textContent = "You can only upload a maximum of two images.";
+                    errorMessage.style.display = 'block';
+                }
+            } else if (file.type.startsWith('video/') && videoCount === 0) {
+                const existingVideo = mediaPreview.querySelector('video');
+                if (!existingVideo) {
+                    const video = document.createElement('video');
+                    video.src = fileURL;
+                    video.controls = true;
+                    video.style.width = '100%';
+                    video.style.height = '100%';
+                    video.style.objectFit = 'cover';
+                    previewBox.appendChild(video);
+                    mediaPreview.appendChild(previewBox);
+                    videoCount++;
+                }
+            } else if (file.type.startsWith('video/') && videoCount > 0) {
+                errorMessage.textContent = "You can only upload one video.";
                 errorMessage.style.display = 'block';
             }
-        } else if (file.type.startsWith('video/') && videoCount === 0) {
-            const existingVideo = mediaPreview.querySelector('video');
-            if (!existingVideo) {
-                const video = document.createElement('video');
-                video.src = fileURL;
-                video.controls = true;
-                video.style.width = '100%';
-                video.style.height = '100%';
-                video.style.objectFit = 'cover';
-                previewBox.appendChild(video);
-                mediaPreview.appendChild(previewBox);
-                videoCount++;
-            }
-        } else if (file.type.startsWith('video/') && videoCount > 0) {
-            errorMessage.textContent = "You can only upload one video.";
-            errorMessage.style.display = 'block';
-        }
 
-        removeButton.onclick = function () {
-            if (previewBox.querySelector('img')) {
-                imageCount--;
-            } else if (previewBox.querySelector('video')) {
-                videoCount--;
-            }
-            mediaPreview.removeChild(previewBox);
-            updateMediaCount();
-        };
-    });
+            removeButton.onclick = function () {
+                if (previewBox.querySelector('img')) {
+                    imageCount--;
+                } else if (previewBox.querySelector('video')) {
+                    videoCount--;
+                }
+                mediaPreview.removeChild(previewBox);
+                updateMediaCount();
+            };
+        });
 
-    updateMediaCount();
-}
+        updateMediaCount();
+    }
 
     function updateMediaCount() {
         document.getElementById('mediaCount').textContent = `(${imageCount}/2 photos, ${videoCount}/1 video)`;
@@ -416,8 +422,8 @@
         const img = document.createElement('img');
         img.src = croppedImage;
 
-        img.style.maxWidth = '100%';  
-        img.style.maxHeight = '100%';  
+        img.style.maxWidth = '100%';
+        img.style.maxHeight = '100%';
 
         previewBox.appendChild(img);
         mediaPreview.appendChild(previewBox);
@@ -725,9 +731,9 @@
 
     function applyFlip() {
         const canvas = document.getElementById('imageCanvas');
-        const uploadedImage = document.getElementById('<%= uploadedImage.ClientID %>'); 
-        uploadedImage.src = canvas.toDataURL(); 
-        $('#flipModal').modal('hide'); 
+        const uploadedImage = document.getElementById('<%= uploadedImage.ClientID %>');
+        uploadedImage.src = canvas.toDataURL();
+        $('#flipModal').modal('hide');
 
         const flippedImage = new Image();
         flippedImage.src = uploadedImage.src;
@@ -741,7 +747,7 @@
         removeButton.classList.add('remove-button');
         removeButton.onclick = function () {
             newPreviewBox.remove();
-            imageCount--; 
+            imageCount--;
             updateMediaCount();
         };
 
@@ -749,8 +755,8 @@
         newPreviewBox.appendChild(flippedImage);
 
         document.getElementById('mediaPreview').appendChild(newPreviewBox);
-        imageCount++; 
-        updateMediaCount(); 
+        imageCount++;
+        updateMediaCount();
         hideFlipModal();
 
     }
@@ -759,4 +765,5 @@
         $('#flipModal').modal('hide'); // Simply hide the modal
     }
 </script>
+
 </asp:Content>

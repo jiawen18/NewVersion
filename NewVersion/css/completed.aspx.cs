@@ -154,9 +154,9 @@ namespace NewVersion.css
         protected void btnReview_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            string productId = btn.CommandArgument;
+            string orderId = btn.CommandArgument;
 
-            Response.Redirect("Review.aspx?ProductID=" + productId);
+            Response.Redirect("Review.aspx?OrderID=" + orderId);
         }
 
 
@@ -164,6 +164,7 @@ namespace NewVersion.css
 
     public partial class CompletedOrder
     {
+        public string OrderID { get; set; }
         public string ProductName { get; set; }
         public string ProductImage { get; set; }
         public string Color { get; set; }

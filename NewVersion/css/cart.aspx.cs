@@ -204,16 +204,13 @@ namespace NewVersion.css
         protected void btnDecrease_Click(object sender, EventArgs e)
         {
             Button btnDecrease = (Button)sender;
-            string[] args = btnDecrease.CommandArgument.Split('|');
 
-            if (args.Length != 3) return;
 
-            int productId = Convert.ToInt32(args[0]); // Get the ProductID from CommandArgument
-            string storageOption = args[1];
-            string colorOption = args[2];
+            int productId = Convert.ToInt32(btnDecrease.CommandArgument); // Get the ProductID from CommandArgument
+            
 
             List<CartItem> cart = Session["Cart"] as List<CartItem>;
-            var existingItem = cart.FirstOrDefault(i => i.ProductID == productId && i.StorageOption == storageOption && i.ColorOption == colorOption);
+            var existingItem = cart.FirstOrDefault(i => i.ProductID == productId);
 
             if (existingItem != null)
             {

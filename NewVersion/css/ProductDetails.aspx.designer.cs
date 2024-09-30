@@ -78,24 +78,6 @@ namespace NewVersion.css
         protected global::System.Web.UI.WebControls.Button btnStorage1;
 
         /// <summary>
-        /// btnStorage2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnStorage2;
-
-        /// <summary>
-        /// btnStorage3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnStorage3;
-
-        /// <summary>
         /// colorContainer control.
         /// </summary>
         /// <remarks>
@@ -112,24 +94,6 @@ namespace NewVersion.css
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ColorButton1;
-
-        /// <summary>
-        /// ColorButton2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ColorButton2;
-
-        /// <summary>
-        /// ColorButton3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ColorButton3;
 
         /// <summary>
         /// lblSelectedStorage control.
