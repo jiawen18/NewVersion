@@ -151,18 +151,18 @@ WHERE o.DeliveryStatus = 'Completed' AND
                                                             <asp:Label ID="lblProductPrice" runat="server" Text='<%# "RM " + Eval("Price") %>' CssClass="text-muted mb-0"></asp:Label>
                                                         </div>
                                                     </div>
-                                                    <div class="button d-flex justify-content-end">
-                                            <asp:Button class="text-muted mb-0 small" ID="btnReview" runat="server" Text="Review" OnClick="btnReview_Click"  CommandArgument='<%# Eval("OrderID") %>'/>
-                                            &nbsp;&nbsp;&nbsp;
-                                            <asp:Button class="text-muted mb-0 small" ID="btnTrack" runat="server" Text="Track Order" OnClick="btnTrack_Click" />
-                                        </div>
+                                                    
                                                 </div>
                                             </div>
                                         </ItemTemplate>
                                     </asp:Repeater>
 
                                     <div class="row d-flex align-items-center">
-                                        
+                                        <div class="button d-flex justify-content-end">
+                                            <asp:Button class="text-muted mb-0 small" ID="btnReview" runat="server" Text="Review" OnClick="btnReview_Click"  CommandArgument='<%# Eval("OrderID") %>'/>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <asp:Button class="text-muted mb-0 small" ID="btnTrack" runat="server" Text="Track Order" OnClick="btnTrack_Click" />
+                                        </div>
 
                                         <div class="order-summary">
                                             <div>

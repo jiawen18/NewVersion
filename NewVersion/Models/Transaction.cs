@@ -19,7 +19,7 @@ namespace NewVersion.Models
         public string TransactionStatus { get; set; }
         public decimal OrderTotalPrice { get; set; }
         public string InvoiceID { get; set; }
-        public System.DateTime InvoiceDate { get; set; }
+        public Nullable<System.DateTime> InvoiceDate { get; set; }
         public System.DateTime TransactionDate { get; set; }
     }
 }

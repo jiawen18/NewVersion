@@ -94,23 +94,24 @@
 
         <!-- Storage Selection -->
         <div class="storage-container" style="margin-bottom: 20px;">
-            <h3 class="heading-large" style="font-size: 20px; margin-bottom: 5px; color: #333;">Please select your storage:</h3>
-            <h3 class="heading-small" style="font-size: 16px; margin-bottom: 8px; color: #666;">Select Storage</h3>
+            <h3 class="heading-small" style="font-size: 16px; margin-bottom: 8px; color: #666;">Storage：</h3>
             <div class="storage-selection" style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <asp:Button ID="btnStorage1" runat="server" Text='<%# Eval("Storage")%>' CssClass="storage-button" OnClick="btnStorage_Click" style="padding: 10px 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #f4f4f4; color: #333; cursor: pointer;" />
-                
+                <asp:Button ID="btnStorage1" runat="server" Text='<%# Eval("Storage")%>' CssClass="storage-button" OnClick="btnStorage_Click" 
+                    style="padding: 10px 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #f4f4f4; color: #333; cursor: pointer;" 
+                    OnClientClick="selectStorage(this);" />
             </div>
-
         </div>
 
         <!-- Color Selection -->
-        <div id="colorContainer" class="color-container" runat="server"  style="display: none;">
-            <h3 class="heading-large">Now select your color:</h3>
-            <h3 class="heading-small">Select Color</h3>
+        <div id="colorContainer" class="color-container" runat="server" style="display: none;">
+            <h3 class="heading-small">Color：</h3>
             <div class="color-selection">
-                <asp:Button ID="ColorButton1" runat="server" CssClass="color-button" OnClick="ColorButton_Click"  style="background-color: #dcf5fc;" value='<%# Eval("Color")%>'/>
-
-            <asp:Label ID="lblSelectedStorage" runat="server" CssClass="storage-label" style="display: block; margin-top: 10px; font-size: 14px; color: #666;"></asp:Label>
+                <asp:Button ID="ColorButton1" runat="server" CssClass="color-button" OnClick="ColorButton_Click" 
+                    style="background-color: #dcf5fc;" value='<%# Eval("Color")%>' 
+                    OnClientClick="selectColor(this);" />
+            </div>
+            <asp:Label ID="lblSelectedStorage" runat="server" CssClass="storage-label" 
+                style="margin-top: 10px; font-size: 14px; color: #666;"></asp:Label>
         </div>
 
        
@@ -204,7 +205,42 @@
         <asp:Button ID="btnViewMore" runat="server" Text="View More Ratings" class="view-more-btn" OnClick="btnViewMore_Click" />
     </div>
 
+<style>
+    .storage-button, .color-button {
+        transition: border 0.3s;
+    }
 
+    .storage-button:hover, .color-button:hover {
+        border: 2px solid black; /* 黑色边框在悬停时 */
+    }
+
+    .selected-storage, .selected-color {
+        border: 2px solid black; /* 黑色边框在选择时 */
+    }
+</style>
+
+<!-- JavaScript Functions -->
+<script>
+    function selectStorage(button) {
+        // 移除其他存储按钮的选中状态
+        var storageButtons = document.querySelectorAll('.storage-button');
+        storageButtons.forEach(function (btn) {
+            btn.classList.remove('selected-storage');
+        });
+        // 添加当前按钮的选中状态
+        button.classList.add('selected-storage');
+    }
+
+    function selectColor(button) {
+        // 移除其他颜色按钮的选中状态
+        var colorButtons = document.querySelectorAll('.color-button');
+        colorButtons.forEach(function (btn) {
+            btn.classList.remove('selected-color');
+        });
+        // 添加当前按钮的选中状态
+        button.classList.add('selected-color');
+    }
+</script>
 
 
 
@@ -226,44 +262,7 @@
         });
     </script>
 
-<script type="text/javascript">
-    function selectStorage(button) {
-        event.preventDefault();
 
-        var storageButtons = document.querySelectorAll('.storage-button');
-        storageButtons.forEach(function (btn) {
-            btn.classList.remove('selected');
-        });
-
-        button.classList.add('selected');
-
-        
-        document.querySelector('.color-container').style.display = 'block';
-        return false;
-    }
-
-    function selectColor(button) {
-        event.preventDefault();
-
-        var colorButtons = document.querySelectorAll('.color-button');
-        colorButtons.forEach(function (btn) {
-            btn.classList.remove('selected');
-        });
-
-        button.classList.add('selected');
-
-        return false; // Prevent further action
-    }
-</script>
-
-    <script type="text/javascript">
-        
-        function updateSelection(storage, color) {
-            
-            console.log('Selected Storage: ' + storage);
-            console.log('Selected Color: ' + color);
-        }
-    </script>
 
 
 <script>

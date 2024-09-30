@@ -41,7 +41,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group form-group-default">
                                             <label for="txtProductID">Product ID:</label>
-                                            <asp:HiddenField ID="txtProductID" runat="server" />
+                                            <asp:HiddenField ID="txtProductID" runat="server"/>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -73,6 +73,27 @@
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Please enter a quantity." Display="Dynamic" CssClass="text-danger" ControlToValidate="txtQuantity" />
                                             </div>
                                         </div>
+                                         <div class="col-sm-6">
+                                            <div class="form-group form-group-default">
+                                                <label for="txtProductColor">Color:</label>
+                                               <asp:DropDownList ID="DropDownList3" runat="server" CssClass="form-control">
+                                                  <asp:ListItem Value="1">Blue</asp:ListItem>
+                                                 <asp:ListItem Value="2">Yellow</asp:ListItem>
+                                                 <asp:ListItem Value="3">Black</asp:ListItem>
+                                             </asp:DropDownList>
+                                                </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group form-group-default">
+                                                <label for="txtProductStorage">Storage:</label>
+                                                <asp:DropDownList ID="DropDownList4" runat="server" CssClass="form-control">
+                                                  <asp:ListItem Value="1">128GB</asp:ListItem>
+                                                 <asp:ListItem Value="2">64GB</asp:ListItem>
+                                                 <asp:ListItem Value="3">256GB</asp:ListItem>
+                                             </asp:DropDownList>
+                                                </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -117,10 +138,28 @@
                                 <label for="txtQuantity1">Quantity:</label>
                                 <asp:TextBox ID="txtQuantity1" runat="server" class="form-control" placeholder="Enter quantity" />
                             </div>
+                             <div class="form-group form-group-default">
+                                <label for="txtProductColor1">Color:</label>
+                                 <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control">
+                                      <asp:ListItem Value="1">Blue</asp:ListItem>
+                                     <asp:ListItem Value="2">Yellow</asp:ListItem>
+                                     <asp:ListItem Value="3">Black</asp:ListItem>
+                                 </asp:DropDownList>
+                               
+                            </div>
+                            <div class="form-group form-group-default">
+                                <label for="txtProductStorage1">Storage:</label>
+                                <asp:DropDownList ID="DropDownList2" runat="server" CssClass="form-control">
+                                      <asp:ListItem Value="1">128GB</asp:ListItem>
+                                     <asp:ListItem Value="2">64GB</asp:ListItem>
+                                     <asp:ListItem Value="3">256GB</asp:ListItem>
+                                 </asp:DropDownList>
+                            </div>
+
                         </div>
                         <div class="modal-footer border-0">
-                            <asp:Button ID="btnUpdateProduct" runat="server" Text="Update Product" CssClass="btn btn-primary" OnClick="btnUpdateProduct_Click" />
-                            <asp:Button ID="Button1" runat="server" Text="Close" class="btn btn-danger" data-dismiss="modal" />
+                            <asp:Button ID="btnUpdateProduct" runat="server" Text="Update Product" CssClass="btn btn-primary" OnClick="btnUpdateProduct_Click"/>
+                            <asp:Button ID="Button1" runat="server" Text="Close" class="btn btn-danger" data-dismiss="modal" OnClientClick="cancelFunction(); $('#editRowModal').modal('hide'); return true;"  />
                         </div>
                     </div>
                 </div>
@@ -135,6 +174,9 @@
                             <th>Product Image</th>
                             <th>Price</th>
                             <th style="width: 10%">Quantity</th>
+                             <th>Color</th>
+                            <th>Storage</th>
+
                         </tr>
                     </thead>
                     <tbody id="productTableBody">
@@ -144,16 +186,27 @@
                                 <tr>
                                     <td><%# Eval("ProductID") %></td>
                                     <td><%# Eval("ProductName") %></td>
-                                    <td><img src='<%# Eval("ProductImageURL") %>' alt="Product Image" style="width:50px;height:50px;" /></td>
+                                    <td><img src='<%# Eval("ProductImageURL") %>' alt="Product Image" style="width:120px;height:120px;" /></td>
                                     <td><%# Eval("Price") %></td>
                                     <td><%# Eval("Quantity") %></td>
+                                    <td><%# Eval("Color") %></td>
+                                    <td><%# Eval("Storage") %></td>
+
                                     <td>
                                 <div class="form-button-action">
                                     <asp:LinkButton runat="server" CssClass="btn btn-link btn-primary btn-lg" 
                                         CommandName="EditProduct" 
                                         CommandArgument='<%# Eval("ProductID") %>' 
                                         ToolTip="Edit Task" 
-                                        OnClientClick='<%# "openEditModal(" + Eval("ProductID") + ", \"" + Eval("ProductName") + "\", \"" + Eval("Price") + "\", \"" + Eval("Quantity") + "\", \"" + Eval("ProductImageURL") + "\"); return false;" %>'>
+                                        OnClientClick='<%# "openEditModal(" 
+                                            + Eval("ProductID") + ", \"" 
+                                            + Eval("ProductName") + "\", \"" 
+                                            + Eval("Price") + "\", \"" 
+                                            + Eval("Quantity") + "\", \"" 
+                                            + Eval("ProductImageURL") + "\", \"" 
+                                            + Eval("Color") + "\", \"" 
+                                            + Eval("Storage") + "\"); return false;" %>'
+                                        >
                                         <i class="fa fa-edit"></i>
                                     </asp:LinkButton>
                                     <asp:LinkButton runat="server" CssClass="btn btn-link btn-danger" 
@@ -186,13 +239,20 @@
         myModal.hide();
     }
 
-    function openEditModal(productID, productName, price, quantity, imageURL) {
+    function openEditModal(productID, productName, price, quantity, imageURL, productStorage, productColor) {
         // Set the values in the edit modal
         document.getElementById('<%= txtProductID.ClientID %>').value = productID;
         document.getElementById('<%= txtProductName.ClientID %>').value = productName;
         document.getElementById('<%= txtPrice.ClientID %>').value = price;
         document.getElementById('<%= txtQuantity.ClientID %>').value = quantity;
         document.getElementById('<%= txtProductImageURL.ClientID %>').value = imageURL;
+
+
+        var DropDownList1 = document.getElementById('<%= DropDownList1.ClientID %>');
+        DropDownList1.value = productColor; 
+
+        var DropDownList2 = document.getElementById('<%= DropDownList2.ClientID %>');
+        DropDownList2.value = productStorage; 
 
         // Show the edit modal
         var editModal = new bootstrap.Modal(document.getElementById('editRowModal'));

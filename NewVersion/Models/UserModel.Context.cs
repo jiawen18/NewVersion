@@ -37,5 +37,7 @@ namespace NewVersion.Models
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<Support> Supports { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
+        public virtual DbSet<Color> Colors { get; set; }
+        public virtual DbSet<Storage> Storages { get; set; }
     }
 }

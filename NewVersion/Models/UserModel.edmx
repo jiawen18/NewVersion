@@ -21,6 +21,13 @@
           <Property Name="ProfilePicture" Type="nvarchar" MaxLength="255" />
           <Property Name="CreatedAt" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
+        <EntityType Name="Color">
+          <Key>
+            <PropertyRef Name="ColorID" />
+          </Key>
+          <Property Name="ColorID" Type="int" Nullable="false" />
+          <Property Name="Color" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="MemberUser">
           <Key>
             <PropertyRef Name="MemberID" />
@@ -70,10 +77,10 @@
           <Property Name="ProductName" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="8" Scale="2" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="ProductStorage" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ProductColor" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="IsVisible" Type="bit" Nullable="false" />
+          <Property Name="ProductStorage" Type="int" Nullable="false" />
+          <Property Name="ProductColor" Type="int" Nullable="false" />
           <Property Name="SupplierID" Type="int" />
+          <Property Name="IsVisible" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Refund">
           <Key>
@@ -105,6 +112,13 @@
           <Property Name="shipperEmail" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="shipperPhone" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="shipperAddress" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Storage">
+          <Key>
+            <PropertyRef Name="StorageID" />
+          </Key>
+          <Property Name="StorageID" Type="int" Nullable="false" />
+          <Property Name="Storage" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="SuperAdminUser">
           <Key>
@@ -153,7 +167,7 @@
           <Property Name="TransactionStatus" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="OrderTotalPrice" Type="decimal" Precision="8" Scale="2" Nullable="false" />
           <Property Name="InvoiceID" Type="varchar" MaxLength="50" />
-          <Property Name="InvoiceDate" Type="datetime" Nullable="false" />
+          <Property Name="InvoiceDate" Type="datetime" />
           <Property Name="TransactionDate" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK__Review__ProductI__004002F9">
@@ -216,8 +230,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Product_ToColor">
+          <End Role="Color" Type="Self.Color" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Color">
+              <PropertyRef Name="ColorID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductColor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ToStorage">
+          <End Role="Storage" Type="Self.Storage" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="StorageID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductStorage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="UserModelStoreContainer">
           <EntitySet Name="AdminUser" EntityType="Self.AdminUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MemberUser" EntityType="Self.MemberUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
@@ -225,6 +264,7 @@
           <EntitySet Name="Refund" EntityType="Self.Refund" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shipper" EntityType="Self.Shipper" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Storage" EntityType="Self.Storage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SuperAdminUser" EntityType="Self.SuperAdminUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Support" EntityType="Self.Support" Schema="dbo" store:Type="Tables" />
@@ -247,6 +287,14 @@
           </AssociationSet>
           <AssociationSet Name="FK_Product_Supplier" Association="Self.FK_Product_Supplier">
             <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ToColor" Association="Self.FK_Product_ToColor">
+            <End Role="Color" EntitySet="Color" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ToStorage" Association="Self.FK_Product_ToStorage">
+            <End Role="Storage" EntitySet="Storage" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
         </EntityContainer>
@@ -285,6 +333,16 @@
           </AssociationSet>
           <AssociationSet Name="FK_Product_Supplier" Association="UserModel.FK_Product_Supplier">
             <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <EntitySet Name="Colors" EntityType="UserModel.Color" />
+          <EntitySet Name="Storages" EntityType="UserModel.Storage" />
+          <AssociationSet Name="FK_Product_ToColor" Association="UserModel.FK_Product_ToColor">
+            <End Role="Color" EntitySet="Colors" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ToStorage" Association="UserModel.FK_Product_ToStorage">
+            <End Role="Storage" EntitySet="Storages" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
         </EntityContainer>
@@ -357,13 +415,15 @@
           <Property Name="ProductName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="ProductStorage" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ProductColor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductStorage" Type="Int32" Nullable="false" />
+          <Property Name="ProductColor" Type="Int32" Nullable="false" />
           <Property Name="IsVisible" Type="Boolean" Nullable="false" />
           <Property Name="SupplierID" Type="Int32" />
           <NavigationProperty Name="OrderDetails" Relationship="UserModel.FK_OrderDetails_ToProduct" FromRole="Product" ToRole="OrderDetail" />
           <NavigationProperty Name="Reviews" Relationship="UserModel.FK__Review__ProductI__004002F9" FromRole="Product" ToRole="Review" />
           <NavigationProperty Name="Supplier" Relationship="UserModel.FK_Product_Supplier" FromRole="Product" ToRole="Supplier" />
+          <NavigationProperty Name="Color" Relationship="UserModel.FK_Product_ToColor" FromRole="Product" ToRole="Color" />
+          <NavigationProperty Name="Storage" Relationship="UserModel.FK_Product_ToStorage" FromRole="Product" ToRole="Storage" />
         </EntityType>
         <EntityType Name="Refund">
           <Key>
@@ -446,7 +506,7 @@
           <Property Name="TransactionStatus" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="OrderTotalPrice" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
           <Property Name="InvoiceID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="InvoiceDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InvoiceDate" Type="DateTime" Precision="3" />
           <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="FK_Order_ToRefund">
@@ -506,6 +566,46 @@
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Color">
+          <Key>
+            <PropertyRef Name="ColorID" />
+          </Key>
+          <Property Name="ColorID" Type="Int32" Nullable="false" />
+          <Property Name="Color1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Products" Relationship="UserModel.FK_Product_ToColor" FromRole="Color" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Storage">
+          <Key>
+            <PropertyRef Name="StorageID" />
+          </Key>
+          <Property Name="StorageID" Type="Int32" Nullable="false" />
+          <Property Name="Storage1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Products" Relationship="UserModel.FK_Product_ToStorage" FromRole="Storage" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_Product_ToColor">
+          <End Type="UserModel.Color" Role="Color" Multiplicity="1" />
+          <End Type="UserModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Color">
+              <PropertyRef Name="ColorID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductColor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ToStorage">
+          <End Type="UserModel.Storage" Role="Storage" Multiplicity="1" />
+          <End Type="UserModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="StorageID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductStorage" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -675,6 +775,22 @@
                 <ScalarProperty Name="TransactionStatus" ColumnName="TransactionStatus" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Colors">
+            <EntityTypeMapping TypeName="UserModel.Color">
+              <MappingFragment StoreEntitySet="Color">
+                <ScalarProperty Name="Color1" ColumnName="Color" />
+                <ScalarProperty Name="ColorID" ColumnName="ColorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Storages">
+            <EntityTypeMapping TypeName="UserModel.Storage">
+              <MappingFragment StoreEntitySet="Storage">
+                <ScalarProperty Name="Storage1" ColumnName="Storage" />
+                <ScalarProperty Name="StorageID" ColumnName="StorageID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

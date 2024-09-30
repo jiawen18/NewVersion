@@ -26,8 +26,8 @@ namespace NewVersion.Models
         public string ProductName { get; set; }
         public decimal Price { get; set; }
         public int Quantity { get; set; }
-        public string ProductStorage { get; set; }
-        public string ProductColor { get; set; }
+        public int ProductStorage { get; set; }
+        public int ProductColor { get; set; }
         public bool IsVisible { get; set; }
         public Nullable<int> SupplierID { get; set; }
     
@@ -36,5 +36,7 @@ namespace NewVersion.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Reviews { get; set; }
         public virtual Supplier Supplier { get; set; }
+        public virtual Color Color { get; set; }
+        public virtual Storage Storage { get; set; }
     }
 }

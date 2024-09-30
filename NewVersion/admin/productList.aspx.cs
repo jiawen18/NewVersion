@@ -36,11 +36,13 @@ namespace NewVersion.admin
             string productImageURL = txtProductImageURL.Text;
             decimal price = decimal.Parse(txtPrice.Text);
             int quantity = int.Parse(txtQuantity.Text);
+            int storage = Convert.ToInt32(DropDownList2.SelectedValue);
+            int color = Convert.ToInt32(DropDownList1.SelectedValue);
 
             string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
 
-            string query = @"INSERT INTO Product (ProductImageURL, ProductName, Price, Quantity) 
-                     VALUES (@ProductImageURL, @ProductName, @Price, @Quantity)";
+            string query = @"INSERT INTO Product (ProductImageURL, ProductName, Price, Quantity,ProductStorage, ProductColor) 
+                     VALUES (@ProductImageURL, @ProductName, @Price, @Quantity,@ProductStorage, @ProductColor)";
 
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString))
             {
@@ -51,6 +53,8 @@ namespace NewVersion.admin
                     cmd.Parameters.AddWithValue("@ProductName", productName);
                     cmd.Parameters.AddWithValue("@Price", price);
                     cmd.Parameters.AddWithValue("@Quantity", quantity);
+                    cmd.Parameters.AddWithValue("@ProductStorage", storage);
+                    cmd.Parameters.AddWithValue("@ProductColor", color);
 
                     con.Open(); 
                     int rowsAffected = cmd.ExecuteNonQuery();
@@ -80,8 +84,11 @@ namespace NewVersion.admin
             string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
 
             // SQL query to fetch product data
-            string query = "SELECT ProductID, ProductName, ProductImageURL, Price, Quantity FROM Product";
-
+            string query = @"
+    SELECT p.ProductID, p.ProductName, p.ProductImageURL, p.Price, p.Quantity, c.Color, s.Storage 
+    FROM Product p 
+    JOIN Storage s ON p.ProductStorage = s.StorageID 
+    JOIN Color c ON c.ColorID = p.ProductColor";
             // Connect to the database
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -109,22 +116,23 @@ namespace NewVersion.admin
         {
             if (e.CommandName == "EditProduct")
             {
-                string productId = e.CommandArgument.ToString();
+                int productId = Convert.ToInt32 (e.CommandArgument);
                 LoadProductDetails(productId);
                 ShowEditModal(); 
             }
 
             if (e.CommandName == "DeleteProduct")
             {
-                string productId = e.CommandArgument.ToString();
+                int productId = Convert.ToInt32(e.CommandArgument);
                 DeleteProduct(productId);
                 BindProductTable(); 
             }
         }
 
-        private void LoadProductDetails(string productId)
+        private void LoadProductDetails(int productId)
         {
-            string sql = "SELECT ProductName, ProductImageURL, Price, QuantityFROM Product WHERE ProductID = @ProductID";
+
+            string sql = "SELECT p.ProductName, p.ProductImageURL, p.Price, p.Quantity,c.Color,s.Storage FROM Product p JOIN s.Storage ON p.ProductStorage = s.StorageID JOIN c.ColorID = p.ProductColor WHERE ProductID = @ProductID";
             using (SqlConnection con = new SqlConnection(cs))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
@@ -135,11 +143,13 @@ namespace NewVersion.admin
                     {
                         if (reader.Read())
                         {
-                            txtProductID.Value = productId;
+                            txtProductID.Value = (Convert.ToInt32(productId)).ToString();
                             txtProductName.Text = reader["ProductName"].ToString();
                             txtProductImageURL.Text = reader["ProductImageURL"].ToString();
                             txtPrice.Text = reader["Price"].ToString();
                             txtQuantity.Text = reader["Quantity"].ToString();
+                            DropDownList2.SelectedValue = reader["Storage"].ToString();
+                            DropDownList1.SelectedValue = reader["Color"].ToString();
                         }
                     }
                 }
@@ -154,16 +164,19 @@ namespace NewVersion.admin
         protected void btnUpdateProduct_Click(object sender, EventArgs e)
         {
             // Retrieve user input
-            string productId = txtProductID.Value;
+            string productId = (txtProductID.Value).ToString();
             string productName = txtProductName1.Text;
             string productImageUrl = txtProductImageURL1.Text;
-            decimal price = decimal.Parse(txtPrice1.Text);
+            decimal price = Convert.ToDecimal (txtPrice1.Text);
             int quantity = int.Parse(txtQuantity1.Text);
-
+            int storage = Convert. ToInt32(DropDownList2.SelectedValue);
+            int color = Convert.ToInt32(DropDownList1.SelectedValue);
 
             // Update the product in the database
             string sql = @"UPDATE Product SET ProductName = @ProductName, ProductImageURL = @ProductImageURL, 
-                       Price = @Price, Quantity = @Quantity WHERE ProductID = @ProductID";
+                       Price = @Price, Quantity = @Quantity ,ProductColor = @ProductColor, 
+                       ProductStorage = @ProductStorage
+                        WHERE ProductID = @ProductID";
 
             using (SqlConnection con = new SqlConnection(cs))
             {
@@ -175,6 +188,8 @@ namespace NewVersion.admin
                     cmd.Parameters.AddWithValue("@Price", price);
                     cmd.Parameters.AddWithValue("@Quantity", quantity);
                     cmd.Parameters.AddWithValue("@ProductID", productId);
+                    cmd.Parameters.AddWithValue("@ProductStorage", storage);
+                    cmd.Parameters.AddWithValue("@ProductColor", color);
 
                     try
                     {
@@ -215,7 +230,7 @@ namespace NewVersion.admin
 
         private void LoadProducts()
         {
-            string sql = "SELECT ProductID, ProductName, ProductImageURL, Price, Quantity FROM Product";
+            string sql = "SELECT p.ProductID,p.ProductName, p.ProductImageURL, p.Price, p.Quantity,c.Color,s.Storage FROM Product p JOIN s.Storage ON p.ProductStorage = s.StorageID JOIN c.ColorID = p.ProductColor";
             using (SqlConnection con = new SqlConnection(cs))
             {
                 SqlCommand cmd = new SqlCommand(sql, con);
@@ -227,7 +242,7 @@ namespace NewVersion.admin
             }
         }
 
-        private void DeleteProduct(string productId)
+        private void DeleteProduct(int productId)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
             string query = "DELETE FROM Product WHERE ProductID = @ProductID";

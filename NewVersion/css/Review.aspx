@@ -23,10 +23,10 @@
 	</div>
 </div>
 <!-- End Hero Section -->
-
+<div class="review-container">
     <asp:Repeater runat ="server" ID="rptReview" OnItemDataBound ="rptReview_ItemDataBound">
         <ItemTemplate >
-	<div class="review-container">
+	
        <!-- Product Details -->
         <div class="prod-details">
             <div class="prod-image">

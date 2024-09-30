@@ -275,8 +275,7 @@ namespace NewVersion.css
             string selectedStorage = btn.Text;
             Session["SelectedStorage"] = selectedStorage;
 
-            colorContainer.Style["display"] = "block"; // Assuming 'colorContainer' is the ID of the color selection div
-
+            
         }
 
         protected void ColorButton_Click(object sender, EventArgs e)
