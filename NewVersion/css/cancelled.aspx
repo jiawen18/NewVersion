@@ -79,7 +79,7 @@
         <main class="col-md-10 content">
             <h2 style="transform: translate(100px, 60px);">
                 <asp:HyperLink ID="hplBackHome2" runat="server" CssClass="no-underline" NavigateUrl="UserProfile.aspx">< </asp:HyperLink>
-                To Ship <img src="images/truck.png" />
+                Cancelled <img src="images/cancel-order.png" />
             </h2>
 
             <%-- Content Section --%>

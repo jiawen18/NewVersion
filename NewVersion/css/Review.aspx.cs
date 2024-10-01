@@ -33,132 +33,97 @@ namespace NewVersion.css
             {
                 Response.Write("Invalid or missing OrderID.");
             }
-
         }
 
-        protected void btnReview_Click(object sender, EventArgs e)
+       protected void btnReview_Click(object sender, EventArgs e)
+{
+    // 获取评分和产品ID
+    int rating;
+    int productId;
+
+    if (!int.TryParse(HiddenFieldRating.Value, out rating) ||
+        !int.TryParse(HiddenFieldProductID.Value, out productId))
+    {
+        Response.Write("Invalid rating or product ID. Please try again.");
+        return;
+    }
+
+    string description = txtReviewDescription.Text;
+    DateTime reviewDate = DateTime.Now;
+
+    using (SqlConnection con = new SqlConnection(cs))
+    {
+        con.Open();
+
+        // 插入评论
+        string insertQuery = "INSERT INTO Review (ReviewDate, ReviewRating, ReviewDescription, ProductID) VALUES (@reviewDate, @rating, @description, @productId); SELECT SCOPE_IDENTITY();";
+        using (SqlCommand cmdInsert = new SqlCommand(insertQuery, con))
         {
-            int rating;
-            int productId;
+            cmdInsert.Parameters.AddWithValue("@reviewDate", reviewDate);
+            cmdInsert.Parameters.AddWithValue("@rating", rating);
+            cmdInsert.Parameters.AddWithValue("@productId", productId);
+            cmdInsert.Parameters.AddWithValue("@description", description);
 
-            // 获取页面中的 HiddenFieldRating，而不是从 Repeater 中获取
-            HiddenField hfRating = (HiddenField)FindControl("HiddenFieldRating");
+            // 执行命令并获取新插入的 ReviewID
+            var newReviewID = cmdInsert.ExecuteScalar();
+            int reviewID = Convert.ToInt32(newReviewID);
 
-            if (hfRating == null)
+            // 处理图像文件上传
+            string imagePath = SaveMediaFiles();
+            if (!string.IsNullOrEmpty(imagePath))
             {
-                Response.Write("Rating field not found. Please try again.");
-                return;
-            }
-
-            // 遍历 Repeater 中的每一个项
-            foreach (RepeaterItem item in rptReview.Items)
-            {
-                // 从每个项中找到 HiddenFieldProductID
-                HiddenField hfProductID = (HiddenField)item.FindControl("HiddenFieldProductID");
-
-                if (hfProductID != null)
+                // 更新评论记录中的图像路径
+                string updateQuery = "UPDATE Review SET ReviewImage = @ReviewImage WHERE ReviewID = @ReviewID";
+                using (SqlCommand cmdUpdate = new SqlCommand(updateQuery, con))
                 {
-                    // 尝试转换 HiddenField 的值
-                    if (int.TryParse(hfRating.Value, out rating) &&
-                        int.TryParse(hfProductID.Value, out productId))
-                    {
-                        Response.Write("Invalid rating or product ID. Please try again.");
-                        return;
-                    }
-
-                    string description = txtReviewDescription.Text;
-
-                    DateTime reviewDate = DateTime.Now;
-
-                    using (SqlConnection con = new SqlConnection(cs))
-                    {
-                        con.Open();
-                        string insertQuery = "INSERT INTO Review (ReviewDate, ReviewRating, ReviewDescription, ProductID) " +
-                            "VALUES (@reviewDate, @rating, @description, @productId); SELECT SCOPE_IDENTITY();";
-                        using (SqlCommand cmdInsert = new SqlCommand(insertQuery, con))
-                        {
-                            // Add parameters for the values you want to insert
-                            cmdInsert.Parameters.AddWithValue("@reviewDate", reviewDate);
-                            cmdInsert.Parameters.AddWithValue("@rating", rating);
-                            cmdInsert.Parameters.AddWithValue("@productId", hfProductID);
-                            cmdInsert.Parameters.AddWithValue("@description", description);
-
-                            // Execute the command and retrieve the new ReviewID
-                            var newReviewID = cmdInsert.ExecuteScalar();
-
-                            // Convert to the appropriate type (e.g., int)
-                            int reviewID = Convert.ToInt32(newReviewID);
-
-                            string fileName2 = HiddenFieldImagePath.Value;
-                            if (fileName2 != null)
-                            {
-
-
-                                // Set the directory to store the image on your server
-                                string savePath = Server.MapPath("ReviewImg/");
-
-                                // Create the directory if it doesn't exist
-                                if (!Directory.Exists(savePath))
-                                {
-                                    Directory.CreateDirectory(savePath);
-                                }
-
-                                // Combine the directory and file name to get the complete path
-                                string fullFilePath = Path.Combine(savePath, fileName2);
-
-                                // Update the productPic in the existing product row
-                                string updateQuery = "UPDATE Review SET ReviewImage = @ReviewImage WHERE ReviewID = @ReviewID";
-                                string fileName = Path.GetFileName(fileName2);
-                                using (SqlCommand cmdUpdate = new SqlCommand(updateQuery, con))
-                                {
-                                    cmdUpdate.Parameters.AddWithValue("@ReviewImage", "ReviewImg/" + fileName);
-                                    cmdUpdate.Parameters.AddWithValue("@ReviewID", reviewID);
-
-                                    cmdUpdate.ExecuteNonQuery();
-                                }
-
-
-                            }
-                        }
-                    }
-
-                    txtReviewDescription.Text = string.Empty;
-
-                    Response.Redirect("Home2.aspx");
+                    cmdUpdate.Parameters.AddWithValue("@ReviewImage", imagePath);
+                    cmdUpdate.Parameters.AddWithValue("@ReviewID", reviewID);
+                    cmdUpdate.ExecuteNonQuery();
                 }
             }
         }
+    }
 
-        private string SaveMediaFiles()
+    // 清空描述文本框
+    txtReviewDescription.Text = string.Empty;
+
+    // 重定向到主页面
+    Response.Redirect("Home2.aspx");
+}
+
+private string SaveMediaFiles()
+{
+    string photoPath = Server.MapPath("../css/ReviewImg/");
+    string imagePath = "";
+
+    // 检查是否有文件被上传
+    if (FileUploadMedia.HasFile)
+    {
+        foreach (HttpPostedFile file in FileUploadMedia.PostedFiles)
         {
-            string photoPath = MapPath("~/Photos/");
-            string filename = Guid.NewGuid().ToString("N") + ".jpg"; // Unique filename for the photo
-            string imagePath = "";
+            // 创建唯一的文件名
+            string fileName = Guid.NewGuid().ToString("N") + Path.GetExtension(file.FileName); 
+            string fullPath = Path.Combine(photoPath, fileName);
 
-            // Check if files are uploaded
-            if (FileUploadMedia.HasFile)
+            // 确保目录存在
+            if (!Directory.Exists(photoPath))
             {
-                // Process each uploaded file
-                foreach (HttpPostedFile file in FileUploadMedia.PostedFiles)
-                {
-                    // Save image processing logic here
-                    SimpleImage img = new SimpleImage(file.InputStream);
-                    img.Square();
-                    img.Resize(150);
-                    img.SaveAs(photoPath + filename);
-                    imagePath = "~/Photos/" + filename; // Set the image path to save in the database
-                }
+                Directory.CreateDirectory(photoPath);
             }
 
-            return imagePath;
+            // 保存文件
+            file.SaveAs(fullPath);
+            imagePath = "../css/ReviewImg/" + fileName; // 设置数据库中存储的图像路径
         }
+    }
+
+    return imagePath;
+}
 
         private void LoadProductDetails(string orderId)
         {
             // Define the connection string (assuming it's in the web.config file)
             string connectionString = ConfigurationManager.ConnectionStrings["productConnectionString"].ConnectionString;
-
-            List<Product> productList = new List<Product>();
 
             // SQL query to join Order and Product tables and retrieve product details for the given OrderID
             string query = @"
@@ -180,16 +145,18 @@ namespace NewVersion.css
                     {
                         while (reader.Read())
                         {
-                            productList.Add(new Product
-                            {
-                                // Get the product details
-                                ProductImageURL = reader["ProductImageURL"].ToString(),
-                                ProductName = reader["ProductName"].ToString(),
-                                Price = (decimal)reader["Price"],
-                                ProductID = (int)reader["ProductID"]
+                            // Get the product details
+                            string productImageURL = reader["ProductImageURL"].ToString();
+                            string productName = reader["ProductName"].ToString();
+                            decimal price = (decimal)reader["Price"];
+                            int productId = (int)reader["ProductID"];
 
 
-                            });
+                            // Bind the retrieved values to the controls
+                            Image1.ImageUrl = productImageURL;
+                            lblProdName.Text = productName;
+                            lblProdDetails.Text = $"Price: {price:C}";
+                            HiddenFieldProductID.Value = productId.ToString();
                         }
                     }
                     else
@@ -198,41 +165,14 @@ namespace NewVersion.css
                     }
                 }
             }
-            rptReview.DataSource = productList;
-            rptReview.DataBind();
+
         }
 
-        protected void rptReview_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-            {
-                // 查找 HiddenField 控件
-                HiddenField hfProductID = (HiddenField)e.Item.FindControl("HiddenFieldProductID");
-
-                int productId = 0;
-                // 获取 HiddenField 的值
-                productId = Convert.ToInt32(hfProductID.Value);
-
-                Product product = (Product)e.Item.DataItem;
-                HiddenField hiddenFieldRating = (HiddenField)e.Item.FindControl("HiddenFieldRating");
-                if (hiddenFieldRating != null)
-                {
-                    // 假设你的 Product 类中有一个 Rating 属性
-                    hiddenFieldRating.Value = product.Rating.ToString();
-                }
-            }
-        }
     }
-
-    public class Product
-    {
-        public int ProductID { get; set; }
-        public string ProductName { get; set; }
-        public string ProductImageURL { get; set; }
-        public decimal Price { get; set; }
-        public int Rating { get; set; }
-    }
-
 }
+
+
+
+
 
 

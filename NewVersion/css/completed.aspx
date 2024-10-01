@@ -106,7 +106,7 @@ WHERE o.DeliveryStatus = 'Completed' AND
         <main class="col-md-10 content">
             <h2 style="transform: translate(100px, 60px);">
                 <asp:HyperLink ID="hplBackHome1" runat="server" CssClass="no-underline" NavigateUrl="UserProfile.aspx">< </asp:HyperLink>
-                To Ship <img src="images/truck.png" />
+                Completed <img src="images/package.png" />
             </h2>
 
             <%-- Content Section --%>

@@ -91,10 +91,6 @@
                                                     <div class="product" style="height: 100%; background-color: transparent;"> <!-- Added background-color -->
                                                         <div class="product-img">
                                                             <img src='<%# Eval("ProductImageURL") %>' alt="image" style="width: 100%; height: 200px; object-fit: cover;">
-                                                            <div class="product-label">
-                                                                <span class="sale">-30%</span>
-                                                                <span class="new">NEW</span>
-                                                            </div>
                                                         </div>
                                                         <div class="product-body" style="flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; background-color: transparent;"> <!-- Added background-color -->
                                                             <h3 class="product-name"><%# Eval("ProductName") %></h3>

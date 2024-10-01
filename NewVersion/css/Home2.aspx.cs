@@ -48,8 +48,6 @@ namespace NewVersion.css
                         Product p 
                     LEFT JOIN 
                         Review r ON p.ProductID = r.ProductID 
-                    WHERE 
-                        p.IsVisible = 1 
                     GROUP BY 
                         p.ProductID, 
                         p.ProductImageURL, 

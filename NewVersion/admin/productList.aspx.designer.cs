@@ -69,13 +69,22 @@ namespace NewVersion.admin
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorProductName;
 
         /// <summary>
-        /// txtProductImageURL control.
+        /// fileProductImage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProductImageURL;
+        protected global::System.Web.UI.WebControls.FileUpload fileProductImage;
+
+        /// <summary>
+        /// imgProductPreview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgProductPreview;
 
         /// <summary>
         /// RequiredFieldValidator1 control.
@@ -186,13 +195,31 @@ namespace NewVersion.admin
         protected global::System.Web.UI.WebControls.TextBox txtProductName1;
 
         /// <summary>
-        /// txtProductImageURL1 control.
+        /// FileUpload1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProductImageURL1;
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+
+        /// <summary>
+        /// Image1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Image1;
+
+        /// <summary>
+        /// RequiredFieldValidator3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
 
         /// <summary>
         /// txtPrice1 control.

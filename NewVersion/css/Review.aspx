@@ -24,13 +24,12 @@
 </div>
 <!-- End Hero Section -->
 <div class="review-container">
-    <asp:Repeater runat ="server" ID="rptReview" OnItemDataBound ="rptReview_ItemDataBound">
-        <ItemTemplate >
+    
 	
        <!-- Product Details -->
         <div class="prod-details">
             <div class="prod-image">
-                <asp:Image ID="Image1" runat="server" alt="Product Image" ImageUrl='<%#Eval("ProductImageURL") %>'/>
+                <asp:Image ID="Image1" runat="server" alt="Product Image" ImageUrl='<%#"Photo/"+ Eval("ProductImageURL") %>'/>
             </div>
             <div class="prod-info">
                 <h3 class="prod-name">
@@ -43,8 +42,7 @@
 
             </div>
         </div>
-        </ItemTemplate>
-</asp:Repeater>
+        
 
         <!-- Product Quality Rating -->
         <div class="rating-section">

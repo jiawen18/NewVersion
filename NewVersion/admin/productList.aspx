@@ -52,11 +52,14 @@
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidatorProductName" runat="server" ErrorMessage="Please enter a product name." Display="Dynamic" CssClass="text-danger" ControlToValidate="txtProductName" />
                                             </div>
                                         </div>
-                                        <div class="col-sm-12">
+                                      <div class="col-sm-12">
                                             <div class="form-group form-group-default">
-                                                <label for="txtProductImageURL">Product Image URL:</label>
-                                                <asp:TextBox ID="txtProductImageURL" runat="server" class="form-control" placeholder="Enter image URL" />
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please enter an image URL." Display="Dynamic" CssClass="text-danger" ControlToValidate="txtProductImageURL" />
+                                                <label for="fileProductImage">Product Image:</label>
+                                                <asp:FileUpload ID="fileProductImage" runat="server" class="form-control" />
+                                                <asp:Image ID="imgProductPreview" runat="server" Width="150px" Height="150px" />
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                                                    ErrorMessage="Please select an image file." Display="Dynamic" 
+                                                    CssClass="text-danger" ControlToValidate="fileProductImage" />
                                             </div>
                                         </div>
                                         <div class="col-sm-6 pe-0">
@@ -126,10 +129,14 @@
                                 <label for="txtProductName1">Product Name:</label>
                                 <asp:TextBox ID="txtProductName1" runat="server" class="form-control" placeholder="Enter product name" />
                             </div>
-                            <div class="form-group form-group-default">
-                                <label for="txtProductImageURL1">Product Image URL:</label>
-                                <asp:TextBox ID="txtProductImageURL1" runat="server" class="form-control" placeholder="Enter image URL" />
-                            </div>
+                          <div class="form-group form-group-default">
+                               <label for="fileProductImage1">Product Image:</label>
+                               <asp:FileUpload ID="FileUpload1" runat="server" class="form-control" />
+                               <asp:Image ID="Image1" runat="server" Width="150px" Height="150px" />
+                               <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
+                                     ErrorMessage="Please select an image file." Display="Dynamic" 
+                                     CssClass="text-danger" ControlToValidate="FileUpload1" />
+                         </div>
                             <div class="form-group form-group-default">
                                 <label for="txtPrice1">Price:</label>
                                 <asp:TextBox ID="txtPrice1" runat="server" class="form-control" placeholder="Enter price" />
@@ -158,8 +165,8 @@
 
                         </div>
                         <div class="modal-footer border-0">
-                            <asp:Button ID="btnUpdateProduct" runat="server" Text="Update Product" CssClass="btn btn-primary" OnClick="btnUpdateProduct_Click"/>
-                            <asp:Button ID="Button1" runat="server" Text="Close" class="btn btn-danger" data-dismiss="modal" OnClientClick="cancelFunction(); $('#editRowModal').modal('hide'); return true;"  />
+                            <asp:Button ID="btnUpdateProduct" runat="server" Text="Update Product" CssClass="btn btn-primary" OnClick="btnUpdateProduct_Click" CausesValidation="false"/>
+                            <asp:Button ID="Button1" runat="server" Text="Close" class="btn btn-danger" data-dismiss="modal" OnClientClick="return cancelFunction();"  />
                         </div>
                     </div>
                 </div>
@@ -212,7 +219,7 @@
                                     <asp:LinkButton runat="server" CssClass="btn btn-link btn-danger" 
                                         CommandName="DeleteProduct" 
                                         CommandArgument='<%# Eval("ProductID") %>' 
-                                        ToolTip="Remove">
+                                        ToolTip="Remove" CausesValidation="false">
                                         <i class="fa fa-times"></i>
                                     </asp:LinkButton>
                                 </div>
@@ -239,22 +246,40 @@
         myModal.hide();
     }
 
-    function openEditModal(productID, productName, price, quantity, imageURL, productStorage, productColor) {
-        // Set the values in the edit modal
-        document.getElementById('<%= txtProductID.ClientID %>').value = productID;
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById('<%= imgProductPreview.ClientID %>').src = e.target.result;
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    document.getElementById('<%= fileProductImage.ClientID %>').addEventListener('change', function () {
+        previewImage(this);
+    });
+    
+        function openEditModal(productID, productName, price, quantity, imageURL, productStorage, productColor) {
+            
+            document.getElementById('<%= txtProductID.ClientID %>').value = productID;
         document.getElementById('<%= txtProductName.ClientID %>').value = productName;
         document.getElementById('<%= txtPrice.ClientID %>').value = price;
         document.getElementById('<%= txtQuantity.ClientID %>').value = quantity;
-        document.getElementById('<%= txtProductImageURL.ClientID %>').value = imageURL;
 
+        document.getElementById('<%= imgProductPreview.ClientID %>').src = imageURL;
 
+        var fileUploadControl = document.getElementById('<%= fileProductImage.ClientID %>');
+        fileUploadControl.value = "";  
+
+        
         var DropDownList1 = document.getElementById('<%= DropDownList1.ClientID %>');
         DropDownList1.value = productColor; 
 
         var DropDownList2 = document.getElementById('<%= DropDownList2.ClientID %>');
-        DropDownList2.value = productStorage; 
+        DropDownList2.value = productStorage;
 
-        // Show the edit modal
+       
         var editModal = new bootstrap.Modal(document.getElementById('editRowModal'));
         editModal.show();
     }
